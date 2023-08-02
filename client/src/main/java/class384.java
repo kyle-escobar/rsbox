@@ -1,7 +1,5 @@
 import java.util.Locale;
 
-@class371
-@class333
 public class class384 implements class383 {
    public static final class384 field4402;
    public static final class384 field4403;

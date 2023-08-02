@@ -1,4 +1,3 @@
-@class333
 public final class class380 {
    public static class342 field4384;
    static class70[] field4385;

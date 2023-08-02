@@ -2,7 +2,6 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.TimeZone;
 
-@class333
 public final class class306 {
    static int field3338;
    static final HashMap field3341 = new HashMap();
