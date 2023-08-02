@@ -8,3 +8,13 @@ dependencies {
     implementation("com.formdev:flatlaf:_")
     implementation("com.formdev:flatlaf-intellij-themes:_")
 }
+
+tasks {
+    register<JavaExec>("run client") {
+        dependsOn(build)
+        group = "rsbox"
+        mainClass.set("ClientLauncher")
+        workingDir = rootProject.projectDir
+        classpath = sourceSets["main"].runtimeClasspath
+    }
+}
