@@ -20,27 +20,29 @@ class XteaConfig {
 
         val entries = config.from.json.file(file).toValue<Array<XteaEntry>>()
         entries.forEach {
-            xteas[it.region] = it.key
+            xteas[it.region] = it.keys
         }
     }
 
     operator fun get(region: Int): IntArray = xteas[region] ?: EMPTY_KEYS
 
-    data class XteaEntry(val region: Int, val key: IntArray) {
+    data class XteaEntry(private val mapsquare: Int, private val key: IntArray) {
+
+        val region = mapsquare
+        val keys = key
+
         override fun equals(other: Any?): Boolean {
             if (this === other) return true
             if (javaClass != other?.javaClass) return false
 
             other as XteaEntry
 
-            if (region != other.region) return false
-            if (!key.contentEquals(other.key)) return false
-
-            return true
+            if (mapsquare != other.mapsquare) return false
+            return key.contentEquals(other.key)
         }
 
         override fun hashCode(): Int {
-            var result = region
+            var result = mapsquare
             result = 31 * result + key.contentHashCode()
             return result
         }

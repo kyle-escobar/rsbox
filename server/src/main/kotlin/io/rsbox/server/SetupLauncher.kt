@@ -8,6 +8,7 @@ import io.rsbox.server.util.security.RSA
 import org.koin.core.context.startKoin
 import org.tinylog.kotlin.Logger
 import java.io.File
+import java.util.zip.ZipFile
 import kotlin.system.exitProcess
 
 object SetupLauncher {
@@ -20,7 +21,7 @@ object SetupLauncher {
 
         if(DATA_DIR.exists()) {
             Logger.info("The data/ directory already exists. Please delete it and re-run the setup gradle task.")
-            //exitProcess(0)
+            exitProcess(0)
         }
 
         startKoin { modules(DI_MODULES) }
@@ -29,9 +30,10 @@ object SetupLauncher {
          * Setup Steps
          */
         createDirs()
+        extractCacheZipFile()
         createConfigs()
-        checkCache()
         createRsa()
+        checkCache()
 
         Logger.info("""
             The RSBox server setup has completed successfully. You may now start the server using the 'start server' gradle task.
@@ -50,6 +52,23 @@ object SetupLauncher {
         ).map { DATA_DIR.resolve(it) }.forEach { dir ->
             Logger.info("Creating missing directory: ${dir.path}.")
             dir.mkdirs()
+        }
+    }
+
+    private fun extractCacheZipFile() {
+        Logger.info("Extracting RSBox cache.zip files.")
+        val file = File("cache.zip")
+        ZipFile(file).use { zip ->
+            zip.entries().asSequence().forEach { entry ->
+                if(!entry.isDirectory) {
+                    zip.getInputStream(entry).use { input ->
+                        File("data/cache/${entry.name}").outputStream().use { output ->
+                            Logger.info("Extracting file: ${entry.name}.")
+                            input.copyTo(output)
+                        }
+                    }
+                }
+            }
         }
     }
 
