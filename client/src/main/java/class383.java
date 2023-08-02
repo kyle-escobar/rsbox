@@ -1,3 +1,3 @@
 public interface class383 {
-    int method6917();
+   int method6917();
 }

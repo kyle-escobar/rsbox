@@ -1,7 +1,7 @@
 import java.io.UnsupportedEncodingException;
 
 public interface class459 {
-    byte[] method8031() throws UnsupportedEncodingException;
+   byte[] method8031() throws UnsupportedEncodingException;
 
-    class461 method8032();
+   class461 method8032();
 }

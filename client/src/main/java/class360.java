@@ -1,6 +1,6 @@
 public class class360 {
-    static class453 field3976;
+   static class453 field3976;
 
-    class360() throws Throwable {
-    }
+   class360() throws Throwable {
+   }
 }

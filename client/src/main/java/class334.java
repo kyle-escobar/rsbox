@@ -1,3 +1,3 @@
 public interface class334 {
-    void method6358();
+   void method6358();
 }

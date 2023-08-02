@@ -1,3 +1,3 @@
 public interface class36 {
-    class37 method528();
+   class37 method528();
 }

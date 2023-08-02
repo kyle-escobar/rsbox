@@ -1,4 +1,4 @@
 public class class344 {
-    class344() throws Throwable {
-    }
+   class344() throws Throwable {
+   }
 }
