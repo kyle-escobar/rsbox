@@ -53,7 +53,7 @@ public class class41 implements MouseListener, MouseMotionListener, FocusListene
          field247 = 0;
          field253 = var1.getX();
          field254 = var1.getY();
-         field241 = class302.method2194();
+         field241 = class302.safeTime();
          field252 = this.method600(var1);
          if (0 != field252) {
             field244 = field252;

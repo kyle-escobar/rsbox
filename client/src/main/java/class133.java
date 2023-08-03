@@ -4,5 +4,5 @@ public abstract class class133 extends class470 {
 
    abstract void method2458(class154 var1);
 
-   abstract void method2457(class519 var1);
+   abstract void method2457(PacketBuffer var1);
 }

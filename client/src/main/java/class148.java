@@ -3,15 +3,15 @@ public class class148 {
    int field1373 = -1;
    long field1374;
 
-   public class148(class519 var1) {
+   public class148(PacketBuffer var1) {
       this.method2559(var1);
    }
 
-   void method2559(class519 var1) {
-      this.field1374 = var1.method8755();
-      this.field1373 = var1.method9000();
+   void method2559(PacketBuffer var1) {
+      this.field1374 = var1.readLong();
+      this.field1373 = var1.readInt();
 
-      for(int var3 = var1.method8748(); var3 != 0; var3 = var1.method8748()) {
+      for(int var3 = var1.readUnsignedByte(); var3 != 0; var3 = var1.readUnsignedByte()) {
          Object var4;
          if (var3 == 3) {
             var4 = new class169(this);
@@ -36,7 +36,7 @@ public class class148 {
          } else if (var3 == 9) {
             var4 = new class174(this);
          } else if (var3 == 10) {
-            var4 = new class145(this);
+            var4 = new Js5NetQueue(this);
          } else if (var3 == 11) {
             var4 = new class144(this);
          } else if (var3 == 12) {

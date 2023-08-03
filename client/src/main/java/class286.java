@@ -9,5 +9,5 @@ public interface class286 {
 
    void method5436(class253 var1);
 
-   void method5444(class519 var1);
+   void method5444(PacketBuffer var1);
 }

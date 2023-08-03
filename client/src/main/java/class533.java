@@ -7,9 +7,9 @@ public class class533 {
 
    public static class308 method7051(int var0, String var1, class384 var2, int var3) {
       class308 var5 = class308.method8607(class309.field3380, Client.field1436.field1046);
-      var5.field3351.method8731(0);
-      int var6 = var5.field3351.field5129;
-      var5.field3351.method8731(var0);
+      var5.field3351.writeByte(0);
+      int var6 = var5.field3351.offset;
+      var5.field3351.writeByte(var0);
       String var7 = var1.toLowerCase();
       int var8 = 0;
       byte[] var9 = null;
@@ -124,20 +124,20 @@ public class class533 {
          var1 = var1.substring(class364.field4118.length());
       }
 
-      var5.field3351.method8731(var8);
-      var5.field3351.method8731(var19);
+      var5.field3351.writeByte(var8);
+      var5.field3351.writeByte(var19);
       if (null != var9 && Client.field1441 >= 214) {
          for(int var18 = 0; var18 < var9.length; ++var18) {
-            var5.field3351.method8731(var9[var18]);
+            var5.field3351.writeByte(var9[var18]);
          }
       }
 
       class324.method86(var5.field3351, var1);
       if (var0 == class340.field3810.method6917()) {
-         var5.field3351.method8731(var3);
+         var5.field3351.writeByte(var3);
       }
 
-      var5.field3351.method8745(var5.field3351.field5129 - var6);
+      var5.field3351.writeLengthByte(var5.field3351.offset - var6);
       return var5;
    }
 

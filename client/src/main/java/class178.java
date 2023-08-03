@@ -69,15 +69,15 @@ public class class178 implements Runnable {
          try {
             int var2 = var1.field1861;
             if (var2 == 1) {
-               var1.field1864 = new Socket(InetAddress.getByName((String)var1.field1863), var1.field1860);
+               var1.result = new Socket(InetAddress.getByName((String)var1.field1863), var1.field1860);
             } else if (var2 == 2) {
                Thread var3 = new Thread((Runnable)var1.field1863);
                var3.setDaemon(true);
                var3.start();
                var3.setPriority(var1.field1860);
-               var1.field1864 = var3;
+               var1.result = var3;
             } else if (var2 == 4) {
-               var1.field1864 = new DataInputStream(((URL)var1.field1863).openStream());
+               var1.result = new DataInputStream(((URL)var1.field1863).openStream());
             }
 
             var1.field1859 = 1;
@@ -107,7 +107,7 @@ public class class178 implements Runnable {
       }
    }
 
-   public final class177 method3404(String var1, int var2) {
+   public final class177 newSocketTask(String var1, int var2) {
       return this.method3405(1, var2, 0, var1);
    }
 

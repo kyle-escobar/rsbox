@@ -9,9 +9,9 @@ public class class151 extends class133 {
       this.field1385 = -1;
    }
 
-   void method2457(class519 var1) {
-      this.field1385 = var1.method8750();
-      this.field1384 = var1.method8748() == 1;
+   void method2457(PacketBuffer var1) {
+      this.field1385 = var1.readUnsignedShort();
+      this.field1384 = var1.readUnsignedByte() == 1;
    }
 
    void method2458(class154 var1) {

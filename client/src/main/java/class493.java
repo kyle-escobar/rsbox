@@ -55,50 +55,50 @@ public class class493 extends class470 {
       this.field4978 = var26;
    }
 
-   public void method8451(class519 var1) {
-      var1.method8731(9);
-      var1.method8731(this.field4993);
-      var1.method8731(this.field4969 ? 1 : 0);
-      var1.method8732(this.field4970);
-      var1.method8731(this.field4971);
-      var1.method8731(this.field4972);
-      var1.method8731(this.field4982);
-      var1.method8731(this.field4961);
-      var1.method8731(this.field4975 ? 1 : 0);
-      var1.method8732(this.field4976);
-      var1.method8731(this.field4977);
-      var1.method8733(this.field4989);
-      var1.method8732(this.field4979);
-      var1.method8739(this.field4973);
-      var1.method8739(this.field4981);
-      var1.method8739(this.field4980);
-      var1.method8739(this.field4983);
-      var1.method8731(this.field4985);
-      var1.method8732(this.field4984);
-      var1.method8739(this.field4988);
-      var1.method8739(this.field4962);
-      var1.method8731(this.field4986);
-      var1.method8731(this.field4987);
+   public void method8451(PacketBuffer var1) {
+      var1.writeByte(9);
+      var1.writeByte(this.field4993);
+      var1.writeByte(this.field4969 ? 1 : 0);
+      var1.writeShort(this.field4970);
+      var1.writeByte(this.field4971);
+      var1.writeByte(this.field4972);
+      var1.writeByte(this.field4982);
+      var1.writeByte(this.field4961);
+      var1.writeByte(this.field4975 ? 1 : 0);
+      var1.writeShort(this.field4976);
+      var1.writeByte(this.field4977);
+      var1.writeMedium(this.field4989);
+      var1.writeShort(this.field4979);
+      var1.writeJagString(this.field4973);
+      var1.writeJagString(this.field4981);
+      var1.writeJagString(this.field4980);
+      var1.writeJagString(this.field4983);
+      var1.writeByte(this.field4985);
+      var1.writeShort(this.field4984);
+      var1.writeJagString(this.field4988);
+      var1.writeJagString(this.field4962);
+      var1.writeByte(this.field4986);
+      var1.writeByte(this.field4987);
 
       for(int var3 = 0; var3 < this.field4990.length; ++var3) {
-         var1.method8734(this.field4990[var3]);
+         var1.writeInt(this.field4990[var3]);
       }
 
-      var1.method8734(this.field4991);
-      var1.method8739(this.field4992);
-      var1.method8739(this.field4978);
+      var1.writeInt(this.field4991);
+      var1.writeJagString(this.field4992);
+      var1.writeJagString(this.field4978);
    }
 
    public int method8453() {
       int var2 = 39;
-      var2 += class519.method6819(this.field4973);
-      var2 += class519.method6819(this.field4981);
-      var2 += class519.method6819(this.field4980);
-      var2 += class519.method6819(this.field4983);
-      var2 += class519.method6819(this.field4988);
-      var2 += class519.method6819(this.field4962);
-      var2 += class519.method6819(this.field4992);
-      var2 += class519.method6819(this.field4978);
+      var2 += PacketBuffer.method6819(this.field4973);
+      var2 += PacketBuffer.method6819(this.field4981);
+      var2 += PacketBuffer.method6819(this.field4980);
+      var2 += PacketBuffer.method6819(this.field4983);
+      var2 += PacketBuffer.method6819(this.field4988);
+      var2 += PacketBuffer.method6819(this.field4962);
+      var2 += PacketBuffer.method6819(this.field4992);
+      var2 += PacketBuffer.method6819(this.field4978);
       return var2;
    }
 }

@@ -21,11 +21,11 @@ public class class28 {
       int var10;
       int var11;
       if (class301.field3177 == var0) {
-         var3 = var2.method8782();
+         var3 = var2.readUnsignedByteNeg();
          var4 = var3 >> 4 & 15;
          var5 = var3 & 7;
-         var6 = var2.method8781();
-         var7 = var2.method8751();
+         var6 = var2.readUnsignedByteAdd();
+         var7 = var2.readUnsignedByteSub();
          var8 = class265.field2959 + (var7 >> 4 & 7);
          var9 = class380.field4386 + (var7 & 7);
          var10 = var2.method8749();
@@ -45,14 +45,14 @@ public class class28 {
       class124 var35;
       if (class301.field3176 == var0) {
          var3 = var2.method8998();
-         var4 = var2.method8751();
-         var2.method8750();
-         var2.method8782();
-         var5 = var2.method8750();
-         var6 = var2.method8748();
+         var4 = var2.readUnsignedByteSub();
+         var2.readUnsignedShort();
+         var2.readUnsignedByteNeg();
+         var5 = var2.readUnsignedShort();
+         var6 = var2.readUnsignedByte();
          var7 = class265.field2959 + (var6 >> 4 & 7);
          var8 = (var6 & 7) + class380.field4386;
-         var2.method8748();
+         var2.readUnsignedByte();
          var2.method8778();
          if (var7 >= 0 && var8 >= 0 && var7 < 104 && var8 < 104) {
             var35 = new class124();
@@ -71,10 +71,10 @@ public class class28 {
          int var12;
          if (class301.field3175 == var0) {
             var3 = var2.method8749();
-            var4 = var2.method8748();
+            var4 = var2.readUnsignedByte();
             var5 = (var4 >> 4 & 7) + class265.field2959;
             var6 = (var4 & 7) + class380.field4386;
-            var7 = var2.method8751();
+            var7 = var2.readUnsignedByteSub();
             var8 = var7 >> 2;
             var9 = var7 & 3;
             var10 = Client.field1507[var8];
@@ -139,11 +139,11 @@ public class class28 {
             }
 
          } else if (class301.field3184 == var0) {
-            var3 = var2.method8751();
-            var4 = var2.method8748();
+            var3 = var2.readUnsignedByteSub();
+            var4 = var2.readUnsignedByte();
             var5 = (var4 >> 4 & 7) + class265.field2959;
             var6 = class380.field4386 + (var4 & 7);
-            var7 = var2.method8750();
+            var7 = var2.readUnsignedShort();
             var8 = var2.method8778();
             if (var5 >= 0 && var6 >= 0 && var5 < 104 && var6 < 104) {
                var5 = var5 * 128 + 64;
@@ -153,10 +153,10 @@ public class class28 {
             }
 
          } else if (class301.field3179 == var0) {
-            var3 = var2.method8781();
+            var3 = var2.readUnsignedByteAdd();
             var4 = (var3 >> 4 & 7) + class265.field2959;
             var5 = class380.field4386 + (var3 & 7);
-            var6 = var2.method8750();
+            var6 = var2.readUnsignedShort();
             var7 = var2.method8804();
             var8 = var2.method8804();
             if (var4 >= 0 && var5 >= 0 && var4 < 104 && var5 < 104) {
@@ -176,11 +176,11 @@ public class class28 {
          } else {
             class368 var34;
             if (class301.field3180 == var0) {
-               var3 = var2.method8748();
-               var4 = var2.method8748();
+               var3 = var2.readUnsignedByte();
+               var4 = var2.readUnsignedByte();
                var5 = (var4 >> 4 & 7) + class265.field2959;
                var6 = class380.field4386 + (var4 & 7);
-               var7 = var2.method8750();
+               var7 = var2.readUnsignedShort();
                if (var5 >= 0 && var6 >= 0 && var5 < 104 && var6 < 104) {
                   var34 = Client.field1568[class44.field306][var5][var6];
                   if (var34 != null) {
@@ -194,12 +194,12 @@ public class class28 {
                }
 
             } else if (class301.field3182 == var0) {
-               var3 = var2.method8751();
+               var3 = var2.readUnsignedByteSub();
                var4 = class265.field2959 + (var3 >> 4 & 7);
                var5 = (var3 & 7) + class380.field4386;
-               var6 = var2.method8781();
+               var6 = var2.readUnsignedByteAdd();
                var7 = var2.method8749();
-               var8 = var2.method8748();
+               var8 = var2.readUnsignedByte();
                var9 = var8 >> 2;
                var10 = var8 & 3;
                var11 = Client.field1507[var9];
@@ -212,21 +212,21 @@ public class class28 {
                int var14;
                int var15;
                if (var0 == class301.field3185) {
-                  byte var32 = var2.method8784();
-                  var4 = var2.method8781();
+                  byte var32 = var2.readByteAdd();
+                  var4 = var2.readUnsignedByteAdd();
                   var5 = class265.field2959 + (var4 >> 4 & 7);
                   var6 = (var4 & 7) + class380.field4386;
                   var7 = var2.method8778();
                   var8 = var2.method8749();
-                  var9 = var2.method8750();
+                  var9 = var2.readUnsignedShort();
                   var10 = var2.method8778();
-                  byte var37 = var2.method8768();
-                  var12 = var2.method8748();
+                  byte var37 = var2.readByte();
+                  var12 = var2.readUnsignedByte();
                   var13 = var12 >> 2;
                   var14 = var12 & 3;
                   var15 = Client.field1507[var13];
-                  byte var16 = var2.method8784();
-                  byte var17 = var2.method8768();
+                  byte var16 = var2.readByteAdd();
+                  byte var17 = var2.readByte();
                   class84 var18;
                   if (var7 == Client.field1716) {
                      var18 = class146.field1362;
@@ -285,19 +285,19 @@ public class class28 {
                }
 
                if (class301.field3183 == var0) {
-                  var3 = var2.method8750();
+                  var3 = var2.readUnsignedShort();
                   var4 = var2.method8798();
-                  var5 = var2.method8782();
-                  byte var33 = var2.method8786();
-                  var7 = var2.method8782();
+                  var5 = var2.readUnsignedByteNeg();
+                  byte var33 = var2.readByteSub();
+                  var7 = var2.readUnsignedByteNeg();
                   var8 = class265.field2959 + (var7 >> 4 & 7);
                   var9 = class380.field4386 + (var7 & 7);
-                  var10 = var2.method8781();
+                  var10 = var2.readUnsignedByteAdd();
                   var11 = var2.method8778();
                   var12 = var2.method8778();
-                  byte var42 = var2.method8784();
-                  var14 = var2.method8781() * 4;
-                  var15 = var2.method8782() * 4;
+                  byte var42 = var2.readByteAdd();
+                  var14 = var2.readUnsignedByteAdd() * 4;
+                  var15 = var2.readUnsignedByteNeg() * 4;
                   var6 = var33 + var8;
                   var13 = var42 + var9;
                   if (var8 >= 0 && var9 >= 0 && var8 < 104 && var9 < 104 && var6 >= 0 && var13 >= 0 && var6 < 104 && var13 < 104 && var12 != 65535) {
@@ -312,10 +312,10 @@ public class class28 {
 
                } else if (class301.field3178 != var0) {
                   if (var0 == class301.field3181) {
-                     var3 = var2.method8751();
+                     var3 = var2.readUnsignedByteSub();
                      var4 = (var3 >> 4 & 7) + class265.field2959;
                      var5 = class380.field4386 + (var3 & 7);
-                     var6 = var2.method8748();
+                     var6 = var2.readUnsignedByte();
                      var7 = var6 >> 2;
                      var8 = var6 & 3;
                      var9 = Client.field1507[var7];
@@ -326,8 +326,8 @@ public class class28 {
                   }
                } else {
                   var3 = var2.method8998();
-                  var4 = var2.method8750();
-                  var5 = var2.method8782();
+                  var4 = var2.readUnsignedShort();
+                  var5 = var2.readUnsignedByteNeg();
                   var6 = (var5 >> 4 & 7) + class265.field2959;
                   var7 = (var5 & 7) + class380.field4386;
                   if (var6 >= 0 && var7 >= 0 && var6 < 104 && var7 < 104) {

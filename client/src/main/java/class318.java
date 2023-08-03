@@ -84,7 +84,7 @@ class class318 implements Callable {
    }
 
    public static int method5851(byte[] var0, int var1) {
-      return class519.method6596(var0, 0, var1);
+      return PacketBuffer.method6596(var0, 0, var1);
    }
 
    public Object call() {

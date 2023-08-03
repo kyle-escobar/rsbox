@@ -17,49 +17,49 @@ public class class34 {
 
    static class81 method520(byte[] var0) {
       class81 var2 = new class81();
-      class519 var3 = new class519(var0);
-      var3.field5129 = var3.field5127.length - 2;
-      int var4 = var3.method8750();
-      int var5 = var3.field5127.length - 2 - var4 - 12;
-      var3.field5129 = var5;
-      int var6 = var3.method9000();
-      var2.field715 = var3.method8750();
-      var2.field714 = var3.method8750();
-      var2.field711 = var3.method8750();
-      var2.field716 = var3.method8750();
-      int var7 = var3.method8748();
+      PacketBuffer var3 = new PacketBuffer(var0);
+      var3.offset = var3.data.length - 2;
+      int var4 = var3.readUnsignedShort();
+      int var5 = var3.data.length - 2 - var4 - 12;
+      var3.offset = var5;
+      int var6 = var3.readInt();
+      var2.field715 = var3.readUnsignedShort();
+      var2.field714 = var3.readUnsignedShort();
+      var2.field711 = var3.readUnsignedShort();
+      var2.field716 = var3.readUnsignedShort();
+      int var7 = var3.readUnsignedByte();
       int var8;
       int var9;
       if (var7 > 0) {
          var2.field717 = var2.method1743(var7);
 
          for(var8 = 0; var8 < var7; ++var8) {
-            var9 = var3.method8750();
+            var9 = var3.readUnsignedShort();
             class469 var10 = new class469(var9 > 0 ? class311.method2196(var9) : 1);
             var2.field717[var8] = var10;
 
             while(var9-- > 0) {
-               int var11 = var3.method9000();
-               int var12 = var3.method9000();
+               int var11 = var3.readInt();
+               int var12 = var3.readInt();
                var10.method8097(new class492(var12), (long)var11);
             }
          }
       }
 
-      var3.field5129 = 0;
+      var3.offset = 0;
       var2.field709 = var3.method8758();
       var2.field712 = new int[var6];
       var2.field713 = new int[var6];
       var2.field710 = new String[var6];
 
-      for(var8 = 0; var3.field5129 < var5; var2.field712[var8++] = var9) {
-         var9 = var3.method8750();
+      for(var8 = 0; var3.offset < var5; var2.field712[var8++] = var9) {
+         var9 = var3.readUnsignedShort();
          if (var9 == 3) {
-            var2.field710[var8] = var3.method8873();
+            var2.field710[var8] = var3.readString();
          } else if (var9 < 100 && var9 != 21 && var9 != 38 && var9 != 39) {
-            var2.field713[var8] = var3.method9000();
+            var2.field713[var8] = var3.readInt();
          } else {
-            var2.field713[var8] = var3.method8748();
+            var2.field713[var8] = var3.readUnsignedByte();
          }
       }
 

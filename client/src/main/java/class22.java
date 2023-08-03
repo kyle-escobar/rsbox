@@ -9,8 +9,8 @@ public class class22 {
       this.field120 = var3;
    }
 
-   class22(class519 var1) {
-      this(var1.method8748(), var1.method8748(), var1.method8873());
+   class22(PacketBuffer var1) {
+      this(var1.readUnsignedByte(), var1.readUnsignedByte(), var1.readString());
    }
 
    String method340() {

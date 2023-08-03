@@ -21,7 +21,7 @@ public abstract class class222 {
          class124.field1180.method651(7680, 2160);
       }
 
-      if (Client.field1728 >= 25) {
+      if (Client.gameState >= 25) {
          Client.method7275();
       }
 

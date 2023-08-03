@@ -3,23 +3,23 @@ public class class29 {
    int field150;
    int field153;
 
-   class29(class519 var1) {
+   class29(PacketBuffer var1) {
       for(int var2 = 0; var2 < 10; ++var2) {
-         int var3 = var1.method8748();
+         int var3 = var1.readUnsignedByte();
          if (var3 != 0) {
-            --var1.field5129;
+            --var1.offset;
             this.field151[var2] = new class69();
             this.field151[var2].method1425(var1);
          }
       }
 
-      this.field150 = var1.method8750();
-      this.field153 = var1.method8750();
+      this.field150 = var1.readUnsignedShort();
+      this.field153 = var1.readUnsignedShort();
    }
 
    public static class29 method434(class342 var0, int var1, int var2) {
       byte[] var3 = var0.method6381(var1, var2);
-      return var3 == null ? null : new class29(new class519(var3));
+      return var3 == null ? null : new class29(new PacketBuffer(var3));
    }
 
    public class35 method430() {

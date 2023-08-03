@@ -99,7 +99,7 @@ public class class485 {
       this.field4893 = new HashMap(var10);
 
       for(int var11 = 0; var11 < var10; ++var11) {
-         class519 var12 = new class519(this.field4884.method6381(var8, var9[var11]));
+         PacketBuffer var12 = new PacketBuffer(this.field4884.method6381(var8, var9[var11]));
          class253 var13 = new class253();
          var13.method4955(var12, var9[var11]);
          this.field4893.put(var13.method4937(), var13);
@@ -164,7 +164,7 @@ public class class485 {
    public void method8208(int var1, int var2, boolean var3, boolean var4) {
       long var6;
       label33: {
-         var6 = class302.method2194();
+         var6 = class302.safeTime();
          this.method8209(var1, var2, var4, var6);
          if (!this.method8330() && (var4 || var3)) {
             boolean var8 = null != Client.field1512;
@@ -210,10 +210,10 @@ public class class485 {
                var10 = this.field4933.field3583;
                var11 = this.field4933.field3582;
                class308 var12 = class308.method8607(class309.field3432, Client.field1436.field1046);
-               var12.field3351.method8800(0);
+               var12.field3351.writeIntME(0);
                var12.field3351.method8934(var13);
-               var12.field3351.method8850(var11);
-               var12.field3351.method8788(var10);
+               var12.field3351.writeByteAdd(var11);
+               var12.field3351.writeShortAdd(var10);
                Client.field1436.method2148(var12);
             } else {
                boolean var9 = true;
@@ -227,7 +227,7 @@ public class class485 {
 
                if (var9) {
                   class308 var14 = class308.method8607(class309.field3409, Client.field1436.field1046);
-                  var14.field3351.method8801(this.field4933.method6190());
+                  var14.field3351.writeIntIME(this.field4933.method6190());
                   Client.field1436.method2148(var14);
                   this.field4919 = 0L;
                }
@@ -278,7 +278,7 @@ public class class485 {
    final void method8212(int var1, int var2, boolean var3) {
       this.field4899 = var1;
       this.field4913 = var2;
-      class302.method2194();
+      class302.safeTime();
       if (var3) {
          this.method8213();
       }

@@ -11,12 +11,12 @@ public class class126 {
    class126() {
    }
 
-   void method2356(class519 var1, int var2) {
-      this.field1194 = var1.method9001();
-      this.field1199 = var1.method8756();
-      this.field1195 = var1.method8756();
-      this.field1193 = var1.method8756();
-      this.field1197 = var1.method8756();
-      this.field1198 = var1.method8756();
+   void method2356(PacketBuffer var1, int var2) {
+      this.field1194 = var1.readShort();
+      this.field1199 = var1.readFloat();
+      this.field1195 = var1.readFloat();
+      this.field1193 = var1.readFloat();
+      this.field1197 = var1.readFloat();
+      this.field1198 = var1.readFloat();
    }
 }

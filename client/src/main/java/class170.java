@@ -3,7 +3,7 @@ public class class170 extends class188 {
    int field1813 = 1;
    int field1815 = 256;
    int field1816;
-   long field1814 = class302.method2194();
+   long field1814 = class302.safeTime();
    long[] field1812 = new long[10];
 
    public class170() {
@@ -25,7 +25,7 @@ public class class170 extends class188 {
       int var5 = this.field1813;
       this.field1815 = 300;
       this.field1813 = 1;
-      this.field1814 = class302.method2194();
+      this.field1814 = class302.safeTime();
       if (0L == this.field1812[this.field1816]) {
          this.field1815 = var4;
          this.field1813 = var5;

@@ -28,7 +28,7 @@ public class class329 {
          byte[] var5 = class196.field2144.method6381(14, var0);
          var4 = new class196();
          if (var5 != null) {
-            var4.method3754(new class519(var5));
+            var4.method3754(new PacketBuffer(var5));
          }
 
          class196.field2143.method5640(var4, (long)var0);

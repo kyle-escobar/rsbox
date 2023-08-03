@@ -29,9 +29,9 @@ public class class427 extends class435 {
       this.field4614 = class325.method5891(var1);
    }
 
-   public final void method7618(class519 var1, int var2) {
-      this.method7617(var1.method8873());
-      long var4 = var1.method8755();
+   public final void method7618(PacketBuffer var1, int var2) {
+      this.method7617(var1.readString());
+      long var4 = var1.readLong();
       long var7 = var4;
       String var6;
       int var9;
@@ -60,17 +60,17 @@ public class class427 extends class435 {
       }
 
       this.method7616(var6);
-      this.field4618 = var1.method8768();
+      this.field4618 = var1.readByte();
       short var15;
       if (var2 == 1) {
-         var9 = var1.method8748();
+         var9 = var1.readUnsignedByte();
          var15 = 255;
       } else {
          if (var2 != 2) {
             throw new IllegalArgumentException("Invalid friend chat full update version: " + var2);
          }
 
-         var9 = var1.method8923();
+         var9 = var1.readUnsignedSmartByteShortNull();
          var15 = -1;
       }
 
@@ -78,21 +78,21 @@ public class class427 extends class435 {
          this.method7785();
 
          for(int var16 = 0; var16 < var9; ++var16) {
-            class423 var17 = (class423)this.method7726(new class526(var1.method8873(), this.field4613));
-            int var14 = var1.method8750();
+            class423 var17 = (class423)this.method7726(new class526(var1.readString(), this.field4613));
+            int var14 = var1.readUnsignedShort();
             var17.method7462(var14, ++this.field4615 - 1);
-            var17.field4577 = var1.method8768();
-            var1.method8873();
+            var17.field4577 = var1.readByte();
+            var1.readString();
             this.method7622(var17);
          }
 
       }
    }
 
-   public final void method7628(class519 var1) {
-      class526 var3 = new class526(var1.method8873(), this.field4613);
-      int var4 = var1.method8750();
-      byte var5 = var1.method8768();
+   public final void method7628(PacketBuffer var1) {
+      class526 var3 = new class526(var1.readString(), this.field4613);
+      int var4 = var1.readUnsignedShort();
+      byte var5 = var1.readByte();
       boolean var6 = false;
       if (var5 == -128) {
          var6 = true;
@@ -109,7 +109,7 @@ public class class427 extends class435 {
             this.method7725(var7);
          }
       } else {
-         var1.method8873();
+         var1.readString();
          var7 = (class423)this.method7722(var3);
          if (var7 == null) {
             if (this.method7770() > super.field4655) {

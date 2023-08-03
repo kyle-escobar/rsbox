@@ -36,7 +36,7 @@ object SetupLauncher {
         checkCache()
 
         Logger.info("""
-            The RSBox server setup has completed successfully. You may now start the server using the 'start server' gradle task.
+            The RSBox server setup has completed successfully. You may now start the server using the 'run server' gradle task.
         """.trimIndent())
     }
 

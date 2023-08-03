@@ -5,11 +5,11 @@ public abstract class class445 implements class279 {
    class445(int var1) {
    }
 
-   abstract void method7831(class519 var1, int var2);
+   abstract void method7831(PacketBuffer var1, int var2);
 
-   public void method7840(class519 var1) {
+   public void method7840(PacketBuffer var1) {
       while(true) {
-         int var3 = var1.method8748();
+         int var3 = var1.readUnsignedByte();
          if (var3 == 0) {
             return;
          }
@@ -18,16 +18,16 @@ public abstract class class445 implements class279 {
          if (null != var4) {
             switch (var4.field4760) {
                case 0:
-                  class373.method1724(class356.method1961(), var1.method8748());
+                  class373.method1724(class356.method1961(), var1.readUnsignedByte());
                   break;
                case 1:
                default:
                   throw new IllegalStateException("Unrecognised VarTypeEncodingKey - " + var4);
                case 2:
-                  var1.method8760();
+                  var1.readJagString();
                   break;
                case 3:
-                  int var5 = var1.method8748();
+                  int var5 = var1.readUnsignedByte();
                   this.field4696 = class516.method7421(var5);
                   if (this.field4696 == null) {
                      throw new IllegalStateException("Unknown ScriptVarType ID in VarType.decode: " + var5);

@@ -84,13 +84,13 @@ final class class343 implements Comparator {
       } else {
          if (var0 == 56) {
             class61.method2098(class364.field4163, class364.field4164, class364.field4171);
-            Client.method2323(11);
+            Client.updateGameState(11);
             return;
          }
 
          if (var0 == 57) {
             class61.method2098(class364.field4326, class364.field4167, class364.field4168);
-            Client.method2323(11);
+            Client.updateGameState(11);
             return;
          }
 
@@ -99,36 +99,36 @@ final class class343 implements Comparator {
             class61.method6370(7);
          } else {
             if (var0 == 62) {
-               Client.method2323(10);
+               Client.updateGameState(10);
                class61.method6370(9);
                class61.method2098(class364.field4129, class364.field4170, class364.field4166);
                return;
             }
 
             if (var0 == 63) {
-               Client.method2323(10);
+               Client.updateGameState(10);
                class61.method6370(9);
                class61.method2098(class364.field4172, class364.field4173, class364.field4174);
                return;
             }
 
             if (var0 == 65 || var0 == 67) {
-               Client.method2323(10);
+               Client.updateGameState(10);
                class61.method6370(9);
                class61.method2098(class364.field4175, class364.field4111, class364.field4065);
                return;
             }
 
             if (var0 == 71) {
-               Client.method2323(10);
+               Client.updateGameState(10);
                class61.method6370(7);
                class61.method2098("There was a problem updating your DOB.", "Please try again later. If the problem ", "persists, please contact Jagex Support.");
             } else if (var0 == 73) {
-               Client.method2323(10);
+               Client.updateGameState(10);
                class61.method6370(6);
                class61.method2098(class364.field4307, class364.field4308, class364.field4248);
             } else if (var0 == 72) {
-               Client.method2323(10);
+               Client.updateGameState(10);
                class61.method6370(32);
             } else {
                class61.method2098(class364.field4178, class364.field4035, class364.field4180);
@@ -136,7 +136,7 @@ final class class343 implements Comparator {
          }
       }
 
-      Client.method2323(10);
+      Client.updateGameState(10);
       boolean var4 = var2 != class61.method2044();
       if (!var4 && Client.field1472.method8523()) {
          class61.method6370(9);

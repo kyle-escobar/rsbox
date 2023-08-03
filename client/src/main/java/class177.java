@@ -4,7 +4,7 @@ public class class177 {
    Object field1863;
    public int field1860;
    public volatile int field1859 = 0;
-   public volatile Object field1864;
+   public volatile Object result;
 
    class177() {
    }

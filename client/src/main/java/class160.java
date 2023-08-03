@@ -76,7 +76,7 @@ public class class160 {
          String var9 = null;
          String var10 = null;
          boolean var11 = false;
-         class519 var13;
+         PacketBuffer var13;
          int var14;
          int var16;
          File var37;
@@ -84,33 +84,33 @@ public class class160 {
             try {
                class508 var12 = new class508(class157.field1739, "rw", 10000L);
 
-               for(var13 = new class519((int)var12.method8613()); var13.field5129 < var13.field5127.length; var13.field5129 += var14) {
-                  var14 = var12.method8615(var13.field5127, var13.field5129, var13.field5127.length - var13.field5129);
+               for(var13 = new PacketBuffer((int)var12.method8613()); var13.offset < var13.data.length; var13.offset += var14) {
+                  var14 = var12.method8615(var13.data, var13.offset, var13.data.length - var13.offset);
                   if (var14 == -1) {
                      throw new IOException();
                   }
                }
 
-               var13.field5129 = 0;
-               var14 = var13.method8748();
+               var13.offset = 0;
+               var14 = var13.readUnsignedByte();
                if (var14 < 1 || var14 > 3) {
                   throw new IOException("" + var14);
                }
 
                int var15 = 0;
                if (var14 > 1) {
-                  var15 = var13.method8748();
+                  var15 = var13.readUnsignedByte();
                }
 
                if (var14 <= 2) {
-                  var9 = var13.method8760();
+                  var9 = var13.readJagString();
                   if (var15 == 1) {
-                     var10 = var13.method8760();
+                     var10 = var13.readJagString();
                   }
                } else {
-                  var9 = var13.method8761();
+                  var9 = var13.readUtf8();
                   if (var15 == 1) {
-                     var10 = var13.method8761();
+                     var10 = var13.readUtf8();
                   }
                }
 
@@ -215,15 +215,15 @@ public class class160 {
 
             try {
                class508 var46 = new class508(class157.field1739, "rw", 10000L);
-               class519 var49 = new class519(500);
-               var49.method8731(3);
-               var49.method8731(var13 != null ? 1 : 0);
-               var49.method8740(var36.getPath());
+               PacketBuffer var49 = new PacketBuffer(500);
+               var49.writeByte(3);
+               var49.writeByte(var13 != null ? 1 : 0);
+               var49.writeUtf8(var36.getPath());
                if (null != var13) {
-                  var49.method8740("");
+                  var49.writeUtf8("");
                }
 
-               var46.method8610(var49.field5127, 0, var49.field5129);
+               var46.method8610(var49.data, 0, var49.offset);
                var46.method8611();
             } catch (IOException var21) {
                var21.printStackTrace();

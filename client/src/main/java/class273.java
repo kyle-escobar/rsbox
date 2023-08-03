@@ -23,7 +23,7 @@ public abstract class class273 {
       this.field3010 = false;
    }
 
-   abstract void method5304(class519 var1);
+   abstract void method5304(PacketBuffer var1);
 
    boolean method5301() {
       return this.field3009 && this.field3010;
@@ -33,7 +33,7 @@ public abstract class class273 {
       if (!this.method5301()) {
          byte[] var3 = var1.method6381(this.field3002, this.field2999);
          if (var3 != null) {
-            this.method5304(new class519(var3));
+            this.method5304(new PacketBuffer(var3));
             this.field3009 = true;
             this.field3010 = true;
          }
@@ -51,8 +51,8 @@ public abstract class class273 {
       this.field3010 = false;
    }
 
-   void method5300(int var1, int var2, class519 var3) {
-      int var5 = var3.method8748();
+   void method5300(int var1, int var2, PacketBuffer var3) {
+      int var5 = var3.readUnsignedByte();
       if (var5 != 0) {
          if (0 != (var5 & 1)) {
             this.method5305(var1, var2, var3, var5);
@@ -63,31 +63,31 @@ public abstract class class273 {
       }
    }
 
-   void method5305(int var1, int var2, class519 var3, int var4) {
+   void method5305(int var1, int var2, PacketBuffer var3, int var4) {
       boolean var6 = (var4 & 2) != 0;
       if (var6) {
-         this.field3005[0][var1][var2] = (short)var3.method8750();
+         this.field3005[0][var1][var2] = (short)var3.readUnsignedShort();
       }
 
-      this.field3004[0][var1][var2] = (short)var3.method8750();
+      this.field3004[0][var1][var2] = (short)var3.readUnsignedShort();
    }
 
-   void method5306(int var1, int var2, class519 var3, int var4) {
+   void method5306(int var1, int var2, PacketBuffer var3, int var4) {
       int var6 = ((var4 & 24) >> 3) + 1;
       boolean var7 = (var4 & 2) != 0;
       boolean var8 = 0 != (var4 & 4);
-      this.field3004[0][var1][var2] = (short)var3.method8750();
+      this.field3004[0][var1][var2] = (short)var3.readUnsignedShort();
       int var9;
       int var10;
       int var12;
       if (var7) {
-         var9 = var3.method8748();
+         var9 = var3.readUnsignedByte();
 
          for(var10 = 0; var10 < var9; ++var10) {
-            int var11 = var3.method8750();
+            int var11 = var3.readUnsignedShort();
             if (var11 != 0) {
                this.field3005[var10][var1][var2] = (short)var11;
-               var12 = var3.method8748();
+               var12 = var3.readUnsignedByte();
                this.field2996[var10][var1][var2] = (byte)(var12 >> 2);
                this.field3007[var10][var1][var2] = (byte)(var12 & 3);
             }
@@ -96,13 +96,13 @@ public abstract class class273 {
 
       if (var8) {
          for(var9 = 0; var9 < var6; ++var9) {
-            var10 = var3.method8748();
+            var10 = var3.readUnsignedByte();
             if (var10 != 0) {
                class271[] var15 = this.field3008[var9][var1][var2] = new class271[var10];
 
                for(var12 = 0; var12 < var10; ++var12) {
                   int var13 = var3.method8814();
-                  int var14 = var3.method8748();
+                  int var14 = var3.readUnsignedByte();
                   var15[var12] = new class271(var13, var14 >> 2, var14 & 3);
                }
             }

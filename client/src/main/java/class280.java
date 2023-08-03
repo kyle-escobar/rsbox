@@ -7,41 +7,41 @@ public class class280 extends class273 {
    class280() {
    }
 
-   void method5363(class519 var1) {
-      int var3 = var1.method8748();
+   void method5363(PacketBuffer var1) {
+      int var3 = var1.readUnsignedByte();
       if (class281.field3039.field3040 != var3) {
          throw new IllegalStateException("");
       } else {
-         super.field3006 = var1.method8748();
-         super.field3001 = var1.method8748();
-         super.field3000 = var1.method8750();
-         super.field2997 = var1.method8750();
-         this.field3034 = var1.method8748();
-         this.field3036 = var1.method8748();
-         super.field2998 = var1.method8750();
-         super.field3003 = var1.method8750();
-         this.field3037 = var1.method8748();
-         this.field3035 = var1.method8748();
+         super.field3006 = var1.readUnsignedByte();
+         super.field3001 = var1.readUnsignedByte();
+         super.field3000 = var1.readUnsignedShort();
+         super.field2997 = var1.readUnsignedShort();
+         this.field3034 = var1.readUnsignedByte();
+         this.field3036 = var1.readUnsignedByte();
+         super.field2998 = var1.readUnsignedShort();
+         super.field3003 = var1.readUnsignedShort();
+         this.field3037 = var1.readUnsignedByte();
+         this.field3035 = var1.readUnsignedByte();
          super.field3002 = var1.method8814();
          super.field2999 = var1.method8814();
       }
    }
 
-   void method5304(class519 var1) {
+   void method5304(PacketBuffer var1) {
       super.field3001 = Math.min(super.field3001, 4);
       super.field3004 = new short[1][64][64];
       super.field3005 = new short[super.field3001][64][64];
       super.field2996 = new byte[super.field3001][64][64];
       super.field3007 = new byte[super.field3001][64][64];
       super.field3008 = new class271[super.field3001][64][64][];
-      int var3 = var1.method8748();
+      int var3 = var1.readUnsignedByte();
       if (class284.field3054.field3055 != var3) {
          throw new IllegalStateException("");
       } else {
-         int var4 = var1.method8748();
-         int var5 = var1.method8748();
-         int var6 = var1.method8748();
-         int var7 = var1.method8748();
+         int var4 = var1.readUnsignedByte();
+         int var5 = var1.readUnsignedByte();
+         int var6 = var1.readUnsignedByte();
+         int var7 = var1.readUnsignedByte();
          if (var4 == super.field2998 && super.field3003 == var5 && var6 == this.field3037 && var7 == this.field3035) {
             for(int var8 = 0; var8 < 8; ++var8) {
                for(int var9 = 0; var9 < 8; ++var9) {

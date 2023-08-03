@@ -10,14 +10,14 @@ public class class531 {
    class531(int var1, int var2, int var3) {
    }
 
-   public void method9212(class519 var1, byte[] var2) {
-      if (var1.field5127[var1.field5129] == 31 && var1.field5127[var1.field5129 + 1] == -117) {
+   public void method9212(PacketBuffer var1, byte[] var2) {
+      if (var1.data[var1.offset] == 31 && var1.data[var1.offset + 1] == -117) {
          if (this.field5187 == null) {
             this.field5187 = new Inflater(true);
          }
 
          try {
-            this.field5187.setInput(var1.field5127, 10 + var1.field5129, var1.field5127.length - (var1.field5129 + 10 + 8));
+            this.field5187.setInput(var1.data, 10 + var1.offset, var1.data.length - (var1.offset + 10 + 8));
             this.field5187.inflate(var2);
          } catch (Exception var5) {
             this.field5187.reset();

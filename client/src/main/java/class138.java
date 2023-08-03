@@ -110,8 +110,8 @@ public class class138 extends class133 {
       }
    }
 
-   void method2457(class519 var1) {
-      this.field1284 = var1.method8750();
+   void method2457(PacketBuffer var1) {
+      this.field1284 = var1.readUnsignedShort();
    }
 
    void method2458(class154 var1) {

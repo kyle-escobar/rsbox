@@ -7,9 +7,9 @@ public class class26 {
    ExecutorService field139 = Executors.newSingleThreadExecutor();
    Future field137;
    final class13 field136;
-   final class519 field135;
+   final PacketBuffer field135;
 
-   public class26(class519 var1, class13 var2) {
+   public class26(PacketBuffer var1, class13 var2) {
       this.field135 = var1;
       this.field136 = var2;
       this.method367();
@@ -24,9 +24,9 @@ public class class26 {
       this.field139 = null;
    }
 
-   public class519 method363() {
+   public PacketBuffer method363() {
       try {
-         return (class519)this.field137.get();
+         return (PacketBuffer)this.field137.get();
       } catch (Exception var3) {
          return null;
       }

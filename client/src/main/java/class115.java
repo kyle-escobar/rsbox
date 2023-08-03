@@ -15,8 +15,8 @@ public class class115 {
    public class115 field1096;
    public final int field1101;
 
-   public class115(int var1, class519 var2, boolean var3) {
-      this.field1101 = var2.method9001();
+   public class115(int var1, PacketBuffer var2, boolean var3) {
+      this.field1101 = var2.readShort();
       this.field1098 = new class455[var1];
       this.field1099 = new class455[this.field1098.length];
       this.field1109 = new class455[this.field1098.length];
@@ -24,9 +24,9 @@ public class class115 {
 
       for(int var4 = 0; var4 < this.field1098.length; ++var4) {
          this.field1098[var4] = new class455(var2, var3);
-         this.field1097[var4][0] = var2.method8756();
-         this.field1097[var4][1] = var2.method8756();
-         this.field1097[var4][2] = var2.method8756();
+         this.field1097[var4][0] = var2.readFloat();
+         this.field1097[var4][1] = var2.readFloat();
+         this.field1097[var4][2] = var2.readFloat();
       }
 
       this.method2233();

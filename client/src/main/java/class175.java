@@ -3,15 +3,15 @@ public class class175 {
    long field1846;
    long field1847 = -1L;
 
-   public class175(class519 var1) {
+   public class175(PacketBuffer var1) {
       this.method3383(var1);
    }
 
-   void method3383(class519 var1) {
-      this.field1846 = var1.method8755();
-      this.field1847 = var1.method8755();
+   void method3383(PacketBuffer var1) {
+      this.field1846 = var1.readLong();
+      this.field1847 = var1.readLong();
 
-      for(int var3 = var1.method8748(); var3 != 0; var3 = var1.method8748()) {
+      for(int var3 = var1.readUnsignedByte(); var3 != 0; var3 = var1.readUnsignedByte()) {
          Object var4;
          if (var3 == 1) {
             var4 = new class139(this);

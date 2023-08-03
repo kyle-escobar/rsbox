@@ -26,10 +26,10 @@ public class class134 extends class133 {
       return var3;
    }
 
-   void method2457(class519 var1) {
-      if (var1.method8748() != 255) {
-         --var1.field5129;
-         this.field1250 = var1.method8755();
+   void method2457(PacketBuffer var1) {
+      if (var1.readUnsignedByte() != 255) {
+         --var1.offset;
+         this.field1250 = var1.readLong();
       }
 
       this.field1251 = var1.method8758();

@@ -61,7 +61,7 @@ public class class108 extends class442 {
          }
 
          class303.field3198.clear();
-         class355 var7 = class145.field1356;
+         class355 var7 = Js5NetQueue.field1356;
          var7.method6532(false);
          class61.field429 = true;
          class61.field447 = (class343.field3838 - 765) / 2;

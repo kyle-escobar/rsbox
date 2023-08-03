@@ -17,7 +17,7 @@ public class class164 extends class470 {
       new BitSet(65536);
    }
 
-   public class164(class519 var1) {
+   public class164(PacketBuffer var1) {
       this.method3262(var1);
    }
 
@@ -65,8 +65,8 @@ public class class164 extends class470 {
       }
    }
 
-   void method3262(class519 var1) {
-      int var3 = var1.method8748();
+   void method3262(PacketBuffer var1) {
+      int var3 = var1.readUnsignedByte();
       if (0 != (var3 & 1)) {
          this.field1770 = true;
       }
@@ -77,33 +77,33 @@ public class class164 extends class470 {
 
       int var4 = 2;
       if (0 != (var3 & 4)) {
-         var4 = var1.method8748();
+         var4 = var1.readUnsignedByte();
       }
 
-      super.field4816 = var1.method8755();
-      this.field1771 = var1.method8755();
-      this.field1775 = var1.method8873();
-      var1.method8757();
-      this.field1778 = var1.method8768();
-      this.field1776 = var1.method8768();
-      int var5 = var1.method8750();
+      super.field4816 = var1.readLong();
+      this.field1771 = var1.readLong();
+      this.field1775 = var1.readString();
+      var1.readBoolean();
+      this.field1778 = var1.readByte();
+      this.field1776 = var1.readByte();
+      int var5 = var1.readUnsignedShort();
       if (var5 > 0) {
          this.field1772 = new ArrayList(var5);
 
          for(int var6 = 0; var6 < var5; ++var6) {
             class152 var7 = new class152();
             if (this.field1770) {
-               var1.method8755();
+               var1.readLong();
             }
 
             if (this.field1777) {
-               var7.field1389 = new class526(var1.method8873());
+               var7.field1389 = new class526(var1.readString());
             }
 
-            var7.field1391 = var1.method8768();
-            var7.field1388 = var1.method8750();
+            var7.field1391 = var1.readByte();
+            var7.field1388 = var1.readUnsignedShort();
             if (var4 >= 3) {
-               var1.method8757();
+               var1.readBoolean();
             }
 
             this.field1772.add(var6, var7);

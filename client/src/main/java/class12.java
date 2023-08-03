@@ -113,7 +113,7 @@ public class class12 implements KeyListener, FocusListener {
          if ((var2 <= 0 || var2 >= 128) && (var2 < 160 || var2 > 255)) {
             label47: {
                if (var2 != 0) {
-                  char[] var4 = class389.field4443;
+                  char[] var4 = CP1252UTF8.field4443;
 
                   for(int var5 = 0; var5 < var4.length; ++var5) {
                      char var6 = var4[var5];

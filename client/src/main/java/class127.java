@@ -102,31 +102,31 @@ public class class127 {
                if (var8 instanceof Integer) {
                   var3 += 4;
                } else if (var8 instanceof String) {
-                  var3 += class519.method8713((String)var8);
+                  var3 += PacketBuffer.getJagStringSize((String)var8);
                }
 
                ++var4;
             }
          }
 
-         class519 var21 = new class519(var3);
-         var21.method8731(2);
-         var21.method8732(var4);
+         PacketBuffer var21 = new PacketBuffer(var3);
+         var21.writeByte(2);
+         var21.writeShort(var4);
          Iterator var22 = this.field1203.entrySet().iterator();
 
          while(var22.hasNext()) {
             Map.Entry var23 = (Map.Entry)var22.next();
             int var24 = (Integer)var23.getKey();
             if (this.field1204[var24]) {
-               var21.method8732(var24);
+               var21.writeShort(var24);
                Object var9 = var23.getValue();
                class507 var10 = class507.method8594(var9.getClass());
-               var21.method8731(var10.field5073);
+               var21.writeByte(var10.field5073);
                class507.method8600(var9, var21);
             }
          }
 
-         var2.method8610(var21.field5127, 0, var21.field5129);
+         var2.method8610(var21.data, 0, var21.offset);
       } catch (Exception var19) {
       } finally {
          try {
@@ -137,7 +137,7 @@ public class class127 {
       }
 
       this.field1202 = false;
-      this.field1208 = class302.method2194();
+      this.field1208 = class302.safeTime();
    }
 
    void method2369() {
@@ -155,16 +155,16 @@ public class class127 {
                }
             }
 
-            class519 var25 = new class519(var3);
-            if (var25.field5127.length - var25.field5129 >= 1) {
-               int var6 = var25.method8748();
+            PacketBuffer var25 = new PacketBuffer(var3);
+            if (var25.data.length - var25.offset >= 1) {
+               int var6 = var25.readUnsignedByte();
                if (var6 >= 0 && var6 <= 2) {
                   int var7;
                   int var8;
                   int var9;
                   int var10;
                   if (var6 >= 2) {
-                     var7 = var25.method8750();
+                     var7 = var25.readUnsignedShort();
                      var8 = 0;
 
                      while(true) {
@@ -172,8 +172,8 @@ public class class127 {
                            break label234;
                         }
 
-                        var9 = var25.method8750();
-                        var10 = var25.method8748();
+                        var9 = var25.readUnsignedShort();
+                        var10 = var25.readUnsignedByte();
                         class507 var11 = (class507)class373.method1724(class507.method8599(), var10);
                         Object var12 = var11.method8596(var25);
                         if (var9 >= 0 && var9 < this.field1204.length && this.field1204[var9]) {
@@ -183,17 +183,17 @@ public class class127 {
                         ++var8;
                      }
                   } else {
-                     var7 = var25.method8750();
+                     var7 = var25.readUnsignedShort();
 
                      for(var8 = 0; var8 < var7; ++var8) {
-                        var9 = var25.method8750();
-                        var10 = var25.method9000();
+                        var9 = var25.readUnsignedShort();
+                        var10 = var25.readInt();
                         if (var9 >= 0 && var9 < this.field1204.length && this.field1204[var9]) {
                            this.field1203.put(var9, var10);
                         }
                      }
 
-                     var8 = var25.method8750();
+                     var8 = var25.readUnsignedShort();
                      var9 = 0;
 
                      while(true) {
@@ -201,8 +201,8 @@ public class class127 {
                            break label234;
                         }
 
-                        var25.method8750();
-                        var25.method8873();
+                        var25.readUnsignedShort();
+                        var25.readString();
                         ++var9;
                      }
                   }
@@ -227,7 +227,7 @@ public class class127 {
    }
 
    void method2395() {
-      if (this.field1202 && this.field1208 < class302.method2194() - 60000L) {
+      if (this.field1202 && this.field1208 < class302.safeTime() - 60000L) {
          this.method2378();
       }
 

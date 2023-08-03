@@ -2,9 +2,9 @@ public class class230 {
    class115[] field2517;
    int field2518;
 
-   class230(class519 var1, int var2) {
+   class230(PacketBuffer var1, int var2) {
       this.field2517 = new class115[var2];
-      this.field2518 = var1.method8748();
+      this.field2518 = var1.readUnsignedByte();
 
       for(int var3 = 0; var3 < this.field2517.length; ++var3) {
          class115 var4 = new class115(this.field2518, var1, false);

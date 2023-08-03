@@ -88,7 +88,7 @@ public final class class88 {
          }
       }
 
-      class519 var13 = new class519(var0);
+      PacketBuffer var13 = new PacketBuffer(var0);
 
       for(var8 = 0; var8 < 4; ++var8) {
          for(var9 = 0; var9 < 64; ++var9) {
@@ -113,7 +113,7 @@ public final class class88 {
          }
       }
 
-      class519 var30 = new class519(var0);
+      PacketBuffer var30 = new PacketBuffer(var0);
 
       for(var13 = 0; var13 < 4; ++var13) {
          for(int var14 = 0; var14 < 64; ++var14) {
@@ -191,14 +191,14 @@ public final class class88 {
 
    }
 
-   static final void method1892(class519 var0, int var1, int var2, int var3, int var4, int var5, int var6) {
+   static final void method1892(PacketBuffer var0, int var1, int var2, int var3, int var4, int var5, int var6) {
       boolean var8 = var1 >= 0 && var1 < 4 && var2 >= 0 && var2 < 104 && var3 >= 0 && var3 < 104;
       int var9;
       if (var8) {
          field804[var1][var2][var3] = 0;
 
          while(true) {
-            var9 = var0.method8750();
+            var9 = var0.readUnsignedShort();
             if (var9 == 0) {
                if (var1 == 0) {
                   field797[0][var2][var3] = -method2160(var4 + 932731, var5 + 556238) * 8;
@@ -209,7 +209,7 @@ public final class class88 {
             }
 
             if (var9 == 1) {
-               int var10 = var0.method8748();
+               int var10 = var0.readUnsignedByte();
                if (var10 == 1) {
                   var10 = 0;
                }
@@ -223,7 +223,7 @@ public final class class88 {
             }
 
             if (var9 <= 49) {
-               field800[var1][var2][var3] = (short)var0.method9001();
+               field800[var1][var2][var3] = (short)var0.readShort();
                class15.field75[var1][var2][var3] = (byte)((var9 - 2) / 4);
                class108.field1062[var1][var2][var3] = (byte)(var6 + (var9 - 2) & 3);
             } else if (var9 <= 81) {
@@ -234,18 +234,18 @@ public final class class88 {
          }
       } else {
          while(true) {
-            var9 = var0.method8750();
+            var9 = var0.readUnsignedShort();
             if (var9 == 0) {
                break;
             }
 
             if (var9 == 1) {
-               var0.method8748();
+               var0.readUnsignedByte();
                break;
             }
 
             if (var9 <= 49) {
-               var0.method9001();
+               var0.readShort();
             }
          }
       }
@@ -253,7 +253,7 @@ public final class class88 {
    }
 
    static final void method266(byte[] var0, int var1, int var2, class234 var3, class218[] var4) {
-      class519 var6 = new class519(var0);
+      PacketBuffer var6 = new PacketBuffer(var0);
       int var7 = -1;
 
       while(true) {
@@ -266,7 +266,7 @@ public final class class88 {
          int var9 = 0;
 
          while(true) {
-            int var10 = var6.method8764();
+            int var10 = var6.readUnsignedSmartByteShort();
             if (var10 == 0) {
                break;
             }
@@ -275,7 +275,7 @@ public final class class88 {
             int var11 = var9 & 63;
             int var12 = var9 >> 6 & 63;
             int var13 = var9 >> 12;
-            int var14 = var6.method8748();
+            int var14 = var6.readUnsignedByte();
             int var15 = var14 >> 2;
             int var16 = var14 & 3;
             int var17 = var12 + var1;
@@ -298,7 +298,7 @@ public final class class88 {
    }
 
    static final void method1906(byte[] var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7, class234 var8, class218[] var9) {
-      class519 var10 = new class519(var0);
+      PacketBuffer var10 = new PacketBuffer(var0);
       int var11 = -1;
 
       while(true) {
@@ -311,7 +311,7 @@ public final class class88 {
          int var13 = 0;
 
          while(true) {
-            int var14 = var10.method8764();
+            int var14 = var10.readUnsignedSmartByteShort();
             if (var14 == 0) {
                break;
             }
@@ -320,7 +320,7 @@ public final class class88 {
             int var15 = var13 & 63;
             int var16 = var13 >> 6 & 63;
             int var17 = var13 >> 12;
-            int var18 = var10.method8748();
+            int var18 = var10.readUnsignedByte();
             int var19 = var18 >> 2;
             int var20 = var18 & 3;
             if (var4 == var17 && var16 >= var5 && var16 < var5 + 8 && var15 >= var6 && var15 < var6 + 8) {
@@ -806,7 +806,7 @@ public final class class88 {
                         byte[] var56 = class192.field2092.method6381(1, var18);
                         var55 = new class192();
                         if (null != var56) {
-                           var55.method3690(new class519(var56), var18);
+                           var55.method3690(new PacketBuffer(var56), var18);
                         }
 
                         var55.method3675();
@@ -840,7 +840,7 @@ public final class class88 {
                         byte[] var58 = class192.field2092.method6381(1, var19);
                         var57 = new class192();
                         if (null != var58) {
-                           var57.method3690(new class519(var58), var19);
+                           var57.method3690(new PacketBuffer(var58), var19);
                         }
 
                         var57.method3675();
@@ -959,7 +959,7 @@ public final class class88 {
                               byte[] var40 = class209.field2253.method6381(4, var38);
                               var39 = new class209();
                               if (null != var40) {
-                                 var39.method3908(new class519(var40), var38);
+                                 var39.method3908(new PacketBuffer(var40), var38);
                               }
 
                               var39.method3912();

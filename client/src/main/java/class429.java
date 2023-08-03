@@ -14,11 +14,11 @@ public class class429 extends class435 {
       return new class430[var1];
    }
 
-   public void method7674(class519 var1, int var2) {
-      while(var1.field5129 < var2) {
-         int var4 = var1.method8748();
+   public void method7674(PacketBuffer var1, int var2) {
+      while(var1.offset < var2) {
+         int var4 = var1.readUnsignedByte();
          if (var4 == 4) {
-            class526 var10 = new class526(var1.method8873(), this.field4631);
+            class526 var10 = new class526(var1.readString(), this.field4631);
             if (!var10.method9157()) {
                throw new IllegalStateException();
             }
@@ -27,9 +27,9 @@ public class class429 extends class435 {
             class165.field1782.method1093(var10.method9155(), var11);
          } else {
             boolean var5 = (var4 & 1) != 0;
-            class526 var6 = new class526(var1.method8873(), this.field4631);
-            class526 var7 = new class526(var1.method8873(), this.field4631);
-            var1.method8873();
+            class526 var6 = new class526(var1.readString(), this.field4631);
+            class526 var7 = new class526(var1.readString(), this.field4631);
+            var1.readString();
             if (!var6.method9157()) {
                throw new IllegalStateException();
             }

@@ -12,12 +12,12 @@ public class class141 extends class133 {
       this.this$0 = var1;
    }
 
-   void method2457(class519 var1) {
-      this.field1308 = var1.method8748() == 1;
-      this.field1306 = var1.method8768();
-      this.field1305 = var1.method8768();
-      this.field1309 = var1.method8768();
-      this.field1311 = var1.method8768();
+   void method2457(PacketBuffer var1) {
+      this.field1308 = var1.readUnsignedByte() == 1;
+      this.field1306 = var1.readByte();
+      this.field1305 = var1.readByte();
+      this.field1309 = var1.readByte();
+      this.field1311 = var1.readByte();
    }
 
    void method2458(class154 var1) {

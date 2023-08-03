@@ -15,9 +15,9 @@ public class class156 extends class476 {
    public class156(class342 var1, class342 var2, int var3, boolean var4) {
       this.field1423 = var3;
       byte[] var5 = var1.method6381(this.field1423 >> 16 & '\uffff', this.field1423 & '\uffff');
-      class519 var6 = new class519(var5);
-      int var7 = var6.method8748();
-      int var8 = var6.method8750();
+      PacketBuffer var6 = new PacketBuffer(var5);
+      int var7 = var6.readUnsignedByte();
+      int var8 = var6.readUnsignedShort();
       byte[] var9;
       if (var4) {
          var9 = var2.method6389(0, var8);
@@ -30,11 +30,11 @@ public class class156 extends class476 {
       this.field1429 = class34.field173.submit(new class155(this, var6, var7));
    }
 
-   void method2659(class519 var1, int var2) {
-      var1.method8750();
-      var1.method8750();
-      this.field1427 = var1.method8748();
-      int var4 = var1.method8750();
+   void method2659(PacketBuffer var1, int var2) {
+      var1.readUnsignedShort();
+      var1.readUnsignedShort();
+      this.field1427 = var1.readUnsignedByte();
+      int var4 = var1.readUnsignedShort();
       this.field1426 = new class143[this.field1425.method4198().method4367()][];
       this.field1424 = new class143[this.field1425.method4203()][];
       class120[] var5 = new class120[var4];
@@ -43,15 +43,15 @@ public class class156 extends class476 {
       int var8;
       int var19;
       for(var6 = 0; var6 < var4; ++var6) {
-         var8 = var1.method8748();
+         var8 = var1.readUnsignedByte();
          class131[] var9 = new class131[]{class131.field1227, class131.field1228, class131.field1231, class131.field1230, class131.field1233, class131.field1232};
          class131 var10 = (class131)class373.method1724(var9, var8);
          if (null == var10) {
             var10 = class131.field1227;
          }
 
-         var19 = var1.method8763();
-         int var12 = var1.method8748();
+         var19 = var1.readSmartByteShort();
+         int var12 = var1.readUnsignedByte();
          class137 var13 = (class137)class373.method1724(class137.method1197(), var12);
          if (var13 == null) {
             var13 = class137.field1266;

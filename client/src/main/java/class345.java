@@ -17,9 +17,9 @@ public class class345 {
       field3844 = new class343();
    }
 
-   public class345(class519 var1, boolean var2) {
-      int var3 = var1.method8750();
-      boolean var4 = var1.method8748() == 1;
+   public class345(PacketBuffer var1, boolean var2) {
+      int var3 = var1.readUnsignedShort();
+      boolean var4 = var1.readUnsignedByte() == 1;
       byte var5;
       if (var4) {
          var5 = 1;
@@ -27,7 +27,7 @@ public class class345 {
          var5 = 0;
       }
 
-      int var6 = var1.method8750();
+      int var6 = var1.readUnsignedShort();
       this.field3845 = new ArrayList(var6);
 
       for(int var7 = 0; var7 < var6; ++var7) {

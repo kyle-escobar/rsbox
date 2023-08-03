@@ -8,9 +8,9 @@ public class class174 extends class133 {
       this.this$0 = var1;
    }
 
-   void method2457(class519 var1) {
-      this.field1842 = var1.method9000();
-      this.field1845 = var1.method8755();
+   void method2457(PacketBuffer var1) {
+      this.field1842 = var1.readInt();
+      this.field1845 = var1.readLong();
    }
 
    void method2458(class154 var1) {

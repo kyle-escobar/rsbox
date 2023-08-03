@@ -25,24 +25,24 @@ public class class432 extends class435 {
       }
    }
 
-   public void method7691(class519 var1, int var2) {
+   public void method7691(PacketBuffer var1, int var2) {
       while(true) {
-         if (var1.field5129 < var2) {
-            boolean var4 = var1.method8748() == 1;
-            class526 var5 = new class526(var1.method8873(), this.field4640);
-            class526 var6 = new class526(var1.method8873(), this.field4640);
-            int var7 = var1.method8750();
-            int var8 = var1.method8748();
-            int var9 = var1.method8748();
+         if (var1.offset < var2) {
+            boolean var4 = var1.readUnsignedByte() == 1;
+            class526 var5 = new class526(var1.readString(), this.field4640);
+            class526 var6 = new class526(var1.readString(), this.field4640);
+            int var7 = var1.readUnsignedShort();
+            int var8 = var1.readUnsignedByte();
+            int var9 = var1.readUnsignedByte();
             boolean var10 = 0 != (var9 & 2);
             boolean var11 = 0 != (var9 & 1);
             if (var7 > 0) {
-               var1.method8873();
-               var1.method8748();
-               var1.method9000();
+               var1.readString();
+               var1.readUnsignedByte();
+               var1.readInt();
             }
 
-            var1.method8873();
+            var1.readString();
             if (null != var5 && var5.method9157()) {
                class425 var12 = (class425)this.method7722(var5);
                if (var4) {

@@ -95,7 +95,7 @@ public class class231 implements class27 {
          } else {
             label80: {
                if (var1 != 0) {
-                  char[] var4 = class389.field4443;
+                  char[] var4 = CP1252UTF8.field4443;
 
                   for(int var5 = 0; var5 < var4.length; ++var5) {
                      char var6 = var4[var5];

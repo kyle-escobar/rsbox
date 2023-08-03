@@ -15,11 +15,11 @@ public class class265 implements class383 {
       this.field2957 = var2;
    }
 
-   public static void method5209(class519 var0, int var1) {
+   public static void method5209(PacketBuffer var0, int var1) {
       if (null != class160.field1755) {
          try {
             class160.field1755.method8669(0L);
-            class160.field1755.method8683(var0.field5127, var1, 24);
+            class160.field1755.method8683(var0.data, var1, 24);
          } catch (Exception var4) {
          }
       }

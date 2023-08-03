@@ -186,14 +186,14 @@ public class class363 extends class342 {
             if (var6 != this.field4014) {
                this.field4018.method6536(this, 255, this.field4019, this.field4014, (byte)0, true);
             } else {
-               class519 var12 = new class519(class342.method5782(var3));
-               int var13 = var12.method8748();
+               PacketBuffer var12 = new PacketBuffer(class342.method5782(var3));
+               int var13 = var12.readUnsignedByte();
                if (var13 != 5 && var13 != 6) {
                   throw new RuntimeException(var13 + "," + this.field4019 + "," + var2);
                } else {
                   int var9 = 0;
                   if (var13 >= 6) {
-                     var9 = var12.method9000();
+                     var9 = var12.readInt();
                   }
 
                   if (var9 != this.field4015) {

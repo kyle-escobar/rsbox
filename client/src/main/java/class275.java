@@ -11,9 +11,9 @@ public class class275 extends class253 {
    class275() {
    }
 
-   void method5343(class519 var1, class519 var2, int var3, boolean var4) {
+   void method5343(PacketBuffer var1, PacketBuffer var2, int var3, boolean var4) {
       this.method4955(var1, var3);
-      int var6 = var2.method8750();
+      int var6 = var2.readUnsignedShort();
       this.field3018 = new HashSet(var6);
 
       int var7;
@@ -29,7 +29,7 @@ public class class275 extends class253 {
          this.field3018.add(var8);
       }
 
-      var7 = var2.method8750();
+      var7 = var2.readUnsignedShort();
       this.field3016 = new HashSet(var7);
 
       for(int var13 = 0; var13 < var7; ++var13) {
@@ -47,14 +47,14 @@ public class class275 extends class253 {
       this.method5344(var2, var4);
    }
 
-   void method5344(class519 var1, boolean var2) {
+   void method5344(PacketBuffer var1, boolean var2) {
       this.field3017 = new LinkedList();
-      int var4 = var1.method8750();
+      int var4 = var1.readUnsignedShort();
 
       for(int var5 = 0; var5 < var4; ++var5) {
          int var6 = var1.method8814();
-         class330 var7 = new class330(var1.method9000());
-         boolean var8 = var1.method8748() == 1;
+         class330 var7 = new class330(var1.readInt());
+         boolean var8 = var1.readUnsignedByte() == 1;
          if (var2 || !var8) {
             this.field3017.add(new class266((class330)null, var7, var6, (class261)null));
          }

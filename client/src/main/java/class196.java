@@ -21,9 +21,9 @@ public class class196 extends class476 {
       field2144 = var0;
    }
 
-   public void method3754(class519 var1) {
+   public void method3754(PacketBuffer var1) {
       while(true) {
-         int var3 = var1.method8748();
+         int var3 = var1.readUnsignedByte();
          if (var3 == 0) {
             return;
          }
@@ -32,11 +32,11 @@ public class class196 extends class476 {
       }
    }
 
-   void method3755(class519 var1, int var2) {
+   void method3755(PacketBuffer var1, int var2) {
       if (var2 == 1) {
-         this.field2142 = var1.method8750();
-         this.field2140 = var1.method8748();
-         this.field2141 = var1.method8748();
+         this.field2142 = var1.readUnsignedShort();
+         this.field2140 = var1.readUnsignedByte();
+         this.field2141 = var1.readUnsignedByte();
       }
 
    }

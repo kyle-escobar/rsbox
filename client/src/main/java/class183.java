@@ -19,9 +19,9 @@ public class class183 extends class476 {
       field1900.method5637();
    }
 
-   public void method3433(class519 var1) {
+   public void method3433(PacketBuffer var1) {
       while(true) {
-         int var3 = var1.method8748();
+         int var3 = var1.readUnsignedByte();
          if (var3 == 0) {
             return;
          }
@@ -30,29 +30,29 @@ public class class183 extends class476 {
       }
    }
 
-   void method3444(class519 var1, int var2) {
+   void method3444(PacketBuffer var1, int var2) {
       if (var2 == 1) {
-         var1.method8750();
+         var1.readUnsignedShort();
       } else if (var2 == 2) {
-         this.field1893 = var1.method8748();
+         this.field1893 = var1.readUnsignedByte();
       } else if (var2 == 3) {
-         this.field1894 = var1.method8748();
+         this.field1894 = var1.readUnsignedByte();
       } else if (var2 == 4) {
          this.field1898 = 0;
       } else if (var2 == 5) {
-         this.field1895 = var1.method8750();
+         this.field1895 = var1.readUnsignedShort();
       } else if (var2 == 6) {
-         var1.method8748();
+         var1.readUnsignedByte();
       } else if (var2 == 7) {
          this.field1890 = var1.method8814();
       } else if (var2 == 8) {
          this.field1899 = var1.method8814();
       } else if (var2 == 11) {
-         this.field1898 = var1.method8750();
+         this.field1898 = var1.readUnsignedShort();
       } else if (var2 == 14) {
-         this.field1897 = var1.method8748();
+         this.field1897 = var1.readUnsignedByte();
       } else if (var2 == 15) {
-         this.field1901 = var1.method8748();
+         this.field1901 = var1.readUnsignedByte();
       }
 
    }

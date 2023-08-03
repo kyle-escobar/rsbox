@@ -12,12 +12,12 @@ public class class136 extends class163 {
       this.field1256 = -1;
    }
 
-   void method3248(class519 var1) {
-      this.field1256 = var1.method8750();
-      this.field1260 = var1.method8768();
-      this.field1258 = var1.method8750();
-      var1.method8755();
-      this.field1257 = var1.method8873();
+   void method3248(PacketBuffer var1) {
+      this.field1256 = var1.readUnsignedShort();
+      this.field1260 = var1.readByte();
+      this.field1258 = var1.readUnsignedShort();
+      var1.readLong();
+      this.field1257 = var1.readString();
    }
 
    void method3255(class164 var1) {

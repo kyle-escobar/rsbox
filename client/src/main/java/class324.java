@@ -5,8 +5,8 @@ public class class324 {
    class324() throws Throwable {
    }
 
-   public static int method86(class519 var0, String var1) {
-      int var3 = var0.field5129;
+   public static int method86(PacketBuffer var0, String var1) {
+      int var3 = var0.offset;
       int var5 = var1.length();
       byte[] var6 = new byte[var5];
 
@@ -75,8 +75,8 @@ public class class324 {
          }
       }
 
-      var0.method8746(var6.length);
-      var0.field5129 += field3541.method5789(var6, 0, var6.length, var0.field5127, var0.field5129);
-      return var0.field5129 - var3;
+      var0.writeSmartByteShort(var6.length);
+      var0.offset += field3541.method5789(var6, 0, var6.length, var0.data, var0.offset);
+      return var0.offset - var3;
    }
 }

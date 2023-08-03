@@ -1,7 +1,7 @@
-public class class389 {
+public class CP1252UTF8 {
    public static final char[] field4443 = new char[]{'\u20ac', '\u0000', '\u201a', '\u0192', '\u201e', '\u2026', '\u2020', '\u2021', '\u02c6', '\u2030', '\u0160', '\u2039', '\u0152', '\u0000', '\u017d', '\u0000', '\u0000', '\u2018', '\u2019', '\u201c', '\u201d', '\u2022', '\u2013', '\u2014', '\u02dc', '\u2122', '\u0161', '\u203a', '\u0153', '\u0000', '\u017e', '\u0178'};
 
-   class389() throws Throwable {
+   CP1252UTF8() throws Throwable {
    }
 
    public static boolean method1754(char var0) {
@@ -41,7 +41,7 @@ public class class389 {
       }
    }
 
-   public static int method2459(CharSequence var0, int var1, int var2, byte[] var3, int var4) {
+   public static int encodeStringCp1252(CharSequence var0, int var1, int var2, byte[] var3, int var4) {
       int var6 = var2 - var1;
 
       for(int var7 = 0; var7 < var6; ++var7) {
@@ -112,7 +112,7 @@ public class class389 {
       return var6;
    }
 
-   public static String method8163(byte[] var0, int var1, int var2) {
+   public static String cp1252ToUtf8(byte[] var0, int var1, int var2) {
       char[] var4 = new char[var2];
       int var5 = 0;
 

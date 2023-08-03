@@ -81,10 +81,10 @@ public class class32 {
          var14 = class342.field3837 + (class468.field4805 >> 7);
          var15 = (class44.field302 >> 7) + class144.field1352;
          class308 var16 = class308.method8607(class309.field3432, Client.field1436.field1046);
-         var16.field3351.method8800(Client.field1540);
+         var16.field3351.writeIntME(Client.field1540);
          var16.field3351.method8934(var14);
-         var16.field3351.method8850(var13);
-         var16.field3351.method8788(var15);
+         var16.field3351.writeByteAdd(var13);
+         var16.field3351.writeShortAdd(var15);
          Client.field1436.method2148(var16);
       }
 

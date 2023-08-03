@@ -117,7 +117,7 @@ public class class185 extends class476 {
          var2 = new class185();
          var2.field1992 = var0;
          if (null != var3) {
-            var2.method3495(new class519(var3));
+            var2.method3495(new PacketBuffer(var3));
          }
 
          var2.method3494();
@@ -209,9 +209,9 @@ public class class185 extends class476 {
 
    }
 
-   void method3495(class519 var1) {
+   void method3495(PacketBuffer var1) {
       while(true) {
-         int var3 = var1.method8748();
+         int var3 = var1.readUnsignedByte();
          if (var3 == 0) {
             return;
          }
@@ -220,133 +220,133 @@ public class class185 extends class476 {
       }
    }
 
-   void method3496(class519 var1, int var2) {
+   void method3496(PacketBuffer var1, int var2) {
       if (var2 == 1) {
-         this.field1956 = var1.method8750();
+         this.field1956 = var1.readUnsignedShort();
       } else if (var2 == 2) {
-         this.field1998 = var1.method8873();
+         this.field1998 = var1.readString();
       } else if (var2 == 4) {
-         this.field1969 = var1.method8750();
+         this.field1969 = var1.readUnsignedShort();
       } else if (var2 == 5) {
-         this.field1970 = var1.method8750();
+         this.field1970 = var1.readUnsignedShort();
       } else if (var2 == 6) {
-         this.field1960 = var1.method8750();
+         this.field1960 = var1.readUnsignedShort();
       } else if (var2 == 7) {
-         this.field1973 = var1.method8750();
+         this.field1973 = var1.readUnsignedShort();
          if (this.field1973 > 32767) {
             this.field1973 -= 65536;
          }
       } else if (var2 == 8) {
-         this.field1971 = var1.method8750();
+         this.field1971 = var1.readUnsignedShort();
          if (this.field1971 > 32767) {
             this.field1971 -= 65536;
          }
       } else if (var2 == 9) {
-         var1.method8873();
+         var1.readString();
       } else if (var2 == 11) {
          this.field1975 = 1;
       } else if (var2 == 12) {
-         this.field1976 = var1.method9000();
+         this.field1976 = var1.readInt();
       } else if (var2 == 13) {
-         this.field2009 = var1.method8748();
+         this.field2009 = var1.readUnsignedByte();
       } else if (var2 == 14) {
-         this.field1978 = var1.method8748();
+         this.field1978 = var1.readUnsignedByte();
       } else if (var2 == 16) {
          this.field1980 = true;
       } else if (var2 == 23) {
-         this.field1984 = var1.method8750();
-         this.field1986 = var1.method8748();
+         this.field1984 = var1.readUnsignedShort();
+         this.field1986 = var1.readUnsignedByte();
       } else if (var2 == 24) {
-         this.field1985 = var1.method8750();
+         this.field1985 = var1.readUnsignedShort();
       } else if (var2 == 25) {
-         this.field1995 = var1.method8750();
-         this.field1989 = var1.method8748();
+         this.field1995 = var1.readUnsignedShort();
+         this.field1989 = var1.readUnsignedByte();
       } else if (var2 == 26) {
-         this.field1988 = var1.method8750();
+         this.field1988 = var1.readUnsignedShort();
       } else if (var2 == 27) {
-         this.field1979 = var1.method8748();
+         this.field1979 = var1.readUnsignedByte();
       } else if (var2 >= 30 && var2 < 35) {
-         this.field1959[var2 - 30] = var1.method8873();
+         this.field1959[var2 - 30] = var1.readString();
          if (this.field1959[var2 - 30].equalsIgnoreCase(class364.field4151)) {
             this.field1959[var2 - 30] = null;
          }
       } else if (var2 >= 35 && var2 < 40) {
-         this.field1982[var2 - 35] = var1.method8873();
+         this.field1982[var2 - 35] = var1.readString();
       } else {
          int var4;
          int var5;
          if (var2 == 40) {
-            var4 = var1.method8748();
+            var4 = var1.readUnsignedByte();
             this.field1961 = new short[var4];
             this.field1966 = new short[var4];
 
             for(var5 = 0; var5 < var4; ++var5) {
-               this.field1961[var5] = (short)var1.method8750();
-               this.field1966[var5] = (short)var1.method8750();
+               this.field1961[var5] = (short)var1.readUnsignedShort();
+               this.field1966[var5] = (short)var1.readUnsignedShort();
             }
          } else if (var2 == 41) {
-            var4 = var1.method8748();
+            var4 = var1.readUnsignedByte();
             this.field1967 = new short[var4];
             this.field1968 = new short[var4];
 
             for(var5 = 0; var5 < var4; ++var5) {
-               this.field1967[var5] = (short)var1.method8750();
-               this.field1968[var5] = (short)var1.method8750();
+               this.field1967[var5] = (short)var1.readUnsignedShort();
+               this.field1968[var5] = (short)var1.readUnsignedShort();
             }
          } else if (var2 == 42) {
-            this.field1983 = var1.method8768();
+            this.field1983 = var1.readByte();
          } else if (var2 == 65) {
             this.field2008 = true;
          } else if (var2 == 75) {
-            this.field2011 = var1.method9001();
+            this.field2011 = var1.readShort();
          } else if (var2 == 78) {
-            this.field1990 = var1.method8750();
+            this.field1990 = var1.readUnsignedShort();
          } else if (var2 == 79) {
-            this.field1991 = var1.method8750();
+            this.field1991 = var1.readUnsignedShort();
          } else if (var2 == 90) {
-            this.field1964 = var1.method8750();
+            this.field1964 = var1.readUnsignedShort();
          } else if (var2 == 91) {
-            this.field1994 = var1.method8750();
+            this.field1994 = var1.readUnsignedShort();
          } else if (var2 == 92) {
-            this.field1993 = var1.method8750();
+            this.field1993 = var1.readUnsignedShort();
          } else if (var2 == 93) {
-            this.field2004 = var1.method8750();
+            this.field2004 = var1.readUnsignedShort();
          } else if (var2 == 94) {
-            var1.method8750();
+            var1.readUnsignedShort();
          } else if (var2 == 95) {
-            this.field1972 = var1.method8750();
+            this.field1972 = var1.readUnsignedShort();
          } else if (var2 == 97) {
-            this.field1997 = var1.method8750();
+            this.field1997 = var1.readUnsignedShort();
          } else if (var2 == 98) {
-            this.field1999 = var1.method8750();
+            this.field1999 = var1.readUnsignedShort();
          } else if (var2 >= 100 && var2 < 110) {
             if (this.field2012 == null) {
                this.field2012 = new int[10];
                this.field1965 = new int[10];
             }
 
-            this.field2012[var2 - 100] = var1.method8750();
-            this.field1965[var2 - 100] = var1.method8750();
+            this.field2012[var2 - 100] = var1.readUnsignedShort();
+            this.field1965[var2 - 100] = var1.readUnsignedShort();
          } else if (var2 == 110) {
-            this.field2000 = var1.method8750();
+            this.field2000 = var1.readUnsignedShort();
          } else if (var2 == 111) {
-            this.field2001 = var1.method8750();
+            this.field2001 = var1.readUnsignedShort();
          } else if (var2 == 112) {
-            this.field2002 = var1.method8750();
+            this.field2002 = var1.readUnsignedShort();
          } else if (var2 == 113) {
-            this.field2003 = var1.method8768();
+            this.field2003 = var1.readByte();
          } else if (var2 == 114) {
-            this.field2007 = var1.method8768() * 5;
+            this.field2007 = var1.readByte() * 5;
          } else if (var2 == 115) {
-            this.field2005 = var1.method8748();
+            this.field2005 = var1.readUnsignedByte();
          } else if (var2 == 139) {
-            this.field1987 = var1.method8750();
+            this.field1987 = var1.readUnsignedShort();
          } else if (var2 == 140) {
-            this.field2010 = var1.method8750();
+            this.field2010 = var1.readUnsignedShort();
          } else if (var2 == 148) {
-            this.field2006 = var1.method8750();
+            this.field2006 = var1.readUnsignedShort();
          } else if (var2 == 149) {
-            this.field1977 = var1.method8750();
+            this.field1977 = var1.readUnsignedShort();
          } else if (var2 == 249) {
             this.field1963 = class200.method2466(var1, this.field1963);
          }

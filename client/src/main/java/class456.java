@@ -16,17 +16,17 @@ public abstract class class456 extends class270 implements class529 {
       return var3 != null && var3.method7832() ? var3.method7833() : null;
    }
 
-   public class525 method8013(class519 var1) {
-      int var3 = var1.method8750();
+   public class525 method8013(PacketBuffer var1) {
+      int var3 = var1.readUnsignedShort();
       class445 var4 = this.method8012(var3);
       class525 var5 = new class525(var3);
       Class var6 = var4.field4696.field5070;
       if (var6 == Integer.class) {
-         var5.field5162 = var1.method9000();
+         var5.field5162 = var1.readInt();
       } else if (var6 == Long.class) {
-         var5.field5162 = var1.method8755();
+         var5.field5162 = var1.readLong();
       } else if (var6 == String.class) {
-         var5.field5162 = var1.method8760();
+         var5.field5162 = var1.readJagString();
       } else {
          if (!class506.class.isAssignableFrom(var6)) {
             throw new IllegalStateException();

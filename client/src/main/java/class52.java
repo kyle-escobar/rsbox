@@ -18,21 +18,21 @@ public class class52 {
       this.field376[1] = 65535;
    }
 
-   final void method1064(class519 var1) {
-      this.field381 = var1.method8748();
-      this.field377 = var1.method9000();
-      this.field378 = var1.method9000();
+   final void method1064(PacketBuffer var1) {
+      this.field381 = var1.readUnsignedByte();
+      this.field377 = var1.readInt();
+      this.field378 = var1.readInt();
       this.method1065(var1);
    }
 
-   final void method1065(class519 var1) {
-      this.field380 = var1.method8748();
+   final void method1065(PacketBuffer var1) {
+      this.field380 = var1.readUnsignedByte();
       this.field375 = new int[this.field380];
       this.field376 = new int[this.field380];
 
       for(int var2 = 0; var2 < this.field380; ++var2) {
-         this.field375[var2] = var1.method8750();
-         this.field376[var2] = var1.method8750();
+         this.field375[var2] = var1.readUnsignedShort();
+         this.field376[var2] = var1.readUnsignedShort();
       }
 
    }

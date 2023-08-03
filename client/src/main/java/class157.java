@@ -16,14 +16,14 @@ public class class157 extends class133 {
       this.field1742 = 0;
    }
 
-   void method2457(class519 var1) {
-      if (var1.method8748() != 255) {
-         --var1.field5129;
-         this.field1737 = var1.method8755();
+   void method2457(PacketBuffer var1) {
+      if (var1.readUnsignedByte() != 255) {
+         --var1.offset;
+         this.field1737 = var1.readLong();
       }
 
       this.field1738 = var1.method8758();
-      this.field1742 = var1.method8750();
+      this.field1742 = var1.readUnsignedShort();
    }
 
    void method2458(class154 var1) {

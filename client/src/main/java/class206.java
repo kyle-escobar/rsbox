@@ -28,7 +28,7 @@ public class class206 extends class476 {
          byte[] var3 = class70.field577.method6381(3, var0);
          var2 = new class206();
          if (null != var3) {
-            var2.method3872(new class519(var3));
+            var2.method3872(new PacketBuffer(var3));
          }
 
          field2223.method5640(var2, (long)var0);
@@ -36,9 +36,9 @@ public class class206 extends class476 {
       }
    }
 
-   void method3872(class519 var1) {
+   void method3872(PacketBuffer var1) {
       while(true) {
-         int var3 = var1.method8748();
+         int var3 = var1.readUnsignedByte();
          if (var3 == 0) {
             return;
          }
@@ -47,41 +47,41 @@ public class class206 extends class476 {
       }
    }
 
-   void method3873(class519 var1, int var2) {
+   void method3873(PacketBuffer var1, int var2) {
       if (var2 == 1) {
-         this.field2224 = var1.method8748();
+         this.field2224 = var1.readUnsignedByte();
       } else {
          int var4;
          int var5;
          if (var2 == 2) {
-            var4 = var1.method8748();
+            var4 = var1.readUnsignedByte();
             this.field2225 = new int[var4];
 
             for(var5 = 0; var5 < var4; ++var5) {
-               this.field2225[var5] = var1.method8750();
+               this.field2225[var5] = var1.readUnsignedShort();
             }
          } else if (var2 == 3) {
             this.field2234 = true;
          } else if (var2 == 40) {
-            var4 = var1.method8748();
+            var4 = var1.readUnsignedByte();
             this.field2227 = new short[var4];
             this.field2221 = new short[var4];
 
             for(var5 = 0; var5 < var4; ++var5) {
-               this.field2227[var5] = (short)var1.method8750();
-               this.field2221[var5] = (short)var1.method8750();
+               this.field2227[var5] = (short)var1.readUnsignedShort();
+               this.field2221[var5] = (short)var1.readUnsignedShort();
             }
          } else if (var2 == 41) {
-            var4 = var1.method8748();
+            var4 = var1.readUnsignedByte();
             this.field2228 = new short[var4];
             this.field2226 = new short[var4];
 
             for(var5 = 0; var5 < var4; ++var5) {
-               this.field2228[var5] = (short)var1.method8750();
-               this.field2226[var5] = (short)var1.method8750();
+               this.field2228[var5] = (short)var1.readUnsignedShort();
+               this.field2226[var5] = (short)var1.readUnsignedShort();
             }
          } else if (var2 >= 60 && var2 < 70) {
-            this.field2230[var2 - 60] = var1.method8750();
+            this.field2230[var2 - 60] = var1.readUnsignedShort();
          }
       }
 

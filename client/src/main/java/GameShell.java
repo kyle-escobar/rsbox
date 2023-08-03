@@ -24,12 +24,12 @@ import java.lang.management.ManagementFactory;
 import java.net.URL;
 import java.util.Iterator;
 
-public abstract class class43 extends Applet implements Runnable, FocusListener, WindowListener {
+public abstract class GameShell extends Applet implements Runnable, FocusListener, WindowListener {
    protected static class178 field272;
    protected static int field274 = 0;
    static boolean field270 = false;
    static class12 field297 = new class12();
-   static class43 field267 = null;
+   static GameShell field267 = null;
    static int field266 = 20;
    static int field268 = 0;
    static int field273 = 1;
@@ -60,7 +60,7 @@ public abstract class class43 extends Applet implements Runnable, FocusListener,
    volatile boolean field291 = false;
    volatile long field296 = 0L;
 
-   protected class43() {
+   protected GameShell() {
       EventQueue var1 = null;
 
       try {
@@ -110,7 +110,7 @@ public abstract class class43 extends Applet implements Runnable, FocusListener,
       }
 
       if (null != class118.field1133) {
-         long var11 = class302.method2194();
+         long var11 = class302.safeTime();
          long var4 = class118.field1133.getCollectionTime();
          if (field300 != -1L) {
             long var6 = var4 - field300;
@@ -298,7 +298,7 @@ public abstract class class43 extends Applet implements Runnable, FocusListener,
          if (field267 != null) {
             ++field268;
             if (field268 >= 3) {
-               this.method674("alreadyloaded");
+               this.error("alreadyloaded");
                return;
             }
 
@@ -319,7 +319,7 @@ public abstract class class43 extends Applet implements Runnable, FocusListener,
          field272.method3400(this, 1);
       } catch (Exception var7) {
          class524.method5856((String)null, var7);
-         this.method674("crash");
+         this.error("crash");
       }
 
    }
@@ -365,7 +365,7 @@ public abstract class class43 extends Applet implements Runnable, FocusListener,
       }
 
       this.field291 = false;
-      this.field296 = class302.method2194();
+      this.field296 = class302.safeTime();
    }
 
    protected void method667(boolean var1) {
@@ -391,7 +391,7 @@ public abstract class class43 extends Applet implements Runnable, FocusListener,
                if (var2.endsWith("192.168.1.")) {
                   return true;
                } else {
-                  this.method674("invalidhost");
+                  this.error("invalidhost");
                   return false;
                }
             }
@@ -410,7 +410,7 @@ public abstract class class43 extends Applet implements Runnable, FocusListener,
             if (var1.indexOf("sun") != -1 || var1.indexOf("apple") != -1) {
                String var2 = class178.field1868;
                if (var2.equals("1.1") || var2.startsWith("1.1.") || var2.equals("1.2") || var2.startsWith("1.2.") || var2.equals("1.3") || var2.startsWith("1.3.") || var2.equals("1.4") || var2.startsWith("1.4.") || var2.equals("1.5") || var2.startsWith("1.5.") || var2.equals("1.6.0")) {
-                  this.method674("wrongjava");
+                  this.error("wrongjava");
                   return;
                }
 
@@ -421,7 +421,7 @@ public abstract class class43 extends Applet implements Runnable, FocusListener,
 
                   String var4 = var2.substring(6, var3);
                   if (class380.method4205(var4) && class380.method5731(var4) < 10) {
-                     this.method674("wrongjava");
+                     this.error("wrongjava");
                      return;
                   }
                }
@@ -443,7 +443,7 @@ public abstract class class43 extends Applet implements Runnable, FocusListener,
 
          class192.field2097 = (class188)var7;
 
-         while(field283 == 0L || class302.method2194() < field283) {
+         while(field283 == 0L || class302.safeTime() < field283) {
             class318.field3509 = class192.field2097.method3590(field266, field273);
 
             for(int var8 = 0; var8 < class318.field3509; ++var8) {
@@ -455,14 +455,14 @@ public abstract class class43 extends Applet implements Runnable, FocusListener,
          }
       } catch (Exception var6) {
          class524.method5856((String)null, var6);
-         this.method674("crash");
+         this.error("crash");
       }
 
       this.method673();
    }
 
    void method669() {
-      long var2 = class302.method2194();
+      long var2 = class302.safeTime();
       long var4 = field276[class25.field131];
       field276[class25.field131] = var2;
       class25.field131 = class25.field131 + 1 & 31;
@@ -478,7 +478,7 @@ public abstract class class43 extends Applet implements Runnable, FocusListener,
 
    void method693() {
       Container var2 = this.method688();
-      long var3 = class302.method2194();
+      long var3 = class302.safeTime();
       long var5 = field275[class300.field3168];
       field275[class300.field3168] = var3;
       class300.field3168 = class300.field3168 + 1 & 31;
@@ -566,13 +566,13 @@ public abstract class class43 extends Applet implements Runnable, FocusListener,
 
    public final void stop() {
       if (this == field267 && !field270) {
-         field283 = class302.method2194() + 4000L;
+         field283 = class302.safeTime() + 4000L;
       }
    }
 
    public final void destroy() {
       if (this == field267 && !field270) {
-         field283 = class302.method2194();
+         field283 = class302.safeTime();
          class292.method354(5000L);
          this.method673();
       }
@@ -585,7 +585,7 @@ public abstract class class43 extends Applet implements Runnable, FocusListener,
    public final synchronized void paint(Graphics var1) {
       if (this == field267 && !field270) {
          this.field288 = true;
-         if (class302.method2194() - this.field296 > 1000L) {
+         if (class302.safeTime() - this.field296 > 1000L) {
             Rectangle var2 = var1.getClipBounds();
             if (null == var2 || var2.width >= class343.field3838 && var2.height >= class488.field4948) {
                this.field291 = true;
@@ -682,7 +682,7 @@ public abstract class class43 extends Applet implements Runnable, FocusListener,
       class1.field9 = null;
    }
 
-   protected void method674(String var1) {
+   protected void error(String var1) {
       if (!this.field271) {
          this.field271 = true;
          System.out.println("error_game_" + var1);

@@ -21,11 +21,11 @@ public class class433 extends class424 {
       return this.field4645.method7814(var1);
    }
 
-   public int method7585() throws IOException {
+   public int available() throws IOException {
       return this.field4645.method7803();
    }
 
-   public int method7602() throws IOException {
+   public int readUnsignedByte() throws IOException {
       return this.field4645.method7797();
    }
 
@@ -33,7 +33,7 @@ public class class433 extends class424 {
       return this.field4645.method7798(var1, var2, var3);
    }
 
-   public void method7588(byte[] var1, int var2, int var3) throws IOException {
+   public void write(byte[] var1, int var2, int var3) throws IOException {
       this.field4644.method7873(var1, var2, var3);
    }
 

@@ -270,32 +270,32 @@ public class class69 {
       }
    }
 
-   final void method1425(class519 var1) {
+   final void method1425(PacketBuffer var1) {
       this.field540 = new class52();
       this.field540.method1064(var1);
       this.field537 = new class52();
       this.field537.method1064(var1);
-      int var2 = var1.method8748();
+      int var2 = var1.readUnsignedByte();
       if (var2 != 0) {
-         --var1.field5129;
+         --var1.offset;
          this.field538 = new class52();
          this.field538.method1064(var1);
          this.field548 = new class52();
          this.field548.method1064(var1);
       }
 
-      var2 = var1.method8748();
+      var2 = var1.readUnsignedByte();
       if (var2 != 0) {
-         --var1.field5129;
+         --var1.offset;
          this.field553 = new class52();
          this.field553.method1064(var1);
          this.field541 = new class52();
          this.field541.method1064(var1);
       }
 
-      var2 = var1.method8748();
+      var2 = var1.readUnsignedByte();
       if (var2 != 0) {
-         --var1.field5129;
+         --var1.offset;
          this.field542 = new class52();
          this.field542.method1064(var1);
          this.field546 = new class52();
@@ -303,20 +303,20 @@ public class class69 {
       }
 
       for(int var3 = 0; var3 < 10; ++var3) {
-         int var4 = var1.method8764();
+         int var4 = var1.readUnsignedSmartByteShort();
          if (var4 == 0) {
             break;
          }
 
          this.field544[var3] = var4;
-         this.field561[var3] = var1.method8763();
-         this.field545[var3] = var1.method8764();
+         this.field561[var3] = var1.readSmartByteShort();
+         this.field545[var3] = var1.readUnsignedSmartByteShort();
       }
 
-      this.field547 = var1.method8764();
-      this.field551 = var1.method8764();
-      this.field539 = var1.method8750();
-      this.field552 = var1.method8750();
+      this.field547 = var1.readUnsignedSmartByteShort();
+      this.field551 = var1.readUnsignedSmartByteShort();
+      this.field539 = var1.readUnsignedShort();
+      this.field552 = var1.readUnsignedShort();
       this.field549 = new class66();
       this.field550 = new class52();
       this.field549.method1403(var1, this.field550);

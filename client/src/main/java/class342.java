@@ -24,16 +24,16 @@ public abstract class class342 {
    }
 
    static final byte[] method5782(byte[] var0) {
-      class519 var2 = new class519(var0);
-      int var3 = var2.method8748();
-      int var4 = var2.method9000();
+      PacketBuffer var2 = new PacketBuffer(var0);
+      int var3 = var2.readUnsignedByte();
+      int var4 = var2.readInt();
       if (var4 >= 0 && (0 == field3836 || var4 <= field3836)) {
          if (var3 == 0) {
             byte[] var7 = new byte[var4];
-            var2.method8896(var7, 0, var4);
+            var2.readBytes(var7, 0, var4);
             return var7;
          } else {
-            int var5 = var2.method9000();
+            int var5 = var2.readInt();
             if (var5 < 0 || 0 != field3836 && var5 > field3836) {
                throw new RuntimeException();
             } else {
@@ -54,18 +54,18 @@ public abstract class class342 {
 
    void method6379(byte[] var1) {
       this.field3831 = class318.method5851(var1, var1.length);
-      class519 var3 = new class519(method5782(var1));
-      int var4 = var3.method8748();
+      PacketBuffer var3 = new PacketBuffer(method5782(var1));
+      int var4 = var3.readUnsignedByte();
       if (var4 >= 5 && var4 <= 7) {
          if (var4 >= 6) {
-            var3.method9000();
+            var3.readInt();
          }
 
-         int var5 = var3.method8748();
+         int var5 = var3.readUnsignedByte();
          if (var4 >= 7) {
             this.field3832 = var3.method8767();
          } else {
-            this.field3832 = var3.method8750();
+            this.field3832 = var3.readUnsignedShort();
          }
 
          int var6 = 0;
@@ -81,7 +81,7 @@ public abstract class class342 {
             }
          } else {
             for(var8 = 0; var8 < this.field3832; ++var8) {
-               this.field3834[var8] = var6 += var3.method8750();
+               this.field3834[var8] = var6 += var3.readUnsignedShort();
                if (this.field3834[var8] > var7) {
                   var7 = this.field3834[var8];
                }
@@ -98,22 +98,22 @@ public abstract class class342 {
             this.field3821 = new int[var7 + 1];
 
             for(var8 = 0; var8 < this.field3832; ++var8) {
-               this.field3821[this.field3834[var8]] = var3.method9000();
+               this.field3821[this.field3834[var8]] = var3.readInt();
             }
 
             this.field3823 = new class527(this.field3821);
          }
 
          for(var8 = 0; var8 < this.field3832; ++var8) {
-            this.field3824[this.field3834[var8]] = var3.method9000();
+            this.field3824[this.field3834[var8]] = var3.readInt();
          }
 
          for(var8 = 0; var8 < this.field3832; ++var8) {
-            this.field3825[this.field3834[var8]] = var3.method9000();
+            this.field3825[this.field3834[var8]] = var3.readInt();
          }
 
          for(var8 = 0; var8 < this.field3832; ++var8) {
-            this.field3826[this.field3834[var8]] = var3.method8750();
+            this.field3826[this.field3834[var8]] = var3.readUnsignedShort();
          }
 
          int var9;
@@ -147,7 +147,7 @@ public abstract class class342 {
                this.field3827[var9] = new int[var10];
 
                for(var12 = 0; var12 < var10; ++var12) {
-                  var13 = this.field3827[var9][var12] = var6 += var3.method8750();
+                  var13 = this.field3827[var9][var12] = var6 += var3.readUnsignedShort();
                   if (var13 > var11) {
                      var11 = var13;
                   }
@@ -167,7 +167,7 @@ public abstract class class342 {
                this.field3828[var9] = new int[this.field3820[var9].length];
 
                for(var11 = 0; var11 < var10; ++var11) {
-                  this.field3828[var9][this.field3827[var9][var11]] = var3.method9000();
+                  this.field3828[var9][this.field3827[var9][var11]] = var3.readInt();
                }
 
                this.field3829[var9] = new class527(this.field3828[var9]);
@@ -368,8 +368,8 @@ public abstract class class342 {
                var22 = class317.method2517(this.field3830[var1], false);
             } else {
                var22 = class317.method2517(this.field3830[var1], true);
-               class519 var9 = new class519(var22);
-               var9.method8774(var2, 5, var9.field5127.length);
+               PacketBuffer var9 = new PacketBuffer(var22);
+               var9.method8774(var2, 5, var9.data.length);
             }
 
             byte[] var23 = method5782(var22);
@@ -382,9 +382,9 @@ public abstract class class342 {
                --var10;
                int var11 = var23[var10] & 255;
                var10 -= 4 * var11 * var4;
-               class519 var12 = new class519(var23);
+               PacketBuffer var12 = new PacketBuffer(var23);
                int[] var13 = new int[var4];
-               var12.field5129 = var10;
+               var12.offset = var10;
 
                int var15;
                int var16;
@@ -392,7 +392,7 @@ public abstract class class342 {
                   var15 = 0;
 
                   for(var16 = 0; var16 < var4; ++var16) {
-                     var15 += var12.method9000();
+                     var15 += var12.readInt();
                      var13[var16] += var15;
                   }
                }
@@ -404,7 +404,7 @@ public abstract class class342 {
                   var13[var15] = 0;
                }
 
-               var12.field5129 = var10;
+               var12.offset = var10;
                var15 = 0;
 
                int var18;
@@ -412,7 +412,7 @@ public abstract class class342 {
                   int var17 = 0;
 
                   for(var18 = 0; var18 < var4; ++var18) {
-                     var17 += var12.method9000();
+                     var17 += var12.readInt();
                      System.arraycopy(var23, var15, var24[var18], var13[var18], var17);
                      var13[var18] += var17;
                      var15 += var17;

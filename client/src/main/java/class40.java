@@ -55,22 +55,22 @@ public class class40 {
             if (var0 == 1) {
                var9 = class308.method8607(class309.field3441, Client.field1436.field1046);
                var9.field3351.method8934(var4[var7]);
-               var9.field3351.method8780(0);
+               var9.field3351.writeByteSub(0);
                Client.field1436.method2148(var9);
             } else if (var0 == 4) {
                var9 = class308.method8607(class309.field3417, Client.field1436.field1046);
-               var9.field3351.method8788(var4[var7]);
-               var9.field3351.method8731(0);
+               var9.field3351.writeShortAdd(var4[var7]);
+               var9.field3351.writeByte(0);
                Client.field1436.method2148(var9);
             } else if (var0 == 6) {
                var9 = class308.method8607(class309.field3407, Client.field1436.field1046);
                var9.field3351.method8934(var4[var7]);
-               var9.field3351.method8780(0);
+               var9.field3351.writeByteSub(0);
                Client.field1436.method2148(var9);
             } else if (var0 == 7) {
                var9 = class308.method8607(class309.field3456, Client.field1436.field1046);
-               var9.field3351.method8732(var4[var7]);
-               var9.field3351.method8906(0);
+               var9.field3351.writeShort(var4[var7]);
+               var9.field3351.writeByteNeg(0);
                Client.field1436.method2148(var9);
             }
 

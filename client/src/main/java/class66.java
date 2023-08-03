@@ -79,29 +79,29 @@ public class class66 {
       }
    }
 
-   final void method1403(class519 var1, class52 var2) {
-      int var3 = var1.method8748();
+   final void method1403(PacketBuffer var1, class52 var2) {
+      int var3 = var1.readUnsignedByte();
       this.field516[0] = var3 >> 4;
       this.field516[1] = var3 & 15;
       if (var3 != 0) {
-         this.field513[0] = var1.method8750();
-         this.field513[1] = var1.method8750();
-         int var4 = var1.method8748();
+         this.field513[0] = var1.readUnsignedShort();
+         this.field513[1] = var1.readUnsignedShort();
+         int var4 = var1.readUnsignedByte();
 
          int var5;
          int var6;
          for(var5 = 0; var5 < 2; ++var5) {
             for(var6 = 0; var6 < this.field516[var5]; ++var6) {
-               this.field514[var5][0][var6] = var1.method8750();
-               this.field512[var5][0][var6] = var1.method8750();
+               this.field514[var5][0][var6] = var1.readUnsignedShort();
+               this.field512[var5][0][var6] = var1.readUnsignedShort();
             }
          }
 
          for(var5 = 0; var5 < 2; ++var5) {
             for(var6 = 0; var6 < this.field516[var5]; ++var6) {
                if ((var4 & 1 << var5 * 4 << var6) != 0) {
-                  this.field514[var5][1][var6] = var1.method8750();
-                  this.field512[var5][1][var6] = var1.method8750();
+                  this.field514[var5][1][var6] = var1.readUnsignedShort();
+                  this.field512[var5][1][var6] = var1.readUnsignedShort();
                } else {
                   this.field514[var5][1][var6] = this.field514[var5][0][var6];
                   this.field512[var5][1][var6] = this.field512[var5][0][var6];

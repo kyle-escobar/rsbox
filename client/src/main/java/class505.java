@@ -20,7 +20,7 @@ public class class505 extends class476 {
          byte[] var3 = field5069.method6381(39, var0);
          var2 = new class505();
          if (var3 != null) {
-            var2.method8572(new class519(var3));
+            var2.method8572(new PacketBuffer(var3));
          }
 
          var2.method8571();
@@ -33,9 +33,9 @@ public class class505 extends class476 {
       field5065.method5637();
    }
 
-   void method8572(class519 var1) {
+   void method8572(PacketBuffer var1) {
       while(true) {
-         int var3 = var1.method8748();
+         int var3 = var1.readUnsignedByte();
          if (var3 == 0) {
             return;
          }
@@ -44,20 +44,20 @@ public class class505 extends class476 {
       }
    }
 
-   void method8573(class519 var1, int var2) {
+   void method8573(PacketBuffer var1, int var2) {
       if (var2 == 1) {
-         int var4 = var1.method8748();
+         int var4 = var1.readUnsignedByte();
          if (null == this.field5066) {
             this.field5066 = new int[var4][];
          }
 
-         for(int var5 = var1.method8748(); var5 != 255; var5 = var1.method8748()) {
+         for(int var5 = var1.readUnsignedByte(); var5 != 255; var5 = var1.readUnsignedByte()) {
             int var6 = var5 & 127;
             boolean var7 = (var5 & 128) != 0;
-            int[] var8 = new int[var1.method8748()];
+            int[] var8 = new int[var1.readUnsignedByte()];
 
             for(int var9 = 0; var9 < var8.length; ++var9) {
-               var8[var9] = var1.method8764();
+               var8[var9] = var1.readUnsignedSmartByteShort();
             }
 
             this.field5066[var6] = var8;

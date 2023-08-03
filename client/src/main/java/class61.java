@@ -154,7 +154,7 @@ public class class61 {
          class467.field4793 = null;
          class169.field1805.method2034();
          class303.method4211(0, 100);
-         class355 var1 = class145.field1356;
+         class355 var1 = Js5NetQueue.field1356;
          var1.method6532(true);
          field429 = false;
       }
@@ -169,7 +169,7 @@ public class class61 {
 
    }
 
-   static void method3299(class43 var0, class393 var1, class393 var2) {
+   static void method3299(GameShell var0, class393 var1, class393 var2) {
       if (field457) {
          method59(var0);
       } else {
@@ -186,12 +186,12 @@ public class class61 {
             class303.field3198.clear();
          }
 
-         if (5 != Client.field1728) {
+         if (5 != Client.gameState) {
             if (field459 == -1L) {
-               field459 = class302.method2194() + 1000L;
+               field459 = class302.safeTime() + 1000L;
             }
 
-            long var28 = class302.method2194();
+            long var28 = class302.safeTime();
             if (Client.method597() && -1L == field460) {
                field460 = var28;
                if (field460 > field459) {
@@ -199,7 +199,7 @@ public class class61 {
                }
             }
 
-            if (10 == Client.field1728 || Client.field1728 == 11) {
+            if (10 == Client.gameState || Client.gameState == 11) {
                int var6;
                int var7;
                int var8;
@@ -364,7 +364,7 @@ public class class61 {
 
                            method2098(class364.field4316, class364.field4249, class364.field4292);
                            Client.method6480(false);
-                           Client.method2323(20);
+                           Client.updateGameState(20);
                            return;
                         }
 
@@ -461,7 +461,7 @@ public class class61 {
 
                                        method2098(class364.field4316, class364.field4249, class364.field4292);
                                        Client.method6480(false);
-                                       Client.method2323(20);
+                                       Client.updateGameState(20);
                                        return;
                                     }
                                  }
@@ -473,7 +473,7 @@ public class class61 {
                                     break;
                                  }
 
-                                 if (class389.method1754(var29.field2370)) {
+                                 if (CP1252UTF8.method1754(var29.field2370)) {
                                     var38 = var29.field2370;
                                     var34 = field453.indexOf(var38) != -1;
                                     if (var34 && field445.length() < 20) {
@@ -499,7 +499,7 @@ public class class61 {
                                  if ((var47 < ' ' || var47 >= 127) && (var47 <= 127 || var47 >= 160) && (var47 <= 160 || var47 > 255)) {
                                     label1180: {
                                        if (var47 != 0) {
-                                          char[] var21 = class389.field4443;
+                                          char[] var21 = CP1252UTF8.field4443;
 
                                           for(int var22 = 0; var22 < var21.length; ++var22) {
                                              char var23 = var21[var22];
@@ -574,7 +574,7 @@ public class class61 {
                                  field466 = "";
                                  Client.method6480(true);
                                  method2098(class364.field4316, class364.field4249, class364.field4292);
-                                 Client.method2323(20);
+                                 Client.updateGameState(20);
                                  return;
                               }
 
@@ -627,7 +627,7 @@ public class class61 {
                                        field466 = "";
                                        Client.method6480(true);
                                        method2098(class364.field4316, class364.field4249, class364.field4292);
-                                       Client.method2323(20);
+                                       Client.updateGameState(20);
                                        return;
                                     }
 
@@ -746,7 +746,7 @@ public class class61 {
                                           }
 
                                           if (var16) {
-                                             Client.method2323(50);
+                                             Client.updateGameState(50);
                                              return;
                                           }
                                        }
@@ -818,7 +818,7 @@ public class class61 {
                                              }
 
                                              if (var16) {
-                                                Client.method2323(50);
+                                                Client.updateGameState(50);
                                              }
 
                                              return;
@@ -866,7 +866,7 @@ public class class61 {
                                        method2098(class364.field4316, class364.field4249, class364.field4292);
                                        Client.field1472 = class500.field5044;
                                        Client.method6480(false);
-                                       Client.method2323(20);
+                                       Client.updateGameState(20);
                                     }
                                  } else if (field439 == 12) {
                                     var10 = class81.field718;
@@ -1096,19 +1096,19 @@ public class class61 {
             var6.write("data1=req");
             var6.flush();
             InputStream var7 = var5.getInputStream();
-            class519 var8 = new class519(new byte[1000]);
+            PacketBuffer var8 = new PacketBuffer(new byte[1000]);
 
             while(true) {
-               int var9 = var7.read(var8.field5127, var8.field5129, 1000 - var8.field5129);
+               int var9 = var7.read(var8.data, var8.offset, 1000 - var8.offset);
                if (var9 == -1) {
-                  var8.field5129 = 0;
-                  long var29 = var8.method8755();
+                  var8.offset = 0;
+                  long var29 = var8.readLong();
                   var2 = var29;
                   break;
                }
 
-               var8.field5129 += var9;
-               if (var8.field5129 >= 1000) {
+               var8.offset += var9;
+               if (var8.offset >= 1000) {
                   var2 = 0L;
                   break;
                }
@@ -1123,55 +1123,55 @@ public class class61 {
          } else {
             String var27 = field441;
             Random var28 = new Random();
-            class519 var30 = new class519(128);
-            class519 var10 = new class519(128);
+            PacketBuffer var30 = new PacketBuffer(128);
+            PacketBuffer var10 = new PacketBuffer(128);
             int[] var11 = new int[]{var28.nextInt(), var28.nextInt(), (int)(var2 >> 32), (int)var2};
-            var30.method8731(10);
+            var30.writeByte(10);
 
             int var12;
             for(var12 = 0; var12 < 4; ++var12) {
-               var30.method8734(var28.nextInt());
+               var30.writeInt(var28.nextInt());
             }
 
-            var30.method8734(var11[0]);
-            var30.method8734(var11[1]);
-            var30.method8736(var2);
-            var30.method8736(0L);
+            var30.writeInt(var11[0]);
+            var30.writeInt(var11[1]);
+            var30.writeLong(var2);
+            var30.writeLong(0L);
 
             for(var12 = 0; var12 < 4; ++var12) {
-               var30.method8734(var28.nextInt());
+               var30.writeInt(var28.nextInt());
             }
 
-            var30.method8830(class68.field530, class68.field531);
-            var10.method8731(10);
+            var30.encryptRsa(class68.field530, class68.field531);
+            var10.writeByte(10);
 
             for(var12 = 0; var12 < 3; ++var12) {
-               var10.method8734(var28.nextInt());
+               var10.writeInt(var28.nextInt());
             }
 
-            var10.method8736(var28.nextLong());
-            var10.method8735(var28.nextLong());
+            var10.writeLong(var28.nextLong());
+            var10.writeMediumLong(var28.nextLong());
             Client.method4735(var10);
-            var10.method8736(var28.nextLong());
-            var10.method8830(class68.field530, class68.field531);
-            var12 = class519.method8713(var27);
+            var10.writeLong(var28.nextLong());
+            var10.encryptRsa(class68.field530, class68.field531);
+            var12 = PacketBuffer.getJagStringSize(var27);
             if (var12 % 8 != 0) {
                var12 += 8 - var12 % 8;
             }
 
-            class519 var13 = new class519(var12);
-            var13.method8738(var27);
-            var13.field5129 = var12;
+            PacketBuffer var13 = new PacketBuffer(var12);
+            var13.writeString(var27);
+            var13.offset = var12;
             var13.method8771(var11);
-            class519 var14 = new class519(var10.field5129 + var30.field5129 + 5 + var13.field5129);
-            var14.method8731(2);
-            var14.method8731(var30.field5129);
-            var14.method8741(var30.field5127, 0, var30.field5129);
-            var14.method8731(var10.field5129);
-            var14.method8741(var10.field5127, 0, var10.field5129);
-            var14.method8732(var13.field5129);
-            var14.method8741(var13.field5127, 0, var13.field5129);
-            String var15 = class379.method6576(var14.field5127);
+            PacketBuffer var14 = new PacketBuffer(var10.offset + var30.offset + 5 + var13.offset);
+            var14.writeByte(2);
+            var14.writeByte(var30.offset);
+            var14.writeBytes(var30.data, 0, var30.offset);
+            var14.writeByte(var10.offset);
+            var14.writeBytes(var10.data, 0, var10.offset);
+            var14.writeShort(var13.offset);
+            var14.writeBytes(var13.data, 0, var13.offset);
+            String var15 = class379.method6576(var14.data);
 
             byte var26;
             try {
@@ -1184,14 +1184,14 @@ public class class61 {
                var18.write("data2=" + class532.method8695(var15) + "&dest=" + class532.method8695("passwordchoice.ws"));
                var18.flush();
                InputStream var19 = var17.getInputStream();
-               var14 = new class519(new byte[1000]);
+               var14 = new PacketBuffer(new byte[1000]);
 
                while(true) {
-                  int var20 = var19.read(var14.field5127, var14.field5129, 1000 - var14.field5129);
+                  int var20 = var19.read(var14.data, var14.offset, 1000 - var14.offset);
                   if (var20 == -1) {
                      var18.close();
                      var19.close();
-                     String var31 = new String(var14.field5127);
+                     String var31 = new String(var14.data);
                      if (var31.startsWith("OFFLINE")) {
                         var26 = 4;
                      } else if (var31.startsWith("WRONG")) {
@@ -1203,11 +1203,11 @@ public class class61 {
                      } else {
                         var14.method8834(var11);
 
-                        while(var14.field5129 > 0 && var14.field5127[var14.field5129 - 1] == 0) {
-                           --var14.field5129;
+                        while(var14.offset > 0 && var14.data[var14.offset - 1] == 0) {
+                           --var14.offset;
                         }
 
-                        var31 = new String(var14.field5127, 0, var14.field5129);
+                        var31 = new String(var14.data, 0, var14.offset);
                         boolean var21;
                         if (var31 == null) {
                            var21 = false;
@@ -1234,8 +1234,8 @@ public class class61 {
                      break;
                   }
 
-                  var14.field5129 += var20;
-                  if (var14.field5129 >= 1000) {
+                  var14.offset += var20;
+                  if (var14.offset >= 1000) {
                      var26 = 5;
                      break;
                   }
@@ -1284,7 +1284,7 @@ public class class61 {
          field465.method9316(field447 + 382 - field465.field5216 / 2, 18);
          int var4;
          int var5;
-         if (0 == Client.field1728 || Client.field1728 == 5) {
+         if (0 == Client.gameState || Client.gameState == 5) {
             var4 = 20;
             var0.method7166(class364.field4199, field434 + 180, 245 - var4, 16777215, -1);
             var5 = 253 - var4;
@@ -1302,7 +1302,7 @@ public class class61 {
          char[] var11;
          int var12;
          short var14;
-         if (20 == Client.field1728) {
+         if (20 == Client.gameState) {
             field430.method9316(180 + field434 - field430.field5216 / 2, 271 - field430.field5214 / 2);
             var4 = 201;
             var0.method7166(field454, field434 + 180, var4, 16776960, 0);
@@ -1339,7 +1339,7 @@ public class class61 {
             }
          }
 
-         if (Client.field1728 == 10 || Client.field1728 == 11 || 50 == Client.field1728) {
+         if (Client.gameState == 10 || Client.gameState == 11 || 50 == Client.gameState) {
             field430.method9316(field434, 171);
             short var15;
             int var16;
@@ -1739,7 +1739,7 @@ public class class61 {
             }
          }
 
-         if (Client.field1728 >= 10) {
+         if (Client.gameState >= 10) {
             int[] var28 = new int[4];
             class535.method9240(var28);
             class535.method9304(field447, 0, 765 + field447, class488.field4948);
@@ -1749,7 +1749,7 @@ public class class61 {
          }
 
          class311.field3469[class141.field1307.method1617() ? 1 : 0].method9316(765 + field447 - 40, 463);
-         if (Client.field1728 > 5 && class384.field4403 == class63.field496) {
+         if (Client.gameState > 5 && class384.field4403 == class63.field496) {
             if (null != class467.field4793) {
                var4 = 5 + field447;
                var14 = 463;
@@ -2015,7 +2015,7 @@ public class class61 {
       class159.field1749.method9186(0, 0);
    }
 
-   static void method59(class43 var0) {
+   static void method59(GameShell var0) {
       class216 var2 = Client.method4736();
 
       while(var2.method4109()) {

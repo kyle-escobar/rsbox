@@ -9,12 +9,12 @@ public class class180 extends class163 {
       this.this$0 = var1;
    }
 
-   void method3248(class519 var1) {
+   void method3248(PacketBuffer var1) {
       this.field1878 = var1.method8758();
       if (null != this.field1878) {
-         var1.method8748();
-         this.field1880 = var1.method8768();
-         this.field1879 = var1.method8768();
+         var1.readUnsignedByte();
+         this.field1880 = var1.readByte();
+         this.field1879 = var1.readByte();
       }
 
    }

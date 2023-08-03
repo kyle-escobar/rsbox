@@ -1,5 +1,5 @@
 public class class292 {
-   static class177 field3129;
+   static class177 js5SocketTask;
 
    class292() throws Throwable {
    }
@@ -30,7 +30,7 @@ public class class292 {
 
    static final boolean method5655(byte[] var0, int var1, int var2) {
       boolean var4 = true;
-      class519 var5 = new class519(var0);
+      PacketBuffer var5 = new PacketBuffer(var0);
       int var6 = -1;
 
       label57:
@@ -47,7 +47,7 @@ public class class292 {
          while(true) {
             int var10;
             while(!var9) {
-               var10 = var5.method8764();
+               var10 = var5.readUnsignedSmartByteShort();
                if (var10 == 0) {
                   continue label57;
                }
@@ -55,7 +55,7 @@ public class class292 {
                var8 += var10 - 1;
                int var11 = var8 & 63;
                int var12 = var8 >> 6 & 63;
-               int var13 = var5.method8748() >> 2;
+               int var13 = var5.readUnsignedByte() >> 2;
                int var14 = var12 + var1;
                int var15 = var2 + var11;
                if (var14 > 0 && var15 > 0 && var14 < 103 && var15 < 103) {
@@ -71,12 +71,12 @@ public class class292 {
                }
             }
 
-            var10 = var5.method8764();
+            var10 = var5.readUnsignedSmartByteShort();
             if (var10 == 0) {
                break;
             }
 
-            var5.method8748();
+            var5.readUnsignedByte();
          }
       }
    }

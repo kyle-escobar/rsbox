@@ -26,8 +26,8 @@ public class class56 {
 
    static final void method100(String var0) {
       class308 var2 = class308.method8607(class309.field3410, Client.field1436.field1046);
-      var2.field3351.method8731(class519.method8713(var0));
-      var2.field3351.method8738(var0);
+      var2.field3351.writeByte(PacketBuffer.getJagStringSize(var0));
+      var2.field3351.writeString(var0);
       Client.field1436.method2148(var2);
    }
 
@@ -41,16 +41,16 @@ public class class56 {
 
    static final void method1985(String var0) {
       class308 var2 = class308.method8607(class309.field3435, Client.field1436.field1046);
-      var2.field3351.method8731(class519.method8713(var0));
-      var2.field3351.method8738(var0);
+      var2.field3351.writeByte(PacketBuffer.getJagStringSize(var0));
+      var2.field3351.writeString(var0);
       Client.field1436.method2148(var2);
    }
 
    static final void method4752(String var0, int var1) {
       class308 var3 = class308.method8607(class309.field3439, Client.field1436.field1046);
-      var3.field3351.method8731(class519.method8713(var0) + 1);
-      var3.field3351.method8738(var0);
-      var3.field3351.method8780(var1);
+      var3.field3351.writeByte(PacketBuffer.getJagStringSize(var0) + 1);
+      var3.field3351.writeString(var0);
+      var3.field3351.writeByteSub(var1);
       Client.field1436.method2148(var3);
    }
 
@@ -304,7 +304,7 @@ public class class56 {
       this.field403 = 1;
    }
 
-   final void method1137(class519 var1, int var2) {
+   final void method1137(PacketBuffer var1, int var2) {
       this.field401.method7691(var1, var2);
       this.field403 = 2;
 
@@ -322,7 +322,7 @@ public class class56 {
 
    final void method1090() {
       for(class436 var2 = (class436)this.field401.field4642.method6748(); null != var2; var2 = (class436)this.field401.field4642.method6749()) {
-         if ((long)var2.field4660 < class302.method2194() / 1000L - 5L) {
+         if ((long)var2.field4660 < class302.safeTime() / 1000L - 5L) {
             if (var2.field4662 > 0) {
                class119.method7274(5, "", var2.field4661 + class364.field4181);
             }
@@ -414,8 +414,8 @@ public class class56 {
             if (this.field401.method7724(var3)) {
                Client.field1679 = Client.field1624;
                class308 var4 = class308.method8607(class309.field3381, Client.field1436.field1046);
-               var4.field3351.method8731(class519.method8713(var1));
-               var4.field3351.method8738(var1);
+               var4.field3351.writeByte(PacketBuffer.getJagStringSize(var1));
+               var4.field3351.writeString(var1);
                Client.field1436.method2148(var4);
             }
 
@@ -441,8 +441,8 @@ public class class56 {
                Client.field1679 = Client.field1624;
                if (var2) {
                   class308 var5 = class308.method8607(class309.field3422, Client.field1436.field1046);
-                  var5.field3351.method8731(class519.method8713(var1));
-                  var5.field3351.method8738(var1);
+                  var5.field3351.writeByte(PacketBuffer.getJagStringSize(var1));
+                  var5.field3351.writeString(var1);
                   Client.field1436.method2148(var5);
                }
             }

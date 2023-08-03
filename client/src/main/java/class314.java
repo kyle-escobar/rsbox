@@ -167,21 +167,21 @@ public class class314 {
       }
    }
 
-   public void method5799(class519 var1) {
-      var1.method8731(this.field3486);
+   public void method5799(PacketBuffer var1) {
+      var1.writeByte(this.field3486);
 
       int var3;
       for(var3 = 0; var3 < 7; ++var3) {
          int var4 = this.field3483[field3482[var3]];
          if (var4 == 0) {
-            var1.method8731(-1);
+            var1.writeByte(-1);
          } else {
-            var1.method8731(var4 - 256);
+            var1.writeByte(var4 - 256);
          }
       }
 
       for(var3 = 0; var3 < 5; ++var3) {
-         var1.method8731(this.field3484[var3]);
+         var1.writeByte(this.field3484[var3]);
       }
 
    }

@@ -184,47 +184,47 @@ public class class538 {
    }
 
    public static void method3764(byte[] var0) {
-      class519 var2 = new class519(var0);
-      var2.field5129 = var0.length - 2;
-      field5226 = var2.method8750();
+      PacketBuffer var2 = new PacketBuffer(var0);
+      var2.offset = var0.length - 2;
+      field5226 = var2.readUnsignedShort();
       class482.field4876 = new int[field5226];
       class155.field1421 = new int[field5226];
       class168.field1802 = new int[field5226];
       field5225 = new int[field5226];
       class352.field3889 = new byte[field5226][];
-      var2.field5129 = var0.length - 7 - field5226 * 8;
-      field5222 = var2.method8750();
-      field5224 = var2.method8750();
-      int var3 = (var2.method8748() & 255) + 1;
+      var2.offset = var0.length - 7 - field5226 * 8;
+      field5222 = var2.readUnsignedShort();
+      field5224 = var2.readUnsignedShort();
+      int var3 = (var2.readUnsignedByte() & 255) + 1;
 
       int var4;
       for(var4 = 0; var4 < field5226; ++var4) {
-         class482.field4876[var4] = var2.method8750();
+         class482.field4876[var4] = var2.readUnsignedShort();
       }
 
       for(var4 = 0; var4 < field5226; ++var4) {
-         class155.field1421[var4] = var2.method8750();
+         class155.field1421[var4] = var2.readUnsignedShort();
       }
 
       for(var4 = 0; var4 < field5226; ++var4) {
-         class168.field1802[var4] = var2.method8750();
+         class168.field1802[var4] = var2.readUnsignedShort();
       }
 
       for(var4 = 0; var4 < field5226; ++var4) {
-         field5225[var4] = var2.method8750();
+         field5225[var4] = var2.readUnsignedShort();
       }
 
-      var2.field5129 = var0.length - 7 - field5226 * 8 - (var3 - 1) * 3;
+      var2.offset = var0.length - 7 - field5226 * 8 - (var3 - 1) * 3;
       field5223 = new int[var3];
 
       for(var4 = 1; var4 < var3; ++var4) {
-         field5223[var4] = var2.method8752();
+         field5223[var4] = var2.readUnsignedMedium();
          if (field5223[var4] == 0) {
             field5223[var4] = 1;
          }
       }
 
-      var2.field5129 = 0;
+      var2.offset = 0;
 
       for(var4 = 0; var4 < field5226; ++var4) {
          int var5 = class168.field1802[var4];
@@ -232,16 +232,16 @@ public class class538 {
          int var7 = var6 * var5;
          byte[] var8 = new byte[var7];
          class352.field3889[var4] = var8;
-         int var9 = var2.method8748();
+         int var9 = var2.readUnsignedByte();
          int var10;
          if (var9 == 0) {
             for(var10 = 0; var10 < var7; ++var10) {
-               var8[var10] = var2.method8768();
+               var8[var10] = var2.readByte();
             }
          } else if (var9 == 1) {
             for(var10 = 0; var10 < var5; ++var10) {
                for(int var11 = 0; var11 < var6; ++var11) {
-                  var8[var11 * var5 + var10] = var2.method8768();
+                  var8[var11 * var5 + var10] = var2.readByte();
                }
             }
          }

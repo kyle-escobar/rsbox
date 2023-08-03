@@ -21,7 +21,7 @@ import netscape.javascript.JSObject;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public final class Client extends class43 implements class438, OAuthApi, class326 {
+public final class Client extends GameShell implements class438, OAuthApi, class326 {
    public static boolean field1435 = false;
    public static class332 field1512;
    public static int field1432 = 1;
@@ -128,7 +128,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
    static int field1457 = 0;
    static int field1458 = 0;
    static int field1459 = 0;
-   static int field1464;
+   static int js5ConnectState;
    static int field1465;
    static int field1466;
    static int field1467;
@@ -235,7 +235,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
    static int field1716;
    static int field1717;
    static int field1718;
-   static int field1728 = 0;
+   static int gameState = 0;
    static int field1729;
    static int field1730;
    static int field1733;
@@ -318,7 +318,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
    class26 field1486;
    class4 field1479;
    class4 field1550;
-   class519 field1485;
+   PacketBuffer field1485;
    OtlTokenRequester field1476;
    RefreshAccessTokenRequester field1480;
    String field1613;
@@ -331,7 +331,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
       field1461 = class101.field934;
       field1672 = false;
       field1463 = class91.field839;
-      field1464 = 0;
+      js5ConnectState = 0;
       field1465 = 0;
       field1466 = 0;
       field1467 = 0;
@@ -642,14 +642,14 @@ public final class Client extends class43 implements class438, OAuthApi, class32
 
       class514.field5111 = null;
       field1436.method2146();
-      if (class43.field272 != null) {
+      if (GameShell.field272 != null) {
          try {
-            class43.field272.method3398();
+            GameShell.field272.method3398();
          } catch (Exception var3) {
          }
       }
 
-      class43.field272 = null;
+      GameShell.field272 = null;
       method3256();
       class186.field2015.method6397();
       class475.field4839.method6397();
@@ -686,7 +686,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
          class194.field2126.method547();
       }
 
-      class145.field1356.method6540();
+      Js5NetQueue.field1356.method6540();
       class350.method6519();
       if (class261.field2935 != null) {
          class261.field2935.method2227();
@@ -711,7 +711,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
       class157.field1740 = null;
       field1431.clear();
       field1730 = 0;
-      class145.field1356 = new class355();
+      Js5NetQueue.field1356 = new class355();
       class261.field2935 = new class112(class124.field1180.field1478, 215);
 
       try {
@@ -721,18 +721,18 @@ public final class Client extends class43 implements class438, OAuthApi, class32
       }
 
       class157.field1740 = new class449(255, class160.field1750, class160.field1753, 500000);
-      class43.field272 = new class178();
+      GameShell.field272 = new class178();
       field1463 = class91.field839;
-      method2323(0);
+      updateGameState(0);
    }
 
-   static void method2323(int var0) {
-      if (field1728 != var0) {
-         if (30 == field1728) {
+   static void updateGameState(int var0) {
+      if (gameState != var0) {
+         if (30 == gameState) {
             field1528.method4390();
          }
 
-         if (field1728 == 0) {
+         if (gameState == 0) {
             class124.field1180.method812();
          }
 
@@ -751,7 +751,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             class109.field1069 = null;
          }
 
-         if (25 == field1728) {
+         if (25 == gameState) {
             field1453 = 0;
             field1646 = 0;
             field1500 = 1;
@@ -761,7 +761,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
 
          if (var0 != 5 && var0 != 10) {
             if (var0 == 20) {
-               int var4 = 11 == field1728 ? 4 : 0;
+               int var4 = 11 == gameState ? 4 : 0;
                class108.method2167(class131.field1236, class379.field4382, false, var4);
             } else if (var0 == 11) {
                class108.method2167(class131.field1236, class379.field4382, false, 4);
@@ -777,7 +777,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             class108.method2167(class131.field1236, class379.field4382, true, var3);
          }
 
-         field1728 = var0;
+         gameState = var0;
       }
    }
 
@@ -932,7 +932,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
          if (field1463 == class91.field840) {
             class37.method4636(22050, !field1549, 2);
             ArrayList var52 = new ArrayList(3);
-            class178 var34 = class43.field272;
+            class178 var34 = GameShell.field272;
             short var39 = 2048;
             if (class37.field198 == 0) {
                throw new IllegalStateException();
@@ -1053,7 +1053,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
                } else {
                   class61.field436 = class364.field4043;
                   class61.field450 = 50;
-                  method2323(5);
+                  updateGameState(5);
                   field1463 = class91.field843;
                }
             } else if (field1463 == class91.field843) {
@@ -1139,7 +1139,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
                         byte[] var27 = var24.method6381(35, var26);
                         class324.field3540[var26] = new class197(var26);
                         if (null != var27) {
-                           class324.field3540[var26].method3769(new class519(var27));
+                           class324.field3540[var26].method3769(new PacketBuffer(var27));
                            class324.field3540[var26].method3778();
                         }
                      }
@@ -1353,7 +1353,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
                }
             } else if (field1463 == class91.field847) {
                class514.field5111 = new class83();
-               class43.field272.method3400(class514.field5111, 10);
+               GameShell.field272.method3400(class514.field5111, 10);
                class61.field436 = class364.field4023;
                class61.field450 = 92;
                field1463 = class91.field848;
@@ -1382,8 +1382,8 @@ public final class Client extends class43 implements class438, OAuthApi, class32
                   class61.field436 = class364.field4054;
                   class61.field450 = 98;
                   if (class130.field1226.method6401("version.dat", "")) {
-                     class519 var1 = new class519(class130.field1226.method6402("version.dat", ""));
-                     var1.method8750();
+                     PacketBuffer var1 = new PacketBuffer(class130.field1226.method6402("version.dat", ""));
+                     var1.readUnsignedShort();
                   }
 
                   field1463 = class91.field837;
@@ -1403,7 +1403,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
                }
             } else {
                if (class91.field851 == field1463) {
-                  method2323(10);
+                  updateGameState(10);
                }
 
             }
@@ -1426,7 +1426,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
       class303.field3198.clear();
       field1490 = false;
       class77.method2555();
-      method2323(10);
+      updateGameState(10);
    }
 
    static final void method6483(int var0) {
@@ -1499,7 +1499,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
          method5258();
       } else {
          field1497.method7068();
-         method2323(40);
+         updateGameState(40);
          class109.field1069 = field1436.method2137();
          field1436.method2150();
       }
@@ -1657,20 +1657,20 @@ public final class Client extends class43 implements class438, OAuthApi, class32
                int var12 = class146.field1362.field949 + var10 >> 7;
                int var13 = class146.field1362.field963 - var11 >> 7;
                class308 var14 = class308.method8607(class309.field3447, field1436.field1046);
-               var14.field3351.method8731(18);
-               var14.field3351.method8732(class342.field3837 + var12);
-               var14.field3351.method8850(field1666.method4103(82) ? (field1666.method4103(81) ? 2 : 1) : 0);
-               var14.field3351.method8805(class144.field1352 + var13);
-               var14.field3351.method8731(var5);
-               var14.field3351.method8731(var6);
-               var14.field3351.method8732(field1569);
-               var14.field3351.method8731(57);
-               var14.field3351.method8731(0);
-               var14.field3351.method8731(0);
-               var14.field3351.method8731(89);
-               var14.field3351.method8732(class146.field1362.field949);
-               var14.field3351.method8732(class146.field1362.field963);
-               var14.field3351.method8731(63);
+               var14.field3351.writeByte(18);
+               var14.field3351.writeShort(class342.field3837 + var12);
+               var14.field3351.writeByteAdd(field1666.method4103(82) ? (field1666.method4103(81) ? 2 : 1) : 0);
+               var14.field3351.writeShortLE(class144.field1352 + var13);
+               var14.field3351.writeByte(var5);
+               var14.field3351.writeByte(var6);
+               var14.field3351.writeShort(field1569);
+               var14.field3351.writeByte(57);
+               var14.field3351.writeByte(0);
+               var14.field3351.writeByte(0);
+               var14.field3351.writeByte(89);
+               var14.field3351.writeShort(class146.field1362.field949);
+               var14.field3351.writeShort(class146.field1362.field963);
+               var14.field3351.writeByte(63);
                field1436.method2148(var14);
                field1513 = var12;
                field1680 = var13;
@@ -1739,8 +1739,8 @@ public final class Client extends class43 implements class438, OAuthApi, class32
       }
 
       class308 var3 = class308.method8607(class309.field3436, field1436.field1046);
-      var3.field3351.method8731(var0.length() + 1);
-      var3.field3351.method8738(var0);
+      var3.field3351.writeByte(var0.length() + 1);
+      var3.field3351.writeString(var0);
       field1436.method2148(var3);
    }
 
@@ -2278,9 +2278,9 @@ public final class Client extends class43 implements class438, OAuthApi, class32
 
    static void method7275() {
       class308 var1 = class308.method8607(class309.field3389, field1436.field1046);
-      var1.field3351.method8731(method5791());
-      var1.field3351.method8732(class343.field3838);
-      var1.field3351.method8732(class488.field4948);
+      var1.field3351.writeByte(method5791());
+      var1.field3351.writeShort(class343.field3838);
+      var1.field3351.writeShort(class488.field4948);
       field1436.method2148(var1);
    }
 
@@ -2579,7 +2579,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
       class50.field362 = var10;
       class15.field74 = var11;
       class456.field4751 = var12;
-      if (field1598 && class145.field1356.method6539(true, false) == 0) {
+      if (field1598 && Js5NetQueue.field1356.method6539(true, false) == 0) {
          field1598 = false;
       }
 
@@ -2783,11 +2783,11 @@ public final class Client extends class43 implements class438, OAuthApi, class32
                         if (var4 != null) {
                            class308 var5 = class308.method8607(class309.field3453, field1436.field1046);
                            var5.field3351.method8934(var0.field2543.field3607);
-                           var5.field3351.method8800(var4[1]);
-                           var5.field3351.method8801(var0.field2543.method6210());
-                           var5.field3351.method8799(var4[2]);
-                           var5.field3351.method8799(var4[0]);
-                           var5.field3351.method8801(var0.field2543.field3606);
+                           var5.field3351.writeIntME(var4[1]);
+                           var5.field3351.writeIntIME(var0.field2543.method6210());
+                           var5.field3351.writeIntLE(var4[2]);
+                           var5.field3351.writeIntLE(var4[0]);
+                           var5.field3351.writeIntIME(var0.field2543.field3606);
                            field1436.method2148(var5);
                         }
                      }
@@ -3697,14 +3697,14 @@ public final class Client extends class43 implements class438, OAuthApi, class32
       int var7;
       int var8;
       if (!field1505) {
-         var3 = var1.method8750();
-         var4 = var1.method8750();
-         int var5 = var1.method8750();
+         var3 = var1.readUnsignedShort();
+         var4 = var1.readUnsignedShort();
+         int var5 = var1.readUnsignedShort();
          class4.field26 = new int[var5][4];
 
          for(var6 = 0; var6 < var5; ++var6) {
             for(var7 = 0; var7 < 4; ++var7) {
-               class4.field26[var6][var7] = var1.method9000();
+               class4.field26[var6][var7] = var1.readInt();
             }
          }
 
@@ -3729,8 +3729,8 @@ public final class Client extends class43 implements class438, OAuthApi, class32
       } else {
          var3 = var1.method8778();
          var4 = var1.method8749();
-         boolean var16 = var1.method8751() == 1;
-         var6 = var1.method8750();
+         boolean var16 = var1.readUnsignedByteSub() == 1;
+         var6 = var1.readUnsignedShort();
          var1.method8476();
 
          int var9;
@@ -3753,7 +3753,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
 
          for(var7 = 0; var7 < var6; ++var7) {
             for(var8 = 0; var8 < 4; ++var8) {
-               class4.field26[var7][var8] = var1.method9000();
+               class4.field26[var7][var8] = var1.readInt();
             }
          }
 
@@ -3803,7 +3803,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
       if (!var2 || class293.field3130 != var0 || class142.field1317 != var1) {
          class293.field3130 = var0;
          class142.field1317 = var1;
-         method2323(25);
+         updateGameState(25);
          method2100(class364.field4024, true);
          int var4 = class342.field3837;
          int var5 = class144.field1352;
@@ -4146,7 +4146,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             class308 var20;
             if (class124.field1180.method690()) {
                var20 = class308.method8607(class309.field3427, field1436.field1046);
-               var20.field3351.method8734(1057001181);
+               var20.field3351.writeInt(1057001181);
                field1436.method2148(var20);
             }
 
@@ -4166,12 +4166,12 @@ public final class Client extends class43 implements class438, OAuthApi, class32
                }
             }
 
-            method2323(30);
+            updateGameState(30);
             method2290();
             class88.method3293();
             var20 = class308.method8607(class309.field3440, field1436.field1046);
             field1436.method2148(var20);
-            class43.method3439();
+            GameShell.method3439();
          }
       }
    }
@@ -4914,7 +4914,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
 
             if (null != var11) {
                var12 = class308.method8607(class309.field3387, field1436.field1046);
-               var12.field3351.method8788(var11.field2047);
+               var12.field3351.writeShortAdd(var11.field2047);
                field1436.method2148(var12);
             }
          }
@@ -4931,11 +4931,11 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             field1513 = var0;
             field1680 = var1;
             var14 = class308.method8607(class309.field3426, field1436.field1046);
-            var14.field3351.method8788(class306.field3338);
+            var14.field3351.writeShortAdd(class306.field3338);
             var14.field3351.method8934(class103.field1020);
-            var14.field3351.method8801(class354.field3921);
-            var14.field3351.method8788(var3);
-            var14.field3351.method8731(field1666.method4103(82) ? 1 : 0);
+            var14.field3351.writeIntIME(class354.field3921);
+            var14.field3351.writeShortAdd(var3);
+            var14.field3351.writeByte(field1666.method4103(82) ? 1 : 0);
             field1436.method2148(var14);
          }
       }
@@ -4952,7 +4952,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             field1680 = var1;
             var14 = class308.method8607(class309.field3407, field1436.field1046);
             var14.field3351.method8934(var3);
-            var14.field3351.method8780(field1666.method4103(82) ? 1 : 0);
+            var14.field3351.writeByteSub(field1666.method4103(82) ? 1 : 0);
             field1436.method2148(var14);
          }
       }
@@ -4967,7 +4967,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             field1513 = var0;
             field1680 = var1;
             var14 = class308.method8607(class309.field3393, field1436.field1046);
-            var14.field3351.method8731(field1666.method4103(82) ? 1 : 0);
+            var14.field3351.writeByte(field1666.method4103(82) ? 1 : 0);
             var14.field3351.method8934(var3);
             field1436.method2148(var14);
          }
@@ -4984,7 +4984,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             field1680 = var1;
             var14 = class308.method8607(class309.field3419, field1436.field1046);
             var14.field3351.method8934(var3);
-            var14.field3351.method8906(field1666.method4103(82) ? 1 : 0);
+            var14.field3351.writeByteNeg(field1666.method4103(82) ? 1 : 0);
             field1436.method2148(var14);
          }
       }
@@ -5000,7 +5000,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             field1680 = var1;
             var14 = class308.method8607(class309.field3383, field1436.field1046);
             var14.field3351.method8934(var3);
-            var14.field3351.method8780(field1666.method4103(82) ? 1 : 0);
+            var14.field3351.writeByteSub(field1666.method4103(82) ? 1 : 0);
             field1436.method2148(var14);
          }
       }
@@ -5012,7 +5012,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
          field1551 = 2;
          field1681 = 0;
          var15 = class308.method8607(class309.field3433, field1436.field1046);
-         var15.field3351.method8732(var3);
+         var15.field3351.writeShort(var3);
          field1436.method2148(var15);
       }
 
@@ -5026,8 +5026,8 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             field1513 = var0;
             field1680 = var1;
             var14 = class308.method8607(class309.field3423, field1436.field1046);
-            var14.field3351.method8788(var3);
-            var14.field3351.method8906(field1666.method4103(82) ? 1 : 0);
+            var14.field3351.writeShortAdd(var3);
+            var14.field3351.writeByteNeg(field1666.method4103(82) ? 1 : 0);
             field1436.method2148(var14);
          }
       }
@@ -5040,7 +5040,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
          field1513 = var0;
          field1680 = var1;
          var15 = class308.method8607(class309.field3392, field1436.field1046);
-         var15.field3351.method8731(field1666.method4103(82) ? 1 : 0);
+         var15.field3351.writeByte(field1666.method4103(82) ? 1 : 0);
          var15.field3351.method8934(var3);
          var15.field3351.method8934(class144.field1352 + var1);
          var15.field3351.method8934(var0 + class342.field3837);
@@ -5057,8 +5057,8 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             field1513 = var0;
             field1680 = var1;
             var14 = class308.method8607(class309.field3442, field1436.field1046);
-            var14.field3351.method8805(var3);
-            var14.field3351.method8731(field1666.method4103(82) ? 1 : 0);
+            var14.field3351.writeShortLE(var3);
+            var14.field3351.writeByte(field1666.method4103(82) ? 1 : 0);
             field1436.method2148(var14);
          }
       }
@@ -5077,12 +5077,12 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             }
 
             var14 = class308.method8607(class309.field3377, field1436.field1046);
-            var14.field3351.method8788(field1597);
-            var14.field3351.method8805(var0);
-            var14.field3351.method8788(field1596);
+            var14.field3351.writeShortAdd(field1597);
+            var14.field3351.writeShortLE(var0);
+            var14.field3351.writeShortAdd(field1596);
             var14.field3351.method8934(var4);
-            var14.field3351.method8800(class48.field347);
-            var14.field3351.method8800(var1);
+            var14.field3351.writeIntME(class48.field347);
+            var14.field3351.writeIntME(var1);
             field1436.method2148(var14);
          }
       }
@@ -5097,11 +5097,11 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             field1513 = var0;
             field1680 = var1;
             var14 = class308.method8607(class309.field3370, field1436.field1046);
-            var14.field3351.method8801(class48.field347);
-            var14.field3351.method8805(field1596);
-            var14.field3351.method8805(field1597);
-            var14.field3351.method8805(var3);
-            var14.field3351.method8731(field1666.method4103(82) ? 1 : 0);
+            var14.field3351.writeIntIME(class48.field347);
+            var14.field3351.writeShortLE(field1596);
+            var14.field3351.writeShortLE(field1597);
+            var14.field3351.writeShortLE(var3);
+            var14.field3351.writeByte(field1666.method4103(82) ? 1 : 0);
             field1436.method2148(var14);
          }
       }
@@ -5114,13 +5114,13 @@ public final class Client extends class43 implements class438, OAuthApi, class32
          field1513 = var0;
          field1680 = var1;
          var15 = class308.method8607(class309.field3401, field1436.field1046);
-         var15.field3351.method8805(var3);
-         var15.field3351.method8805(class103.field1020);
-         var15.field3351.method8805(class306.field3338);
-         var15.field3351.method8805(class342.field3837 + var0);
-         var15.field3351.method8850(field1666.method4103(82) ? 1 : 0);
-         var15.field3351.method8734(class354.field3921);
-         var15.field3351.method8805(class144.field1352 + var1);
+         var15.field3351.writeShortLE(var3);
+         var15.field3351.writeShortLE(class103.field1020);
+         var15.field3351.writeShortLE(class306.field3338);
+         var15.field3351.writeShortLE(class342.field3837 + var0);
+         var15.field3351.writeByteAdd(field1666.method4103(82) ? 1 : 0);
+         var15.field3351.writeInt(class354.field3921);
+         var15.field3351.writeShortLE(class144.field1352 + var1);
          field1436.method2148(var15);
       }
 
@@ -5134,8 +5134,8 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             field1513 = var0;
             field1680 = var1;
             var14 = class308.method8607(class309.field3417, field1436.field1046);
-            var14.field3351.method8788(var3);
-            var14.field3351.method8731(field1666.method4103(82) ? 1 : 0);
+            var14.field3351.writeShortAdd(var3);
+            var14.field3351.writeByte(field1666.method4103(82) ? 1 : 0);
             field1436.method2148(var14);
          }
       }
@@ -5151,7 +5151,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             field1680 = var1;
             var14 = class308.method8607(class309.field3441, field1436.field1046);
             var14.field3351.method8934(var3);
-            var14.field3351.method8780(field1666.method4103(82) ? 1 : 0);
+            var14.field3351.writeByteSub(field1666.method4103(82) ? 1 : 0);
             field1436.method2148(var14);
          }
       }
@@ -5166,8 +5166,8 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             field1513 = var0;
             field1680 = var1;
             var14 = class308.method8607(class309.field3429, field1436.field1046);
-            var14.field3351.method8732(var3);
-            var14.field3351.method8850(field1666.method4103(82) ? 1 : 0);
+            var14.field3351.writeShort(var3);
+            var14.field3351.writeByteAdd(field1666.method4103(82) ? 1 : 0);
             field1436.method2148(var14);
          }
       }
@@ -5176,7 +5176,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
       class332 var19;
       if (var2 == 29) {
          var15 = class308.method8607(class309.field3458, field1436.field1046);
-         var15.field3351.method8734(var1);
+         var15.field3351.writeInt(var1);
          field1436.method2148(var15);
          var19 = class332.method3765(var1);
          if (var19 != null && null != var19.field3727 && var19.field3727[0][0] == 5) {
@@ -5196,10 +5196,10 @@ public final class Client extends class43 implements class438, OAuthApi, class32
          field1513 = var0;
          field1680 = var1;
          var15 = class308.method8607(class309.field3362, field1436.field1046);
-         var15.field3351.method8788(class342.field3837 + var0);
-         var15.field3351.method8850(field1666.method4103(82) ? 1 : 0);
-         var15.field3351.method8788(var3);
-         var15.field3351.method8788(class144.field1352 + var1);
+         var15.field3351.writeShortAdd(class342.field3837 + var0);
+         var15.field3351.writeByteAdd(field1666.method4103(82) ? 1 : 0);
+         var15.field3351.writeShortAdd(var3);
+         var15.field3351.writeShortAdd(class144.field1352 + var1);
          field1436.method2148(var15);
       }
 
@@ -5213,8 +5213,8 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             field1513 = var0;
             field1680 = var1;
             var14 = class308.method8607(class309.field3456, field1436.field1046);
-            var14.field3351.method8732(var3);
-            var14.field3351.method8906(field1666.method4103(82) ? 1 : 0);
+            var14.field3351.writeShort(var3);
+            var14.field3351.writeByteNeg(field1666.method4103(82) ? 1 : 0);
             field1436.method2148(var14);
          }
       }
@@ -5231,9 +5231,9 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             var14 = class308.method8607(class309.field3446, field1436.field1046);
             var14.field3351.method8934(class103.field1020);
             var14.field3351.method8934(class306.field3338);
-            var14.field3351.method8799(class354.field3921);
-            var14.field3351.method8732(var3);
-            var14.field3351.method8731(field1666.method4103(82) ? 1 : 0);
+            var14.field3351.writeIntLE(class354.field3921);
+            var14.field3351.writeShort(var3);
+            var14.field3351.writeByte(field1666.method4103(82) ? 1 : 0);
             field1436.method2148(var14);
          }
       }
@@ -5258,13 +5258,13 @@ public final class Client extends class43 implements class438, OAuthApi, class32
          field1513 = var0;
          field1680 = var1;
          var15 = class308.method8607(class309.field3397, field1436.field1046);
-         var15.field3351.method8805(class306.field3338);
-         var15.field3351.method8805(class103.field1020);
-         var15.field3351.method8805(var3);
-         var15.field3351.method8805(class144.field1352 + var1);
+         var15.field3351.writeShortLE(class306.field3338);
+         var15.field3351.writeShortLE(class103.field1020);
+         var15.field3351.writeShortLE(var3);
+         var15.field3351.writeShortLE(class144.field1352 + var1);
          var15.field3351.method8934(class342.field3837 + var0);
-         var15.field3351.method8850(field1666.method4103(82) ? 1 : 0);
-         var15.field3351.method8800(class354.field3921);
+         var15.field3351.writeByteAdd(field1666.method4103(82) ? 1 : 0);
+         var15.field3351.writeIntME(class354.field3921);
          field1436.method2148(var15);
       }
 
@@ -5308,8 +5308,8 @@ public final class Client extends class43 implements class438, OAuthApi, class32
                field1513 = var0;
                field1680 = var1;
                var14 = class308.method8607(class309.field3402, field1436.field1046);
-               var14.field3351.method8731(field1666.method4103(82) ? 1 : 0);
-               var14.field3351.method8732(var3);
+               var14.field3351.writeByte(field1666.method4103(82) ? 1 : 0);
+               var14.field3351.writeShort(var3);
                field1436.method2148(var14);
             }
          }
@@ -5324,11 +5324,11 @@ public final class Client extends class43 implements class438, OAuthApi, class32
                field1513 = var0;
                field1680 = var1;
                var14 = class308.method8607(class309.field3452, field1436.field1046);
-               var14.field3351.method8788(var3);
-               var14.field3351.method8800(class48.field347);
-               var14.field3351.method8731(field1666.method4103(82) ? 1 : 0);
-               var14.field3351.method8732(field1597);
-               var14.field3351.method8805(field1596);
+               var14.field3351.writeShortAdd(var3);
+               var14.field3351.writeIntME(class48.field347);
+               var14.field3351.writeByte(field1666.method4103(82) ? 1 : 0);
+               var14.field3351.writeShort(field1597);
+               var14.field3351.writeShortLE(field1596);
                field1436.method2148(var14);
             }
          }
@@ -5342,9 +5342,9 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             field1680 = var1;
             var15 = class308.method8607(class309.field3421, field1436.field1046);
             var15.field3351.method8934(class144.field1352 + var1);
-            var15.field3351.method8805(class342.field3837 + var0);
-            var15.field3351.method8732(var3);
-            var15.field3351.method8850(field1666.method4103(82) ? 1 : 0);
+            var15.field3351.writeShortLE(class342.field3837 + var0);
+            var15.field3351.writeShort(var3);
+            var15.field3351.writeByteAdd(field1666.method4103(82) ? 1 : 0);
             field1436.method2148(var15);
          }
 
@@ -5356,10 +5356,10 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             field1513 = var0;
             field1680 = var1;
             var15 = class308.method8607(class309.field3434, field1436.field1046);
-            var15.field3351.method8788(var0 + class342.field3837);
-            var15.field3351.method8788(var3);
-            var15.field3351.method8805(var1 + class144.field1352);
-            var15.field3351.method8906(field1666.method4103(82) ? 1 : 0);
+            var15.field3351.writeShortAdd(var0 + class342.field3837);
+            var15.field3351.writeShortAdd(var3);
+            var15.field3351.writeShortLE(var1 + class144.field1352);
+            var15.field3351.writeByteNeg(field1666.method4103(82) ? 1 : 0);
             field1436.method2148(var15);
          }
 
@@ -5371,13 +5371,13 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             field1513 = var0;
             field1680 = var1;
             var15 = class308.method8607(class309.field3425, field1436.field1046);
-            var15.field3351.method8805(var1 + class144.field1352);
-            var15.field3351.method8788(field1596);
-            var15.field3351.method8788(var3);
-            var15.field3351.method8799(class48.field347);
-            var15.field3351.method8788(field1597);
-            var15.field3351.method8906(field1666.method4103(82) ? 1 : 0);
-            var15.field3351.method8732(var0 + class342.field3837);
+            var15.field3351.writeShortLE(var1 + class144.field1352);
+            var15.field3351.writeShortAdd(field1596);
+            var15.field3351.writeShortAdd(var3);
+            var15.field3351.writeIntLE(class48.field347);
+            var15.field3351.writeShortAdd(field1597);
+            var15.field3351.writeByteNeg(field1666.method4103(82) ? 1 : 0);
+            var15.field3351.writeShort(var0 + class342.field3837);
             field1436.method2148(var15);
          }
 
@@ -5389,9 +5389,9 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             field1513 = var0;
             field1680 = var1;
             var15 = class308.method8607(class309.field3420, field1436.field1046);
-            var15.field3351.method8805(class342.field3837 + var0);
-            var15.field3351.method8906(field1666.method4103(82) ? 1 : 0);
-            var15.field3351.method8805(var3);
+            var15.field3351.writeShortLE(class342.field3837 + var0);
+            var15.field3351.writeByteNeg(field1666.method4103(82) ? 1 : 0);
+            var15.field3351.writeShortLE(var3);
             var15.field3351.method8934(var1 + class144.field1352);
             field1436.method2148(var15);
          }
@@ -5406,8 +5406,8 @@ public final class Client extends class43 implements class438, OAuthApi, class32
                field1513 = var0;
                field1680 = var1;
                var14 = class308.method8607(class309.field3438, field1436.field1046);
-               var14.field3351.method8731(field1666.method4103(82) ? 1 : 0);
-               var14.field3351.method8805(var3);
+               var14.field3351.writeByte(field1666.method4103(82) ? 1 : 0);
+               var14.field3351.writeShortLE(var3);
                field1436.method2148(var14);
             }
          }
@@ -5420,13 +5420,13 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             field1513 = var0;
             field1680 = var1;
             var15 = class308.method8607(class309.field3451, field1436.field1046);
-            var15.field3351.method8906(field1666.method4103(82) ? 1 : 0);
-            var15.field3351.method8732(field1597);
-            var15.field3351.method8732(var3);
-            var15.field3351.method8732(var1 + class144.field1352);
-            var15.field3351.method8788(var0 + class342.field3837);
-            var15.field3351.method8805(field1596);
-            var15.field3351.method8801(class48.field347);
+            var15.field3351.writeByteNeg(field1666.method4103(82) ? 1 : 0);
+            var15.field3351.writeShort(field1597);
+            var15.field3351.writeShort(var3);
+            var15.field3351.writeShort(var1 + class144.field1352);
+            var15.field3351.writeShortAdd(var0 + class342.field3837);
+            var15.field3351.writeShortLE(field1596);
+            var15.field3351.writeIntIME(class48.field347);
             field1436.method2148(var15);
          }
 
@@ -5438,10 +5438,10 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             field1513 = var0;
             field1680 = var1;
             var15 = class308.method8607(class309.field3399, field1436.field1046);
-            var15.field3351.method8805(class144.field1352 + var1);
-            var15.field3351.method8805(class342.field3837 + var0);
-            var15.field3351.method8780(field1666.method4103(82) ? 1 : 0);
-            var15.field3351.method8732(var3);
+            var15.field3351.writeShortLE(class144.field1352 + var1);
+            var15.field3351.writeShortLE(class342.field3837 + var0);
+            var15.field3351.writeByteSub(field1666.method4103(82) ? 1 : 0);
+            var15.field3351.writeShort(var3);
             field1436.method2148(var15);
          }
 
@@ -5455,7 +5455,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
 
                if (var20) {
                   var12 = class308.method8607(class309.field3458, field1436.field1046);
-                  var12.field3351.method8734(var1);
+                  var12.field3351.writeInt(var1);
                   field1436.method2148(var12);
                }
             }
@@ -5469,9 +5469,9 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             field1513 = var0;
             field1680 = var1;
             var15 = class308.method8607(class309.field3413, field1436.field1046);
-            var15.field3351.method8788(var0 + class342.field3837);
-            var15.field3351.method8780(field1666.method4103(82) ? 1 : 0);
-            var15.field3351.method8788(var1 + class144.field1352);
+            var15.field3351.writeShortAdd(var0 + class342.field3837);
+            var15.field3351.writeByteSub(field1666.method4103(82) ? 1 : 0);
+            var15.field3351.writeShortAdd(var1 + class144.field1352);
             var15.field3351.method8934(var3);
             field1436.method2148(var15);
          }
@@ -5484,8 +5484,8 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             field1513 = var0;
             field1680 = var1;
             var15 = class308.method8607(class309.field3415, field1436.field1046);
-            var15.field3351.method8780(field1666.method4103(82) ? 1 : 0);
-            var15.field3351.method8805(var3);
+            var15.field3351.writeByteSub(field1666.method4103(82) ? 1 : 0);
+            var15.field3351.writeShortLE(var3);
             var15.field3351.method8934(var1 + class144.field1352);
             var15.field3351.method8934(class342.field3837 + var0);
             field1436.method2148(var15);
@@ -5499,7 +5499,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             field1513 = var0;
             field1680 = var1;
             var15 = class308.method8607(class309.field3369, field1436.field1046);
-            var15.field3351.method8780(field1666.method4103(82) ? 1 : 0);
+            var15.field3351.writeByteSub(field1666.method4103(82) ? 1 : 0);
             var15.field3351.method8934(var1 + class144.field1352);
             var15.field3351.method8934(var3);
             var15.field3351.method8934(var0 + class342.field3837);
@@ -5518,8 +5518,8 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             field1551 = 2;
             field1681 = 0;
             var15 = class308.method8607(class309.field3374, field1436.field1046);
-            var15.field3351.method8805(var0 + class342.field3837);
-            var15.field3351.method8788(var3);
+            var15.field3351.writeShortLE(var0 + class342.field3837);
+            var15.field3351.writeShortAdd(var3);
             var15.field3351.method8934(class144.field1352 + var1);
             field1436.method2148(var15);
          }
@@ -5532,16 +5532,16 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             field1513 = var0;
             field1680 = var1;
             var15 = class308.method8607(class309.field3371, field1436.field1046);
-            var15.field3351.method8805(var1 + class144.field1352);
+            var15.field3351.writeShortLE(var1 + class144.field1352);
             var15.field3351.method8934(var3);
-            var15.field3351.method8731(field1666.method4103(82) ? 1 : 0);
-            var15.field3351.method8788(class342.field3837 + var0);
+            var15.field3351.writeByte(field1666.method4103(82) ? 1 : 0);
+            var15.field3351.writeShortAdd(class342.field3837 + var0);
             field1436.method2148(var15);
          }
 
          if (var2 == 28) {
             var15 = class308.method8607(class309.field3458, field1436.field1046);
-            var15.field3351.method8734(var1);
+            var15.field3351.writeInt(var1);
             field1436.method2148(var15);
             var19 = class332.method3765(var1);
             if (null != var19 && null != var19.field3727 && 5 == var19.field3727[0][0]) {
@@ -5561,8 +5561,8 @@ public final class Client extends class43 implements class438, OAuthApi, class32
                field1513 = var0;
                field1680 = var1;
                var14 = class308.method8607(class309.field3431, field1436.field1046);
-               var14.field3351.method8780(field1666.method4103(82) ? 1 : 0);
-               var14.field3351.method8732(var3);
+               var14.field3351.writeByteSub(field1666.method4103(82) ? 1 : 0);
+               var14.field3351.writeShort(var3);
                field1436.method2148(var14);
             }
          }
@@ -5615,7 +5615,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
    static void method5003(int var0, int var1) {
       class308 var3 = class308.method8607(class309.field3430, field1436.field1046);
       var3.field3351.method8934(var1);
-      var3.field3351.method8800(var0);
+      var3.field3351.writeIntME(var0);
       field1436.method2148(var3);
    }
 
@@ -5644,81 +5644,81 @@ public final class Client extends class43 implements class438, OAuthApi, class32
                class308 var11;
                if (var0 == 1) {
                   var11 = class308.method8607(class309.field3396, field1436.field1046);
-                  var11.field3351.method8734(var1);
-                  var11.field3351.method8732(var2);
-                  var11.field3351.method8732(var3);
+                  var11.field3351.writeInt(var1);
+                  var11.field3351.writeShort(var2);
+                  var11.field3351.writeShort(var3);
                   field1436.method2148(var11);
                }
 
                if (var0 == 2) {
                   var11 = class308.method8607(class309.field3445, field1436.field1046);
-                  var11.field3351.method8734(var1);
-                  var11.field3351.method8732(var2);
-                  var11.field3351.method8732(var3);
+                  var11.field3351.writeInt(var1);
+                  var11.field3351.writeShort(var2);
+                  var11.field3351.writeShort(var3);
                   field1436.method2148(var11);
                }
 
                if (var0 == 3) {
                   var11 = class308.method8607(class309.field3363, field1436.field1046);
-                  var11.field3351.method8734(var1);
-                  var11.field3351.method8732(var2);
-                  var11.field3351.method8732(var3);
+                  var11.field3351.writeInt(var1);
+                  var11.field3351.writeShort(var2);
+                  var11.field3351.writeShort(var3);
                   field1436.method2148(var11);
                }
 
                if (var0 == 4) {
                   var11 = class308.method8607(class309.field3398, field1436.field1046);
-                  var11.field3351.method8734(var1);
-                  var11.field3351.method8732(var2);
-                  var11.field3351.method8732(var3);
+                  var11.field3351.writeInt(var1);
+                  var11.field3351.writeShort(var2);
+                  var11.field3351.writeShort(var3);
                   field1436.method2148(var11);
                }
 
                if (var0 == 5) {
                   var11 = class308.method8607(class309.field3394, field1436.field1046);
-                  var11.field3351.method8734(var1);
-                  var11.field3351.method8732(var2);
-                  var11.field3351.method8732(var3);
+                  var11.field3351.writeInt(var1);
+                  var11.field3351.writeShort(var2);
+                  var11.field3351.writeShort(var3);
                   field1436.method2148(var11);
                }
 
                if (var0 == 6) {
                   var11 = class308.method8607(class309.field3367, field1436.field1046);
-                  var11.field3351.method8734(var1);
-                  var11.field3351.method8732(var2);
-                  var11.field3351.method8732(var3);
+                  var11.field3351.writeInt(var1);
+                  var11.field3351.writeShort(var2);
+                  var11.field3351.writeShort(var3);
                   field1436.method2148(var11);
                }
 
                if (var0 == 7) {
                   var11 = class308.method8607(class309.field3444, field1436.field1046);
-                  var11.field3351.method8734(var1);
-                  var11.field3351.method8732(var2);
-                  var11.field3351.method8732(var3);
+                  var11.field3351.writeInt(var1);
+                  var11.field3351.writeShort(var2);
+                  var11.field3351.writeShort(var3);
                   field1436.method2148(var11);
                }
 
                if (var0 == 8) {
                   var11 = class308.method8607(class309.field3418, field1436.field1046);
-                  var11.field3351.method8734(var1);
-                  var11.field3351.method8732(var2);
-                  var11.field3351.method8732(var3);
+                  var11.field3351.writeInt(var1);
+                  var11.field3351.writeShort(var2);
+                  var11.field3351.writeShort(var3);
                   field1436.method2148(var11);
                }
 
                if (var0 == 9) {
                   var11 = class308.method8607(class309.field3386, field1436.field1046);
-                  var11.field3351.method8734(var1);
-                  var11.field3351.method8732(var2);
-                  var11.field3351.method8732(var3);
+                  var11.field3351.writeInt(var1);
+                  var11.field3351.writeShort(var2);
+                  var11.field3351.writeShort(var3);
                   field1436.method2148(var11);
                }
 
                if (var0 == 10) {
                   var11 = class308.method8607(class309.field3384, field1436.field1046);
-                  var11.field3351.method8734(var1);
-                  var11.field3351.method8732(var2);
-                  var11.field3351.method8732(var3);
+                  var11.field3351.writeInt(var1);
+                  var11.field3351.writeShort(var2);
+                  var11.field3351.writeShort(var3);
                   field1436.method2148(var11);
                }
 
@@ -6217,7 +6217,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
                      if (var11.field3631 == 1336) {
                         if (class141.field1307.method1694()) {
                            var14 += 15;
-                           class112.field1079.method7165("Fps:" + class43.field274, var11.field3598 + var13, var14, 16776960, -1);
+                           class112.field1079.method7165("Fps:" + GameShell.field274, var11.field3598 + var13, var14, 16776960, -1);
                            var14 += 15;
                            Runtime var41 = Runtime.getRuntime();
                            var21 = (int)((var41.totalMemory() - var41.freeMemory()) / 1024L);
@@ -8272,8 +8272,8 @@ public final class Client extends class43 implements class438, OAuthApi, class32
    static final void method5752(String var0) {
       if (class6.field42 != null) {
          class308 var2 = class308.method8607(class309.field3408, field1436.field1046);
-         var2.field3351.method8731(class519.method8713(var0));
-         var2.field3351.method8738(var0);
+         var2.field3351.writeByte(PacketBuffer.getJagStringSize(var0));
+         var2.field3351.writeString(var0);
          field1436.method2148(var2);
       }
    }
@@ -8281,15 +8281,15 @@ public final class Client extends class43 implements class438, OAuthApi, class32
    static final void method2470(String var0) {
       if (!var0.equals("")) {
          class308 var2 = class308.method8607(class309.field3376, field1436.field1046);
-         var2.field3351.method8731(class519.method8713(var0));
-         var2.field3351.method8738(var0);
+         var2.field3351.writeByte(PacketBuffer.getJagStringSize(var0));
+         var2.field3351.writeString(var0);
          field1436.method2148(var2);
       }
    }
 
    static final void method4204() {
       class308 var1 = class308.method8607(class309.field3376, field1436.field1046);
-      var1.field3351.method8731(0);
+      var1.field3351.writeByte(0);
       field1436.method2148(var1);
    }
 
@@ -8300,10 +8300,10 @@ public final class Client extends class43 implements class438, OAuthApi, class32
          if (var4.field1391 == -1) {
             String var5 = var4.field1389.method9155();
             class308 var6 = class308.method8607(class309.field3373, field1436.field1046);
-            var6.field3351.method8731(3 + class519.method8713(var5));
-            var6.field3351.method8731(var0);
-            var6.field3351.method8732(var1);
-            var6.field3351.method8738(var5);
+            var6.field3351.writeByte(3 + PacketBuffer.getJagStringSize(var5));
+            var6.field3351.writeByte(var0);
+            var6.field3351.writeShort(var1);
+            var6.field3351.writeString(var5);
             field1436.method2148(var6);
          }
       }
@@ -8315,10 +8315,10 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             class152 var3 = (class152)field1673[var0].field1772.get(var1);
             if (var3.field1391 == -1) {
                class308 var4 = class308.method8607(class309.field3388, field1436.field1046);
-               var4.field3351.method8731(3 + class519.method8713(var3.field1389.method9155()));
-               var4.field3351.method8731(var0);
-               var4.field3351.method8732(var1);
-               var4.field3351.method8738(var3.field1389.method9155());
+               var4.field3351.writeByte(3 + PacketBuffer.getJagStringSize(var3.field1389.method9155()));
+               var4.field3351.writeByte(var0);
+               var4.field3351.writeShort(var1);
+               var4.field3351.writeString(var3.field1389.method9155());
                field1436.method2148(var4);
             }
          }
@@ -8330,11 +8330,11 @@ public final class Client extends class43 implements class438, OAuthApi, class32
          if (var1 >= 0 && var1 < field1673[var0].method3279()) {
             class152 var4 = (class152)field1673[var0].field1772.get(var1);
             class308 var5 = class308.method8607(class309.field3406, field1436.field1046);
-            var5.field3351.method8731(4 + class519.method8713(var4.field1389.method9155()));
-            var5.field3351.method8731(var0);
-            var5.field3351.method8732(var1);
-            var5.field3351.method8737(var2);
-            var5.field3351.method8738(var4.field1389.method9155());
+            var5.field3351.writeByte(4 + PacketBuffer.getJagStringSize(var4.field1389.method9155()));
+            var5.field3351.writeByte(var0);
+            var5.field3351.writeShort(var1);
+            var5.field3351.writeBoolean(var2);
+            var5.field3351.writeString(var4.field1389.method9155());
             field1436.method2148(var5);
          }
       }
@@ -8417,7 +8417,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             var4 = var4 + "; Expires=Thu, 01-Jan-1970 00:00:00 GMT; Max-Age=0";
          } else {
             String var5 = var4 + "; Expires=";
-            long var7 = class302.method2194() + 94608000000L;
+            long var7 = class302.safeTime() + 94608000000L;
             class316.field3503.setTime(new Date(var7));
             int var9 = class316.field3503.get(7);
             int var10 = class316.field3503.get(5);
@@ -8484,17 +8484,17 @@ public final class Client extends class43 implements class438, OAuthApi, class32
       class415.method7428(var0, var1, field1488, 0, 24);
    }
 
-   static void method7097(class519 var0, int var1) {
-      method6929(var0.field5127, var1);
+   static void method7097(PacketBuffer var0, int var1) {
+      method6929(var0.data, var1);
       class265.method5209(var0, var1);
    }
 
-   static void method4735(class519 var0) {
+   static void method4735(PacketBuffer var0) {
       if (field1488 != null) {
-         var0.method8741(field1488, 0, field1488.length);
+         var0.writeBytes(field1488, 0, field1488.length);
       } else {
          byte[] var2 = class160.method4268();
-         var0.method8741(var2, 0, var2.length);
+         var0.writeBytes(var2, 0, var2.length);
       }
    }
 
@@ -8716,7 +8716,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
 
          method1972();
          class196.field2146 = this.getCodeBase().getHost();
-         class145.field1356 = new class355();
+         Js5NetQueue.field1356 = new class355();
          String var10 = class96.field883.field3853;
          byte var11 = 0;
          if (0 != (field1433 & 65536)) {
@@ -8767,7 +8767,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
    }
 
    public boolean isOnLoginScreen() {
-      return field1728 == 10;
+      return gameState == 10;
    }
 
    public long getAccountHash() {
@@ -8911,37 +8911,37 @@ public final class Client extends class43 implements class438, OAuthApi, class32
          field1641 = var3;
       }
 
-      if (field1728 == 0) {
+      if (gameState == 0) {
          method4206();
-         class43.method3439();
-      } else if (5 == field1728) {
+         GameShell.method3439();
+      } else if (5 == gameState) {
          class61.method3299(this, class185.field1996, class112.field1079);
          method4206();
-         class43.method3439();
-      } else if (10 != field1728 && 11 != field1728) {
-         if (field1728 == 20) {
+         GameShell.method3439();
+      } else if (10 != gameState && 11 != gameState) {
+         if (gameState == 20) {
             class61.method3299(this, class185.field1996, class112.field1079);
             this.method2705();
-         } else if (field1728 == 50) {
+         } else if (gameState == 50) {
             class61.method3299(this, class185.field1996, class112.field1079);
             this.method2705();
-         } else if (field1728 == 25) {
+         } else if (gameState == 25) {
             method2439();
          }
       } else {
          class61.method3299(this, class185.field1996, class112.field1079);
       }
 
-      if (field1728 == 30) {
+      if (gameState == 30) {
          this.method2706();
-      } else if (40 == field1728 || field1728 == 45) {
+      } else if (40 == gameState || gameState == 45) {
          this.method2705();
       }
 
    }
 
    protected final void method683(boolean var1) {
-      if ((10 == field1728 || field1728 == 20 || 30 == field1728) && 0L != field1658 && class302.method2194() > field1658) {
+      if ((10 == gameState || gameState == 20 || 30 == gameState) && 0L != field1658 && class302.safeTime() > field1658) {
          class222.method4213(method5791());
       }
 
@@ -8952,16 +8952,16 @@ public final class Client extends class43 implements class438, OAuthApi, class32
          }
       }
 
-      if (0 == field1728) {
+      if (0 == gameState) {
          this.method684(class61.field450, class61.field436, var1);
-      } else if (5 == field1728) {
+      } else if (5 == gameState) {
          class61.method7420(class316.field3504, class185.field1996, class112.field1079);
-      } else if (field1728 != 10 && field1728 != 11) {
-         if (field1728 == 20) {
+      } else if (gameState != 10 && gameState != 11) {
+         if (gameState == 20) {
             class61.method7420(class316.field3504, class185.field1996, class112.field1079);
-         } else if (50 == field1728) {
+         } else if (50 == gameState) {
             class61.method7420(class316.field3504, class185.field1996, class112.field1079);
-         } else if (field1728 == 25) {
+         } else if (gameState == 25) {
             if (field1453 == 1) {
                if (field1646 > field1500) {
                   field1500 = field1646;
@@ -8979,25 +8979,25 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             } else {
                method2100(class364.field4024, false);
             }
-         } else if (field1728 == 30) {
+         } else if (gameState == 30) {
             this.method2709();
-         } else if (40 == field1728) {
+         } else if (40 == gameState) {
             method2100(class364.field4032 + class90.field835 + class364.field4033, false);
-         } else if (field1728 == 45) {
+         } else if (gameState == 45) {
             method2100(class364.field4037, false);
          }
       } else {
          class61.method7420(class316.field3504, class185.field1996, class112.field1079);
       }
 
-      if (30 == field1728 && 0 == field1588 && !var1 && !field1462) {
+      if (30 == gameState && 0 == field1588 && !var1 && !field1462) {
          for(var3 = 0; var3 < field1648; ++var3) {
             if (field1651[var3]) {
                class159.field1749.method9187(field1581[var3], field1654[var3], field1655[var3], field1656[var3]);
                field1651[var3] = false;
             }
          }
-      } else if (field1728 > 0) {
+      } else if (gameState > 0) {
          class159.field1749.method9186(0, 0);
 
          for(var3 = 0; var3 < field1648; ++var3) {
@@ -9029,7 +9029,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
          class194.field2126.method547();
       }
 
-      class145.field1356.method6540();
+      Js5NetQueue.field1356.method6540();
       class350.method6519();
       if (class261.field2935 != null) {
          class261.field2935.method2227();
@@ -9052,79 +9052,79 @@ public final class Client extends class43 implements class438, OAuthApi, class32
    }
 
    void method2702() {
-      if (1000 != field1728) {
-         boolean var2 = class145.field1356.method6545();
+      if (1000 != gameState) {
+         boolean var2 = Js5NetQueue.field1356.method6545();
          if (!var2) {
-            this.method2703();
+            this.doCycleJs5Connect();
          }
 
       }
    }
 
-   void method2703() {
-      if (class145.field1356.field3945 >= 4) {
-         this.method674("js5crc");
-         method2323(1000);
+   void doCycleJs5Connect() {
+      if (Js5NetQueue.field1356.crcMismatches >= 4) {
+         this.error("js5crc");
+         updateGameState(1000);
       } else {
-         if (class145.field1356.field3925 >= 4) {
-            if (field1728 <= 5) {
-               this.method674("js5io");
-               method2323(1000);
+         if (Js5NetQueue.field1356.ioExceptions >= 4) {
+            if (gameState <= 5) {
+               this.error("js5io");
+               updateGameState(1000);
                return;
             }
 
             field1465 = 3000;
-            class145.field1356.field3925 = 3;
+            Js5NetQueue.field1356.ioExceptions = 3;
          }
 
          if (--field1465 + 1 <= 0) {
             try {
-               if (0 == field1464) {
-                  class292.field3129 = class43.field272.method3404(class196.field2146, class329.field3580);
-                  ++field1464;
+               if (0 == js5ConnectState) {
+                  class292.js5SocketTask = GameShell.field272.newSocketTask(class196.field2146, class329.field3580);
+                  ++js5ConnectState;
                }
 
-               if (1 == field1464) {
-                  if (class292.field3129.field1859 == 2) {
+               if (1 == js5ConnectState) {
+                  if (class292.js5SocketTask.field1859 == 2) {
                      this.method3196(-1);
                      return;
                   }
 
-                  if (class292.field3129.field1859 == 1) {
-                     ++field1464;
+                  if (class292.js5SocketTask.field1859 == 1) {
+                     ++js5ConnectState;
                   }
                }
 
-               if (2 == field1464) {
-                  class149.field1377 = class424.method5688((Socket)class292.field3129.field1864, 40000, 5000);
-                  class519 var2 = new class519(5);
-                  var2.method8731(15);
-                  var2.method8734(215);
-                  class149.field1377.method7588(var2.field5127, 0, 5);
-                  ++field1464;
-                  class186.field2023 = class302.method2194();
+               if (2 == js5ConnectState) {
+                  class149.js5Socket = class424.newSocketStream((Socket)class292.js5SocketTask.result, 40000, 5000);
+                  PacketBuffer var2 = new PacketBuffer(5);
+                  var2.writeByte(15);
+                  var2.writeInt(215);
+                  class149.js5Socket.write(var2.data, 0, 5);
+                  ++js5ConnectState;
+                  class186.field2023 = class302.safeTime();
                }
 
-               if (3 == field1464) {
-                  if (class149.field1377.method7585() > 0) {
-                     int var4 = class149.field1377.method7602();
+               if (3 == js5ConnectState) {
+                  if (class149.js5Socket.available() > 0) {
+                     int var4 = class149.js5Socket.readUnsignedByte();
                      if (var4 != 0) {
                         this.method3196(var4);
                         return;
                      }
 
-                     ++field1464;
-                  } else if (class302.method2194() - class186.field2023 > 30000L) {
+                     ++js5ConnectState;
+                  } else if (class302.safeTime() - class186.field2023 > 30000L) {
                      this.method3196(-2);
                      return;
                   }
                }
 
-               if (field1464 == 4) {
-                  class145.field1356.method6533(class149.field1377, field1728 > 20);
-                  class292.field3129 = null;
-                  class149.field1377 = null;
-                  field1464 = 0;
+               if (js5ConnectState == 4) {
+                  Js5NetQueue.field1356.method6533(class149.js5Socket, gameState > 20);
+                  class292.js5SocketTask = null;
+                  class149.js5Socket = null;
+                  js5ConnectState = 0;
                   field1466 = 0;
                }
             } catch (IOException var3) {
@@ -9136,9 +9136,9 @@ public final class Client extends class43 implements class438, OAuthApi, class32
    }
 
    void method3196(int var1) {
-      class292.field3129 = null;
-      class149.field1377 = null;
-      field1464 = 0;
+      class292.js5SocketTask = null;
+      class149.js5Socket = null;
+      js5ConnectState = 0;
       if (class329.field3580 == class61.field433) {
          class329.field3580 = class20.field108;
       } else {
@@ -9148,19 +9148,19 @@ public final class Client extends class43 implements class438, OAuthApi, class32
       ++field1466;
       if (field1466 < 2 || var1 != 7 && var1 != 9) {
          if (field1466 >= 2 && var1 == 6) {
-            this.method674("js5connect_outofdate");
-            method2323(1000);
+            this.error("js5connect_outofdate");
+            updateGameState(1000);
          } else if (field1466 >= 4) {
-            if (field1728 <= 5) {
-               this.method674("js5connect");
-               method2323(1000);
+            if (gameState <= 5) {
+               this.error("js5connect");
+               updateGameState(1000);
             } else {
                field1465 = 3000;
             }
          }
-      } else if (field1728 <= 5) {
-         this.method674("js5connect_full");
-         method2323(1000);
+      } else if (gameState <= 5) {
+         this.error("js5connect_full");
+         updateGameState(1000);
       } else {
          field1465 = 3000;
       }
@@ -9368,7 +9368,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
 
          if (field1467 == 1) {
             if (class454.field4744 == null) {
-               class454.field4744 = class43.field272.method3404(class196.field2146, class329.field3580);
+               class454.field4744 = GameShell.field272.newSocketTask(class196.field2146, class329.field3580);
             }
 
             if (class454.field4744.field1859 == 2) {
@@ -9376,7 +9376,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             }
 
             if (class454.field4744.field1859 == 1) {
-               var2 = class424.method5688((Socket)class454.field4744.field1864, 40000, 5000);
+               var2 = class424.newSocketStream((Socket)class454.field4744.result, 40000, 5000);
                field1436.method2133(var2);
                class454.field4744 = null;
                method2128(2);
@@ -9390,10 +9390,10 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             var27.field3360 = null;
             var27.field3352 = 0;
             var27.field3351 = new class497(5000);
-            var27.field3351.method8731(class310.field3462.field3460);
+            var27.field3351.writeByte(class310.field3462.field3460);
             field1436.method2148(var27);
             field1436.method2131();
-            var3.field5129 = 0;
+            var3.offset = 0;
             method2128(3);
          }
 
@@ -9404,7 +9404,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             }
 
             if (var2.method7597(1)) {
-               var26 = var2.method7602();
+               var26 = var2.readUnsignedByte();
                if (class194.field2126 != null) {
                   class194.field2126.method532();
                }
@@ -9414,139 +9414,139 @@ public final class Client extends class43 implements class438, OAuthApi, class32
                   return;
                }
 
-               var3.field5129 = 0;
+               var3.offset = 0;
                method2128(4);
             }
          }
 
          if (4 == field1467) {
-            if (var3.field5129 < 8) {
-               var26 = var2.method7585();
-               if (var26 > 8 - var3.field5129) {
-                  var26 = 8 - var3.field5129;
+            if (var3.offset < 8) {
+               var26 = var2.available();
+               if (var26 > 8 - var3.offset) {
+                  var26 = 8 - var3.offset;
                }
 
                if (var26 > 0) {
-                  var2.method7603(var3.field5127, var3.field5129, var26);
-                  var3.field5129 += var26;
+                  var2.method7603(var3.data, var3.offset, var26);
+                  var3.offset += var26;
                }
             }
 
-            if (var3.field5129 == 8) {
-               var3.field5129 = 0;
-               class318.field3512 = var3.method8755();
+            if (var3.offset == 8) {
+               var3.offset = 0;
+               class318.field3512 = var3.readLong();
                method2128(5);
             }
          }
 
          if (field1467 == 5) {
-            field1436.field1044.field5129 = 0;
+            field1436.field1044.offset = 0;
             field1436.method2130();
             class497 var31 = new class497(500);
             int[] var28 = new int[]{class204.field2202.nextInt(), class204.field2202.nextInt(), class204.field2202.nextInt(), class204.field2202.nextInt()};
-            var31.field5129 = 0;
-            var31.method8731(1);
-            var31.method8734(var28[0]);
-            var31.method8734(var28[1]);
-            var31.method8734(var28[2]);
-            var31.method8734(var28[3]);
-            var31.method8736(class318.field3512);
-            if (40 == field1728) {
-               var31.method8734(class375.field4361[0]);
-               var31.method8734(class375.field4361[1]);
-               var31.method8734(class375.field4361[2]);
-               var31.method8734(class375.field4361[3]);
+            var31.offset = 0;
+            var31.writeByte(1);
+            var31.writeInt(var28[0]);
+            var31.writeInt(var28[1]);
+            var31.writeInt(var28[2]);
+            var31.writeInt(var28[3]);
+            var31.writeLong(class318.field3512);
+            if (40 == gameState) {
+               var31.writeInt(class375.field4361[0]);
+               var31.writeInt(class375.field4361[1]);
+               var31.writeInt(class375.field4361[2]);
+               var31.writeInt(class375.field4361[3]);
             } else {
-               if (field1728 == 50) {
-                  var31.method8731(class132.field1245.method6917());
-                  var31.method8734(class70.field576);
+               if (gameState == 50) {
+                  var31.writeByte(class132.field1245.method6917());
+                  var31.writeInt(class70.field576);
                } else {
-                  var31.method8731(field1471.method6917());
+                  var31.writeByte(field1471.method6917());
                   switch (field1471.field1246) {
                      case 1:
                      case 4:
-                        var31.method8733(class428.field4629);
-                        ++var31.field5129;
+                        var31.writeMedium(class428.field4629);
+                        ++var31.offset;
                         break;
                      case 2:
-                        var31.field5129 += 4;
+                        var31.offset += 4;
                         break;
                      case 3:
-                        var31.method8734(class141.field1307.method1638(class61.field441));
+                        var31.writeInt(class141.field1307.method1638(class61.field441));
                   }
                }
 
                if (field1472.method8523()) {
-                  var31.method8731(class500.field5044.method6917());
-                  var31.method8738(this.field1613);
+                  var31.writeByte(class500.field5044.method6917());
+                  var31.writeString(this.field1613);
                } else {
-                  var31.method8731(class500.field5051.method6917());
-                  var31.method8738(class61.field445);
+                  var31.writeByte(class500.field5051.method6917());
+                  var31.writeString(class61.field445);
                }
             }
 
-            var31.method8830(class59.field419, class59.field416);
+            var31.encryptRsa(class59.field419, class59.field416);
             class375.field4361 = var28;
             class308 var7 = class308.method2535();
             var7.field3360 = null;
             var7.field3352 = 0;
             var7.field3351 = new class497(5000);
-            var7.field3351.field5129 = 0;
-            if (field1728 == 40) {
-               var7.field3351.method8731(class310.field3464.field3460);
+            var7.field3351.offset = 0;
+            if (gameState == 40) {
+               var7.field3351.writeByte(class310.field3464.field3460);
             } else {
-               var7.field3351.method8731(class310.field3463.field3460);
+               var7.field3351.writeByte(class310.field3463.field3460);
             }
 
-            var7.field3351.method8732(0);
-            int var8 = var7.field3351.field5129;
-            var7.field3351.method8734(215);
-            var7.field3351.method8734(1);
-            var7.field3351.method8731(field1438);
-            var7.field3351.method8731(field1573);
+            var7.field3351.writeShort(0);
+            int var8 = var7.field3351.offset;
+            var7.field3351.writeInt(215);
+            var7.field3351.writeInt(1);
+            var7.field3351.writeByte(field1438);
+            var7.field3351.writeByte(field1573);
             byte var9 = 0;
-            var7.field3351.method8731(var9);
-            var7.field3351.method8741(var31.field5127, 0, var31.field5129);
-            int var10 = var7.field3351.field5129;
-            var7.field3351.method8738(class61.field441);
-            var7.field3351.method8731((field1462 ? 1 : 0) << 1 | (field1549 ? 1 : 0));
-            var7.field3351.method8732(class343.field3838);
-            var7.field3351.method8732(class488.field4948);
+            var7.field3351.writeByte(var9);
+            var7.field3351.writeBytes(var31.data, 0, var31.offset);
+            int var10 = var7.field3351.offset;
+            var7.field3351.writeString(class61.field441);
+            var7.field3351.writeByte((field1462 ? 1 : 0) << 1 | (field1549 ? 1 : 0));
+            var7.field3351.writeShort(class343.field3838);
+            var7.field3351.writeShort(class488.field4948);
             method4735(var7.field3351);
-            var7.field3351.method8738(class44.field305);
-            var7.field3351.method8734(class37.field183);
+            var7.field3351.writeString(class44.field305);
+            var7.field3351.writeInt(class37.field183);
             if (field1441 > 213) {
-               var7.field3351.method8731(0);
+               var7.field3351.writeByte(0);
             }
 
-            class519 var11 = new class519(class191.field2089.method8453());
+            PacketBuffer var11 = new PacketBuffer(class191.field2089.method8453());
             class191.field2089.method8451(var11);
-            var7.field3351.method8741(var11.field5127, 0, var11.field5127.length);
-            var7.field3351.method8731(field1438);
-            var7.field3351.method8734(0);
-            var7.field3351.method8800(class186.field2015.field3831);
-            var7.field3351.method8799(class63.field498.field3831);
-            var7.field3351.method8800(class150.field1383.field3831);
-            var7.field3351.method8799(0);
-            var7.field3351.method8800(class260.field2931.field3831);
-            var7.field3351.method8801(class70.field570.field3831);
-            var7.field3351.method8734(class131.field1236.field3831);
-            var7.field3351.method8801(class26.field133.field3831);
-            var7.field3351.method8799(class130.field1226.field3831);
-            var7.field3351.method8799(class6.field34.field3831);
-            var7.field3351.method8800(class124.field1182.field3831);
-            var7.field3351.method8800(class200.field2181.field3831);
-            var7.field3351.method8801(class127.field1209.field3831);
-            var7.field3351.method8799(class379.field4382.field3831);
-            var7.field3351.method8734(class73.field589.field3831);
-            var7.field3351.method8801(class475.field4839.field3831);
-            var7.field3351.method8734(class107.field1059.field3831);
-            var7.field3351.method8800(class49.field361.field3831);
-            var7.field3351.method8801(class144.field1347.field3831);
-            var7.field3351.method8800(class136.field1254.field3831);
-            var7.field3351.method8801(class24.field121.field3831);
-            var7.field3351.method8773(var28, var10, var7.field3351.field5129);
-            var7.field3351.method8744(var7.field3351.field5129 - var8);
+            var7.field3351.writeBytes(var11.data, 0, var11.data.length);
+            var7.field3351.writeByte(field1438);
+            var7.field3351.writeInt(0);
+            var7.field3351.writeIntME(class186.field2015.field3831);
+            var7.field3351.writeIntLE(class63.field498.field3831);
+            var7.field3351.writeIntME(class150.field1383.field3831);
+            var7.field3351.writeIntLE(0);
+            var7.field3351.writeIntME(class260.field2931.field3831);
+            var7.field3351.writeIntIME(class70.field570.field3831);
+            var7.field3351.writeInt(class131.field1236.field3831);
+            var7.field3351.writeIntIME(class26.field133.field3831);
+            var7.field3351.writeIntLE(class130.field1226.field3831);
+            var7.field3351.writeIntLE(class6.field34.field3831);
+            var7.field3351.writeIntME(class124.field1182.field3831);
+            var7.field3351.writeIntME(class200.field2181.field3831);
+            var7.field3351.writeIntIME(class127.field1209.field3831);
+            var7.field3351.writeIntLE(class379.field4382.field3831);
+            var7.field3351.writeInt(class73.field589.field3831);
+            var7.field3351.writeIntIME(class475.field4839.field3831);
+            var7.field3351.writeInt(class107.field1059.field3831);
+            var7.field3351.writeIntME(class49.field361.field3831);
+            var7.field3351.writeIntIME(class144.field1347.field3831);
+            var7.field3351.writeIntME(class136.field1254.field3831);
+            var7.field3351.writeIntIME(class24.field121.field3831);
+            var7.field3351.method8773(var28, var10, var7.field3351.offset);
+            var7.field3351.writeLengthShort(var7.field3351.offset - var8);
             field1436.method2148(var7);
             field1436.method2131();
             field1436.field1046 = new class540(var28);
@@ -9561,19 +9561,19 @@ public final class Client extends class43 implements class438, OAuthApi, class32
          }
 
          int var29;
-         if (6 == field1467 && var2.method7585() > 0) {
-            var26 = var2.method7602();
+         if (6 == field1467 && var2.available() > 0) {
+            var26 = var2.readUnsignedByte();
             if (var26 == 61) {
-               var29 = var2.method7585();
-               class76.field635 = var29 == 1 && var2.method7602() == 1;
+               var29 = var2.available();
+               class76.field635 = var29 == 1 && var2.readUnsignedByte() == 1;
                method2128(5);
             }
 
-            if (var26 == 21 && 20 == field1728) {
+            if (var26 == 21 && 20 == gameState) {
                method2128(12);
             } else if (var26 == 2) {
                method2128(14);
-            } else if (var26 == 15 && 40 == field1728) {
+            } else if (var26 == 15 && 40 == gameState) {
                field1436.field1042 = -1;
                method2128(19);
             } else if (var26 == 64) {
@@ -9593,17 +9593,17 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             }
          }
 
-         if (7 == field1467 && var2.method7585() >= 2) {
-            var2.method7603(var3.field5127, 0, 2);
-            var3.field5129 = 0;
-            class379.field4380 = var3.method8750();
+         if (7 == field1467 && var2.available() >= 2) {
+            var2.method7603(var3.data, 0, 2);
+            var3.offset = 0;
+            class379.field4380 = var3.readUnsignedShort();
             method2128(8);
          }
 
-         if (8 == field1467 && var2.method7585() >= class379.field4380) {
-            var3.field5129 = 0;
-            var2.method7603(var3.field5127, var3.field5129, class379.field4380);
-            class7 var35 = class7.method5783()[var3.method8748()];
+         if (8 == field1467 && var2.available() >= class379.field4380) {
+            var3.offset = 0;
+            var2.method7603(var3.data, var3.offset, class379.field4380);
+            class7 var35 = class7.method5783()[var3.readUnsignedByte()];
 
             try {
                class13 var32 = class19.method1377(var35);
@@ -9629,28 +9629,28 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             var27.field3360 = null;
             var27.field3352 = 0;
             var27.field3351 = new class497(5000);
-            var27.field3351.method8731(class310.field3466.field3460);
-            var27.field3351.method8732(this.field1485.field5129);
-            var27.field3351.method8742(this.field1485);
+            var27.field3351.writeByte(class310.field3466.field3460);
+            var27.field3351.writeShort(this.field1485.offset);
+            var27.field3351.writeBytes(this.field1485);
             field1436.method2148(var27);
             field1436.method2131();
             this.field1485 = null;
             method2128(6);
          }
 
-         if (field1467 == 10 && var2.method7585() > 0) {
-            class291.field3123 = var2.method7602();
+         if (field1467 == 10 && var2.available() > 0) {
+            class291.field3123 = var2.readUnsignedByte();
             method2128(11);
          }
 
-         if (11 == field1467 && var2.method7585() >= class291.field3123) {
-            var2.method7603(var3.field5127, 0, class291.field3123);
-            var3.field5129 = 0;
+         if (11 == field1467 && var2.available() >= class291.field3123) {
+            var2.method7603(var3.data, 0, class291.field3123);
+            var3.offset = 0;
             method2128(6);
          }
 
-         if (field1467 == 12 && var2.method7585() > 0) {
-            field1470 = (var2.method7602() + 3) * 60;
+         if (field1467 == 12 && var2.available() > 0) {
+            field1470 = (var2.readUnsignedByte() + 3) * 60;
             method2128(13);
          }
 
@@ -9662,15 +9662,15 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             }
 
          } else {
-            if (14 == field1467 && var2.method7585() >= 1) {
-               class40.field231 = var2.method7602();
+            if (14 == field1467 && var2.available() >= 1) {
+               class40.field231 = var2.readUnsignedByte();
                method2128(15);
             }
 
-            if (15 == field1467 && var2.method7585() >= class40.field231) {
-               boolean var39 = var2.method7602() == 1;
-               var2.method7603(var3.field5127, 0, 4);
-               var3.field5129 = 0;
+            if (15 == field1467 && var2.available() >= class40.field231) {
+               boolean var39 = var2.readUnsignedByte() == 1;
+               var2.method7603(var3.data, 0, 4);
+               var3.offset = 0;
                boolean var36 = false;
                if (var39) {
                   var29 = var3.method8478() << 24;
@@ -9687,37 +9687,37 @@ public final class Client extends class43 implements class438, OAuthApi, class32
                }
 
                class79.method6485();
-               field1608 = var2.method7602();
-               field1610 = var2.method7602() == 1;
-               field1716 = var2.method7602();
+               field1608 = var2.readUnsignedByte();
+               field1610 = var2.readUnsignedByte() == 1;
+               field1716 = var2.readUnsignedByte();
                field1716 <<= 8;
-               field1716 += var2.method7602();
-               field1557 = var2.method7602();
-               var2.method7603(var3.field5127, 0, 8);
-               var3.field5129 = 0;
-               this.field1696 = var3.method8755();
-               var2.method7603(var3.field5127, 0, 8);
-               var3.field5129 = 0;
-               field1558 = var3.method8755();
+               field1716 += var2.readUnsignedByte();
+               field1557 = var2.readUnsignedByte();
+               var2.method7603(var3.data, 0, 8);
+               var3.offset = 0;
+               this.field1696 = var3.readLong();
+               var2.method7603(var3.data, 0, 8);
+               var3.offset = 0;
+               field1558 = var3.readLong();
                if (field1441 >= 214) {
-                  var2.method7603(var3.field5127, 0, 8);
-                  var3.field5129 = 0;
-                  var3.method8755();
+                  var2.method7603(var3.data, 0, 8);
+                  var3.offset = 0;
+                  var3.readLong();
                }
 
-               var2.method7603(var3.field5127, 0, 1);
-               var3.field5129 = 0;
+               var2.method7603(var3.data, 0, 1);
+               var3.offset = 0;
                class305[] var30 = class305.method2319();
                int var37 = var3.method8480();
                if (var37 < 0 || var37 >= var30.length) {
-                  throw new IOException(var37 + " " + var3.field5129);
+                  throw new IOException(var37 + " " + var3.offset);
                }
 
                field1436.field1048 = var30[var37];
                field1436.field1042 = field1436.field1048.field3333;
-               var2.method7603(var3.field5127, 0, 2);
-               var3.field5129 = 0;
-               field1436.field1042 = var3.method8750();
+               var2.method7603(var3.data, 0, 2);
+               var3.offset = 0;
+               field1436.field1042 = var3.readUnsignedShort();
 
                try {
                   Client var41 = class124.field1180;
@@ -9729,9 +9729,9 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             }
 
             if (field1467 == 16) {
-               if (var2.method7585() >= field1436.field1042) {
-                  var3.field5129 = 0;
-                  var2.method7603(var3.field5127, 0, field1436.field1042);
+               if (var2.available() >= field1436.field1042) {
+                  var3.offset = 0;
+                  var2.method7603(var3.data, 0, field1436.field1042);
                   field1497.method7070();
                   field1446 = -1L;
                   class514.field5111.field731 = 0;
@@ -9740,7 +9740,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
                   field1566 = -1L;
                   class44.method264();
                   field1436.method2130();
-                  field1436.field1044.field5129 = 0;
+                  field1436.field1044.offset = 0;
                   field1436.field1048 = null;
                   field1436.field1049 = null;
                   field1436.field1054 = null;
@@ -9862,23 +9862,23 @@ public final class Client extends class43 implements class438, OAuthApi, class32
                }
 
             } else {
-               if (17 == field1467 && var2.method7585() >= 2) {
-                  var3.field5129 = 0;
-                  var2.method7603(var3.field5127, 0, 2);
-                  var3.field5129 = 0;
-                  class265.field2960 = var3.method8750();
+               if (17 == field1467 && var2.available() >= 2) {
+                  var3.offset = 0;
+                  var2.method7603(var3.data, 0, 2);
+                  var3.offset = 0;
+                  class265.field2960 = var3.readUnsignedShort();
                   method2128(18);
                }
 
-               if (field1467 == 18 && var2.method7585() >= class265.field2960) {
-                  var3.field5129 = 0;
-                  var2.method7603(var3.field5127, 0, class265.field2960);
-                  var3.field5129 = 0;
-                  String var40 = var3.method8873();
-                  String var42 = var3.method8873();
-                  String var33 = var3.method8873();
+               if (field1467 == 18 && var2.available() >= class265.field2960) {
+                  var3.offset = 0;
+                  var2.method7603(var3.data, 0, class265.field2960);
+                  var3.offset = 0;
+                  String var40 = var3.readString();
+                  String var42 = var3.readString();
+                  String var33 = var3.readString();
                   class61.method2098(var40, var42, var33);
-                  method2323(10);
+                  updateGameState(10);
                   if (field1472.method8523()) {
                      class61.method6370(9);
                   }
@@ -9902,22 +9902,22 @@ public final class Client extends class43 implements class438, OAuthApi, class32
                   }
                } else {
                   if (field1436.field1042 == -1) {
-                     if (var2.method7585() < 2) {
+                     if (var2.available() < 2) {
                         return;
                      }
 
-                     var2.method7603(var3.field5127, 0, 2);
-                     var3.field5129 = 0;
-                     field1436.field1042 = var3.method8750();
+                     var2.method7603(var3.data, 0, 2);
+                     var3.offset = 0;
+                     field1436.field1042 = var3.readUnsignedShort();
                   }
 
-                  if (var2.method7585() >= field1436.field1042) {
-                     var2.method7603(var3.field5127, 0, field1436.field1042);
-                     var3.field5129 = 0;
+                  if (var2.available() >= field1436.field1042) {
+                     var2.method7603(var3.data, 0, field1436.field1042);
+                     var3.offset = 0;
                      var26 = field1436.field1042;
                      field1497.method7072();
                      field1436.method2130();
-                     field1436.field1044.field5129 = 0;
+                     field1436.field1044.offset = 0;
                      field1436.field1048 = null;
                      field1436.field1049 = null;
                      field1436.field1054 = null;
@@ -9945,7 +9945,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
                      }
 
                      class93.field858 = new class481(32);
-                     method2323(30);
+                     updateGameState(30);
 
                      for(var29 = 0; var29 < 100; ++var29) {
                         field1634[var29] = true;
@@ -9953,7 +9953,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
 
                      method7275();
                      class116.method3290(var3);
-                     if (var26 != var3.field5129) {
+                     if (var26 != var3.offset) {
                         throw new RuntimeException();
                      }
                   }
@@ -9997,24 +9997,24 @@ public final class Client extends class43 implements class438, OAuthApi, class32
          for(var2 = 0; var2 < 100 && this.method2712(field1436); ++var2) {
          }
 
-         if (field1728 == 30) {
+         if (gameState == 30) {
             int var3;
             class308 var17;
             while(class44.method1389()) {
                var17 = class308.method8607(class309.field3437, field1436.field1046);
-               var17.field3351.method8731(0);
-               var3 = var17.field3351.field5129;
+               var17.field3351.writeByte(0);
+               var3 = var17.field3351.offset;
                class44.method6521(var17.field3351);
-               var17.field3351.method8745(var17.field3351.field5129 - var3);
+               var17.field3351.writeLengthByte(var17.field3351.offset - var3);
                field1436.method2148(var17);
             }
 
             if (field1497.field4492) {
                var17 = class308.method8607(class309.field3372, field1436.field1046);
-               var17.field3351.method8731(0);
-               var3 = var17.field3351.field5129;
+               var17.field3351.writeByte(0);
+               var3 = var17.field3351.offset;
                field1497.method7073(var17.field3351);
-               var17.field3351.method8745(var17.field3351.field5129 - var3);
+               var17.field3351.writeLengthByte(var17.field3351.offset - var3);
                field1436.method2148(var17);
                field1497.method7071();
             }
@@ -10039,7 +10039,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
                   var6 = 0;
                   var7 = 0;
 
-                  for(var8 = 0; var8 < class514.field5111.field731 && (var19 == null || var19.field3351.field5129 - var4 < 246); ++var8) {
+                  for(var8 = 0; var8 < class514.field5111.field731 && (var19 == null || var19.field3351.offset - var4 < 246); ++var8) {
                      var5 = var8;
                      var9 = class514.field5111.field729[var8];
                      if (var9 < -1) {
@@ -10058,10 +10058,10 @@ public final class Client extends class43 implements class438, OAuthApi, class32
                      if (field1659 != var10 || field1448 != var9) {
                         if (null == var19) {
                            var19 = class308.method8607(class309.field3382, field1436.field1046);
-                           var19.field3351.method8731(0);
-                           var4 = var19.field3351.field5129;
+                           var19.field3351.writeByte(0);
+                           var4 = var19.field3351.offset;
                            class497 var10000 = var19.field3351;
-                           var10000.field5129 += 2;
+                           var10000.offset += 2;
                            var6 = 0;
                            var7 = 0;
                         }
@@ -10082,25 +10082,25 @@ public final class Client extends class43 implements class438, OAuthApi, class32
                         if (var13 < 8 && var11 >= -32 && var11 <= 31 && var12 >= -32 && var12 <= 31) {
                            var11 += 32;
                            var12 += 32;
-                           var19.field3351.method8732((var13 << 12) + (var11 << 6) + var12);
+                           var19.field3351.writeShort((var13 << 12) + (var11 << 6) + var12);
                         } else if (var13 < 32 && var11 >= -128 && var11 <= 127 && var12 >= -128 && var12 <= 127) {
                            var11 += 128;
                            var12 += 128;
-                           var19.field3351.method8731(var13 + 128);
-                           var19.field3351.method8732(var12 + (var11 << 8));
+                           var19.field3351.writeByte(var13 + 128);
+                           var19.field3351.writeShort(var12 + (var11 << 8));
                         } else if (var13 < 32) {
-                           var19.field3351.method8731(var13 + 192);
+                           var19.field3351.writeByte(var13 + 192);
                            if (var10 != -1 && var9 != -1) {
-                              var19.field3351.method8734(var10 | var9 << 16);
+                              var19.field3351.writeInt(var10 | var9 << 16);
                            } else {
-                              var19.field3351.method8734(Integer.MIN_VALUE);
+                              var19.field3351.writeInt(Integer.MIN_VALUE);
                            }
                         } else {
-                           var19.field3351.method8732('\ue000' + (var13 & 8191));
+                           var19.field3351.writeShort('\ue000' + (var13 & 8191));
                            if (var10 != -1 && var9 != -1) {
-                              var19.field3351.method8734(var10 | var9 << 16);
+                              var19.field3351.writeInt(var10 | var9 << 16);
                            } else {
-                              var19.field3351.method8734(Integer.MIN_VALUE);
+                              var19.field3351.writeInt(Integer.MIN_VALUE);
                            }
                         }
 
@@ -10110,12 +10110,12 @@ public final class Client extends class43 implements class438, OAuthApi, class32
                   }
 
                   if (var19 != null) {
-                     var19.field3351.method8745(var19.field3351.field5129 - var4);
-                     var8 = var19.field3351.field5129;
-                     var19.field3351.field5129 = var4;
-                     var19.field3351.method8731(var6 / var7);
-                     var19.field3351.method8731(var6 % var7);
-                     var19.field3351.field5129 = var8;
+                     var19.field3351.writeLengthByte(var19.field3351.offset - var4);
+                     var8 = var19.field3351.offset;
+                     var19.field3351.offset = var4;
+                     var19.field3351.writeByte(var6 / var7);
+                     var19.field3351.writeByte(var6 % var7);
+                     var19.field3351.offset = var8;
                      field1436.method2148(var19);
                   }
 
@@ -10155,23 +10155,23 @@ public final class Client extends class43 implements class438, OAuthApi, class32
 
                var6 = (int)var18;
                var29 = class308.method8607(class309.field3404, field1436.field1046);
-               var29.field3351.method8732((var6 << 1) + (class41.field256 == 2 ? 1 : 0));
-               var29.field3351.method8732(var5);
-               var29.field3351.method8732(var4);
+               var29.field3351.writeShort((var6 << 1) + (class41.field256 == 2 ? 1 : 0));
+               var29.field3351.writeShort(var5);
+               var29.field3351.writeShort(var4);
                field1436.method2148(var29);
             }
 
             if (0 != field1641) {
                var17 = class308.method8607(class309.field3457, field1436.field1046);
-               var17.field3351.method8732(field1641);
+               var17.field3351.writeShort(field1641);
                field1436.method2148(var17);
             }
 
             if (field1666.field2372 > 0) {
                var17 = class308.method8607(class309.field3428, field1436.field1046);
-               var17.field3351.method8732(0);
-               var3 = var17.field3351.field5129;
-               long var20 = class302.method2194();
+               var17.field3351.writeShort(0);
+               var3 = var17.field3351.offset;
+               long var20 = class302.safeTime();
 
                for(var6 = 0; var6 < field1666.field2372; ++var6) {
                   long var32 = var20 - field1566;
@@ -10181,10 +10181,10 @@ public final class Client extends class43 implements class438, OAuthApi, class32
 
                   field1566 = var20;
                   var17.field3351.method8940((int)var32);
-                  var17.field3351.method8850(field1666.field2360[var6]);
+                  var17.field3351.writeByteAdd(field1666.field2360[var6]);
                }
 
-               var17.field3351.method8744(var17.field3351.field5129 - var3);
+               var17.field3351.writeLengthShort(var17.field3351.offset - var3);
                field1436.method2148(var17);
             }
 
@@ -10200,22 +10200,22 @@ public final class Client extends class43 implements class438, OAuthApi, class32
                field1530 = 20;
                field1623 = false;
                var17 = class308.method8607(class309.field3368, field1436.field1046);
-               var17.field3351.method8732(field1569);
-               var17.field3351.method8732(field1649);
+               var17.field3351.writeShort(field1569);
+               var17.field3351.writeShort(field1649);
                field1436.method2148(var17);
             }
 
             if (class331.field3587 && !field1450) {
                field1450 = true;
                var17 = class308.method8607(class309.field3411, field1436.field1046);
-               var17.field3351.method8731(1);
+               var17.field3351.writeByte(1);
                field1436.method2148(var17);
             }
 
             if (!class331.field3587 && field1450) {
                field1450 = false;
                var17 = class308.method8607(class309.field3411, field1436.field1046);
-               var17.field3351.method8731(0);
+               var17.field3351.writeByte(0);
                field1436.method2148(var17);
             }
 
@@ -10251,7 +10251,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
                method168(class44.field306);
             }
 
-            if (30 == field1728) {
+            if (30 == gameState) {
                for(class104 var22 = (class104)field1593.method6706(); null != var22; var22 = (class104)field1593.method6687()) {
                   if (var22.field1034 > 0) {
                      --var22.field1034;
@@ -10455,10 +10455,10 @@ public final class Client extends class43 implements class438, OAuthApi, class32
                         var5 = class146.field1362.field945[0] + class342.field3837;
                         var6 = class146.field1362.field1012[0] + class144.field1352;
                         var29 = class308.method8607(class309.field3432, field1436.field1046);
-                        var29.field3351.method8800(0);
+                        var29.field3351.writeIntME(0);
                         var29.field3351.method8934(var5);
-                        var29.field3351.method8850(var4);
-                        var29.field3351.method8788(var6);
+                        var29.field3351.writeByteAdd(var4);
+                        var29.field3351.writeShortAdd(var6);
                         field1436.method2148(var29);
                      }
 
@@ -10507,10 +10507,10 @@ public final class Client extends class43 implements class438, OAuthApi, class32
                                                       var4 = class234.field2610;
                                                       var5 = class234.field2583;
                                                       class308 var46 = class308.method8607(class309.field3455, field1436.field1046);
-                                                      var46.field3351.method8731(5);
-                                                      var46.field3351.method8732(class342.field3837 + var4);
-                                                      var46.field3351.method8850(field1666.method4103(82) ? (field1666.method4103(81) ? 2 : 1) : 0);
-                                                      var46.field3351.method8805(class144.field1352 + var5);
+                                                      var46.field3351.writeByte(5);
+                                                      var46.field3351.writeShort(class342.field3837 + var4);
+                                                      var46.field3351.writeByteAdd(field1666.method4103(82) ? (field1666.method4103(81) ? 2 : 1) : 0);
+                                                      var46.field3351.writeShortLE(class144.field1352 + var5);
                                                       field1436.method2148(var46);
                                                       class234.method4447();
                                                       field1548 = class41.field257;
@@ -10791,7 +10791,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
 
                                                    class104.field1038.method2395();
                                                    var4 = ++class41.field247 - 1;
-                                                   var6 = class43.method359();
+                                                   var6 = GameShell.method359();
                                                    if (var4 > 15000 && var6 > 15000) {
                                                       field1542 = 250;
                                                       class41.method1415(14500);
@@ -10864,7 +10864,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
       if (field1436 != null && null != field1436.field1046) {
          if (var1 > -1 && class141.field1307.method1626() > 0 && !field1490) {
             class308 var4 = class308.method8607(class309.field3449, field1436.field1046);
-            var4.field3351.method8734(var1);
+            var4.field3351.writeInt(var1);
             field1436.method2148(var4);
          }
 
@@ -10872,7 +10872,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
    }
 
    protected final void method662() {
-      field1658 = class302.method2194() + 500L;
+      field1658 = class302.safeTime() + 500L;
       this.method2708();
       if (field1600 != -1) {
          this.method2716(true);
@@ -11047,18 +11047,18 @@ public final class Client extends class43 implements class438, OAuthApi, class32
                      return false;
                   }
 
-                  var3.method7603(var1.field1044.field5127, 0, 1);
+                  var3.method7603(var1.field1044.data, 0, 1);
                   var1.field1056 = 0;
                   var1.field1050 = false;
                }
 
-               var4.field5129 = 0;
+               var4.offset = 0;
                if (var4.method8479()) {
                   if (!var3.method7597(1)) {
                      return false;
                   }
 
-                  var3.method7603(var1.field1044.field5127, 1, 1);
+                  var3.method7603(var1.field1044.data, 1, 1);
                   var1.field1056 = 0;
                }
 
@@ -11066,7 +11066,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
                class305[] var5 = class305.method2319();
                var24 = var4.method8480();
                if (var24 < 0 || var24 >= var5.length) {
-                  throw new IOException(var24 + " " + var4.field5129);
+                  throw new IOException(var24 + " " + var4.offset);
                }
 
                var1.field1048 = var5[var24];
@@ -11078,8 +11078,8 @@ public final class Client extends class43 implements class438, OAuthApi, class32
                   return false;
                }
 
-               var1.method2137().method7603(var4.field5127, 0, 1);
-               var1.field1042 = var4.field5127[0] & 255;
+               var1.method2137().method7603(var4.data, 0, 1);
+               var1.field1042 = var4.data[0] & 255;
             }
 
             if (var1.field1042 == -2) {
@@ -11087,17 +11087,17 @@ public final class Client extends class43 implements class438, OAuthApi, class32
                   return false;
                }
 
-               var1.method2137().method7603(var4.field5127, 0, 2);
-               var4.field5129 = 0;
-               var1.field1042 = var4.method8750();
+               var1.method2137().method7603(var4.data, 0, 2);
+               var4.offset = 0;
+               var1.field1042 = var4.readUnsignedShort();
             }
 
             if (!var3.method7597(var1.field1042)) {
                return false;
             }
 
-            var4.field5129 = 0;
-            var3.method7603(var4.field5127, 0, var1.field1042);
+            var4.offset = 0;
+            var3.method7603(var4.data, 0, var1.field1042);
             var1.field1056 = 0;
             field1497.method7081();
             var1.field1055 = var1.field1054;
@@ -11107,7 +11107,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             class332 var27;
             if (class305.field3224 == var1.field1048) {
                var23 = var4.method8862();
-               var6 = var4.method8873();
+               var6 = var4.readString();
                var27 = class332.method3765(var23);
                if (!var6.equals(var27.field3621)) {
                   var27.field3621 = var6;
@@ -11124,14 +11124,14 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             int var38;
             int var44;
             if (class305.field3248 == var1.field1048) {
-               var38 = var4.method8782();
+               var38 = var4.readUnsignedByteNeg();
                var7 = var4.method8952();
                var23 = var7 >> 16;
                var24 = var7 >> 8 & 255;
                var8 = (var7 >> 4 & 7) + var23;
                var9 = (var7 & 7) + var24;
-               var32 = var4.method8750();
-               var44 = var4.method8750();
+               var32 = var4.readUnsignedShort();
+               var44 = var4.readUnsignedShort();
                if (var8 >= 0 && var9 >= 0 && var8 < 104 && var9 < 104) {
                   var8 = var8 * 128 + 64;
                   var9 = 64 + var9 * 128;
@@ -11150,14 +11150,14 @@ public final class Client extends class43 implements class438, OAuthApi, class32
                field1689 = true;
                field1697 = false;
                field1691 = true;
-               class241.field2683 = var4.method8748();
-               class137.field1265 = var4.method8748();
-               var23 = var4.method8750();
-               var24 = var4.method8748() * 128 + 64;
-               var7 = var4.method8748() * 128 + 64;
-               var8 = var4.method8750();
-               field1698 = var4.method8757();
-               var9 = var4.method8748();
+               class241.field2683 = var4.readUnsignedByte();
+               class137.field1265 = var4.readUnsignedByte();
+               var23 = var4.readUnsignedShort();
+               var24 = var4.readUnsignedByte() * 128 + 64;
+               var7 = var4.readUnsignedByte() * 128 + 64;
+               var8 = var4.readUnsignedShort();
+               field1698 = var4.readBoolean();
+               var9 = var4.readUnsignedByte();
                var32 = class241.field2683 * 128 + 64;
                var38 = 64 + class137.field1265 * 128;
                var52 = false;
@@ -11176,7 +11176,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             }
 
             if (var1.field1048 == class305.field3328) {
-               var7 = var4.method8781();
+               var7 = var4.readUnsignedByteAdd();
                var23 = var4.method8749();
                var24 = var4.method8749();
                if (var24 == 65535) {
@@ -11212,8 +11212,8 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             if (class305.field3238 == var1.field1048) {
                method8708();
                var23 = var4.method8804();
-               var24 = var4.method8748();
-               var7 = var4.method8782();
+               var24 = var4.readUnsignedByte();
+               var7 = var4.readUnsignedByteNeg();
                field1574[var7] = var23;
                field1572[var7] = var24;
                field1493[var7] = 1;
@@ -11247,7 +11247,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             }
 
             if (var1.field1048 == class305.field3310) {
-               var23 = var4.method8748();
+               var23 = var4.readUnsignedByte();
                method6483(var23);
                var1.field1048 = null;
                return false;
@@ -11257,8 +11257,8 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             if (class305.field3220 == var1.field1048) {
                byte[] var91 = new byte[var1.field1042];
                var4.method8505(var91, 0, var91.length);
-               class519 var90 = new class519(var91);
-               var81 = var90.method8873();
+               PacketBuffer var90 = new PacketBuffer(var91);
+               var81 = var90.readString();
                class45.method1843(var81, true, false);
                var1.field1048 = null;
                return true;
@@ -11284,7 +11284,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             if (class305.field3215 == var1.field1048) {
                var8 = var4.method8792();
                var24 = var4.method8792();
-               var9 = var4.method8750();
+               var9 = var4.readUnsignedShort();
                var7 = var4.method8778();
                var23 = var4.method8778();
                if (var23 == 65535) {
@@ -11304,11 +11304,11 @@ public final class Client extends class43 implements class438, OAuthApi, class32
                field1689 = true;
                field1697 = false;
                field1713 = true;
-               class6.field39 = var4.method8748();
-               class204.field2200 = var4.method8748();
-               class475.field4835 = var4.method8750();
-               var23 = var4.method8750();
-               var24 = var4.method8748();
+               class6.field39 = var4.readUnsignedByte();
+               class204.field2200 = var4.readUnsignedByte();
+               class475.field4835 = var4.readUnsignedShort();
+               var23 = var4.readUnsignedShort();
+               var24 = var4.readUnsignedByte();
                var7 = 64 + class6.field39 * 128;
                var8 = class204.field2200 * 128 + 64;
                var9 = method5733(var7, var8, class44.field306) - class475.field4835;
@@ -11333,12 +11333,12 @@ public final class Client extends class43 implements class438, OAuthApi, class32
                field1689 = true;
                field1697 = false;
                field1713 = true;
-               var23 = var4.method9001();
-               var24 = var4.method9001();
+               var23 = var4.readShort();
+               var24 = var4.readShort();
                var7 = method1193(var24 + class15.field74 & 2027);
                var8 = var23 + class456.field4751;
-               var9 = var4.method8750();
-               var32 = var4.method8748();
+               var9 = var4.readUnsignedShort();
+               var32 = var4.readUnsignedByte();
                field1559 = new class487(class15.field74, var7, var9, var32);
                field1695 = new class487(class456.field4751, var8, var9, var32);
                var1.field1048 = null;
@@ -11349,11 +11349,11 @@ public final class Client extends class43 implements class438, OAuthApi, class32
                field1689 = true;
                field1697 = false;
                field1713 = false;
-               class6.field39 = var4.method8748();
-               class204.field2200 = var4.method8748();
-               class475.field4835 = var4.method8750();
-               class4.field24 = var4.method8748();
-               class172.field1823 = var4.method8748();
+               class6.field39 = var4.readUnsignedByte();
+               class204.field2200 = var4.readUnsignedByte();
+               class475.field4835 = var4.readUnsignedShort();
+               class4.field24 = var4.readUnsignedByte();
+               class172.field1823 = var4.readUnsignedByte();
                if (class172.field1823 >= 100) {
                   var23 = 64 + class6.field39 * 128;
                   var24 = class204.field2200 * 128 + 64;
@@ -11379,7 +11379,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
 
             if (class305.field3302 == var1.field1048) {
                var23 = var4.method8749();
-               var24 = var4.method9000();
+               var24 = var4.readInt();
                var7 = var23 >> 10 & 31;
                var8 = var23 >> 5 & 31;
                var9 = var23 & 31;
@@ -11396,7 +11396,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
 
             if (var1.field1048 == class305.field3214) {
                method8708();
-               field1607 = var4.method9001();
+               field1607 = var4.readShort();
                field1640 = field1624;
                var1.field1048 = null;
                return true;
@@ -11404,9 +11404,9 @@ public final class Client extends class43 implements class438, OAuthApi, class32
 
             boolean var59;
             if (var1.field1048 == class305.field3247) {
-               var59 = var4.method8748() == 1;
+               var59 = var4.readUnsignedByte() == 1;
                if (var59) {
-                  class194.field2128 = class302.method2194() - var4.method8755();
+                  class194.field2128 = class302.safeTime() - var4.readLong();
                   class40.field234 = new class345(var4, true);
                } else {
                   class40.field234 = null;
@@ -11422,7 +11422,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             }
 
             if (class305.field3218 == var1.field1048) {
-               var23 = var4.method9000();
+               var23 = var4.readInt();
                if (field1540 != var23) {
                   field1540 = var23;
                   method2329();
@@ -11446,8 +11446,8 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             }
 
             if (var1.field1048 == class305.field3268) {
-               var23 = var4.method8810();
-               var24 = var4.method9000();
+               var23 = var4.readShortAdd();
+               var24 = var4.readInt();
                var27 = class332.method3765(var24);
                if (var23 != var27.field3654 || var23 == -1) {
                   var27.field3654 = var23;
@@ -11467,11 +11467,11 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             long var56;
             String var69;
             if (class305.field3287 == var1.field1048) {
-               var37 = var4.method8873();
-               var47 = var4.method8755();
-               var28 = (long)var4.method8750();
-               var50 = (long)var4.method8752();
-               class361 var60 = (class361)class373.method1724(class361.method2121(), var4.method8748());
+               var37 = var4.readString();
+               var47 = var4.readLong();
+               var28 = (long)var4.readUnsignedShort();
+               var50 = (long)var4.readUnsignedMedium();
+               class361 var60 = (class361)class373.method1724(class361.method2121(), var4.readUnsignedByte());
                var56 = (var28 << 32) + var50;
                boolean var79 = false;
 
@@ -11516,18 +11516,18 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             }
 
             if (class305.field3266 == var1.field1048) {
-               var23 = var4.method8764();
-               boolean var89 = var4.method8748() == 1;
+               var23 = var4.readUnsignedSmartByteShort();
+               boolean var89 = var4.readUnsignedByte() == 1;
                var81 = "";
                boolean var78 = false;
                if (var89) {
-                  var81 = var4.method8873();
+                  var81 = var4.readString();
                   if (class165.field1782.method1096(new class526(var81, class454.field4743))) {
                      var78 = true;
                   }
                }
 
-               String var66 = var4.method8873();
+               String var66 = var4.readString();
                if (!var78) {
                   class119.method7274(var23, var81, var66);
                }
@@ -11538,7 +11538,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
 
             if (var1.field1048 == class305.field3263) {
                var23 = var4.method8998();
-               var24 = var4.method8750();
+               var24 = var4.readUnsignedShort();
                var27 = class332.method3765(var23);
                if (var27 != null && var27.field3608 == 0) {
                   if (var24 > var27.field3719 - var27.field3622) {
@@ -11603,9 +11603,9 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             byte var26;
             String var57;
             if (var1.field1048 == class305.field3301) {
-               var26 = var4.method8768();
-               var47 = (long)var4.method8750();
-               var28 = (long)var4.method8752();
+               var26 = var4.readByte();
+               var47 = (long)var4.readUnsignedShort();
+               var28 = (long)var4.readUnsignedMedium();
                var50 = var28 + (var47 << 32);
                var52 = false;
                class164 var61 = var26 >= 0 ? field1673[var26] : class244.field2690;
@@ -11634,18 +11634,18 @@ public final class Client extends class43 implements class438, OAuthApi, class32
 
             int var17;
             if (var1.field1048 == class305.field3232) {
-               byte var64 = var4.method8768();
-               int var19 = var4.method8781();
-               int var18 = var4.method8748();
-               var15 = var4.method8748() * 4;
-               byte var67 = var4.method8784();
-               var14 = var4.method8782() * 4;
+               byte var64 = var4.readByte();
+               int var19 = var4.readUnsignedByteAdd();
+               int var18 = var4.readUnsignedByte();
+               var15 = var4.readUnsignedByte() * 4;
+               byte var67 = var4.readByteAdd();
+               var14 = var4.readUnsignedByteNeg() * 4;
                var7 = var4.method8952();
                var23 = var7 >> 16;
                var24 = var7 >> 8 & 255;
                var8 = var23 + (var7 >> 4 & 7);
                var9 = (var7 & 7) + var24;
-               var44 = var4.method8832();
+               var44 = var4.readMedium();
                var54 = var4.method8792();
                var17 = var4.method8778();
                var16 = var4.method8792();
@@ -11667,13 +11667,13 @@ public final class Client extends class43 implements class438, OAuthApi, class32
 
             class92 var34;
             if (var1.field1048 == class305.field3212) {
-               var23 = var4.field5129 + var1.field1042;
-               var24 = var4.method8750();
+               var23 = var4.offset + var1.field1042;
+               var24 = var4.readUnsignedShort();
                if (var24 == 65535) {
                   var24 = -1;
                }
 
-               var7 = var4.method8750();
+               var7 = var4.readUnsignedShort();
                if (var24 != field1600) {
                   field1600 = var24;
                   this.method2716(false);
@@ -11687,9 +11687,9 @@ public final class Client extends class43 implements class438, OAuthApi, class32
 
                class92 var55;
                for(; var7-- > 0; var55.field852 = true) {
-                  var8 = var4.method9000();
-                  var9 = var4.method8750();
-                  var32 = var4.method8748();
+                  var8 = var4.readInt();
+                  var9 = var4.readUnsignedShort();
+                  var32 = var4.readUnsignedByte();
                   var55 = (class92)field1601.method8184((long)var8);
                   if (null != var55 && var9 != var55.field853) {
                      class102.method2083(var55, true);
@@ -11711,11 +11711,11 @@ public final class Client extends class43 implements class438, OAuthApi, class32
 
                field1647 = new class481(512);
 
-               while(var4.field5129 < var23) {
-                  var8 = var4.method9000();
-                  var9 = var4.method8750();
-                  var32 = var4.method8750();
-                  var38 = var4.method9000();
+               while(var4.offset < var23) {
+                  var8 = var4.readInt();
+                  var9 = var4.readUnsignedShort();
+                  var32 = var4.readUnsignedShort();
+                  var38 = var4.readInt();
 
                   for(var44 = var9; var44 <= var32; ++var44) {
                      var56 = ((long)var8 << 32) + (long)var44;
@@ -11732,7 +11732,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             }
 
             if (var1.field1048 == class305.field3305) {
-               var23 = var4.method9000();
+               var23 = var4.readInt();
                var88 = class332.method3765(var23);
 
                for(var7 = 0; var7 < var88.field3602.length; ++var7) {
@@ -11746,7 +11746,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             }
 
             if (class305.field3319 == var1.field1048) {
-               method7899(var4.method8873());
+               method7899(var4.readString());
                var1.field1048 = null;
                return true;
             }
@@ -11760,7 +11760,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
                   var53 = field1527[var23];
                }
 
-               var8 = var4.method8748();
+               var8 = var4.readUnsignedByte();
                var24 = var4.method8792();
                var7 = var4.method8804();
                if (var53 != null) {
@@ -11772,9 +11772,9 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             }
 
             if (var1.field1048 == class305.field3271) {
-               var4.field5129 += 28;
-               if (var4.method8777()) {
-                  method7097(var4, var4.field5129 - 28);
+               var4.offset += 28;
+               if (var4.verifyCrc()) {
+                  method7097(var4, var4.offset - 28);
                }
 
                var1.field1048 = null;
@@ -11782,18 +11782,18 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             }
 
             if (class305.field3315 == var1.field1048) {
-               var37 = var4.method8873();
+               var37 = var4.readString();
                Object[] var87 = new Object[var37.length() + 1];
 
                for(var7 = var37.length() - 1; var7 >= 0; --var7) {
                   if (var37.charAt(var7) == 's') {
-                     var87[var7 + 1] = var4.method8873();
+                     var87[var7 + 1] = var4.readString();
                   } else {
-                     var87[var7 + 1] = new Integer(var4.method9000());
+                     var87[var7 + 1] = new Integer(var4.readInt());
                   }
                }
 
-               var87[0] = new Integer(var4.method9000());
+               var87[0] = new Integer(var4.readInt());
                class87 var84 = new class87();
                var84.field790 = var87;
                class63.method1516(var84);
@@ -11802,7 +11802,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             }
 
             if (class305.field3243 == var1.field1048) {
-               var59 = var4.method8757();
+               var59 = var4.readBoolean();
                if (var59) {
                   if (class121.field1152 == null) {
                      class121.field1152 = new class381();
@@ -11889,9 +11889,9 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             }
 
             if (var1.field1048 == class305.field3283) {
-               field1452 = var4.method8748();
+               field1452 = var4.readUnsignedByte();
                if (1 == field1452) {
-                  field1612 = var4.method8750();
+                  field1612 = var4.readUnsignedShort();
                }
 
                if (field1452 >= 2 && field1452 <= 6) {
@@ -11921,13 +11921,13 @@ public final class Client extends class43 implements class438, OAuthApi, class32
                   }
 
                   field1452 = 2;
-                  field1455 = var4.method8750();
-                  field1523 = var4.method8750();
-                  field1457 = var4.method8748();
+                  field1455 = var4.readUnsignedShort();
+                  field1523 = var4.readUnsignedShort();
+                  field1457 = var4.readUnsignedByte();
                }
 
                if (10 == field1452) {
-                  field1454 = var4.method8750();
+                  field1454 = var4.readUnsignedShort();
                }
 
                var1.field1048 = null;
@@ -11935,7 +11935,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             }
 
             if (class305.field3237 == var1.field1048) {
-               var23 = var4.method9000();
+               var23 = var4.readInt();
                class92 var85 = (class92)field1601.method8184((long)var23);
                if (null != var85) {
                   class102.method2083(var85, true);
@@ -11957,8 +11957,8 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             }
 
             if (var1.field1048 == class305.field3252) {
-               class380.field4386 = var4.method8748();
-               class265.field2959 = var4.method8748();
+               class380.field4386 = var4.readUnsignedByte();
+               class265.field2959 = var4.readUnsignedByte();
                var1.field1048 = null;
                return true;
             }
@@ -11967,10 +11967,10 @@ public final class Client extends class43 implements class438, OAuthApi, class32
                field1689 = true;
                field1697 = false;
                field1713 = true;
-               var23 = method307(var4.method9001() & 2027);
-               var24 = method1193(var4.method9001() & 2027);
-               var7 = var4.method8750();
-               var8 = var4.method8748();
+               var23 = method307(var4.readShort() & 2027);
+               var24 = method1193(var4.readShort() & 2027);
+               var7 = var4.readUnsignedShort();
+               var8 = var4.readUnsignedByte();
                field1559 = new class487(class15.field74, var24, var7, var8);
                field1695 = new class487(class456.field4751, var23, var7, var8);
                var1.field1048 = null;
@@ -11990,12 +11990,12 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             }
 
             if (class305.field3210 == var1.field1048) {
-               var32 = var4.method8751();
+               var32 = var4.readUnsignedByteSub();
                var38 = var32 >> 2;
                var44 = var32 & 3;
                var54 = field1507[var38];
-               var14 = var4.method8750();
-               var7 = var4.method8752();
+               var14 = var4.readUnsignedShort();
+               var7 = var4.readUnsignedMedium();
                var23 = var7 >> 16;
                var24 = var7 >> 8 & 255;
                var8 = var23 + (var7 >> 4 & 7);
@@ -12051,8 +12051,8 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             }
 
             if (var1.field1048 == class305.field3331) {
-               var24 = var4.method8750();
-               var8 = var4.method8750();
+               var24 = var4.readUnsignedShort();
+               var8 = var4.readUnsignedShort();
                var23 = var4.method8749();
                var7 = var4.method8749();
                class303.method8062(var23, var24, var7, var8);
@@ -12061,9 +12061,9 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             }
 
             if (var1.field1048 == class305.field3217) {
-               var23 = var4.method8782();
-               var24 = var4.method8782();
-               var81 = var4.method8873();
+               var23 = var4.readUnsignedByteNeg();
+               var24 = var4.readUnsignedByteNeg();
+               var81 = var4.readString();
                if (var23 >= 1 && var23 <= 8) {
                   if (var81.equalsIgnoreCase(class364.field4028)) {
                      var81 = null;
@@ -12078,7 +12078,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             }
 
             if (class305.field3330 == var1.field1048) {
-               var23 = var4.method8782();
+               var23 = var4.readUnsignedByteNeg();
                var24 = var4.method8778();
                if (var24 == 65535) {
                   var24 = -1;
@@ -12096,7 +12096,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             }
 
             if (var1.field1048 == class305.field3324) {
-               var23 = var4.method8750();
+               var23 = var4.readUnsignedShort();
                var24 = var4.method8862();
                var27 = class332.method3765(var24);
                if (var27.field3650 != 6 || var23 != var27.field3603) {
@@ -12110,12 +12110,12 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             }
 
             if (class305.field3299 == var1.field1048) {
-               field1513 = var4.method8748();
+               field1513 = var4.readUnsignedByte();
                if (255 == field1513) {
                   field1513 = 0;
                }
 
-               field1680 = var4.method8748();
+               field1680 = var4.readUnsignedByte();
                if (255 == field1680) {
                   field1680 = 0;
                }
@@ -12126,7 +12126,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
 
             if (var1.field1048 == class305.field3306) {
                field1538 = field1624;
-               var26 = var4.method8768();
+               var26 = var4.readByte();
                class175 var82 = new class175(var4);
                class164 var77;
                if (var26 >= 0) {
@@ -12142,7 +12142,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
 
             if (class305.field3296 == var1.field1048) {
                var9 = var4.method8792();
-               var24 = var4.method8750();
+               var24 = var4.readUnsignedShort();
                if (var24 == 65535) {
                   var24 = -1;
                }
@@ -12152,7 +12152,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
                   var23 = -1;
                }
 
-               var32 = var4.method8750();
+               var32 = var4.readUnsignedShort();
                var8 = var4.method8778();
                var7 = var4.method8792();
                ArrayList var49 = new ArrayList();
@@ -12164,8 +12164,8 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             }
 
             if (var1.field1048 == class305.field3267) {
-               var23 = var4.method9000();
-               var24 = var4.method8750();
+               var23 = var4.readInt();
+               var24 = var4.readUnsignedShort();
                if (var23 < -70000) {
                   var24 += 32768;
                }
@@ -12184,12 +12184,12 @@ public final class Client extends class43 implements class438, OAuthApi, class32
                }
 
                class348.method6500(var24);
-               var8 = var4.method8750();
+               var8 = var4.readUnsignedShort();
 
                for(var9 = 0; var9 < var8; ++var9) {
-                  var32 = var4.method8751();
+                  var32 = var4.readUnsignedByteSub();
                   if (var32 == 255) {
-                     var32 = var4.method9000();
+                     var32 = var4.readInt();
                   }
 
                   var38 = var4.method8749();
@@ -12224,11 +12224,11 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             }
 
             if (var1.field1048 == class305.field3326) {
-               var26 = var4.method8768();
-               var6 = var4.method8873();
-               long var68 = (long)var4.method8750();
-               long var39 = (long)var4.method8752();
-               class361 var45 = (class361)class373.method1724(class361.method2121(), var4.method8748());
+               var26 = var4.readByte();
+               var6 = var4.readString();
+               long var68 = (long)var4.readUnsignedShort();
+               long var39 = (long)var4.readUnsignedMedium();
+               class361 var45 = (class361)class373.method1724(class361.method2121(), var4.readUnsignedByte());
                long var42 = var39 + (var68 << 32);
                boolean var58 = false;
                class164 var65 = null;
@@ -12301,7 +12301,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
 
             if (var1.field1048 == class305.field3279) {
                var23 = var4.method8862();
-               var24 = var4.method9000();
+               var24 = var4.readInt();
                var27 = class332.method3765(var23);
                class332.method2415(var27, var24);
                method3898(var27);
@@ -12331,8 +12331,8 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             }
 
             if (var1.field1048 == class305.field3269) {
-               var23 = var4.method9000();
-               var24 = var4.method8748();
+               var23 = var4.readInt();
+               var24 = var4.readUnsignedByte();
                var7 = var4.method8792();
                var34 = (class92)field1601.method8184((long)var23);
                if (null != var34) {
@@ -12345,8 +12345,8 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             }
 
             if (var1.field1048 == class305.field3250) {
-               field1662 = var4.method8781();
-               field1661 = var4.method8782();
+               field1662 = var4.readUnsignedByteAdd();
+               field1661 = var4.readUnsignedByteNeg();
                var1.field1048 = null;
                return true;
             }
@@ -12367,7 +12367,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             }
 
             if (var1.field1048 == class305.field3327) {
-               var59 = var4.method8781() == 1;
+               var59 = var4.readUnsignedByteAdd() == 1;
                var24 = var4.method8998();
                var27 = class332.method3765(var24);
                class332.method4653(var27, class146.field1362.field764, var59);
@@ -12377,8 +12377,8 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             }
 
             if (class305.field3241 == var1.field1048) {
-               var23 = var4.method8781();
-               var24 = var4.method8751();
+               var23 = var4.readUnsignedByteAdd();
+               var24 = var4.readUnsignedByteSub();
                var7 = var4.method8862();
                var33 = class332.method3765(var7);
                class332.method5687(var33, var24, var23);
@@ -12388,8 +12388,8 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             }
 
             if (var1.field1048 == class305.field3227) {
-               var23 = var4.method9000();
-               var24 = var4.method8751();
+               var23 = var4.readInt();
+               var24 = var4.readUnsignedByteSub();
                var27 = class332.method3765(var23);
                class332.method3413(var27, class146.field1362.field764.field3486, var24);
                method3898(var27);
@@ -12398,7 +12398,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             }
 
             if (class305.field3262 == var1.field1048) {
-               var23 = var4.method8750();
+               var23 = var4.readUnsignedShort();
                if (var23 == 65535) {
                   var23 = -1;
                }
@@ -12421,14 +12421,14 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             }
 
             if (class305.field3233 == var1.field1048) {
-               class1.field7 = class536.method4387(var4.method8748());
+               class1.field7 = class536.method4387(var4.readUnsignedByte());
                var1.field1048 = null;
                return true;
             }
 
             if (var1.field1048 == class305.field3294) {
                field1538 = field1624;
-               var26 = var4.method8768();
+               var26 = var4.readByte();
                if (1 == var1.field1042) {
                   if (var26 >= 0) {
                      field1673[var26] = null;
@@ -12451,12 +12451,12 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             }
 
             if (class305.field3273 == var1.field1048) {
-               var23 = var4.method8748();
-               if (var4.method8748() == 0) {
+               var23 = var4.readUnsignedByte();
+               if (var4.readUnsignedByte() == 0) {
                   field1720[var23] = new class367();
-                  var4.field5129 += 18;
+                  var4.offset += 18;
                } else {
-                  --var4.field5129;
+                  --var4.offset;
                   field1720[var23] = new class367(var4, false);
                }
 
@@ -12479,7 +12479,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
 
             if (var1.field1048 == class305.field3303) {
                method4209();
-               var26 = var4.method8768();
+               var26 = var4.readByte();
                class148 var62 = new class148(var4);
                class154 var46;
                if (var26 >= 0) {
@@ -12494,7 +12494,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             }
 
             if (class305.field3240 == var1.field1048) {
-               var59 = var4.method8751() == 1;
+               var59 = var4.readUnsignedByteSub() == 1;
                var24 = var4.method8998();
                var27 = class332.method3765(var24);
                if (var59 != var27.field3626) {
@@ -12541,9 +12541,9 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             }
 
             if (class305.field3282 == var1.field1048) {
-               var23 = var4.method8810();
+               var23 = var4.readShortAdd();
                var24 = var4.method8804();
-               var7 = var4.method8793();
+               var7 = var4.readShortLEAdd();
                var33 = class332.method3765(var24);
                if (var23 != var33.field3615 || var7 != var33.field3616 || 0 != var33.field3700 || 0 != var33.field3612) {
                   var33.field3615 = var23;
@@ -12581,9 +12581,9 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             }
 
             if (class305.field3254 == var1.field1048) {
-               var23 = var4.method8750();
-               var24 = var4.method8748();
-               var7 = var4.method8750();
+               var23 = var4.readUnsignedShort();
+               var24 = var4.readUnsignedByte();
+               var7 = var4.readUnsignedShort();
                method21(var23, var24, var7);
                var1.field1048 = null;
                return true;
@@ -12596,7 +12596,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             }
 
             if (class305.field3297 == var1.field1048) {
-               var23 = var4.method8748();
+               var23 = var4.readUnsignedByte();
                method7633(var23);
                var1.field1048 = null;
                return true;
@@ -12608,7 +12608,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
                var7 = var4.method8778();
                var23 = var4.method8792();
                var31 = field1489[var23];
-               var8 = var4.method8748();
+               var8 = var4.readUnsignedByte();
                if (null != var31) {
                   var31.method2080(var8, var7, var24 >> 16, var24 & '\uffff');
                }
@@ -12624,7 +12624,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             }
 
             if (class305.field3276 == var1.field1048) {
-               field1586 = var4.method8748();
+               field1586 = var4.readUnsignedByte();
                var1.field1048 = null;
                return true;
             }
@@ -12634,7 +12634,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             }
 
             if (var1.field1048 == class305.field3229) {
-               var37 = var4.method8873();
+               var37 = var4.readString();
                var6 = class407.method7161(class380.method2549(class307.method5741(var4)));
                class119.method7274(6, var37, var6);
                var1.field1048 = null;
@@ -12642,14 +12642,14 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             }
 
             if (class305.field3213 == var1.field1048) {
-               var23 = var4.method9000();
-               var24 = var4.method9000();
-               var7 = class43.method406();
+               var23 = var4.readInt();
+               var24 = var4.readInt();
+               var7 = GameShell.method406();
                class308 var30 = class308.method8607(class309.field3395, field1436.field1046);
-               var30.field3351.method8906(var7);
-               var30.field3351.method8850(class43.field274);
-               var30.field3351.method8799(var23);
-               var30.field3351.method8734(var24);
+               var30.field3351.writeByteNeg(var7);
+               var30.field3351.writeByteAdd(GameShell.field274);
+               var30.field3351.writeIntLE(var23);
+               var30.field3351.writeInt(var24);
                field1436.method2148(var30);
                var1.field1048 = null;
                return true;
@@ -12657,7 +12657,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
 
             if (var1.field1048 == class305.field3286) {
                method4209();
-               var26 = var4.method8768();
+               var26 = var4.readByte();
                if (var1.field1042 == 1) {
                   if (var26 >= 0) {
                      field1628[var26] = null;
@@ -12698,10 +12698,10 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             }
 
             if (var1.field1048 == class305.field3257) {
-               var37 = var4.method8873();
-               var47 = (long)var4.method8750();
-               var28 = (long)var4.method8752();
-               class361 var48 = (class361)class373.method1724(class361.method2121(), var4.method8748());
+               var37 = var4.readString();
+               var47 = (long)var4.readUnsignedShort();
+               var28 = (long)var4.readUnsignedMedium();
+               class361 var48 = (class361)class373.method1724(class361.method2121(), var4.readUnsignedByte());
                long var43 = (var47 << 32) + var28;
                var13 = false;
 
@@ -12739,15 +12739,15 @@ public final class Client extends class43 implements class438, OAuthApi, class32
 
             if (class305.field3304 == var1.field1048) {
                class70 var35 = new class70();
-               var35.field571 = var4.method8873();
-               var35.field565 = var4.method8750();
-               var24 = var4.method9000();
+               var35.field571 = var4.readString();
+               var35.field565 = var4.readUnsignedShort();
+               var24 = var4.readInt();
                var35.field568 = var24;
                if (var35.method1432()) {
                   var35.field564 = "beta";
                }
 
-               method2323(45);
+               updateGameState(45);
                var3.method7589();
                var3 = null;
                class61.method2662(var35);
@@ -12757,7 +12757,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
 
             if (class305.field3307 == var1.field1048) {
                method8708();
-               field1606 = var4.method8750();
+               field1606 = var4.readUnsignedShort();
                field1640 = field1624;
                var1.field1048 = null;
                return true;
@@ -12765,8 +12765,8 @@ public final class Client extends class43 implements class438, OAuthApi, class32
 
             if (var1.field1048 == class305.field3291) {
                var23 = var4.method8804();
-               short var41 = (short)var4.method8793();
-               var7 = var4.method8781();
+               short var41 = (short)var4.readShortLEAdd();
+               var7 = var4.readUnsignedByteAdd();
                var8 = var4.method8749();
                var31 = field1489[var8];
                if (var31 != null) {
@@ -12830,11 +12830,11 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             }
 
             if (class305.field3312 == var1.field1048) {
-               class380.field4386 = var4.method8751();
-               class265.field2959 = var4.method8782();
+               class380.field4386 = var4.readUnsignedByteSub();
+               class265.field2959 = var4.readUnsignedByteNeg();
 
-               while(var4.field5129 < var1.field1042) {
-                  var23 = var4.method8748();
+               while(var4.offset < var1.field1042) {
+                  var23 = var4.readUnsignedByte();
                   class301 var36 = class301.method4923()[var23];
                   class28.method412(var36);
                }
@@ -12860,7 +12860,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
 
             if (var1.field1048 == class305.field3260) {
                var23 = var4.method8778();
-               var24 = var4.method9000();
+               var24 = var4.readInt();
                var7 = var4.method8778();
                var8 = var4.method8778();
                var29 = class332.method3765(var24);
@@ -12876,8 +12876,8 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             }
 
             if (class305.field3277 == var1.field1048) {
-               var23 = var4.method9000();
-               var24 = var4.method8750();
+               var23 = var4.readInt();
+               var24 = var4.readUnsignedShort();
                if (var23 < -70000) {
                   var24 += 32768;
                }
@@ -12888,14 +12888,14 @@ public final class Client extends class43 implements class438, OAuthApi, class32
                   var27 = null;
                }
 
-               for(; var4.field5129 < var1.field1042; class93.method3491(var24, var8, var9 - 1, var32)) {
-                  var8 = var4.method8764();
-                  var9 = var4.method8750();
+               for(; var4.offset < var1.field1042; class93.method3491(var24, var8, var9 - 1, var32)) {
+                  var8 = var4.readUnsignedSmartByteShort();
+                  var9 = var4.readUnsignedShort();
                   var32 = 0;
                   if (var9 != 0) {
-                     var32 = var4.method8748();
+                     var32 = var4.readUnsignedByte();
                      if (var32 == 255) {
-                        var32 = var4.method9000();
+                        var32 = var4.readInt();
                      }
                   }
 
@@ -12916,8 +12916,8 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             }
 
             if (var1.field1048 == class305.field3249) {
-               var26 = var4.method8786();
-               var24 = var4.method8750();
+               var26 = var4.readByteSub();
+               var24 = var4.readUnsignedShort();
                class329.field3576[var24] = var26;
                if (var26 != class329.field3577[var24]) {
                   class329.field3577[var24] = var26;
@@ -12936,8 +12936,8 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             }
 
             if (var1.field1048 == class305.field3261) {
-               class380.field4386 = var4.method8748();
-               class265.field2959 = var4.method8748();
+               class380.field4386 = var4.readUnsignedByte();
+               class265.field2959 = var4.readUnsignedByte();
 
                for(var23 = class265.field2959; var23 < class265.field2959 + 8; ++var23) {
                   for(var24 = class380.field4386; var24 < 8 + class380.field4386; ++var24) {
@@ -12973,10 +12973,10 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             }
 
             if (var1.field1048 == class305.field3234) {
-               var23 = var4.method8748();
-               var24 = var4.method8748();
-               var7 = var4.method8748();
-               var8 = var4.method8748();
+               var23 = var4.readUnsignedByte();
+               var24 = var4.readUnsignedByte();
+               var7 = var4.readUnsignedByte();
+               var8 = var4.readUnsignedByte();
                field1534[var23] = true;
                field1699[var23] = var24;
                field1700[var23] = var7;
@@ -12996,11 +12996,11 @@ public final class Client extends class43 implements class438, OAuthApi, class32
                field1689 = true;
                field1697 = false;
                field1691 = false;
-               class241.field2683 = var4.method8748();
-               class137.field1265 = var4.method8748();
-               class388.field4440 = var4.method8750();
-               field1671 = var4.method8748();
-               class55.field397 = var4.method8748();
+               class241.field2683 = var4.readUnsignedByte();
+               class137.field1265 = var4.readUnsignedByte();
+               class388.field4440 = var4.readUnsignedShort();
+               field1671 = var4.readUnsignedByte();
+               class55.field397 = var4.readUnsignedByte();
                if (class55.field397 >= 100) {
                   class172.field1822 = class241.field2683 * 128 + 64;
                   class50.field362 = 64 + class137.field1265 * 128;
@@ -13029,12 +13029,12 @@ public final class Client extends class43 implements class438, OAuthApi, class32
                field1689 = true;
                field1697 = false;
                field1691 = true;
-               class241.field2683 = var4.method8748();
-               class137.field1265 = var4.method8748();
-               var23 = var4.method8750();
-               var24 = var4.method8750();
-               field1698 = var4.method8757();
-               var7 = var4.method8748();
+               class241.field2683 = var4.readUnsignedByte();
+               class137.field1265 = var4.readUnsignedByte();
+               var23 = var4.readUnsignedShort();
+               var24 = var4.readUnsignedShort();
+               field1698 = var4.readBoolean();
+               var7 = var4.readUnsignedByte();
                var8 = 64 + class241.field2683 * 128;
                var9 = 64 + class137.field1265 * 128;
                boolean var10 = false;
@@ -13060,7 +13060,7 @@ public final class Client extends class43 implements class438, OAuthApi, class32
             var6 = "" + (null != var1.field1048 ? -1448898935 * var1.field1048.field3332 * 1217808313 : -1) + class90.field829 + (var1.field1054 != null ? -1448898935 * var1.field1054.field3332 * 1217808313 : -1) + class90.field829 + (null != var1.field1055 ? -1448898935 * var1.field1055.field3332 * 1217808313 : -1) + class90.field829 + var1.field1042 + class90.field829 + (class342.field3837 + class146.field1362.field945[0]) + class90.field829 + (class144.field1352 + class146.field1362.field1012[0]) + class90.field829;
 
             for(var7 = 0; var7 < var1.field1042 && var7 < 50; ++var7) {
-               var6 = var6 + var4.field5127[var7] + class90.field829;
+               var6 = var6 + var4.data[var7] + class90.field829;
             }
 
             class524.method5856(var6, var22);
@@ -13225,12 +13225,12 @@ public final class Client extends class43 implements class438, OAuthApi, class32
 
                if (null != field1616 && method5299(field1512) != null) {
                   class308 var13 = class308.method8607(class309.field3450, field1436.field1046);
-                  var13.field3351.method8732(field1512.field3739);
-                  var13.field3351.method8805(field1512.field3607);
-                  var13.field3351.method8732(field1616.field3607);
+                  var13.field3351.writeShort(field1512.field3739);
+                  var13.field3351.writeShortLE(field1512.field3607);
+                  var13.field3351.writeShort(field1616.field3607);
                   var13.field3351.method8934(field1616.field3739);
-                  var13.field3351.method8799(field1512.field3606);
-                  var13.field3351.method8800(field1616.field3606);
+                  var13.field3351.writeIntLE(field1512.field3606);
+                  var13.field3351.writeIntME(field1616.field3606);
                   field1436.method2148(var13);
                }
             } else if (this.method2714()) {

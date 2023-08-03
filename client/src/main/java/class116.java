@@ -1,8 +1,8 @@
 public class class116 {
    static byte[] field1113 = new byte[2048];
    static class223[] field1114 = new class223[2048];
-   static class519 field1125 = new class519(new byte[5000]);
-   static class519[] field1111 = new class519[2048];
+   static PacketBuffer field1125 = new PacketBuffer(new byte[5000]);
+   static PacketBuffer[] field1111 = new PacketBuffer[2048];
    static int field1116 = 0;
    static int field1118 = 0;
    static int field1121 = 0;
@@ -57,7 +57,7 @@ public class class116 {
    }
 
    static final void method1963(class497 var0, int var1) {
-      int var3 = var0.field5129;
+      int var3 = var0.offset;
       field1121 = 0;
       int var4 = 0;
       var0.method8476();
@@ -185,8 +185,8 @@ public class class116 {
                   }
 
                   method249(var0);
-                  if (var0.field5129 - var3 != var1) {
-                     throw new RuntimeException(var0.field5129 - var3 + " " + var1);
+                  if (var0.offset - var3 != var1) {
+                     throw new RuntimeException(var0.offset - var3 + " " + var1);
                   }
                }
             }
@@ -308,26 +308,26 @@ public class class116 {
       for(int var2 = 0; var2 < field1121; ++var2) {
          int var3 = field1124[var2];
          class84 var4 = Client.field1527[var3];
-         int var5 = var0.method8748();
+         int var5 = var0.readUnsignedByte();
          if ((var5 & 4) != 0) {
-            var5 += var0.method8748() << 8;
+            var5 += var0.readUnsignedByte() << 8;
          }
 
          if (0 != (var5 & 16384)) {
-            var5 += var0.method8748() << 16;
+            var5 += var0.readUnsignedByte() << 16;
          }
 
          byte var6 = class223.field2454.field2452;
          if (0 != (var5 & 512)) {
             class223[] var7 = field1114;
             class223[] var9 = new class223[]{class223.field2454, class223.field2457, class223.field2451, class223.field2450};
-            var7[var3] = (class223)class373.method1724(var9, var0.method8784());
+            var7[var3] = (class223)class373.method1724(var9, var0.readByteAdd());
          }
 
          int var18;
          if ((var5 & 32) != 0) {
             var4.field975 = var0.method8792();
-            var4.field975 += var0.method8748() << 16;
+            var4.field975 += var0.readUnsignedByte() << 16;
             var18 = 16777215;
             if (var4.field975 == var18) {
                var4.field975 = -1;
@@ -341,7 +341,7 @@ public class class116 {
                var18 = -1;
             }
 
-            var8 = var0.method8781();
+            var8 = var0.readUnsignedByteAdd();
             class265.method5208(var4, var18, var8);
          }
 
@@ -349,11 +349,11 @@ public class class116 {
          int var11;
          int var14;
          if ((var5 & 16) != 0) {
-            var18 = var0.method8750();
-            class361 var19 = (class361)class373.method1724(class361.method2121(), var0.method8782());
-            boolean var20 = var0.method8748() == 1;
-            var10 = var0.method8751();
-            var11 = var0.field5129;
+            var18 = var0.readUnsignedShort();
+            class361 var19 = (class361)class373.method1724(class361.method2121(), var0.readUnsignedByteNeg());
+            boolean var20 = var0.readUnsignedByte() == 1;
+            var10 = var0.readUnsignedByteSub();
+            var11 = var0.offset;
             if (null != var4.field740 && null != var4.field764) {
                boolean var12 = false;
                if (var19.field3997 && class165.field1782.method1096(var4.field740)) {
@@ -361,9 +361,9 @@ public class class116 {
                }
 
                if (!var12 && Client.field1553 == 0 && !var4.field760) {
-                  field1125.field5129 = 0;
-                  var0.method8806(field1125.field5127, 0, var10);
-                  field1125.field5129 = 0;
+                  field1125.offset = 0;
+                  var0.writeBytesReversedAdd(field1125.data, 0, var10);
+                  field1125.offset = 0;
                   String var13 = class407.method7161(class380.method2549(class307.method5741(field1125)));
                   var4.field971 = var13.trim();
                   var4.field965 = var18 >> 8;
@@ -386,20 +386,20 @@ public class class116 {
                }
             }
 
-            var0.field5129 = var11 + var10;
+            var0.offset = var11 + var10;
          }
 
          if ((var5 & 8192) != 0) {
             for(var18 = 0; var18 < 3; ++var18) {
-               var4.field742[var18] = var0.method8873();
+               var4.field742[var18] = var0.readString();
             }
          }
 
          if (0 != (var5 & 4096)) {
-            var4.field992 = var0.method8786();
-            var4.field994 = var0.method8784();
-            var4.field954 = var0.method8784();
-            var4.field982 = var0.method8786();
+            var4.field992 = var0.readByteSub();
+            var4.field994 = var0.readByteAdd();
+            var4.field954 = var0.readByteAdd();
+            var4.field982 = var0.readByteSub();
             var4.field964 = var0.method8778() + Client.field1445;
             var4.field997 = var0.method8792() + Client.field1445;
             var4.field990 = var0.method8792();
@@ -421,7 +421,7 @@ public class class116 {
          }
 
          if (0 != (var5 & 64)) {
-            var4.field971 = var0.method8873();
+            var4.field971 = var0.readString();
             if (var4.field971.charAt(0) == '~') {
                var4.field971 = var4.field971.substring(1);
                class119.method7274(2, var4.field740.method9155(), var4.field971);
@@ -436,7 +436,7 @@ public class class116 {
          }
 
          if ((var5 & '\u8000') != 0) {
-            var6 = var0.method8786();
+            var6 = var0.readByteSub();
          }
 
          int var21;
@@ -446,10 +446,10 @@ public class class116 {
             var18 = var0.method8792();
             var8 = var18 >> 8;
             var21 = var8 >= 13 && var8 <= 20 ? var8 - 12 : 0;
-            class361 var22 = (class361)class373.method1724(class361.method2121(), var0.method8781());
-            boolean var26 = var0.method8781() == 1;
-            var28 = var0.method8781();
-            var29 = var0.field5129;
+            class361 var22 = (class361)class373.method1724(class361.method2121(), var0.readUnsignedByteAdd());
+            boolean var26 = var0.readUnsignedByteAdd() == 1;
+            var28 = var0.readUnsignedByteAdd();
+            var29 = var0.offset;
             if (var4.field740 != null && var4.field764 != null) {
                boolean var30 = false;
                if (var22.field3997 && class165.field1782.method1096(var4.field740)) {
@@ -457,9 +457,9 @@ public class class116 {
                }
 
                if (!var30 && Client.field1553 == 0 && !var4.field760) {
-                  field1125.field5129 = 0;
-                  var0.method8997(field1125.field5127, 0, var28);
-                  field1125.field5129 = 0;
+                  field1125.offset = 0;
+                  var0.writeBytesReversed(field1125.data, 0, var28);
+                  field1125.offset = 0;
                   String var15 = class407.method7161(class380.method2549(class307.method5741(field1125)));
                   var4.field971 = var15.trim();
                   var4.field965 = var18 >> 8;
@@ -471,7 +471,7 @@ public class class116 {
                      var16 = new byte[var21];
 
                      for(var17 = 0; var17 < var21; ++var17) {
-                        var16[var17] = var0.method8785();
+                        var16[var17] = var0.readByteNeg();
                      }
                   }
 
@@ -492,53 +492,53 @@ public class class116 {
                }
             }
 
-            var0.field5129 = var21 + var29 + var28;
+            var0.offset = var21 + var29 + var28;
          }
 
          if (0 != (var5 & 65536)) {
-            var18 = var0.method8781();
+            var18 = var0.readUnsignedByteAdd();
 
             for(var8 = 0; var8 < var18; ++var8) {
-               var21 = var0.method8751();
-               var10 = var0.method8750();
+               var21 = var0.readUnsignedByteSub();
+               var10 = var0.readUnsignedShort();
                var11 = var0.method8804();
                var4.method2080(var21, var10, var11 >> 16, var11 & '\uffff');
             }
          }
 
          if (0 != (var5 & 8)) {
-            var18 = var0.method8781();
+            var18 = var0.readUnsignedByteAdd();
             if (var18 > 0) {
                for(var8 = 0; var8 < var18; ++var8) {
                   var10 = -1;
                   var11 = -1;
                   var28 = -1;
-                  var21 = var0.method8764();
+                  var21 = var0.readUnsignedSmartByteShort();
                   if (var21 == 32767) {
-                     var21 = var0.method8764();
-                     var11 = var0.method8764();
-                     var10 = var0.method8764();
-                     var28 = var0.method8764();
+                     var21 = var0.readUnsignedSmartByteShort();
+                     var11 = var0.readUnsignedSmartByteShort();
+                     var10 = var0.readUnsignedSmartByteShort();
+                     var28 = var0.readUnsignedSmartByteShort();
                   } else if (var21 != 32766) {
-                     var11 = var0.method8764();
+                     var11 = var0.readUnsignedSmartByteShort();
                   } else {
                      var21 = -1;
                   }
 
-                  var29 = var0.method8764();
+                  var29 = var0.readUnsignedSmartByteShort();
                   var4.method2066(var21, var11, var10, var28, Client.field1445, var29);
                }
             }
 
-            var8 = var0.method8782();
+            var8 = var0.readUnsignedByteNeg();
             if (var8 > 0) {
                for(var21 = 0; var21 < var8; ++var21) {
-                  var10 = var0.method8764();
-                  var11 = var0.method8764();
+                  var10 = var0.readUnsignedSmartByteShort();
+                  var11 = var0.readUnsignedSmartByteShort();
                   if (var11 != 32767) {
-                     var28 = var0.method8764();
-                     var29 = var0.method8748();
-                     var14 = var11 > 0 ? var0.method8782() : var29;
+                     var28 = var0.readUnsignedSmartByteShort();
+                     var29 = var0.readUnsignedByte();
+                     var14 = var11 > 0 ? var0.readUnsignedByteNeg() : var29;
                      var4.method2067(var10, Client.field1445, var11, var28, var29, var14);
                   } else {
                      var4.method2068(var10);
@@ -556,19 +556,19 @@ public class class116 {
          }
 
          if (0 != (var5 & 256)) {
-            var4.field941 = Client.field1445 + var0.method8750();
+            var4.field941 = Client.field1445 + var0.readUnsignedShort();
             var4.field1002 = Client.field1445 + var0.method8792();
-            var4.field1003 = var0.method8786();
-            var4.field996 = var0.method8785();
-            var4.field1005 = var0.method8768();
-            var4.field1006 = (byte)var0.method8748();
+            var4.field1003 = var0.readByteSub();
+            var4.field996 = var0.readByteNeg();
+            var4.field1005 = var0.readByte();
+            var4.field1006 = (byte)var0.readUnsignedByte();
          }
 
          if ((var5 & 1) != 0) {
-            var18 = var0.method8748();
+            var18 = var0.readUnsignedByte();
             byte[] var23 = new byte[var18];
-            class519 var27 = new class519(var23);
-            var0.method8997(var23, 0, var18);
+            PacketBuffer var27 = new PacketBuffer(var23);
+            var0.writeBytesReversed(var23, 0, var18);
             field1111[var3] = var27;
             var4.method1784(var27);
          }

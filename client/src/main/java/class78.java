@@ -176,17 +176,17 @@ public class class78 extends class470 {
    }
 
    void method1590(byte[] var1) {
-      class519 var2 = new class519(var1);
-      this.field663 = var2.method9000();
-      this.field657 = var2.method9000();
-      this.field658 = var2.method9000();
-      this.field682 = var2.method9000();
+      PacketBuffer var2 = new PacketBuffer(var1);
+      this.field663 = var2.readInt();
+      this.field657 = var2.readInt();
+      this.field658 = var2.readInt();
+      this.field682 = var2.readInt();
       if (this.field682 < 0) {
          this.field682 = ~this.field682;
          this.field660 = true;
       }
 
-      int var3 = var2.method9000();
+      int var3 = var2.readInt();
       this.field659 = new byte[var3][];
 
       for(int var4 = 0; var4 < var3; ++var4) {
@@ -194,12 +194,12 @@ public class class78 extends class470 {
 
          int var6;
          do {
-            var6 = var2.method8748();
+            var6 = var2.readUnsignedByte();
             var5 += var6;
          } while(var6 >= 255);
 
          byte[] var7 = new byte[var5];
-         var2.method8896(var7, 0, var5);
+         var2.readBytes(var7, 0, var5);
          this.field659[var4] = var7;
       }
 

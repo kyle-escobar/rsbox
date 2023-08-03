@@ -5,13 +5,13 @@ public class class376 {
    public final int field4365;
    public final long field4368;
 
-   class376(class519 var1, byte var2, int var3) {
-      this.field4367 = var1.method8873();
-      this.field4364 = var1.method8873();
-      this.field4365 = var1.method8750();
-      this.field4368 = var1.method8755();
-      int var4 = var1.method9000();
-      int var5 = var1.method9000();
+   class376(PacketBuffer var1, byte var2, int var3) {
+      this.field4367 = var1.readString();
+      this.field4364 = var1.readString();
+      this.field4365 = var1.readUnsignedShort();
+      this.field4368 = var1.readLong();
+      int var4 = var1.readInt();
+      int var5 = var1.readInt();
       this.field4366 = new class367();
       this.field4366.method6663(2);
       this.field4366.method6653(var2);

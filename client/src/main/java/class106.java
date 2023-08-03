@@ -9,7 +9,7 @@ public class class106 {
    class382 field1043 = new class382();
    class424 field1051;
    class497 field1044 = new class497(40000);
-   class519 field1045 = new class519(5000);
+   PacketBuffer field1045 = new PacketBuffer(5000);
    int field1042 = 0;
    int field1052 = 0;
    int field1053 = 0;
@@ -26,20 +26,20 @@ public class class106 {
 
    final void method2131() throws IOException {
       if (this.field1051 != null && this.field1053 > 0) {
-         this.field1045.field5129 = 0;
+         this.field1045.offset = 0;
 
          while(true) {
             class308 var2 = (class308)this.field1043.method6847();
-            if (null == var2 || var2.field3353 > this.field1045.field5127.length - this.field1045.field5129) {
-               this.field1051.method7588(this.field1045.field5127, 0, this.field1045.field5129);
+            if (null == var2 || var2.field3353 > this.field1045.data.length - this.field1045.offset) {
+               this.field1051.write(this.field1045.data, 0, this.field1045.offset);
                this.field1052 = 0;
                break;
             }
 
-            this.field1045.method8741(var2.field3351.field5127, 0, var2.field3353);
+            this.field1045.writeBytes(var2.field3351.data, 0, var2.field3353);
             this.field1053 -= var2.field3353;
             var2.method8116();
-            var2.field3351.method8730();
+            var2.field3351.release();
             var2.method5744();
          }
       }
@@ -48,8 +48,8 @@ public class class106 {
 
    public final void method2148(class308 var1) {
       this.field1043.method6874(var1);
-      var1.field3353 = var1.field3351.field5129;
-      var1.field3351.field5129 = 0;
+      var1.field3353 = var1.field3351.offset;
+      var1.field3351.offset = 0;
       this.field1053 += var1.field3353;
    }
 

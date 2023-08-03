@@ -24,7 +24,7 @@ public final class class104 extends class470 {
          var6 = new class449(var0, class160.field1750, class302.field3191[var0], 1000000);
       }
 
-      return new class363(var6, class157.field1740, class145.field1356, var0, var1, var2, var3, var4);
+      return new class363(var6, class157.field1740, Js5NetQueue.field1356, var0, var1, var2, var3, var4);
    }
 
    void method2115(int var1) {

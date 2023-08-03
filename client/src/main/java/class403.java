@@ -15,25 +15,25 @@ public class class403 {
    }
 
    public void method7081() {
-      this.field4494 = class302.method2194();
+      this.field4494 = class302.safeTime();
    }
 
    public void method7068() {
       if (this.field4494 != -1L) {
-         this.field4495 = class302.method2194() - this.field4494;
+         this.field4495 = class302.safeTime() - this.field4494;
          this.field4494 = -1L;
       }
 
    }
 
    public void method7069(int var1) {
-      this.field4497 = class302.method2194();
+      this.field4497 = class302.safeTime();
       this.field4499 = var1;
    }
 
    public void method7070() {
       if (-1L != this.field4497) {
-         this.field4491 = class302.method2194() - this.field4497;
+         this.field4491 = class302.safeTime() - this.field4497;
          this.field4497 = -1L;
       }
 
@@ -50,13 +50,13 @@ public class class403 {
       this.method7070();
    }
 
-   public void method7073(class519 var1) {
+   public void method7073(PacketBuffer var1) {
       class76.method1563(var1, this.field4495);
       class76.method1563(var1, this.field4491);
       class76.method1563(var1, this.field4496);
-      var1.method8732(this.field4499);
-      var1.method8732(this.field4498);
-      var1.method8732(this.field4493);
-      var1.method8732(this.field4500);
+      var1.writeShort(this.field4499);
+      var1.writeShort(this.field4498);
+      var1.writeShort(this.field4493);
+      var1.writeShort(this.field4500);
    }
 }

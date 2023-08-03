@@ -9,25 +9,25 @@ public class class367 {
    public class367() {
    }
 
-   public class367(class519 var1, boolean var2) {
-      this.field4342 = var1.method8768();
-      this.field4337 = var1.method8750();
-      this.field4340 = var1.method9000();
-      this.field4339 = var1.method9000();
-      this.field4338 = var1.method9000();
-      this.field4341 = var1.method9000();
+   public class367(PacketBuffer var1, boolean var2) {
+      this.field4342 = var1.readByte();
+      this.field4337 = var1.readUnsignedShort();
+      this.field4340 = var1.readInt();
+      this.field4339 = var1.readInt();
+      this.field4338 = var1.readInt();
+      this.field4341 = var1.readInt();
       if (var2) {
          this.method6654(method78(var1));
       }
 
    }
 
-   static Integer method78(class519 var0) {
+   static Integer method78(PacketBuffer var0) {
       int var2 = 0;
       boolean var3 = false;
 
       while(true) {
-         int var4 = var0.method8748();
+         int var4 = var0.readUnsignedByte();
          if (var4 == 255) {
             return var3 ? var2 : null;
          }
@@ -37,13 +37,13 @@ public class class367 {
          }
 
          while(true) {
-            int var5 = var0.method8748();
+            int var5 = var0.readUnsignedByte();
             if (var5 == 255) {
                break;
             }
 
-            --var0.field5129;
-            if (var0.method8750() != 0) {
+            --var0.offset;
+            if (var0.readUnsignedShort() != 0) {
                throw new IllegalStateException("");
             }
 
@@ -51,7 +51,7 @@ public class class367 {
                throw new IllegalStateException("");
             }
 
-            var2 = var0.method9000();
+            var2 = var0.readInt();
             var3 = true;
          }
       }

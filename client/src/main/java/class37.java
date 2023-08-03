@@ -12,7 +12,7 @@ public class class37 {
    int field193 = 0;
    int field197 = 0;
    int field201 = 0;
-   long field186 = class302.method2194();
+   long field186 = class302.safeTime();
    long field190 = 0L;
    long field194 = 0L;
    public int field188;
@@ -51,7 +51,7 @@ public class class37 {
 
    public final synchronized void method531() {
       if (null != this.field187) {
-         long var2 = class302.method2194();
+         long var2 = class302.safeTime();
 
          try {
             if (this.field190 != 0L) {
@@ -147,7 +147,7 @@ public class class37 {
          this.method543();
       } catch (Exception var3) {
          this.method542();
-         this.field190 = class302.method2194() + 2000L;
+         this.field190 = class302.safeTime() + 2000L;
       }
 
    }
@@ -298,7 +298,7 @@ public class class37 {
          this.field184.method1044(var1, 0, var2);
       }
 
-      this.field186 = class302.method2194();
+      this.field186 = class302.safeTime();
    }
 
    final void method537(class51 var1, int var2) {

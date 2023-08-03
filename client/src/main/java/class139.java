@@ -11,16 +11,16 @@ public class class139 extends class163 {
       this.field1289 = null;
    }
 
-   void method3248(class519 var1) {
-      if (var1.method8748() != 255) {
-         --var1.field5129;
-         var1.method8755();
+   void method3248(PacketBuffer var1) {
+      if (var1.readUnsignedByte() != 255) {
+         --var1.offset;
+         var1.readLong();
       }
 
       this.field1289 = var1.method8758();
-      this.field1288 = var1.method8750();
-      this.field1292 = var1.method8768();
-      var1.method8755();
+      this.field1288 = var1.readUnsignedShort();
+      this.field1292 = var1.readByte();
+      var1.readLong();
    }
 
    void method3255(class164 var1) {

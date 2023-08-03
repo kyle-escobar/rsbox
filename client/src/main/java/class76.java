@@ -17,7 +17,7 @@ public class class76 extends class476 {
       this.method1555(var1, var2, var3, var4);
    }
 
-   static void method1563(class519 var0, long var1) {
+   static void method1563(PacketBuffer var0, long var1) {
       var1 /= 10L;
       if (var1 < 0L) {
          var1 = 0L;
@@ -25,7 +25,7 @@ public class class76 extends class476 {
          var1 = 65535L;
       }
 
-      var0.method8732((int)var1);
+      var0.writeShort((int)var1);
    }
 
    void method1555(int var1, String var2, String var3, String var4) {

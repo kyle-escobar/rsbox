@@ -63,17 +63,17 @@ public class class264 implements class286 {
       }
    }
 
-   public void method5444(class519 var1) {
-      this.field2942 = var1.method8748();
-      this.field2940 = var1.method8748();
-      this.field2941 = var1.method8750();
-      this.field2944 = var1.method8748();
-      this.field2948 = var1.method8750();
-      this.field2946 = var1.method8748();
-      this.field2943 = var1.method8750();
-      this.field2947 = var1.method8748();
-      this.field2949 = var1.method8750();
-      this.field2950 = var1.method8748();
+   public void method5444(PacketBuffer var1) {
+      this.field2942 = var1.readUnsignedByte();
+      this.field2940 = var1.readUnsignedByte();
+      this.field2941 = var1.readUnsignedShort();
+      this.field2944 = var1.readUnsignedByte();
+      this.field2948 = var1.readUnsignedShort();
+      this.field2946 = var1.readUnsignedByte();
+      this.field2943 = var1.readUnsignedShort();
+      this.field2947 = var1.readUnsignedByte();
+      this.field2949 = var1.readUnsignedShort();
+      this.field2950 = var1.readUnsignedByte();
       this.method5184();
    }
 

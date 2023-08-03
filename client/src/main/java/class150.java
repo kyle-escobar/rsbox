@@ -10,12 +10,12 @@ public class class150 extends class163 {
       this.field1380 = -1;
    }
 
-   void method3248(class519 var1) {
-      this.field1380 = var1.method8750();
-      var1.method8748();
-      if (var1.method8748() != 255) {
-         --var1.field5129;
-         var1.method8755();
+   void method3248(PacketBuffer var1) {
+      this.field1380 = var1.readUnsignedShort();
+      var1.readUnsignedByte();
+      if (var1.readUnsignedByte() != 255) {
+         --var1.offset;
+         var1.readLong();
       }
 
    }

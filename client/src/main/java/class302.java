@@ -7,7 +7,7 @@ public final class class302 {
    class302() throws Throwable {
    }
 
-   public static final synchronized long method2194() {
+   public static final synchronized long safeTime() {
       long var1 = System.currentTimeMillis();
       if (var1 < field3187) {
          field3188 += field3187 - var1;

@@ -27,20 +27,20 @@ public class class70 {
             field563 = class261.field2935.method2221(new URL(class307.field3346));
          } else if (field563.method2200()) {
             byte[] var1 = field563.method2199();
-            class519 var2 = new class519(var1);
-            var2.method9000();
-            field569 = var2.method8750();
+            PacketBuffer var2 = new PacketBuffer(var1);
+            var2.readInt();
+            field569 = var2.readUnsignedShort();
             class380.field4385 = new class70[field569];
 
             class70 var4;
             for(int var3 = 0; var3 < field569; var4.field574 = var3++) {
                var4 = class380.field4385[var3] = new class70();
-               var4.field565 = var2.method8750();
-               var4.field568 = var2.method9000();
-               var4.field571 = var2.method8873();
-               var4.field572 = var2.method8873();
-               var4.field573 = var2.method8748();
-               var4.field562 = var2.method9001();
+               var4.field565 = var2.readUnsignedShort();
+               var4.field568 = var2.readInt();
+               var4.field571 = var2.readString();
+               var4.field572 = var2.readString();
+               var4.field573 = var2.readUnsignedByte();
+               var4.field562 = var2.readShort();
             }
 
             method3767(class380.field4385, 0, class380.field4385.length - 1, field566, field578);

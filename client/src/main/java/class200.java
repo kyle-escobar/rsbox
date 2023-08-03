@@ -4,8 +4,8 @@ public class class200 {
    class200() throws Throwable {
    }
 
-   static final class469 method2466(class519 var0, class469 var1) {
-      int var3 = var0.method8748();
+   static final class469 method2466(PacketBuffer var0, class469 var1) {
+      int var3 = var0.readUnsignedByte();
       int var4;
       if (null == var1) {
          var4 = class311.method2196(var3);
@@ -13,13 +13,13 @@ public class class200 {
       }
 
       for(var4 = 0; var4 < var3; ++var4) {
-         boolean var5 = var0.method8748() == 1;
-         int var6 = var0.method8752();
+         boolean var5 = var0.readUnsignedByte() == 1;
+         int var6 = var0.readUnsignedMedium();
          Object var7;
          if (var5) {
-            var7 = new class486(var0.method8873());
+            var7 = new class486(var0.readString());
          } else {
-            var7 = new class492(var0.method9000());
+            var7 = new class492(var0.readInt());
          }
 
          var1.method8097((class470)var7, (long)var6);

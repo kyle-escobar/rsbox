@@ -27,12 +27,12 @@ public class class143 {
    class143() {
    }
 
-   int method2521(class519 var1, int var2) {
-      int var4 = var1.method8750();
-      class140.method2062(var1.method8748());
-      this.field1321 = class125.method1191(var1.method8748());
-      this.field1334 = class125.method1191(var1.method8748());
-      this.field1319 = var1.method8748() != 0;
+   int method2521(PacketBuffer var1, int var2) {
+      int var4 = var1.readUnsignedShort();
+      class140.method2062(var1.readUnsignedByte());
+      this.field1321 = class125.method1191(var1.readUnsignedByte());
+      this.field1334 = class125.method1191(var1.readUnsignedByte());
+      this.field1319 = var1.readUnsignedByte() != 0;
       this.field1323 = new class126[var4];
       class126 var5 = null;
 

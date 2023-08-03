@@ -11,10 +11,10 @@ public class class211 extends class470 {
    int[] field2270;
    int[] field2273;
 
-   class211(class519 var1) {
-      this.field2266 = var1.method8750();
-      this.field2262 = var1.method8748() == 1;
-      int var2 = var1.method8748();
+   class211(PacketBuffer var1) {
+      this.field2266 = var1.readUnsignedShort();
+      this.field2262 = var1.readUnsignedByte() == 1;
+      int var2 = var1.readUnsignedByte();
       if (var2 >= 1 && var2 > 4) {
       }
 
@@ -22,14 +22,14 @@ public class class211 extends class470 {
 
       int var3;
       for(var3 = 0; var3 < var2; ++var3) {
-         this.field2267[var3] = var1.method8750();
+         this.field2267[var3] = var1.readUnsignedShort();
       }
 
       if (var2 > 1) {
          this.field2268 = new int[var2 - 1];
 
          for(var3 = 0; var3 < var2 - 1; ++var3) {
-            this.field2268[var3] = var1.method8748();
+            this.field2268[var3] = var1.readUnsignedByte();
          }
       }
 
@@ -37,18 +37,18 @@ public class class211 extends class470 {
          this.field2269 = new int[var2 - 1];
 
          for(var3 = 0; var3 < var2 - 1; ++var3) {
-            this.field2269[var3] = var1.method8748();
+            this.field2269[var3] = var1.readUnsignedByte();
          }
       }
 
       this.field2270 = new int[var2];
 
       for(var3 = 0; var3 < var2; ++var3) {
-         this.field2270[var3] = var1.method9000();
+         this.field2270[var3] = var1.readInt();
       }
 
-      this.field2265 = var1.method8748();
-      this.field2272 = var1.method8748();
+      this.field2265 = var1.readUnsignedByte();
+      this.field2272 = var1.readUnsignedByte();
       this.field2273 = null;
    }
 

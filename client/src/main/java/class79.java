@@ -22,28 +22,28 @@ public class class79 {
       this.method1610(true);
    }
 
-   class79(class519 var1) {
-      if (var1 != null && var1.field5127 != null) {
-         int var2 = var1.method8748();
+   class79(PacketBuffer var1) {
+      if (var1 != null && var1.data != null) {
+         int var2 = var1.readUnsignedByte();
          if (var2 >= 0 && var2 <= 10) {
-            if (var1.method8748() == 1) {
+            if (var1.readUnsignedByte() == 1) {
                this.field700 = true;
             }
 
             if (var2 > 1) {
-               this.field691 = var1.method8748() == 1;
+               this.field691 = var1.readUnsignedByte() == 1;
             }
 
             if (var2 > 3) {
-               this.field697 = var1.method8748();
+               this.field697 = var1.readUnsignedByte();
             }
 
             if (var2 > 2) {
-               int var3 = var1.method8748();
+               int var3 = var1.readUnsignedByte();
 
                for(int var4 = 0; var4 < var3; ++var4) {
-                  int var5 = var1.method9000();
-                  int var6 = var1.method9000();
+                  int var5 = var1.readInt();
+                  int var6 = var1.readInt();
                   this.field701.put(var5, var6);
                }
             }
@@ -53,26 +53,26 @@ public class class79 {
             }
 
             if (var2 > 5) {
-               this.field690 = var1.method8757();
+               this.field690 = var1.readBoolean();
             }
 
             if (var2 > 6) {
-               this.field694 = (double)var1.method8748() / 100.0;
-               this.field695 = var1.method8748();
-               this.field692 = var1.method8748();
-               this.field696 = var1.method8748();
+               this.field694 = (double)var1.readUnsignedByte() / 100.0;
+               this.field695 = var1.readUnsignedByte();
+               this.field692 = var1.readUnsignedByte();
+               this.field696 = var1.readUnsignedByte();
             }
 
             if (var2 > 7) {
-               this.field689 = var1.method8748();
+               this.field689 = var1.readUnsignedByte();
             }
 
             if (var2 > 8) {
-               this.field698 = var1.method8748() == 1;
+               this.field698 = var1.readUnsignedByte() == 1;
             }
 
             if (var2 > 9) {
-               this.field687 = var1.method9000();
+               this.field687 = var1.readInt();
             }
          } else {
             this.method1610(true);
@@ -99,7 +99,7 @@ public class class79 {
             }
          }
 
-         var2 = new class79(new class519(var3));
+         var2 = new class79(new PacketBuffer(var3));
       } catch (Exception var7) {
       }
 
@@ -118,8 +118,8 @@ public class class79 {
 
       try {
          var1 = class160.method1257("", class12.field65.field3968, true);
-         class519 var2 = class141.field1307.method1611();
-         var1.method8610(var2.field5127, 0, var2.field5129);
+         PacketBuffer var2 = class141.field1307.method1611();
+         var1.method8610(var2.data, 0, var2.offset);
       } catch (Exception var4) {
       }
 
@@ -135,30 +135,30 @@ public class class79 {
    void method1610(boolean var1) {
    }
 
-   class519 method1611() {
-      class519 var2 = new class519(417, true);
-      var2.method8731(10);
-      var2.method8731(this.field700 ? 1 : 0);
-      var2.method8731(this.field691 ? 1 : 0);
-      var2.method8731(this.field697);
-      var2.method8731(this.field701.size());
+   PacketBuffer method1611() {
+      PacketBuffer var2 = new PacketBuffer(417, true);
+      var2.writeByte(10);
+      var2.writeByte(this.field700 ? 1 : 0);
+      var2.writeByte(this.field691 ? 1 : 0);
+      var2.writeByte(this.field697);
+      var2.writeByte(this.field701.size());
       Iterator var3 = this.field701.entrySet().iterator();
 
       while(var3.hasNext()) {
          Map.Entry var4 = (Map.Entry)var3.next();
-         var2.method8734((Integer)var4.getKey());
-         var2.method8734((Integer)var4.getValue());
+         var2.writeInt((Integer)var4.getKey());
+         var2.writeInt((Integer)var4.getValue());
       }
 
-      var2.method8738(null != this.field699 ? this.field699 : "");
-      var2.method8737(this.field690);
-      var2.method8731((int)(this.field694 * 100.0));
-      var2.method8731(this.field695);
-      var2.method8731(this.field692);
-      var2.method8731(this.field696);
-      var2.method8731(this.field689);
-      var2.method8731(this.field698 ? 1 : 0);
-      var2.method8734(this.field687);
+      var2.writeString(null != this.field699 ? this.field699 : "");
+      var2.writeBoolean(this.field690);
+      var2.writeByte((int)(this.field694 * 100.0));
+      var2.writeByte(this.field695);
+      var2.writeByte(this.field692);
+      var2.writeByte(this.field696);
+      var2.writeByte(this.field689);
+      var2.writeByte(this.field698 ? 1 : 0);
+      var2.writeInt(this.field687);
       return var2;
    }
 

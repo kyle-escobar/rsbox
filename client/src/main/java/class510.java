@@ -27,7 +27,7 @@ public class class510 extends class456 implements class262 {
       byte[] var3 = this.field5094.method6381(this.field5093, var1);
       class454 var4 = new class454(var1);
       if (var3 != null) {
-         var4.method7840(new class519(var3));
+         var4.method7840(new PacketBuffer(var3));
       }
 
       return var4;

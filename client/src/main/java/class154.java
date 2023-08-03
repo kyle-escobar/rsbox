@@ -26,7 +26,7 @@ public class class154 {
    public String[] field1417;
    public String[] field1418;
 
-   public class154(class519 var1) {
+   public class154(PacketBuffer var1) {
       this.method2603(var1);
    }
 
@@ -450,10 +450,10 @@ public class class154 {
       return true;
    }
 
-   void method2603(class519 var1) {
-      int var3 = var1.method8748();
+   void method2603(PacketBuffer var1) {
+      int var3 = var1.readUnsignedByte();
       if (var3 >= 1 && var3 <= 6) {
-         int var4 = var1.method8748();
+         int var4 = var1.readUnsignedByte();
          if ((var4 & 1) != 0) {
             this.field1402 = true;
          }
@@ -472,24 +472,24 @@ public class class154 {
             this.field1418 = null;
          }
 
-         this.field1398 = var1.method9000();
-         this.field1400 = var1.method9000();
+         this.field1398 = var1.readInt();
+         this.field1400 = var1.readInt();
          if (var3 <= 3 && this.field1400 != 0) {
             this.field1400 += 16912800;
          }
 
-         this.field1406 = var1.method8750();
-         this.field1415 = var1.method8748();
-         this.field1399 = var1.method8873();
+         this.field1406 = var1.readUnsignedShort();
+         this.field1415 = var1.readUnsignedByte();
+         this.field1399 = var1.readString();
          if (var3 >= 4) {
-            var1.method9000();
+            var1.readInt();
          }
 
-         this.field1401 = var1.method8748() == 1;
-         this.field1403 = var1.method8768();
-         this.field1397 = var1.method8768();
-         this.field1404 = var1.method8768();
-         this.field1405 = var1.method8768();
+         this.field1401 = var1.readUnsignedByte() == 1;
+         this.field1403 = var1.readByte();
+         this.field1397 = var1.readByte();
+         this.field1404 = var1.readByte();
+         this.field1405 = var1.readByte();
          int var5;
          if (this.field1406 > 0) {
             if (this.field1402 && (this.field1407 == null || this.field1407.length < this.field1406)) {
@@ -518,26 +518,26 @@ public class class154 {
 
             for(var5 = 0; var5 < this.field1406; ++var5) {
                if (this.field1402) {
-                  this.field1407[var5] = var1.method8755();
+                  this.field1407[var5] = var1.readLong();
                }
 
                if (this.field1414) {
                   this.field1417[var5] = var1.method8758();
                }
 
-               this.field1408[var5] = var1.method8768();
+               this.field1408[var5] = var1.readByte();
                if (var3 >= 2) {
-                  this.field1410[var5] = var1.method9000();
+                  this.field1410[var5] = var1.readInt();
                }
 
                if (var3 >= 5) {
-                  this.field1411[var5] = var1.method8750();
+                  this.field1411[var5] = var1.readUnsignedShort();
                } else {
                   this.field1411[var5] = 0;
                }
 
                if (var3 >= 6) {
-                  this.field1412[var5] = var1.method8748() == 1;
+                  this.field1412[var5] = var1.readUnsignedByte() == 1;
                } else {
                   this.field1412[var5] = false;
                }
@@ -557,7 +557,7 @@ public class class154 {
 
             for(var5 = 0; var5 < this.field1415; ++var5) {
                if (this.field1402) {
-                  this.field1420[var5] = var1.method8755();
+                  this.field1420[var5] = var1.readLong();
                }
 
                if (this.field1414) {
@@ -567,22 +567,22 @@ public class class154 {
          }
 
          if (var3 >= 3) {
-            var5 = var1.method8750();
+            var5 = var1.readUnsignedShort();
             if (var5 > 0) {
                this.field1396 = new class469(var5 < 16 ? class311.method2196(var5) : 16);
 
                while(var5-- > 0) {
-                  int var6 = var1.method9000();
+                  int var6 = var1.readInt();
                   int var7 = var6 & 1073741823;
                   int var8 = var6 >>> 30;
                   if (var8 == 0) {
-                     int var9 = var1.method9000();
+                     int var9 = var1.readInt();
                      this.field1396.method8097(new class492(var9), (long)var7);
                   } else if (var8 == 1) {
-                     long var11 = var1.method8755();
+                     long var11 = var1.readLong();
                      this.field1396.method8097(new class490(var11), (long)var7);
                   } else if (var8 == 2) {
-                     String var12 = var1.method8873();
+                     String var12 = var1.readString();
                      this.field1396.method8097(new class486(var12), (long)var7);
                   }
                }

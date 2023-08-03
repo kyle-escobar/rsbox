@@ -93,21 +93,21 @@ public class class362 extends class476 {
       for(var3 = 0; var3 < Client.field1717; ++var3) {
          var4 = Client.field1503[var3];
          class86 var15 = Client.field1489[var4];
-         int var16 = var1.method8748();
+         int var16 = var1.readUnsignedByte();
          int var17;
          if (0 != (var16 & 32)) {
-            var17 = var1.method8748();
+            var17 = var1.readUnsignedByte();
             var16 += var17 << 8;
          }
 
          if ((var16 & 1024) != 0) {
-            var17 = var1.method8748();
+            var17 = var1.readUnsignedByte();
             var16 += var17 << 16;
          }
 
          if (0 != (var16 & 8)) {
-            var15.field975 = var1.method8750();
-            var15.field975 += var1.method8748() << 16;
+            var15.field975 = var1.readUnsignedShort();
+            var15.field975 += var1.readUnsignedByte() << 16;
             var17 = 16777215;
             if (var17 == var15.field975) {
                var15.field975 = -1;
@@ -126,7 +126,7 @@ public class class362 extends class476 {
                var17 = -1;
             }
 
-            var8 = var1.method8751();
+            var8 = var1.readUnsignedByteSub();
             if (var15.field968 == var17 && var17 != -1) {
                var9 = class215.method2582(var17).field2346;
                if (var9 == 1) {
@@ -151,7 +151,7 @@ public class class362 extends class476 {
 
          if (0 != (var16 & 64)) {
             var1.method8749();
-            var1.method9000();
+            var1.readInt();
          }
 
          int[] var18;
@@ -161,17 +161,17 @@ public class class362 extends class476 {
          short[] var22;
          boolean var23;
          if ((var16 & 512) != 0) {
-            var17 = var1.method8751();
+            var17 = var1.readUnsignedByteSub();
             if ((var17 & 1) == 1) {
                var15.method1858();
             } else {
                var18 = null;
                if (2 == (var17 & 2)) {
-                  var9 = var1.method8782();
+                  var9 = var1.readUnsignedByteNeg();
                   var18 = new int[var9];
 
                   for(var10 = 0; var10 < var9; ++var10) {
-                     var11 = var1.method8750();
+                     var11 = var1.readUnsignedShort();
                      var11 = var11 == 65535 ? -1 : var11;
                      var18[var10] = var11;
                   }
@@ -187,7 +187,7 @@ public class class362 extends class476 {
                   var19 = new short[var10];
 
                   for(var11 = 0; var11 < var10; ++var11) {
-                     var19[var11] = (short)var1.method8750();
+                     var19[var11] = (short)var1.readUnsignedShort();
                   }
                }
 
@@ -207,7 +207,7 @@ public class class362 extends class476 {
 
                var23 = false;
                if ((var17 & 16) != 0) {
-                  var23 = var1.method8748() == 1;
+                  var23 = var1.readUnsignedByte() == 1;
                }
 
                var21 = (long)(++class86.field781 - 1);
@@ -216,17 +216,17 @@ public class class362 extends class476 {
          }
 
          if ((var16 & 256) != 0) {
-            var17 = var1.method8751();
+            var17 = var1.readUnsignedByteSub();
             if (1 == (var17 & 1)) {
                var15.method1852();
             } else {
                var18 = null;
                if ((var17 & 2) == 2) {
-                  var9 = var1.method8781();
+                  var9 = var1.readUnsignedByteAdd();
                   var18 = new int[var9];
 
                   for(var10 = 0; var10 < var9; ++var10) {
-                     var11 = var1.method8750();
+                     var11 = var1.readUnsignedShort();
                      var11 = var11 == 65535 ? -1 : var11;
                      var18[var10] = var11;
                   }
@@ -262,7 +262,7 @@ public class class362 extends class476 {
 
                var23 = false;
                if (0 != (var17 & 16)) {
-                  var23 = var1.method8782() == 1;
+                  var23 = var1.readUnsignedByteNeg() == 1;
                }
 
                var21 = (long)(++class86.field779 - 1);
@@ -273,13 +273,13 @@ public class class362 extends class476 {
          if ((var16 & 262144) != 0) {
             var17 = var1.method8862();
             var15.field995 = (var17 & 1) != 0 ? var1.method8749() : var15.field776.field2050;
-            var15.field948 = 0 != (var17 & 2) ? var1.method8750() : var15.field776.field2054;
-            var15.field993 = (var17 & 4) != 0 ? var1.method8750() : var15.field776.field2083;
+            var15.field948 = 0 != (var17 & 2) ? var1.readUnsignedShort() : var15.field776.field2054;
+            var15.field993 = (var17 & 4) != 0 ? var1.readUnsignedShort() : var15.field776.field2083;
             var15.field1004 = (var17 & 8) != 0 ? var1.method8749() : 2045371335 * var15.field776.field2061 * 551218679;
             var15.field1001 = 0 != (var17 & 16) ? var1.method8792() : var15.field776.field2057;
             var15.field984 = 0 != (var17 & 32) ? var1.method8778() : var15.field776.field2058;
             var15.field953 = (var17 & 64) != 0 ? var1.method8778() : var15.field776.field2043;
-            var15.field952 = (var17 & 128) != 0 ? var1.method8750() : var15.field776.field2060;
+            var15.field952 = (var17 & 128) != 0 ? var1.readUnsignedShort() : var15.field776.field2060;
             var15.field955 = 0 != (var17 & 256) ? var1.method8792() : var15.field776.field2045;
             var15.field956 = (var17 & 512) != 0 ? var1.method8792() : var15.field776.field2062;
             var15.field969 = 0 != (var17 & 1024) ? var1.method8749() : 1478538629 * var15.field776.field2063 * -1703871667;
@@ -290,22 +290,22 @@ public class class362 extends class476 {
          }
 
          if ((var16 & 131072) != 0) {
-            var17 = var1.method8782();
+            var17 = var1.readUnsignedByteNeg();
 
             for(var8 = 0; var8 < var17; ++var8) {
-               var9 = var1.method8782();
-               var10 = var1.method8750();
+               var9 = var1.readUnsignedByteNeg();
+               var10 = var1.readUnsignedShort();
                var11 = var1.method8862();
                var15.method2080(var9, var10, var11 >> 16, var11 & '\uffff');
             }
          }
 
          if (0 != (var16 & '\u8000')) {
-            var15.field992 = var1.method8786();
-            var15.field994 = var1.method8784();
-            var15.field954 = var1.method8768();
-            var15.field982 = var1.method8768();
-            var15.field964 = var1.method8750() + Client.field1445;
+            var15.field992 = var1.readByteSub();
+            var15.field994 = var1.readByteAdd();
+            var15.field954 = var1.readByte();
+            var15.field982 = var1.readByte();
+            var15.field964 = var1.readUnsignedShort() + Client.field1445;
             var15.field997 = var1.method8749() + Client.field1445;
             var15.field990 = var1.method8778();
             var15.field1010 = 1;
@@ -319,7 +319,7 @@ public class class362 extends class476 {
          if ((var16 & 2) != 0) {
             var17 = var1.method8792();
             var8 = var1.method8792();
-            var15.field980 = var1.method8748() == 1;
+            var15.field980 = var1.readUnsignedByte() == 1;
             if (Client.field1441 >= 212) {
                var15.field978 = var17;
                var15.field979 = var8;
@@ -335,46 +335,46 @@ public class class362 extends class476 {
 
          if (0 != (var16 & 4096)) {
             var15.field941 = Client.field1445 + var1.method8749();
-            var15.field1002 = Client.field1445 + var1.method8750();
-            var15.field1003 = var1.method8784();
-            var15.field996 = var1.method8768();
-            var15.field1005 = var1.method8785();
-            var15.field1006 = (byte)var1.method8748();
+            var15.field1002 = Client.field1445 + var1.readUnsignedShort();
+            var15.field1003 = var1.readByteAdd();
+            var15.field996 = var1.readByte();
+            var15.field1005 = var1.readByteNeg();
+            var15.field1006 = (byte)var1.readUnsignedByte();
          }
 
          if ((var16 & 16) != 0) {
-            var17 = var1.method8748();
+            var17 = var1.readUnsignedByte();
             if (var17 > 0) {
                for(var8 = 0; var8 < var17; ++var8) {
                   var10 = -1;
                   var11 = -1;
                   var20 = -1;
-                  var9 = var1.method8764();
+                  var9 = var1.readUnsignedSmartByteShort();
                   if (var9 == 32767) {
-                     var9 = var1.method8764();
-                     var11 = var1.method8764();
-                     var10 = var1.method8764();
-                     var20 = var1.method8764();
+                     var9 = var1.readUnsignedSmartByteShort();
+                     var11 = var1.readUnsignedSmartByteShort();
+                     var10 = var1.readUnsignedSmartByteShort();
+                     var20 = var1.readUnsignedSmartByteShort();
                   } else if (var9 != 32766) {
-                     var11 = var1.method8764();
+                     var11 = var1.readUnsignedSmartByteShort();
                   } else {
                      var9 = -1;
                   }
 
-                  var13 = var1.method8764();
+                  var13 = var1.readUnsignedSmartByteShort();
                   var15.method2066(var9, var11, var10, var20, Client.field1445, var13);
                }
             }
 
-            var8 = var1.method8748();
+            var8 = var1.readUnsignedByte();
             if (var8 > 0) {
                for(var9 = 0; var9 < var8; ++var9) {
-                  var10 = var1.method8764();
-                  var11 = var1.method8764();
+                  var10 = var1.readUnsignedSmartByteShort();
+                  var11 = var1.readUnsignedSmartByteShort();
                   if (var11 != 32767) {
-                     var20 = var1.method8764();
-                     var13 = var1.method8751();
-                     int var14 = var11 > 0 ? var1.method8751() : var13;
+                     var20 = var1.readUnsignedSmartByteShort();
+                     var13 = var1.readUnsignedByteSub();
+                     int var14 = var11 > 0 ? var1.readUnsignedByteSub() : var13;
                      var15.method2067(var10, Client.field1445, var11, var20, var13, var14);
                   } else {
                      var15.method2068(var10);
@@ -384,7 +384,7 @@ public class class362 extends class476 {
          }
 
          if ((var16 & 8192) != 0) {
-            var15.method1855(var1.method8782());
+            var15.method1855(var1.readUnsignedByteNeg());
          }
 
          if (0 != (var16 & 16384)) {
@@ -392,14 +392,14 @@ public class class362 extends class476 {
          }
 
          if (0 != (var16 & 65536)) {
-            var17 = var1.method8781();
+            var17 = var1.readUnsignedByteAdd();
             var18 = new int[8];
             var19 = new short[8];
 
             for(var10 = 0; var10 < 8; ++var10) {
                if (0 != (var17 & 1 << var10)) {
                   var18[var10] = var1.method8814();
-                  var19[var10] = (short)var1.method8923();
+                  var19[var10] = (short)var1.readUnsignedSmartByteShortNull();
                } else {
                   var18[var10] = -1;
                   var19[var10] = -1;
@@ -410,11 +410,11 @@ public class class362 extends class476 {
          }
 
          if (0 != (var16 & 2048)) {
-            var15.method1842(var1.method8873());
+            var15.method1842(var1.readString());
          }
 
          if (0 != (var16 & 128)) {
-            var15.field971 = var1.method8873();
+            var15.field971 = var1.readString();
             var15.field940 = 100;
          }
       }
@@ -427,8 +427,8 @@ public class class362 extends class476 {
          }
       }
 
-      if (var1.field5129 != Client.field1436.field1042) {
-         throw new RuntimeException(var1.field5129 + class90.field829 + Client.field1436.field1042);
+      if (var1.offset != Client.field1436.field1042) {
+         throw new RuntimeException(var1.offset + class90.field829 + Client.field1436.field1042);
       } else {
          for(var3 = 0; var3 < Client.field1565; ++var3) {
             if (Client.field1489[Client.field1491[var3]] == null) {

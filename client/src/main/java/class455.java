@@ -21,7 +21,7 @@ public final class class455 {
       this.method7988(var1);
    }
 
-   public class455(class519 var1, boolean var2) {
+   public class455(PacketBuffer var1, boolean var2) {
       this.method7945(var1, var2);
    }
 
@@ -45,26 +45,26 @@ public final class class455 {
       }
    }
 
-   void method7945(class519 var1, boolean var2) {
+   void method7945(PacketBuffer var1, boolean var2) {
       if (var2) {
          class464 var4 = new class464();
-         int var7 = var1.method9001();
+         int var7 = var1.readShort();
          var7 &= 16383;
          float var6 = (float)(6.283185307179586 * (double)((float)var7 / 16384.0F));
          var4.method8053(var6);
-         int var10 = var1.method9001();
+         int var10 = var1.readShort();
          var10 &= 16383;
          float var9 = (float)((double)((float)var10 / 16384.0F) * 6.283185307179586);
          var4.method8054(var9);
-         int var13 = var1.method9001();
+         int var13 = var1.readShort();
          var13 &= 16383;
          float var12 = (float)((double)((float)var13 / 16384.0F) * 6.283185307179586);
          var4.method8067(var12);
-         var4.method8056((float)var1.method9001(), (float)var1.method9001(), (float)var1.method9001());
+         var4.method8056((float)var1.readShort(), (float)var1.readShort(), (float)var1.readShort());
          this.method7947(var4);
       } else {
          for(int var14 = 0; var14 < 16; ++var14) {
-            this.field4749[var14] = var1.method8756();
+            this.field4749[var14] = var1.readFloat();
          }
       }
 

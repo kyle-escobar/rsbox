@@ -19,16 +19,16 @@ public class class253 {
       return var0 == 160 || var0 == ' ' || var0 == '_' || var0 == '-';
    }
 
-   public void method4955(class519 var1, int var2) {
+   public void method4955(PacketBuffer var1, int var2) {
       this.field2848 = var2;
-      this.field2853 = var1.method8873();
-      this.field2850 = var1.method8873();
-      this.field2849 = new class330(var1.method9000());
-      this.field2857 = var1.method9000();
-      var1.method8748();
-      this.field2858 = var1.method8748() == 1;
-      this.field2852 = var1.method8748();
-      int var4 = var1.method8748();
+      this.field2853 = var1.readString();
+      this.field2850 = var1.readString();
+      this.field2849 = new class330(var1.readInt());
+      this.field2857 = var1.readInt();
+      var1.readUnsignedByte();
+      this.field2858 = var1.readUnsignedByte() == 1;
+      this.field2852 = var1.readUnsignedByte();
+      int var4 = var1.readUnsignedByte();
       this.field2859 = new LinkedList();
 
       for(int var5 = 0; var5 < var4; ++var5) {
@@ -38,8 +38,8 @@ public class class253 {
       this.method4934();
    }
 
-   class286 method4929(class519 var1) {
-      int var3 = var1.method8748();
+   class286 method4929(PacketBuffer var1) {
+      int var3 = var1.readUnsignedByte();
       class265[] var4 = new class265[]{class265.field2955, class265.field2953, class265.field2952, class265.field2954};
       class265 var5 = (class265)class373.method1724(var4, var3);
       Object var6 = null;

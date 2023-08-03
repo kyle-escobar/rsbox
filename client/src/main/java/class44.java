@@ -30,12 +30,12 @@ public class class44 {
    public static void method6521(class497 var0) {
       class49 var2 = (class49)field304.method6847();
       if (null != var2) {
-         int var3 = var0.field5129;
-         var0.method8734(var2.field360);
+         int var3 = var0.offset;
+         var0.writeInt(var2.field360);
 
          for(int var4 = 0; var4 < var2.field359; ++var4) {
             if (var2.field354[var4] != 0) {
-               var0.method8731(var2.field354[var4]);
+               var0.writeByte(var2.field354[var4]);
             } else {
                try {
                   int var5 = var2.field355[var4];
@@ -44,17 +44,17 @@ public class class44 {
                   if (var5 == 0) {
                      var6 = var2.field357[var4];
                      var7 = var6.getInt((Object)null);
-                     var0.method8731(0);
-                     var0.method8734(var7);
+                     var0.writeByte(0);
+                     var0.writeInt(var7);
                   } else if (var5 == 1) {
                      var6 = var2.field357[var4];
                      var6.setInt((Object)null, var2.field358[var4]);
-                     var0.method8731(0);
+                     var0.writeByte(0);
                   } else if (var5 == 2) {
                      var6 = var2.field357[var4];
                      var7 = var6.getModifiers();
-                     var0.method8731(0);
-                     var0.method8734(var7);
+                     var0.writeByte(0);
+                     var0.writeInt(var7);
                   }
 
                   Method var23;
@@ -62,8 +62,8 @@ public class class44 {
                      if (var5 == 4) {
                         var23 = var2.field356[var4];
                         var7 = var23.getModifiers();
-                        var0.method8731(0);
-                        var0.method8734(var7);
+                        var0.writeByte(0);
+                        var0.writeInt(var7);
                      }
                   } else {
                      var23 = var2.field356[var4];
@@ -77,54 +77,54 @@ public class class44 {
 
                      Object var25 = var23.invoke((Object)null, var8);
                      if (null == var25) {
-                        var0.method8731(0);
+                        var0.writeByte(0);
                      } else if (var25 instanceof Number) {
-                        var0.method8731(1);
-                        var0.method8736(((Number)var25).longValue());
+                        var0.writeByte(1);
+                        var0.writeLong(((Number)var25).longValue());
                      } else if (var25 instanceof String) {
-                        var0.method8731(2);
-                        var0.method8738((String)var25);
+                        var0.writeByte(2);
+                        var0.writeString((String)var25);
                      } else {
-                        var0.method8731(4);
+                        var0.writeByte(4);
                      }
                   }
                } catch (ClassNotFoundException var11) {
-                  var0.method8731(-10);
+                  var0.writeByte(-10);
                } catch (InvalidClassException var12) {
-                  var0.method8731(-11);
+                  var0.writeByte(-11);
                } catch (StreamCorruptedException var13) {
-                  var0.method8731(-12);
+                  var0.writeByte(-12);
                } catch (OptionalDataException var14) {
-                  var0.method8731(-13);
+                  var0.writeByte(-13);
                } catch (IllegalAccessException var15) {
-                  var0.method8731(-14);
+                  var0.writeByte(-14);
                } catch (IllegalArgumentException var16) {
-                  var0.method8731(-15);
+                  var0.writeByte(-15);
                } catch (InvocationTargetException var17) {
-                  var0.method8731(-16);
+                  var0.writeByte(-16);
                } catch (SecurityException var18) {
-                  var0.method8731(-17);
+                  var0.writeByte(-17);
                } catch (IOException var19) {
-                  var0.method8731(-18);
+                  var0.writeByte(-18);
                } catch (NullPointerException var20) {
-                  var0.method8731(-19);
+                  var0.writeByte(-19);
                } catch (Exception var21) {
-                  var0.method8731(-20);
+                  var0.writeByte(-20);
                } catch (Throwable var22) {
-                  var0.method8731(-21);
+                  var0.writeByte(-21);
                }
             }
          }
 
-         var0.method8791(var3);
+         var0.writeCrc(var3);
          var2.method8116();
       }
    }
 
-   public static void method4045(class519 var0, int var1) {
+   public static void method4045(PacketBuffer var0, int var1) {
       class49 var3 = new class49();
-      var3.field359 = var0.method8748();
-      var3.field360 = var0.method9000();
+      var3.field359 = var0.readUnsignedByte();
+      var3.field360 = var0.readInt();
       var3.field355 = new int[var3.field359];
       var3.field354 = new int[var3.field359];
       var3.field357 = new Field[var3.field359];
@@ -134,29 +134,29 @@ public class class44 {
 
       for(int var4 = 0; var4 < var3.field359; ++var4) {
          try {
-            int var5 = var0.method8748();
+            int var5 = var0.readUnsignedByte();
             String var6;
             String var7;
             int var8;
             if (var5 != 0 && var5 != 1 && var5 != 2) {
                if (var5 == 3 || var5 == 4) {
-                  var6 = var0.method8873();
-                  var7 = var0.method8873();
-                  var8 = var0.method8748();
+                  var6 = var0.readString();
+                  var7 = var0.readString();
+                  var8 = var0.readUnsignedByte();
                   String[] var9 = new String[var8];
 
                   for(int var10 = 0; var10 < var8; ++var10) {
-                     var9[var10] = var0.method8873();
+                     var9[var10] = var0.readString();
                   }
 
-                  String var26 = var0.method8873();
+                  String var26 = var0.readString();
                   byte[][] var11 = new byte[var8][];
                   int var13;
                   if (var5 == 3) {
                      for(int var12 = 0; var12 < var8; ++var12) {
-                        var13 = var0.method9000();
+                        var13 = var0.readInt();
                         var11[var12] = new byte[var13];
-                        var0.method8896(var11[var12], 0, var13);
+                        var0.readBytes(var11[var12], 0, var13);
                      }
                   }
 
@@ -198,11 +198,11 @@ public class class44 {
                   var3.field353[var4] = var11;
                }
             } else {
-               var6 = var0.method8873();
-               var7 = var0.method8873();
+               var6 = var0.readString();
+               var7 = var0.readString();
                var8 = 0;
                if (var5 == 1) {
-                  var8 = var0.method9000();
+                  var8 = var0.readInt();
                }
 
                var3.field355[var4] = var5;

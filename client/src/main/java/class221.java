@@ -13,17 +13,17 @@ public class class221 {
 
    class221(byte[] var1, class219 var2) {
       this.field2437 = var2;
-      class519 var3 = new class519(var1);
-      class519 var4 = new class519(var1);
-      var3.field5129 = 2;
-      int var5 = var3.method8748();
+      PacketBuffer var3 = new PacketBuffer(var1);
+      PacketBuffer var4 = new PacketBuffer(var1);
+      var3.offset = 2;
+      int var5 = var3.readUnsignedByte();
       int var6 = -1;
       int var7 = 0;
-      var4.field5129 = var3.field5129 + var5;
+      var4.offset = var3.offset + var5;
 
       int var8;
       for(var8 = 0; var8 < var5; ++var8) {
-         int var9 = var3.method8748();
+         int var9 = var3.readUnsignedByte();
          if (var9 > 0) {
             if (this.field2437.field2404[var8] != 0) {
                for(int var10 = var8 - 1; var10 > var6; --var10) {
@@ -45,19 +45,19 @@ public class class221 {
             }
 
             if ((var9 & 1) != 0) {
-               field2441[var7] = var4.method8763();
+               field2441[var7] = var4.readSmartByteShort();
             } else {
                field2441[var7] = var11;
             }
 
             if ((var9 & 2) != 0) {
-               field2435[var7] = var4.method8763();
+               field2435[var7] = var4.readSmartByteShort();
             } else {
                field2435[var7] = var11;
             }
 
             if ((var9 & 4) != 0) {
-               field2436[var7] = var4.method8763();
+               field2436[var7] = var4.readSmartByteShort();
             } else {
                field2436[var7] = var11;
             }
@@ -70,7 +70,7 @@ public class class221 {
          }
       }
 
-      if (var4.field5129 != var1.length) {
+      if (var4.offset != var1.length) {
       }
 
       this.field2438 = var7;
