@@ -9442,51 +9442,51 @@ public final class Client extends GameShell implements class438, OAuthApi, class
          if (field1467 == 5) {
             field1436.field1044.offset = 0;
             field1436.method2130();
-            class497 var31 = new class497(500);
-            int[] var28 = new int[]{class204.field2202.nextInt(), class204.field2202.nextInt(), class204.field2202.nextInt(), class204.field2202.nextInt()};
-            var31.offset = 0;
-            var31.writeByte(1);
-            var31.writeInt(var28[0]);
-            var31.writeInt(var28[1]);
-            var31.writeInt(var28[2]);
-            var31.writeInt(var28[3]);
-            var31.writeLong(class318.field3512);
+            class497 buf = new class497(500);
+            int[] xteas = new int[]{class204.field2202.nextInt(), class204.field2202.nextInt(), class204.field2202.nextInt(), class204.field2202.nextInt()};
+            buf.offset = 0;
+            buf.writeByte(1);
+            buf.writeInt(xteas[0]);
+            buf.writeInt(xteas[1]);
+            buf.writeInt(xteas[2]);
+            buf.writeInt(xteas[3]);
+            buf.writeLong(class318.field3512);
             if (40 == gameState) {
-               var31.writeInt(class375.field4361[0]);
-               var31.writeInt(class375.field4361[1]);
-               var31.writeInt(class375.field4361[2]);
-               var31.writeInt(class375.field4361[3]);
+               buf.writeInt(class375.field4361[0]);
+               buf.writeInt(class375.field4361[1]);
+               buf.writeInt(class375.field4361[2]);
+               buf.writeInt(class375.field4361[3]);
             } else {
                if (gameState == 50) {
-                  var31.writeByte(class132.field1245.method6917());
-                  var31.writeInt(class70.field576);
+                  buf.writeByte(class132.field1245.method6917());
+                  buf.writeInt(class70.field576);
                } else {
-                  var31.writeByte(field1471.method6917());
+                  buf.writeByte(field1471.method6917());
                   switch (field1471.field1246) {
                      case 1:
                      case 4:
-                        var31.writeMedium(class428.field4629);
-                        ++var31.offset;
+                        buf.writeMedium(class428.field4629);
+                        ++buf.offset;
                         break;
                      case 2:
-                        var31.offset += 4;
+                        buf.offset += 4;
                         break;
                      case 3:
-                        var31.writeInt(class141.field1307.method1638(class61.field441));
+                        buf.writeInt(class141.field1307.method1638(class61.field441));
                   }
                }
 
                if (field1472.method8523()) {
-                  var31.writeByte(class500.field5044.method6917());
-                  var31.writeString(this.field1613);
+                  buf.writeByte(class500.field5044.method6917());
+                  buf.writeString(this.field1613);
                } else {
-                  var31.writeByte(class500.field5051.method6917());
-                  var31.writeString(class61.field445);
+                  buf.writeByte(class500.field5051.method6917());
+                  buf.writeString(class61.field445);
                }
             }
 
-            var31.encryptRsa(class59.field419, class59.field416);
-            class375.field4361 = var28;
+            buf.encryptRsa(class59.field419, class59.field416);
+            class375.field4361 = xteas;
             class308 var7 = class308.method2535();
             var7.field3360 = null;
             var7.field3352 = 0;
@@ -9506,7 +9506,7 @@ public final class Client extends GameShell implements class438, OAuthApi, class
             var7.field3351.writeByte(field1573);
             byte var9 = 0;
             var7.field3351.writeByte(var9);
-            var7.field3351.writeBytes(var31.data, 0, var31.offset);
+            var7.field3351.writeBytes(buf.data, 0, buf.offset);
             int var10 = var7.field3351.offset;
             var7.field3351.writeString(class61.field441);
             var7.field3351.writeByte((field1462 ? 1 : 0) << 1 | (field1549 ? 1 : 0));
@@ -9545,15 +9545,15 @@ public final class Client extends GameShell implements class438, OAuthApi, class
             var7.field3351.writeIntIME(class144.field1347.field3831);
             var7.field3351.writeIntME(class136.field1254.field3831);
             var7.field3351.writeIntIME(class24.field121.field3831);
-            var7.field3351.method8773(var28, var10, var7.field3351.offset);
+            var7.field3351.method8773(xteas, var10, var7.field3351.offset);
             var7.field3351.writeLengthShort(var7.field3351.offset - var8);
             field1436.method2148(var7);
             field1436.method2131();
-            field1436.field1046 = new class540(var28);
+            field1436.field1046 = new class540(xteas);
             int[] var12 = new int[4];
 
             for(int var13 = 0; var13 < 4; ++var13) {
-               var12[var13] = var28[var13] + 50;
+               var12[var13] = xteas[var13] + 50;
             }
 
             var3.method8475(var12);

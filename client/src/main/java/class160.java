@@ -182,7 +182,7 @@ public class class160 {
          }
 
          if (null == var9) {
-            var9 = class453.field4738 + File.separatorChar + "jagexcache" + var8 + File.separatorChar + var0 + File.separatorChar + var2 + File.separatorChar;
+            var9 = class453.field4738 + File.separatorChar + ClientLauncher.CACHE_DIR + var8 + File.separatorChar + var0 + File.separatorChar + var2 + File.separatorChar;
             var11 = true;
          }
 
