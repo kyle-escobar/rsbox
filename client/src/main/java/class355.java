@@ -101,7 +101,7 @@ public class class355 {
                         var8 = var21;
                      }
 
-                     this.field3936.method7603(this.field3926.data, this.field3926.offset, var8);
+                     this.field3936.readBytes(this.field3926.data, this.field3926.offset, var8);
                      if (this.field3944 != 0) {
                         for(var9 = 0; var9 < var8; ++var9) {
                            var10000 = this.field3926.data;
@@ -160,7 +160,7 @@ public class class355 {
                         var9 = var21;
                      }
 
-                     this.field3936.method7603(this.field3941.data, this.field3941.offset, var9);
+                     this.field3936.readBytes(this.field3941.data, this.field3941.offset, var9);
                      if (this.field3944 != 0) {
                         for(var10 = 0; var10 < var9; ++var10) {
                            var10000 = this.field3941.data;

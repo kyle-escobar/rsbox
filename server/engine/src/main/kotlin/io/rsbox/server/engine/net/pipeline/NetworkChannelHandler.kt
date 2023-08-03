@@ -2,11 +2,12 @@ package io.rsbox.server.engine.net.pipeline
 
 import io.netty.channel.ChannelHandlerContext
 import io.netty.channel.ChannelInboundHandlerAdapter
+import io.netty.channel.SimpleChannelInboundHandler
 import io.rsbox.server.engine.net.Message
 import io.rsbox.server.engine.net.Session
 import io.rsbox.server.engine.net.session
 
-class NetworkChannelHandler : ChannelInboundHandlerAdapter() {
+class NetworkChannelHandler : SimpleChannelInboundHandler<Message>() {
 
     override fun channelActive(ctx: ChannelHandlerContext) {
         val newSession = Session(ctx)
@@ -18,8 +19,7 @@ class NetworkChannelHandler : ChannelInboundHandlerAdapter() {
         ctx.session.onDisconnect()
     }
 
-    override fun channelRead(ctx: ChannelHandlerContext, msg: Any) {
-        if(msg !is Message) return
+    override fun channelRead0(ctx: ChannelHandlerContext, msg: Message) {
         ctx.session.onMessage(msg)
     }
 

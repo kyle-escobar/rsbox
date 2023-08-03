@@ -381,7 +381,7 @@ public class class56 {
    }
 
    final boolean method1098() {
-      return this.field401.method7719() || this.field401.method7770() >= 200 && Client.field1557 != 1;
+      return this.field401.method7719() || this.field401.method7770() >= 200 && Client.isMember != 1;
    }
 
    final void method1147(String var1) {
@@ -404,7 +404,7 @@ public class class56 {
    }
 
    final boolean method1092() {
-      return this.field402.method7719() || this.field402.method7770() >= 100 && 1 != Client.field1557;
+      return this.field402.method7719() || this.field402.method7770() >= 100 && 1 != Client.isMember;
    }
 
    final void method1101(String var1) {

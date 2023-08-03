@@ -18,7 +18,7 @@ public class class116 {
 
    static final void method3290(PacketBuffer var0) {
       var0.method8476();
-      int var2 = Client.field1716;
+      int var2 = Client.localPlayerIndex;
       class84 var3 = class146.field1362 = Client.field1527[var2] = new class84();
       var3.field755 = var2;
       int var4 = var0.method8483(30);

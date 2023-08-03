@@ -228,7 +228,7 @@ public class class28 {
                   byte var16 = var2.readByteAdd();
                   byte var17 = var2.readByte();
                   class84 var18;
-                  if (var7 == Client.field1716) {
+                  if (var7 == Client.localPlayerIndex) {
                      var18 = class146.field1362;
                   } else {
                      var18 = Client.field1527[var7];

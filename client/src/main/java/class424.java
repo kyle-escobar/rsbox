@@ -19,7 +19,7 @@ public abstract class class424 {
 
    public abstract int readUnsignedByte() throws IOException;
 
-   public abstract int method7603(byte[] var1, int var2, int var3) throws IOException;
+   public abstract int readBytes(byte[] var1, int var2, int var3) throws IOException;
 
    public abstract void method7589();
 

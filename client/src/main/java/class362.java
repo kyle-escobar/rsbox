@@ -21,7 +21,7 @@ public class class362 extends class476 {
       while(true) {
          var3 = 16;
          var4 = 1 << var3;
-         if (var1.method8485(Client.serverConnection.field1042) < var3 + 12) {
+         if (var1.method8485(Client.serverConnection.packetLength) < var3 + 12) {
             break;
          }
 
@@ -320,7 +320,7 @@ public class class362 extends class476 {
             var17 = var1.method8792();
             var8 = var1.method8792();
             var15.field980 = var1.readUnsignedByte() == 1;
-            if (Client.field1441 >= 212) {
+            if (Client.revision >= 212) {
                var15.field978 = var17;
                var15.field979 = var8;
             } else {
@@ -427,8 +427,8 @@ public class class362 extends class476 {
          }
       }
 
-      if (var1.offset != Client.serverConnection.field1042) {
-         throw new RuntimeException(var1.offset + class90.field829 + Client.serverConnection.field1042);
+      if (var1.offset != Client.serverConnection.packetLength) {
+         throw new RuntimeException(var1.offset + class90.field829 + Client.serverConnection.packetLength);
       } else {
          for(var3 = 0; var3 < Client.field1565; ++var3) {
             if (Client.field1489[Client.field1491[var3]] == null) {

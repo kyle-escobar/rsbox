@@ -2,15 +2,15 @@ import java.io.IOException;
 
 public class class106 {
    boolean field1050 = true;
-   class305 field1048 = null;
-   class305 field1049;
-   class305 field1054;
-   class305 field1055;
+   ServerPacket serverPacket = null;
+   ServerPacket field1049;
+   ServerPacket field1054;
+   ServerPacket field1055;
    class382 field1043 = new class382();
    class424 field1051;
    PacketBuffer buffer = new PacketBuffer(40000);
    Buffer field1045 = new Buffer(5000);
-   int field1042 = 0;
+   int packetLength = 0;
    int field1052 = 0;
    int field1053 = 0;
    int field1056 = 0;

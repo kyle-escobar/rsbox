@@ -126,7 +126,7 @@ public class class533 {
 
       var5.packet.writeByte(var8);
       var5.packet.writeByte(var19);
-      if (null != var9 && Client.field1441 >= 214) {
+      if (null != var9 && Client.revision >= 214) {
          for(int var18 = 0; var18 < var9.length; ++var18) {
             var5.packet.writeByte(var9[var18]);
          }

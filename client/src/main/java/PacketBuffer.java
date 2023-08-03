@@ -28,7 +28,7 @@ public class PacketBuffer extends Buffer {
       return var2 >= 128;
    }
 
-   public int method8480() {
+   public int readOpcode() {
       int var2 = super.data[++super.offset - 1] - this.field5040.method9368() & 255;
       return var2 < 128 ? var2 : (var2 - 128 << 8) + (super.data[++super.offset - 1] - this.field5040.method9368() & 255);
    }

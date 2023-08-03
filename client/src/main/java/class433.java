@@ -29,7 +29,7 @@ public class class433 extends class424 {
       return this.field4645.method7797();
    }
 
-   public int method7603(byte[] var1, int var2, int var3) throws IOException {
+   public int readBytes(byte[] var1, int var2, int var3) throws IOException {
       return this.field4645.method7798(var1, var2, var3);
    }
 

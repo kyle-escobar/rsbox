@@ -76,7 +76,7 @@ public class class32 {
          class456.field4751 = var4;
       }
 
-      if (1 == Client.field1521 && Client.field1608 >= 2 && Client.field1445 % 50 == 0 && (class146.field1362.field949 >> 7 != class468.field4805 >> 7 || class44.field302 >> 7 != class146.field1362.field963 >> 7)) {
+      if (1 == Client.field1521 && Client.privilege >= 2 && Client.field1445 % 50 == 0 && (class146.field1362.field949 >> 7 != class468.field4805 >> 7 || class44.field302 >> 7 != class146.field1362.field963 >> 7)) {
          var13 = class146.field1362.field759;
          var14 = class342.field3837 + (class468.field4805 >> 7);
          var15 = (class44.field302 >> 7) + class144.field1352;

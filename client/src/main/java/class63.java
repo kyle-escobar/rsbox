@@ -803,7 +803,7 @@ public class class63 {
                Client.method3898(var4);
                return 1;
             } else if (var0 == 1130) {
-               var4.method6291(field484[--field486], class261.field2935, Client.method2114());
+               var4.method6291(field484[--field486], class261.field2935, Client.get214LoginResponseLong());
                return 1;
             } else if (var0 == 1131) {
                field479 -= 2;
@@ -2698,8 +2698,8 @@ public class class63 {
                field483[++field479 - 1] = class93.method1586(var4, var5);
                return 1;
             } else if (var0 == 3316) {
-               if (Client.field1608 >= 2) {
-                  field483[++field479 - 1] = Client.field1608;
+               if (Client.privilege >= 2) {
+                  field483[++field479 - 1] = Client.privilege;
                } else {
                   field483[++field479 - 1] = 0;
                }
@@ -2718,7 +2718,7 @@ public class class63 {
                field483[++field479 - 1] = Client.field1607;
                return 1;
             } else if (var0 == 3323) {
-               if (Client.field1610) {
+               if (Client.isPlayerMod) {
                   field483[++field479 - 1] = 1;
                } else {
                   field483[++field479 - 1] = 0;

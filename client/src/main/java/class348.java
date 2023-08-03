@@ -23,7 +23,7 @@ final class class348 implements Comparator {
       if (var4 == 0) {
          if (var3) {
             var5.field744 = false;
-         } else if (Client.field1716 == var1) {
+         } else if (Client.localPlayerIndex == var1) {
             throw new RuntimeException();
          } else {
             class116.field1115[var1] = (var5.field759 << 28) + (var5.field945[0] + class342.field3837 >> 13 << 14) + (var5.field1012[0] + class144.field1352 >> 13);
@@ -70,7 +70,7 @@ final class class348 implements Comparator {
                ++var8;
             }
 
-            if (var1 != Client.field1716 || var5.field949 >= 1536 && var5.field963 >= 1536 && var5.field949 < 11776 && var5.field963 < 11776) {
+            if (var1 != Client.localPlayerIndex || var5.field949 >= 1536 && var5.field963 >= 1536 && var5.field949 < 11776 && var5.field963 < 11776) {
                if (var3) {
                   var5.field744 = true;
                   var5.field758 = var7;
@@ -134,7 +134,7 @@ final class class348 implements Comparator {
                var8 += 2;
             }
 
-            if (Client.field1716 != var1 || var5.field949 >= 1536 && var5.field963 >= 1536 && var5.field949 < 11776 && var5.field963 < 11776) {
+            if (Client.localPlayerIndex != var1 || var5.field949 >= 1536 && var5.field963 >= 1536 && var5.field949 < 11776 && var5.field963 < 11776) {
                if (var3) {
                   var5.field744 = true;
                   var5.field758 = var7;
@@ -169,7 +169,7 @@ final class class348 implements Comparator {
 
                var11 = var5.field945[0] + var9;
                var12 = var5.field1012[0] + var10;
-               if (var1 != Client.field1716 || var5.field949 >= 1536 && var5.field963 >= 1536 && var5.field949 < 11776 && var5.field963 < 11776) {
+               if (var1 != Client.localPlayerIndex || var5.field949 >= 1536 && var5.field963 >= 1536 && var5.field949 < 11776 && var5.field963 < 11776) {
                   if (var3) {
                      var5.field744 = true;
                      var5.field758 = var11;
@@ -184,7 +184,7 @@ final class class348 implements Comparator {
                }
 
                var5.field759 = (byte)(var8 + var5.field759 & 3);
-               if (var1 == Client.field1716) {
+               if (var1 == Client.localPlayerIndex) {
                   class44.field306 = var5.field759;
                }
 
@@ -195,7 +195,7 @@ final class class348 implements Comparator {
                var10 = var7 & 16383;
                var11 = (class342.field3837 + var5.field945[0] + var9 & 16383) - class342.field3837;
                var12 = (var10 + var5.field1012[0] + class144.field1352 & 16383) - class144.field1352;
-               if (Client.field1716 != var1 || var5.field949 >= 1536 && var5.field963 >= 1536 && var5.field949 < 11776 && var5.field963 < 11776) {
+               if (Client.localPlayerIndex != var1 || var5.field949 >= 1536 && var5.field963 >= 1536 && var5.field949 < 11776 && var5.field963 < 11776) {
                   if (var3) {
                      var5.field744 = true;
                      var5.field758 = var11;
@@ -210,7 +210,7 @@ final class class348 implements Comparator {
                }
 
                var5.field759 = (byte)(var5.field759 + var8 & 3);
-               if (var1 == Client.field1716) {
+               if (var1 == Client.localPlayerIndex) {
                   class44.field306 = var5.field759;
                }
 

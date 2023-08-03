@@ -3,6 +3,7 @@ package io.rsbox.server.engine
 import io.rsbox.server.common.inject
 import io.rsbox.server.config.ServerConfig
 import io.rsbox.server.engine.coroutine.EngineCoroutineScope
+import io.rsbox.server.engine.model.World
 import io.rsbox.server.engine.net.NetworkServer
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.delay
@@ -15,6 +16,7 @@ class Engine {
 
     private val engineCoroutine: EngineCoroutineScope by inject()
     private val networkServer: NetworkServer by inject()
+    private val world: World by inject()
 
     private var running = false
     private var prevCycleNanos = 0L
@@ -23,6 +25,7 @@ class Engine {
         Logger.info("Starting RSBox engine.")
         running = true
 
+        world.load()
         engineCoroutine.start()
         networkServer.start()
     }
@@ -53,6 +56,7 @@ class Engine {
     }
 
     private suspend fun cycle() {
-
+        world.players.forEachEntry { it.cycle() }
+        world.players.forEachEntry { it.session.flush() }
     }
 }

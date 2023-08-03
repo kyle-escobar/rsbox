@@ -82,7 +82,7 @@ public final class class84 extends class102 {
       }
 
       int[] var28 = null;
-      if (Client.field1441 >= 213) {
+      if (Client.revision >= 213) {
          var28 = new int[12];
 
          for(var8 = 0; var8 < 12; ++var8) {
@@ -154,7 +154,7 @@ public final class class84 extends class102 {
       this.field743 = var1.readUnsignedByte();
       this.field761 = var1.readUnsignedShort();
       this.field760 = var1.readUnsignedByte() == 1;
-      if (Client.field1434 == 0 && Client.field1608 >= 2) {
+      if (Client.field1434 == 0 && Client.privilege >= 2) {
          this.field760 = false;
       }
 

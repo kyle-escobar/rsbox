@@ -1,11 +1,16 @@
 package io.rsbox.server.engine.net.login
 
 import io.netty.buffer.ByteBuf
+import io.rsbox.server.common.inject
+import io.rsbox.server.engine.model.World
+import io.rsbox.server.engine.model.entity.Player
 import io.rsbox.server.engine.net.Message
 import io.rsbox.server.engine.net.Protocol
 import io.rsbox.server.engine.net.Session
 
 class LoginProtocol(session: Session) : Protocol(session) {
+
+    private val world: World by inject()
 
     private val encoder = LoginEncoder(session)
     private val decoder = LoginDecoder(session)
@@ -15,6 +20,10 @@ class LoginProtocol(session: Session) : Protocol(session) {
 
     override fun handle(msg: Message) {
         if(msg !is LoginRequest) return
-        println("Login Request: username=${msg.username}, password=${msg.password}")
+
+        val player = Player.create(msg)
+
+        world.players.add(player)
+        player.login()
     }
 }
