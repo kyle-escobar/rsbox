@@ -16,7 +16,7 @@ public class class192 extends class476 {
       this.method3678(this.field2091);
    }
 
-   public void method3690(PacketBuffer var1, int var2) {
+   public void method3690(Buffer var1, int var2) {
       while(true) {
          int var4 = var1.readUnsignedByte();
          if (var4 == 0) {
@@ -27,7 +27,7 @@ public class class192 extends class476 {
       }
    }
 
-   void method3674(PacketBuffer var1, int var2, int var3) {
+   void method3674(Buffer var1, int var2, int var3) {
       if (var2 == 1) {
          this.field2091 = var1.readUnsignedMedium();
       }

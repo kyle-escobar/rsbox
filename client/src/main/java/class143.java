@@ -27,7 +27,7 @@ public class class143 {
    class143() {
    }
 
-   int method2521(PacketBuffer var1, int var2) {
+   int method2521(Buffer var1, int var2) {
       int var4 = var1.readUnsignedShort();
       class140.method2062(var1.readUnsignedByte());
       this.field1321 = class125.method1191(var1.readUnsignedByte());

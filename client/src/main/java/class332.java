@@ -280,9 +280,9 @@ public class class332 extends class470 {
                      class96.field884[var0][var3] = new class332();
                      class96.field884[var0][var3].field3606 = (var0 << 16) + var3;
                      if (var4[0] == -1) {
-                        class96.field884[var0][var3].method6212(new PacketBuffer(var4));
+                        class96.field884[var0][var3].method6212(new Buffer(var4));
                      } else {
-                        class96.field884[var0][var3].method6285(new PacketBuffer(var4));
+                        class96.field884[var0][var3].method6285(new Buffer(var4));
                      }
                   }
                }
@@ -400,7 +400,7 @@ public class class332 extends class470 {
 
    }
 
-   void method6285(PacketBuffer var1) {
+   void method6285(Buffer var1) {
       this.field3605 = false;
       this.field3608 = var1.readUnsignedByte();
       this.field3689 = var1.readUnsignedByte();
@@ -568,7 +568,7 @@ public class class332 extends class470 {
 
    }
 
-   void method6212(PacketBuffer var1) {
+   void method6212(Buffer var1) {
       var1.readUnsignedByte();
       this.field3605 = true;
       this.field3608 = var1.readUnsignedByte();
@@ -704,7 +704,7 @@ public class class332 extends class470 {
       this.field3711 = this.method6214(var1);
    }
 
-   Object[] method6213(PacketBuffer var1) {
+   Object[] method6213(Buffer var1) {
       int var3 = var1.readUnsignedByte();
       if (var3 == 0) {
          return null;
@@ -725,7 +725,7 @@ public class class332 extends class470 {
       }
    }
 
-   int[] method6214(PacketBuffer var1) {
+   int[] method6214(Buffer var1) {
       int var3 = var1.readUnsignedByte();
       if (var3 == 0) {
          return null;

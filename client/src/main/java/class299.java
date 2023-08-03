@@ -14,7 +14,7 @@ public class class299 extends class470 {
    short[] field3157 = new short[128];
 
    class299(byte[] var1) {
-      PacketBuffer var2 = new PacketBuffer(var1);
+      Buffer var2 = new Buffer(var1);
 
       int var3;
       for(var3 = 0; 0 != var2.data[var3 + var2.offset]; ++var3) {

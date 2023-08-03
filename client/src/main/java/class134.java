@@ -10,7 +10,7 @@ public class class134 extends class133 {
       this.field1251 = null;
    }
 
-   static int method2468(class497 var0) {
+   static int method2468(PacketBuffer var0) {
       int var2 = var0.method8483(2);
       int var3;
       if (var2 == 0) {
@@ -26,7 +26,7 @@ public class class134 extends class133 {
       return var3;
    }
 
-   void method2457(PacketBuffer var1) {
+   void method2457(Buffer var1) {
       if (var1.readUnsignedByte() != 255) {
          --var1.offset;
          this.field1250 = var1.readLong();

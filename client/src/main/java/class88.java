@@ -88,7 +88,7 @@ public final class class88 {
          }
       }
 
-      PacketBuffer var13 = new PacketBuffer(var0);
+      Buffer var13 = new Buffer(var0);
 
       for(var8 = 0; var8 < 4; ++var8) {
          for(var9 = 0; var9 < 64; ++var9) {
@@ -113,7 +113,7 @@ public final class class88 {
          }
       }
 
-      PacketBuffer var30 = new PacketBuffer(var0);
+      Buffer var30 = new Buffer(var0);
 
       for(var13 = 0; var13 < 4; ++var13) {
          for(int var14 = 0; var14 < 64; ++var14) {
@@ -191,7 +191,7 @@ public final class class88 {
 
    }
 
-   static final void method1892(PacketBuffer var0, int var1, int var2, int var3, int var4, int var5, int var6) {
+   static final void method1892(Buffer var0, int var1, int var2, int var3, int var4, int var5, int var6) {
       boolean var8 = var1 >= 0 && var1 < 4 && var2 >= 0 && var2 < 104 && var3 >= 0 && var3 < 104;
       int var9;
       if (var8) {
@@ -253,7 +253,7 @@ public final class class88 {
    }
 
    static final void method266(byte[] var0, int var1, int var2, class234 var3, class218[] var4) {
-      PacketBuffer var6 = new PacketBuffer(var0);
+      Buffer var6 = new Buffer(var0);
       int var7 = -1;
 
       while(true) {
@@ -298,7 +298,7 @@ public final class class88 {
    }
 
    static final void method1906(byte[] var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7, class234 var8, class218[] var9) {
-      PacketBuffer var10 = new PacketBuffer(var0);
+      Buffer var10 = new Buffer(var0);
       int var11 = -1;
 
       while(true) {
@@ -346,7 +346,7 @@ public final class class88 {
    }
 
    static final void method2118(int var0, int var1, int var2, int var3, int var4, int var5, class234 var6, class218 var7) {
-      if (!Client.field1549 || 0 != (field804[0][var1][var2] & 2) || (field804[var0][var1][var2] & 16) == 0) {
+      if (!Client.isLowDetail || 0 != (field804[0][var1][var2] & 2) || (field804[var0][var1][var2] & 16) == 0) {
          if (var0 < field798) {
             field798 = var0;
          }
@@ -398,7 +398,7 @@ public final class class88 {
 
          Object var23;
          if (var5 == 22) {
-            if (!Client.field1549 || 0 != var9.field1924 || 1 == var9.field1922 || var9.field1943) {
+            if (!Client.isLowDetail || 0 != var9.field1924 || 1 == var9.field1922 || var9.field1943) {
                if (-1 == var9.field1930 && var9.field1946 == null) {
                   var23 = var9.method3465(22, var4, var16, var18, var17, var19);
                } else {
@@ -806,7 +806,7 @@ public final class class88 {
                         byte[] var56 = class192.field2092.method6381(1, var18);
                         var55 = new class192();
                         if (null != var56) {
-                           var55.method3690(new PacketBuffer(var56), var18);
+                           var55.method3690(new Buffer(var56), var18);
                         }
 
                         var55.method3675();
@@ -840,7 +840,7 @@ public final class class88 {
                         byte[] var58 = class192.field2092.method6381(1, var19);
                         var57 = new class192();
                         if (null != var58) {
-                           var57.method3690(new PacketBuffer(var58), var19);
+                           var57.method3690(new Buffer(var58), var19);
                         }
 
                         var57.method3675();
@@ -887,7 +887,7 @@ public final class class88 {
                      var17 -= class163.field1769[var20];
                   }
 
-                  if (var18 >= 1 && var18 < 103 && (!Client.field1549 || (field804[0][var12][var18] & 2) != 0 || (field804[var3][var12][var18] & 16) == 0)) {
+                  if (var18 >= 1 && var18 < 103 && (!Client.isLowDetail || (field804[0][var12][var18] & 2) != 0 || (field804[var3][var12][var18] & 16) == 0)) {
                      if (var3 < field798) {
                         field798 = var3;
                      }
@@ -959,7 +959,7 @@ public final class class88 {
                               byte[] var40 = class209.field2253.method6381(4, var38);
                               var39 = new class209();
                               if (null != var40) {
-                                 var39.method3908(new PacketBuffer(var40), var38);
+                                 var39.method3908(new Buffer(var40), var38);
                               }
 
                               var39.method3912();

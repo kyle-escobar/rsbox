@@ -76,7 +76,7 @@ public class class160 {
          String var9 = null;
          String var10 = null;
          boolean var11 = false;
-         PacketBuffer var13;
+         Buffer var13;
          int var14;
          int var16;
          File var37;
@@ -84,7 +84,7 @@ public class class160 {
             try {
                class508 var12 = new class508(class157.field1739, "rw", 10000L);
 
-               for(var13 = new PacketBuffer((int)var12.method8613()); var13.offset < var13.data.length; var13.offset += var14) {
+               for(var13 = new Buffer((int)var12.method8613()); var13.offset < var13.data.length; var13.offset += var14) {
                   var14 = var12.method8615(var13.data, var13.offset, var13.data.length - var13.offset);
                   if (var14 == -1) {
                      throw new IOException();
@@ -215,7 +215,7 @@ public class class160 {
 
             try {
                class508 var46 = new class508(class157.field1739, "rw", 10000L);
-               PacketBuffer var49 = new PacketBuffer(500);
+               Buffer var49 = new Buffer(500);
                var49.writeByte(3);
                var49.writeByte(var13 != null ? 1 : 0);
                var49.writeUtf8(var36.getPath());

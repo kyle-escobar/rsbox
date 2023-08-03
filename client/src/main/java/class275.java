@@ -11,7 +11,7 @@ public class class275 extends class253 {
    class275() {
    }
 
-   void method5343(PacketBuffer var1, PacketBuffer var2, int var3, boolean var4) {
+   void method5343(Buffer var1, Buffer var2, int var3, boolean var4) {
       this.method4955(var1, var3);
       int var6 = var2.readUnsignedShort();
       this.field3018 = new HashSet(var6);
@@ -47,7 +47,7 @@ public class class275 extends class253 {
       this.method5344(var2, var4);
    }
 
-   void method5344(PacketBuffer var1, boolean var2) {
+   void method5344(Buffer var1, boolean var2) {
       this.field3017 = new LinkedList();
       int var4 = var1.readUnsignedShort();
 

@@ -8,7 +8,7 @@ public class class515 extends class476 {
    class515() {
    }
 
-   void method8697(PacketBuffer var1) {
+   void method8697(Buffer var1) {
       while(true) {
          int var3 = var1.readUnsignedByte();
          if (var3 == 0) {
@@ -23,7 +23,7 @@ public class class515 extends class476 {
       return null == this.field5116 ? null : this.field5116[var1];
    }
 
-   void method8699(PacketBuffer var1, int var2) {
+   void method8699(Buffer var1, int var2) {
       if (var2 == 3) {
          int var4 = var1.readUnsignedByte();
          if (null == this.field5116) {

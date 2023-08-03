@@ -150,8 +150,8 @@ public final class class240 {
          System.nanoTime();
          int var5 = var1.method6395(class276.field3025.field3022);
          int var6 = var1.method6400(var5, var2);
-         PacketBuffer var7 = new PacketBuffer(var1.method6402(class276.field3025.field3022, var2));
-         PacketBuffer var8 = new PacketBuffer(var1.method6402(class276.field3021.field3022, var2));
+         Buffer var7 = new Buffer(var1.method6402(class276.field3025.field3022, var2));
+         Buffer var8 = new Buffer(var1.method6402(class276.field3021.field3022, var2));
          System.nanoTime();
          System.nanoTime();
          this.field2675 = new class275();

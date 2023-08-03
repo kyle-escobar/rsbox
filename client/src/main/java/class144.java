@@ -12,7 +12,7 @@ public class class144 extends class133 {
       this.this$0 = var1;
    }
 
-   void method2457(PacketBuffer var1) {
+   void method2457(Buffer var1) {
       this.field1346 = var1.readInt();
       this.field1344 = var1.readInt();
       this.field1343 = var1.readUnsignedByte();

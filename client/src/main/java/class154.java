@@ -26,7 +26,7 @@ public class class154 {
    public String[] field1417;
    public String[] field1418;
 
-   public class154(PacketBuffer var1) {
+   public class154(Buffer var1) {
       this.method2603(var1);
    }
 
@@ -450,7 +450,7 @@ public class class154 {
       return true;
    }
 
-   void method2603(PacketBuffer var1) {
+   void method2603(Buffer var1) {
       int var3 = var1.readUnsignedByte();
       if (var3 >= 1 && var3 <= 6) {
          int var4 = var1.readUnsignedByte();

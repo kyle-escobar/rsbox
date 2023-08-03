@@ -9,15 +9,15 @@ public class class518 extends class476 {
 
    public class518(class342 var1, int var2, int var3) {
       byte[] var4 = var1.method6381(var2, var3 + 1);
-      this.method8723(new PacketBuffer(var4));
+      this.method8723(new Buffer(var4));
    }
 
    public class518(class342 var1, int var2) {
       byte[] var3 = var1.method6381(var2, 0);
-      this.method8723(new PacketBuffer(var3));
+      this.method8723(new Buffer(var3));
    }
 
-   void method8723(PacketBuffer var1) {
+   void method8723(Buffer var1) {
       int var3 = var1.readVarLength();
       this.field5124 = new class507[var3];
       this.field5122 = new ArrayList(var3);

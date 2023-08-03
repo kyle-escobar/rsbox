@@ -5,7 +5,7 @@ public class class307 {
    class307() throws Throwable {
    }
 
-   public static String method5741(PacketBuffer var0) {
+   public static String method5741(Buffer var0) {
       String var2;
       try {
          int var3 = var0.readUnsignedSmartByteShort();

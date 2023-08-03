@@ -29,7 +29,7 @@ public class class427 extends class435 {
       this.field4614 = class325.method5891(var1);
    }
 
-   public final void method7618(PacketBuffer var1, int var2) {
+   public final void method7618(Buffer var1, int var2) {
       this.method7617(var1.readString());
       long var4 = var1.readLong();
       long var7 = var4;
@@ -89,7 +89,7 @@ public class class427 extends class435 {
       }
    }
 
-   public final void method7628(PacketBuffer var1) {
+   public final void method7628(Buffer var1) {
       class526 var3 = new class526(var1.readString(), this.field4613);
       int var4 = var1.readUnsignedShort();
       byte var5 = var1.readByte();

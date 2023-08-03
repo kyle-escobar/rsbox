@@ -4,7 +4,7 @@ public class class200 {
    class200() throws Throwable {
    }
 
-   static final class469 method2466(PacketBuffer var0, class469 var1) {
+   static final class469 method2466(Buffer var0, class469 var1) {
       int var3 = var0.readUnsignedByte();
       int var4;
       if (null == var1) {

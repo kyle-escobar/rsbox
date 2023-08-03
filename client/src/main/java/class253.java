@@ -19,7 +19,7 @@ public class class253 {
       return var0 == 160 || var0 == ' ' || var0 == '_' || var0 == '-';
    }
 
-   public void method4955(PacketBuffer var1, int var2) {
+   public void method4955(Buffer var1, int var2) {
       this.field2848 = var2;
       this.field2853 = var1.readString();
       this.field2850 = var1.readString();
@@ -38,7 +38,7 @@ public class class253 {
       this.method4934();
    }
 
-   class286 method4929(PacketBuffer var1) {
+   class286 method4929(Buffer var1) {
       int var3 = var1.readUnsignedByte();
       class265[] var4 = new class265[]{class265.field2955, class265.field2953, class265.field2952, class265.field2954};
       class265 var5 = (class265)class373.method1724(var4, var3);

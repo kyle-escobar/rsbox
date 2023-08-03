@@ -5,7 +5,7 @@ public class class376 {
    public final int field4365;
    public final long field4368;
 
-   class376(PacketBuffer var1, byte var2, int var3) {
+   class376(Buffer var1, byte var2, int var3) {
       this.field4367 = var1.readString();
       this.field4364 = var1.readString();
       this.field4365 = var1.readUnsignedShort();

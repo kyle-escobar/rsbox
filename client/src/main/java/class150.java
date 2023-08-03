@@ -10,7 +10,7 @@ public class class150 extends class163 {
       this.field1380 = -1;
    }
 
-   void method3248(PacketBuffer var1) {
+   void method3248(Buffer var1) {
       this.field1380 = var1.readUnsignedShort();
       var1.readUnsignedByte();
       if (var1.readUnsignedByte() != 255) {

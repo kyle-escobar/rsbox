@@ -59,7 +59,7 @@ public class class285 implements class286 {
       }
    }
 
-   public void method5444(PacketBuffer var1) {
+   public void method5444(Buffer var1) {
       this.field3066 = var1.readUnsignedByte();
       this.field3060 = var1.readUnsignedByte();
       this.field3061 = var1.readUnsignedShort();

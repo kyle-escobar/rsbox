@@ -8,7 +8,7 @@ public class class171 extends class133 {
       this.field1820 = -1;
    }
 
-   void method2457(PacketBuffer var1) {
+   void method2457(Buffer var1) {
       this.field1820 = var1.readUnsignedShort();
    }
 

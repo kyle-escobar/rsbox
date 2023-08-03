@@ -19,7 +19,7 @@ public class class236 implements class259 {
          this.field2623 = new class211[var1.method6393(0)];
 
          for(int var9 = 0; var9 < var8; ++var9) {
-            PacketBuffer var10 = new PacketBuffer(var1.method6381(0, var7[var9]));
+            Buffer var10 = new Buffer(var1.method6381(0, var7[var9]));
             this.field2623[var7[var9]] = new class211(var10);
          }
       } else {

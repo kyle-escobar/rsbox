@@ -19,7 +19,7 @@ public class class183 extends class476 {
       field1900.method5637();
    }
 
-   public void method3433(PacketBuffer var1) {
+   public void method3433(Buffer var1) {
       while(true) {
          int var3 = var1.readUnsignedByte();
          if (var3 == 0) {
@@ -30,7 +30,7 @@ public class class183 extends class476 {
       }
    }
 
-   void method3444(PacketBuffer var1, int var2) {
+   void method3444(Buffer var1, int var2) {
       if (var2 == 1) {
          var1.readUnsignedShort();
       } else if (var2 == 2) {

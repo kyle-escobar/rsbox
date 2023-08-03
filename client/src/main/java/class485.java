@@ -99,7 +99,7 @@ public class class485 {
       this.field4893 = new HashMap(var10);
 
       for(int var11 = 0; var11 < var10; ++var11) {
-         PacketBuffer var12 = new PacketBuffer(this.field4884.method6381(var8, var9[var11]));
+         Buffer var12 = new Buffer(this.field4884.method6381(var8, var9[var11]));
          class253 var13 = new class253();
          var13.method4955(var12, var9[var11]);
          this.field4893.put(var13.method4937(), var13);
@@ -209,12 +209,12 @@ public class class485 {
                int var13 = this.field4933.field3581;
                var10 = this.field4933.field3583;
                var11 = this.field4933.field3582;
-               class308 var12 = class308.method8607(class309.field3432, Client.field1436.field1046);
-               var12.field3351.writeIntME(0);
-               var12.field3351.method8934(var13);
-               var12.field3351.writeByteAdd(var11);
-               var12.field3351.writeShortAdd(var10);
-               Client.field1436.method2148(var12);
+               class308 var12 = class308.method8607(class309.field3432, Client.serverConnection.field1046);
+               var12.packet.writeIntME(0);
+               var12.packet.method8934(var13);
+               var12.packet.writeByteAdd(var11);
+               var12.packet.writeShortAdd(var10);
+               Client.serverConnection.method2148(var12);
             } else {
                boolean var9 = true;
                if (this.field4932) {
@@ -226,9 +226,9 @@ public class class485 {
                }
 
                if (var9) {
-                  class308 var14 = class308.method8607(class309.field3409, Client.field1436.field1046);
-                  var14.field3351.writeIntIME(this.field4933.method6190());
-                  Client.field1436.method2148(var14);
+                  class308 var14 = class308.method8607(class309.field3409, Client.serverConnection.field1046);
+                  var14.packet.writeIntIME(this.field4933.method6190());
+                  Client.serverConnection.method2148(var14);
                   this.field4919 = 0L;
                }
             }

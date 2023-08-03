@@ -51,7 +51,7 @@ public class class213 extends class228 {
    }
 
    class213(byte[] var1) {
-      PacketBuffer var2 = new PacketBuffer(10);
+      Buffer var2 = new Buffer(10);
       var2.writeShort(-2);
       if (var1[var1.length - 1] == -3 && var1[var1.length - 2] == -1) {
          this.method4021(var1);
@@ -409,13 +409,13 @@ public class class213 extends class228 {
    }
 
    void method4021(byte[] var1) {
-      PacketBuffer var2 = new PacketBuffer(var1);
-      PacketBuffer var3 = new PacketBuffer(var1);
-      PacketBuffer var4 = new PacketBuffer(var1);
-      PacketBuffer var5 = new PacketBuffer(var1);
-      PacketBuffer var6 = new PacketBuffer(var1);
-      PacketBuffer var7 = new PacketBuffer(var1);
-      PacketBuffer var8 = new PacketBuffer(var1);
+      Buffer var2 = new Buffer(var1);
+      Buffer var3 = new Buffer(var1);
+      Buffer var4 = new Buffer(var1);
+      Buffer var5 = new Buffer(var1);
+      Buffer var6 = new Buffer(var1);
+      Buffer var7 = new Buffer(var1);
+      Buffer var8 = new Buffer(var1);
       var2.offset = var1.length - 26;
       int var9 = var2.readUnsignedShort();
       int var10 = var2.readUnsignedShort();
@@ -733,11 +733,11 @@ public class class213 extends class228 {
    void method3955(byte[] var1) {
       boolean var2 = false;
       boolean var3 = false;
-      PacketBuffer var4 = new PacketBuffer(var1);
-      PacketBuffer var5 = new PacketBuffer(var1);
-      PacketBuffer var6 = new PacketBuffer(var1);
-      PacketBuffer var7 = new PacketBuffer(var1);
-      PacketBuffer var8 = new PacketBuffer(var1);
+      Buffer var4 = new Buffer(var1);
+      Buffer var5 = new Buffer(var1);
+      Buffer var6 = new Buffer(var1);
+      Buffer var7 = new Buffer(var1);
+      Buffer var8 = new Buffer(var1);
       var4.offset = var1.length - 23;
       int var9 = var4.readUnsignedShort();
       int var10 = var4.readUnsignedShort();
@@ -1025,13 +1025,13 @@ public class class213 extends class228 {
    }
 
    void method3956(byte[] var1) {
-      PacketBuffer var2 = new PacketBuffer(var1);
-      PacketBuffer var3 = new PacketBuffer(var1);
-      PacketBuffer var4 = new PacketBuffer(var1);
-      PacketBuffer var5 = new PacketBuffer(var1);
-      PacketBuffer var6 = new PacketBuffer(var1);
-      PacketBuffer var7 = new PacketBuffer(var1);
-      PacketBuffer var8 = new PacketBuffer(var1);
+      Buffer var2 = new Buffer(var1);
+      Buffer var3 = new Buffer(var1);
+      Buffer var4 = new Buffer(var1);
+      Buffer var5 = new Buffer(var1);
+      Buffer var6 = new Buffer(var1);
+      Buffer var7 = new Buffer(var1);
+      Buffer var8 = new Buffer(var1);
       var2.offset = var1.length - 23;
       int var9 = var2.readUnsignedShort();
       int var10 = var2.readUnsignedShort();
@@ -1332,11 +1332,11 @@ public class class213 extends class228 {
    void method3957(byte[] var1) {
       boolean var2 = false;
       boolean var3 = false;
-      PacketBuffer var4 = new PacketBuffer(var1);
-      PacketBuffer var5 = new PacketBuffer(var1);
-      PacketBuffer var6 = new PacketBuffer(var1);
-      PacketBuffer var7 = new PacketBuffer(var1);
-      PacketBuffer var8 = new PacketBuffer(var1);
+      Buffer var4 = new Buffer(var1);
+      Buffer var5 = new Buffer(var1);
+      Buffer var6 = new Buffer(var1);
+      Buffer var7 = new Buffer(var1);
+      Buffer var8 = new Buffer(var1);
       var4.offset = var1.length - 18;
       int var9 = var4.readUnsignedShort();
       int var10 = var4.readUnsignedShort();

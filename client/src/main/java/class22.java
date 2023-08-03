@@ -9,7 +9,7 @@ public class class22 {
       this.field120 = var3;
    }
 
-   class22(PacketBuffer var1) {
+   class22(Buffer var1) {
       this(var1.readUnsignedByte(), var1.readUnsignedByte(), var1.readString());
    }
 

@@ -14,7 +14,7 @@ public class class429 extends class435 {
       return new class430[var1];
    }
 
-   public void method7674(PacketBuffer var1, int var2) {
+   public void method7674(Buffer var1, int var2) {
       while(var1.offset < var2) {
          int var4 = var1.readUnsignedByte();
          if (var4 == 4) {

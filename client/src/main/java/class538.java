@@ -184,7 +184,7 @@ public class class538 {
    }
 
    public static void method3764(byte[] var0) {
-      PacketBuffer var2 = new PacketBuffer(var0);
+      Buffer var2 = new Buffer(var0);
       var2.offset = var0.length - 2;
       field5226 = var2.readUnsignedShort();
       class482.field4876 = new int[field5226];

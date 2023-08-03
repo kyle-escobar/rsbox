@@ -7,7 +7,7 @@ public class class280 extends class273 {
    class280() {
    }
 
-   void method5363(PacketBuffer var1) {
+   void method5363(Buffer var1) {
       int var3 = var1.readUnsignedByte();
       if (class281.field3039.field3040 != var3) {
          throw new IllegalStateException("");
@@ -27,7 +27,7 @@ public class class280 extends class273 {
       }
    }
 
-   void method5304(PacketBuffer var1) {
+   void method5304(Buffer var1) {
       super.field3001 = Math.min(super.field3001, 4);
       super.field3004 = new short[1][64][64];
       super.field3005 = new short[super.field3001][64][64];

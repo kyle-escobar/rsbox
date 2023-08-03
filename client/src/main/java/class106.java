@@ -8,8 +8,8 @@ public class class106 {
    class305 field1055;
    class382 field1043 = new class382();
    class424 field1051;
-   class497 field1044 = new class497(40000);
-   PacketBuffer field1045 = new PacketBuffer(5000);
+   PacketBuffer buffer = new PacketBuffer(40000);
+   Buffer field1045 = new Buffer(5000);
    int field1042 = 0;
    int field1052 = 0;
    int field1053 = 0;
@@ -19,7 +19,7 @@ public class class106 {
    class106() {
    }
 
-   final void method2130() {
+   final void clearQueue() {
       this.field1043.method6903();
       this.field1053 = 0;
    }
@@ -36,10 +36,10 @@ public class class106 {
                break;
             }
 
-            this.field1045.writeBytes(var2.field3351.data, 0, var2.field3353);
+            this.field1045.writeBytes(var2.packet.data, 0, var2.field3353);
             this.field1053 -= var2.field3353;
             var2.method8116();
-            var2.field3351.release();
+            var2.packet.release();
             var2.method5744();
          }
       }
@@ -48,8 +48,8 @@ public class class106 {
 
    public final void method2148(class308 var1) {
       this.field1043.method6874(var1);
-      var1.field3353 = var1.field3351.offset;
-      var1.field3351.offset = 0;
+      var1.field3353 = var1.packet.offset;
+      var1.packet.offset = 0;
       this.field1053 += var1.field3353;
    }
 

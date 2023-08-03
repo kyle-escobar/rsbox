@@ -1,3 +1,3 @@
 public interface class13 {
-   PacketBuffer method253(PacketBuffer var1);
+   Buffer method253(Buffer var1);
 }

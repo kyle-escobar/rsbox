@@ -67,7 +67,7 @@ public class class267 implements class286 {
       }
    }
 
-   public void method5444(PacketBuffer var1) {
+   public void method5444(Buffer var1) {
       this.field2972 = var1.readUnsignedByte();
       this.field2971 = var1.readUnsignedByte();
       this.field2969 = var1.readUnsignedShort();

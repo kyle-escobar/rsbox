@@ -17,7 +17,7 @@ public class class34 {
 
    static class81 method520(byte[] var0) {
       class81 var2 = new class81();
-      PacketBuffer var3 = new PacketBuffer(var0);
+      Buffer var3 = new Buffer(var0);
       var3.offset = var3.data.length - 2;
       int var4 = var3.readUnsignedShort();
       int var5 = var3.data.length - 2 - var4 - 12;

@@ -10,7 +10,7 @@ public class class223 implements class383 {
       this.field2452 = var1;
    }
 
-   public int method6917() {
+   public int serialId() {
       return this.field2452;
    }
 }

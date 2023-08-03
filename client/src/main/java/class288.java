@@ -1,6 +1,6 @@
 public class class288 {
    static final byte[] field3078 = new byte[]{2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 1, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-   PacketBuffer field3075 = new PacketBuffer((byte[])null);
+   Buffer field3075 = new Buffer((byte[])null);
    int field3069;
    int field3070;
    int[] field3071;
@@ -20,7 +20,7 @@ public class class288 {
       this.field3069 = 500000;
       this.field3071 = new int[var2];
 
-      PacketBuffer var10000;
+      Buffer var10000;
       int var3;
       int var5;
       for(var3 = 0; var3 < var2; var10000.offset += var5) {
@@ -107,7 +107,7 @@ public class class288 {
             }
          }
 
-         PacketBuffer var10000 = this.field3075;
+         Buffer var10000 = this.field3075;
          var10000.offset += var3;
          return 0;
       }
@@ -119,7 +119,7 @@ public class class288 {
       if (var2 == 255) {
          var3 = this.field3075.readUnsignedByte();
          var4 = this.field3075.readVarInt();
-         PacketBuffer var10000;
+         Buffer var10000;
          if (var3 == 47) {
             var10000 = this.field3075;
             var10000.offset += var4;

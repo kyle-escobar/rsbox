@@ -12,7 +12,7 @@ final class class348 implements Comparator {
       }
    }
 
-   static void method6498(class497 var0, int var1) {
+   static void method6498(PacketBuffer var0, int var1) {
       boolean var3 = var0.method8483(1) == 1;
       if (var3) {
          class116.field1124[++class116.field1121 - 1] = var1;
@@ -222,7 +222,7 @@ final class class348 implements Comparator {
    static void method6499(class84 var0, boolean var1) {
       if (var0 != null && var0.method2065() && !var0.field760) {
          var0.field756 = false;
-         if ((Client.field1549 && class116.field1116 > 50 || class116.field1116 > 200) && var1 && var0.field989 == var0.field1013) {
+         if ((Client.isLowDetail && class116.field1116 > 50 || class116.field1116 > 200) && var1 && var0.field989 == var0.field1013) {
             var0.field756 = true;
          }
 

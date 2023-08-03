@@ -30,7 +30,7 @@ public class class292 {
 
    static final boolean method5655(byte[] var0, int var1, int var2) {
       boolean var4 = true;
-      PacketBuffer var5 = new PacketBuffer(var0);
+      Buffer var5 = new Buffer(var0);
       int var6 = -1;
 
       label57:
@@ -60,7 +60,7 @@ public class class292 {
                int var15 = var2 + var11;
                if (var14 > 0 && var15 > 0 && var14 < 103 && var15 < 103) {
                   class184 var16 = class98.method2042(var6);
-                  if (var13 != 22 || !Client.field1549 || 0 != var16.field1924 || var16.field1922 == 1 || var16.field1943) {
+                  if (var13 != 22 || !Client.isLowDetail || 0 != var16.field1924 || var16.field1922 == 1 || var16.field1943) {
                      if (!var16.method3458()) {
                         ++Client.field1595;
                         var4 = false;

@@ -9,7 +9,7 @@ public class Js5NetQueue extends class133 {
       this.this$0 = var1;
    }
 
-   void method2457(PacketBuffer var1) {
+   void method2457(Buffer var1) {
       this.field1355 = var1.readInt();
       this.field1354 = var1.readString();
    }

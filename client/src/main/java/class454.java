@@ -6,6 +6,6 @@ public class class454 extends class445 {
       super(var1);
    }
 
-   void method7831(PacketBuffer var1, int var2) {
+   void method7831(Buffer var1, int var2) {
    }
 }

@@ -270,7 +270,7 @@ public class class69 {
       }
    }
 
-   final void method1425(PacketBuffer var1) {
+   final void method1425(Buffer var1) {
       this.field540 = new class52();
       this.field540.method1064(var1);
       this.field537 = new class52();

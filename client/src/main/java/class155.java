@@ -5,11 +5,11 @@ class class155 implements Callable {
    // $FF: synthetic field
    final class156 this$0;
    // $FF: synthetic field
-   final PacketBuffer val$p;
+   final Buffer val$p;
    // $FF: synthetic field
    final int val$version;
 
-   class155(class156 var1, PacketBuffer var2, int var3) {
+   class155(class156 var1, Buffer var2, int var3) {
       this.this$0 = var1;
       this.val$p = var2;
       this.val$version = var3;

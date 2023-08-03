@@ -17,7 +17,7 @@ public class class164 extends class470 {
       new BitSet(65536);
    }
 
-   public class164(PacketBuffer var1) {
+   public class164(Buffer var1) {
       this.method3262(var1);
    }
 
@@ -65,7 +65,7 @@ public class class164 extends class470 {
       }
    }
 
-   void method3262(PacketBuffer var1) {
+   void method3262(Buffer var1) {
       int var3 = var1.readUnsignedByte();
       if (0 != (var3 & 1)) {
          this.field1770 = true;

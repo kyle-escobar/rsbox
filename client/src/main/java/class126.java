@@ -11,7 +11,7 @@ public class class126 {
    class126() {
    }
 
-   void method2356(PacketBuffer var1, int var2) {
+   void method2356(Buffer var1, int var2) {
       this.field1194 = var1.readShort();
       this.field1199 = var1.readFloat();
       this.field1195 = var1.readFloat();

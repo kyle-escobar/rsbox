@@ -16,7 +16,7 @@ public abstract class class456 extends class270 implements class529 {
       return var3 != null && var3.method7832() ? var3.method7833() : null;
    }
 
-   public class525 method8013(PacketBuffer var1) {
+   public class525 method8013(Buffer var1) {
       int var3 = var1.readUnsignedShort();
       class445 var4 = this.method8012(var3);
       class525 var5 = new class525(var3);

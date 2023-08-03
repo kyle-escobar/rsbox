@@ -31,7 +31,7 @@ public class class137 implements class383 {
       return new class137[]{field1266, field1262, field1263, field1264, field1273, field1275, field1261, field1268, field1269, field1270, field1271, field1277, field1267, field1274, field1272, field1276, field1283};
    }
 
-   public int method6917() {
+   public int serialId() {
       return this.field1279;
    }
 

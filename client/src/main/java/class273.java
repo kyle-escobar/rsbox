@@ -23,7 +23,7 @@ public abstract class class273 {
       this.field3010 = false;
    }
 
-   abstract void method5304(PacketBuffer var1);
+   abstract void method5304(Buffer var1);
 
    boolean method5301() {
       return this.field3009 && this.field3010;
@@ -33,7 +33,7 @@ public abstract class class273 {
       if (!this.method5301()) {
          byte[] var3 = var1.method6381(this.field3002, this.field2999);
          if (var3 != null) {
-            this.method5304(new PacketBuffer(var3));
+            this.method5304(new Buffer(var3));
             this.field3009 = true;
             this.field3010 = true;
          }
@@ -51,7 +51,7 @@ public abstract class class273 {
       this.field3010 = false;
    }
 
-   void method5300(int var1, int var2, PacketBuffer var3) {
+   void method5300(int var1, int var2, Buffer var3) {
       int var5 = var3.readUnsignedByte();
       if (var5 != 0) {
          if (0 != (var5 & 1)) {
@@ -63,7 +63,7 @@ public abstract class class273 {
       }
    }
 
-   void method5305(int var1, int var2, PacketBuffer var3, int var4) {
+   void method5305(int var1, int var2, Buffer var3, int var4) {
       boolean var6 = (var4 & 2) != 0;
       if (var6) {
          this.field3005[0][var1][var2] = (short)var3.readUnsignedShort();
@@ -72,7 +72,7 @@ public abstract class class273 {
       this.field3004[0][var1][var2] = (short)var3.readUnsignedShort();
    }
 
-   void method5306(int var1, int var2, PacketBuffer var3, int var4) {
+   void method5306(int var1, int var2, Buffer var3, int var4) {
       int var6 = ((var4 & 24) >> 3) + 1;
       boolean var7 = (var4 & 2) != 0;
       boolean var8 = 0 != (var4 & 4);

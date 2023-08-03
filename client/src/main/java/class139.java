@@ -11,7 +11,7 @@ public class class139 extends class163 {
       this.field1289 = null;
    }
 
-   void method3248(PacketBuffer var1) {
+   void method3248(Buffer var1) {
       if (var1.readUnsignedByte() != 255) {
          --var1.offset;
          var1.readLong();

@@ -18,14 +18,14 @@ public class class52 {
       this.field376[1] = 65535;
    }
 
-   final void method1064(PacketBuffer var1) {
+   final void method1064(Buffer var1) {
       this.field381 = var1.readUnsignedByte();
       this.field377 = var1.readInt();
       this.field378 = var1.readInt();
       this.method1065(var1);
    }
 
-   final void method1065(PacketBuffer var1) {
+   final void method1065(Buffer var1) {
       this.field380 = var1.readUnsignedByte();
       this.field375 = new int[this.field380];
       this.field376 = new int[this.field380];

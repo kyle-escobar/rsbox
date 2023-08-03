@@ -17,7 +17,7 @@ public class class76 extends class476 {
       this.method1555(var1, var2, var3, var4);
    }
 
-   static void method1563(PacketBuffer var0, long var1) {
+   static void method1563(Buffer var0, long var1) {
       var1 /= 10L;
       if (var1 < 0L) {
          var1 = 0L;

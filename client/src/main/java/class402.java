@@ -4,8 +4,8 @@ public class class402 extends RuntimeException {
    }
 
    static final void method7065() {
-      class308 var1 = class308.method8607(class309.field3443, Client.field1436.field1046);
-      Client.field1436.method2148(var1);
+      class308 var1 = class308.method8607(class309.field3443, Client.serverConnection.field1046);
+      Client.serverConnection.method2148(var1);
       class63.field477 = true;
 
       for(class92 var2 = (class92) Client.field1601.method8186(); var2 != null; var2 = (class92) Client.field1601.method8194()) {

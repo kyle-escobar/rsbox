@@ -1,8 +1,8 @@
 public class class116 {
    static byte[] field1113 = new byte[2048];
    static class223[] field1114 = new class223[2048];
-   static PacketBuffer field1125 = new PacketBuffer(new byte[5000]);
-   static PacketBuffer[] field1111 = new PacketBuffer[2048];
+   static Buffer field1125 = new Buffer(new byte[5000]);
+   static Buffer[] field1111 = new Buffer[2048];
    static int field1116 = 0;
    static int field1118 = 0;
    static int field1121 = 0;
@@ -16,7 +16,7 @@ public class class116 {
    class116() throws Throwable {
    }
 
-   static final void method3290(class497 var0) {
+   static final void method3290(PacketBuffer var0) {
       var0.method8476();
       int var2 = Client.field1716;
       class84 var3 = class146.field1362 = Client.field1527[var2] = new class84();
@@ -56,7 +56,7 @@ public class class116 {
       var0.method8482();
    }
 
-   static final void method1963(class497 var0, int var1) {
+   static final void method1963(PacketBuffer var0, int var1) {
       int var3 = var0.offset;
       field1121 = 0;
       int var4 = 0;
@@ -194,7 +194,7 @@ public class class116 {
       }
    }
 
-   static boolean method3853(class497 var0, int var1) {
+   static boolean method3853(PacketBuffer var0, int var1) {
       int var3 = var0.method8483(2);
       int var4;
       int var5;
@@ -304,7 +304,7 @@ public class class116 {
       }
    }
 
-   static final void method249(class497 var0) {
+   static final void method249(PacketBuffer var0) {
       for(int var2 = 0; var2 < field1121; ++var2) {
          int var3 = field1124[var2];
          class84 var4 = Client.field1527[var3];
@@ -567,7 +567,7 @@ public class class116 {
          if ((var5 & 1) != 0) {
             var18 = var0.readUnsignedByte();
             byte[] var23 = new byte[var18];
-            PacketBuffer var27 = new PacketBuffer(var23);
+            Buffer var27 = new Buffer(var23);
             var0.writeBytesReversed(var23, 0, var18);
             field1111[var3] = var27;
             var4.method1784(var27);

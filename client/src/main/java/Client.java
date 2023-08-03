@@ -28,11 +28,11 @@ public final class Client extends GameShell implements class438, OAuthApi, class
    public static int field1441 = 215;
    public static int field1540;
    public static int field1708;
-   public static final class106 field1436;
+   public static final class106 serverConnection;
    static boolean field1440 = false;
    static boolean field1443 = false;
    static boolean field1450 = true;
-   static boolean field1462;
+   static boolean isResizable;
    static boolean field1483;
    static boolean field1487;
    static boolean field1490;
@@ -41,7 +41,7 @@ public final class Client extends GameShell implements class438, OAuthApi, class
    static boolean field1516;
    static boolean field1529;
    static boolean field1547 = true;
-   static boolean field1549 = false;
+   static boolean isLowDetail = false;
    static boolean field1555;
    static boolean field1575;
    static boolean field1576;
@@ -71,7 +71,7 @@ public final class Client extends GameShell implements class438, OAuthApi, class
    static byte[] field1488;
    static class101 field1460;
    static class101 field1461;
-   static class132 field1471;
+   static class132 authType;
    static class154[] field1628;
    static class164[] field1673;
    static class216 field1666;
@@ -102,7 +102,7 @@ public final class Client extends GameShell implements class438, OAuthApi, class
    static class483 field1719;
    static class487 field1559;
    static class487 field1695;
-   static class500 field1472;
+   static LoginMethod loginMethod;
    static class523[] field1678;
    static class530 field1642;
    static class55 field1484;
@@ -113,7 +113,7 @@ public final class Client extends GameShell implements class438, OAuthApi, class
    static int field1433 = 0;
    static int field1434 = 0;
    static int field1437 = -1;
-   static int field1438 = -1;
+   static int clientType = -1;
    static int field1442;
    static int field1444;
    static int field1445 = 0;
@@ -131,7 +131,7 @@ public final class Client extends GameShell implements class438, OAuthApi, class
    static int js5ConnectState;
    static int field1465;
    static int field1466;
-   static int field1467;
+   static int loginStage;
    static int field1468;
    static int field1469;
    static int field1470;
@@ -174,7 +174,7 @@ public final class Client extends GameShell implements class438, OAuthApi, class
    static int field1565;
    static int field1567;
    static int field1569;
-   static int field1573 = -1;
+   static int platformType = -1;
    static int field1586;
    static int field1588;
    static int field1589;
@@ -318,10 +318,10 @@ public final class Client extends GameShell implements class438, OAuthApi, class
    class26 field1486;
    class4 field1479;
    class4 field1550;
-   PacketBuffer field1485;
+   Buffer field1485;
    OtlTokenRequester field1476;
    RefreshAccessTokenRequester field1480;
-   String field1613;
+   String oauthToken;
    Future field1477;
    Future field1481;
    long field1696 = -1L;
@@ -334,12 +334,12 @@ public final class Client extends GameShell implements class438, OAuthApi, class
       js5ConnectState = 0;
       field1465 = 0;
       field1466 = 0;
-      field1467 = 0;
+      loginStage = 0;
       field1468 = 0;
       field1712 = 0;
       field1470 = 0;
-      field1471 = class132.field1243;
-      field1472 = class500.field5051;
+      authType = class132.field1243;
+      loginMethod = LoginMethod.NORMAL;
       int var1 = "com_jagex_auth_desktop_osrs:public".length();
       byte[] var2 = new byte[var1];
 
@@ -361,7 +361,7 @@ public final class Client extends GameShell implements class438, OAuthApi, class
       field1491 = new int[65536];
       field1717 = 0;
       field1503 = new int[250];
-      field1436 = new class106();
+      serverConnection = new class106();
       field1542 = 0;
       field1487 = false;
       field1497 = new class403();
@@ -526,7 +526,7 @@ public final class Client extends GameShell implements class438, OAuthApi, class
       field1656 = new int[100];
       field1588 = 0;
       field1658 = 0L;
-      field1462 = true;
+      isResizable = true;
       field1660 = new int[]{16776960, 16711680, 65280, 65535, 16711935, 16777215};
       field1661 = 0;
       field1662 = 0;
@@ -608,14 +608,14 @@ public final class Client extends GameShell implements class438, OAuthApi, class
 
    static final void method1972() {
       class234.field2595 = false;
-      field1549 = false;
+      isLowDetail = false;
    }
 
    static void method2099() {
       class3.field21 = System.getenv("JX_ACCESS_TOKEN");
       class81.field719 = System.getenv("JX_REFRESH_TOKEN");
       class20.field114 = System.getenv("JX_SESSION_ID");
-      class61.field468 = System.getenv("JX_CHARACTER_ID");
+      Login.field468 = System.getenv("JX_CHARACTER_ID");
       String var1 = System.getenv("JX_DISPLAY_NAME");
       String var2;
       if (var1 != null && !var1.isEmpty() && var1.charAt(0) != '#') {
@@ -624,7 +624,7 @@ public final class Client extends GameShell implements class438, OAuthApi, class
          var2 = "";
       }
 
-      class61.field448 = var2;
+      Login.field448 = var2;
    }
 
    public static class216 method4736() {
@@ -641,7 +641,7 @@ public final class Client extends GameShell implements class438, OAuthApi, class
       }
 
       class514.field5111 = null;
-      field1436.method2146();
+      serverConnection.method2146();
       if (GameShell.field272 != null) {
          try {
             GameShell.field272.method3398();
@@ -766,10 +766,10 @@ public final class Client extends GameShell implements class438, OAuthApi, class
             } else if (var0 == 11) {
                class108.method2167(class131.field1236, class379.field4382, false, 4);
             } else if (var0 == 50) {
-               class61.method2098("", "Updating date of birth...", "");
+               Login.method2098("", "Updating date of birth...", "");
                class108.method2167(class131.field1236, class379.field4382, false, 7);
             } else {
-               class61.method4749();
+               Login.method4749();
             }
          } else {
             boolean var2 = class141.field1307.method1687() >= field1437;
@@ -846,12 +846,12 @@ public final class Client extends GameShell implements class438, OAuthApi, class
          }
 
          class247.field2715 = new class523(512, 512);
-         class61.field436 = class364.field4301;
-         class61.field450 = 5;
+         Login.field436 = class364.field4301;
+         Login.field450 = 5;
          field1463 = class91.field841;
       } else if (class91.field841 == field1463) {
-         class61.field436 = class364.field4284;
-         class61.field450 = 10;
+         Login.field436 = class364.field4284;
+         Login.field450 = 10;
          field1463 = class91.field838;
       } else if (class91.field838 == field1463) {
          class150.field1383 = class104.method2120(0, false, true, true, false);
@@ -875,8 +875,8 @@ public final class Client extends GameShell implements class438, OAuthApi, class
          class127.field1209 = class104.method2120(19, false, true, true, false);
          class63.field498 = class104.method2120(20, false, true, true, false);
          class182.field1885 = class104.method2120(21, false, true, true, true);
-         class61.field436 = class364.field4319;
-         class61.field450 = 20;
+         Login.field436 = class364.field4319;
+         Login.field450 = 20;
          field1463 = class91.field850;
       } else if (field1463 == class91.field850) {
          byte var54 = 0;
@@ -903,10 +903,10 @@ public final class Client extends GameShell implements class438, OAuthApi, class
          var30 += class70.field570.method6614() && class70.field570.method6399() ? 1 : 0;
          if (var30 != 100) {
             if (var30 != 0) {
-               class61.field436 = class364.field4050 + var30 + "%";
+               Login.field436 = class364.field4050 + var30 + "%";
             }
 
-            class61.field450 = 30;
+            Login.field450 = 30;
          } else {
             method3571(class150.field1383, "Animations");
             method3571(class124.field1182, "Skeletons");
@@ -923,14 +923,14 @@ public final class Client extends GameShell implements class438, OAuthApi, class
             method3571(class63.field498, "World Map Ground");
             class351.field3879 = new class463();
             class351.field3879.method8047(class70.field570);
-            class61.field436 = class364.field4196;
-            class61.field450 = 30;
+            Login.field436 = class364.field4196;
+            Login.field450 = 30;
             field1463 = class91.field840;
          }
       } else {
          int var41;
          if (field1463 == class91.field840) {
-            class37.method4636(22050, !field1549, 2);
+            class37.method4636(22050, !isLowDetail, 2);
             ArrayList var52 = new ArrayList(3);
             class178 var34 = GameShell.field272;
             short var39 = 2048;
@@ -987,8 +987,8 @@ public final class Client extends GameShell implements class438, OAuthApi, class
                class194.field2126.method530(var53);
                class303.method5350(class200.field2181, class49.field361, class136.field1254, var52);
                class34.field167 = new class62(22050, class37.field198);
-               class61.field436 = class364.field4039;
-               class61.field450 = 35;
+               Login.field436 = class364.field4039;
+               Login.field450 = 35;
                field1463 = class91.field836;
                class220.field2432 = new class494(class379.field4382, class475.field4839);
             }
@@ -998,15 +998,15 @@ public final class Client extends GameShell implements class438, OAuthApi, class
             class475[] var32 = new class475[]{class475.field4841, class475.field4836, class475.field4838, class475.field4844, class475.field4834, class475.field4837};
             field1498 = var37.method8461(var32);
             if (field1498.size() < var30) {
-               class61.field436 = class364.field4040 + field1498.size() * 100 / var30 + "%";
-               class61.field450 = 40;
+               Login.field436 = class364.field4040 + field1498.size() * 100 / var30 + "%";
+               Login.field450 = 40;
             } else {
                class185.field1996 = (class393)field1498.get(class475.field4844);
                class112.field1079 = (class393)field1498.get(class475.field4834);
                class316.field3504 = (class393)field1498.get(class475.field4836);
                class191.field2089 = field1719.method8198();
-               class61.field436 = class364.field4226;
-               class61.field450 = 40;
+               Login.field436 = class364.field4226;
+               Login.field450 = 40;
                field1463 = class91.field842;
             }
          } else {
@@ -1018,7 +1018,7 @@ public final class Client extends GameShell implements class438, OAuthApi, class
                var35 = class131.field1236;
                var3 = class379.field4382;
                var4 = 0;
-               String[] var46 = class61.field427;
+               String[] var46 = Login.field427;
 
                String var44;
                for(var41 = 0; var41 < var46.length; ++var41) {
@@ -1028,7 +1028,7 @@ public final class Client extends GameShell implements class438, OAuthApi, class
                   }
                }
 
-               var46 = class61.field462;
+               var46 = Login.field462;
 
                for(var41 = 0; var41 < var46.length; ++var41) {
                   var44 = var46[var41];
@@ -1037,7 +1037,7 @@ public final class Client extends GameShell implements class438, OAuthApi, class
                   }
                }
 
-               var46 = class61.field442;
+               var46 = Login.field442;
 
                for(var41 = 0; var41 < var46.length; ++var41) {
                   var44 = var46[var41];
@@ -1046,23 +1046,23 @@ public final class Client extends GameShell implements class438, OAuthApi, class
                   }
                }
 
-               var43 = class61.method6489(class379.field4382);
+               var43 = Login.method6489(class379.field4382);
                if (var4 < var43) {
-                  class61.field436 = class364.field4106 + var4 * 100 / var43 + "%";
-                  class61.field450 = 50;
+                  Login.field436 = class364.field4106 + var4 * 100 / var43 + "%";
+                  Login.field450 = 50;
                } else {
-                  class61.field436 = class364.field4043;
-                  class61.field450 = 50;
+                  Login.field436 = class364.field4043;
+                  Login.field450 = 50;
                   updateGameState(5);
                   field1463 = class91.field843;
                }
             } else if (field1463 == class91.field843) {
                if (!class186.field2015.method6399()) {
-                  class61.field436 = class364.field4056 + class186.field2015.method6607() + "%";
-                  class61.field450 = 60;
+                  Login.field436 = class364.field4056 + class186.field2015.method6607() + "%";
+                  Login.field450 = 60;
                } else if (!class182.field1885.method6399()) {
-                  class61.field436 = class364.field4056 + (80 + class130.field1226.method6607() / 6) + "%";
-                  class61.field450 = 60;
+                  Login.field436 = class364.field4056 + (80 + class130.field1226.method6607() / 6) + "%";
+                  Login.field450 = 60;
                } else {
                   class209.method2479(class186.field2015);
                   class363 var48 = class186.field2015;
@@ -1070,7 +1070,7 @@ public final class Client extends GameShell implements class438, OAuthApi, class
                   class206.method2331(class186.field2015, class26.field133);
                   var35 = class186.field2015;
                   var3 = class26.field133;
-                  boolean var36 = field1549;
+                  boolean var36 = isLowDetail;
                   class184.field1908 = var35;
                   class184.field1906 = var3;
                   class184.field1921 = var36;
@@ -1139,14 +1139,14 @@ public final class Client extends GameShell implements class438, OAuthApi, class
                         byte[] var27 = var24.method6381(35, var26);
                         class324.field3540[var26] = new class197(var26);
                         if (null != var27) {
-                           class324.field3540[var26].method3769(new PacketBuffer(var27));
+                           class324.field3540[var26].method3769(new Buffer(var27));
                            class324.field3540[var26].method3778();
                         }
                      }
                   }
 
-                  class61.field436 = class364.field4045;
-                  class61.field450 = 60;
+                  Login.field436 = class364.field4045;
+                  Login.field450 = 60;
                   field1463 = class91.field846;
                }
             } else if (field1463 == class91.field846) {
@@ -1317,8 +1317,8 @@ public final class Client extends GameShell implements class438, OAuthApi, class
                }
 
                if (var30 < 11) {
-                  class61.field436 = class364.field4287 + var30 * 100 / 12 + "%";
-                  class61.field450 = 70;
+                  Login.field436 = class364.field4287 + var30 * 100 / 12 + "%";
+                  Login.field450 = 70;
                } else {
                   class407.field4521 = class282.field3048;
                   class34.field170.method9028();
@@ -1327,16 +1327,16 @@ public final class Client extends GameShell implements class438, OAuthApi, class
                   var4 = (int)(Math.random() * 21.0) - 10;
                   var43 = (int)(Math.random() * 41.0) - 20;
                   class270.field2986[0].method9325(var43 + var33, var31 + var43, var4 + var43);
-                  class61.field436 = class364.field4047;
-                  class61.field450 = 70;
+                  Login.field436 = class364.field4047;
+                  Login.field450 = 70;
                   field1463 = class91.field845;
                }
             } else if (field1463 == class91.field845) {
                if (!class144.field1347.method6399()) {
-                  class61.field436 = class364.field4048 + "0%";
-                  class61.field450 = 90;
+                  Login.field436 = class364.field4048 + "0%";
+                  Login.field450 = 90;
                } else {
-                  class112.field1080 = new class236(class144.field1347, class379.field4382, 20, class141.field1307.method1624(), field1549 ? 64 : 128);
+                  class112.field1080 = new class236(class144.field1347, class379.field4382, 20, class141.field1307.method1624(), isLowDetail ? 64 : 128);
                   class229.method4278(class112.field1080);
                   class229.method4279(class141.field1307.method1624());
                   field1463 = class91.field844;
@@ -1344,61 +1344,61 @@ public final class Client extends GameShell implements class438, OAuthApi, class
             } else if (field1463 == class91.field844) {
                var30 = class112.field1080.method4585();
                if (var30 < 100) {
-                  class61.field436 = class364.field4048 + var30 + "%";
-                  class61.field450 = 90;
+                  Login.field436 = class364.field4048 + var30 + "%";
+                  Login.field450 = 90;
                } else {
-                  class61.field436 = class364.field4049;
-                  class61.field450 = 90;
+                  Login.field436 = class364.field4049;
+                  Login.field450 = 90;
                   field1463 = class91.field847;
                }
             } else if (field1463 == class91.field847) {
                class514.field5111 = new class83();
                GameShell.field272.method3400(class514.field5111, 10);
-               class61.field436 = class364.field4023;
-               class61.field450 = 92;
+               Login.field436 = class364.field4023;
+               Login.field450 = 92;
                field1463 = class91.field848;
             } else if (field1463 == class91.field848) {
                if (!class131.field1236.method6403("huffman", "")) {
-                  class61.field436 = class364.field4051 + 0 + "%";
-                  class61.field450 = 94;
+                  Login.field436 = class364.field4051 + 0 + "%";
+                  Login.field450 = 94;
                } else {
                   class313 var29 = new class313(class131.field1236.method6402("huffman", ""));
                   class324.field3541 = var29;
-                  class61.field436 = class364.field4204;
-                  class61.field450 = 94;
+                  Login.field436 = class364.field4204;
+                  Login.field450 = 94;
                   field1463 = class91.field849;
                }
             } else if (class91.field849 == field1463) {
                if (!class260.field2931.method6399()) {
-                  class61.field436 = class364.field4053 + class260.field2931.method6607() * 4 / 5 + "%";
-                  class61.field450 = 96;
+                  Login.field436 = class364.field4053 + class260.field2931.method6607() * 4 / 5 + "%";
+                  Login.field450 = 96;
                } else if (!class130.field1226.method6399()) {
-                  class61.field436 = class364.field4053 + (80 + class130.field1226.method6607() / 6) + "%";
-                  class61.field450 = 96;
+                  Login.field436 = class364.field4053 + (80 + class130.field1226.method6607() / 6) + "%";
+                  Login.field450 = 96;
                } else if (!class475.field4839.method6399()) {
-                  class61.field436 = class364.field4053 + (96 + class475.field4839.method6607() / 50) + "%";
-                  class61.field450 = 96;
+                  Login.field436 = class364.field4053 + (96 + class475.field4839.method6607() / 50) + "%";
+                  Login.field450 = 96;
                } else {
-                  class61.field436 = class364.field4054;
-                  class61.field450 = 98;
+                  Login.field436 = class364.field4054;
+                  Login.field450 = 98;
                   if (class130.field1226.method6401("version.dat", "")) {
-                     PacketBuffer var1 = new PacketBuffer(class130.field1226.method6402("version.dat", ""));
+                     Buffer var1 = new Buffer(class130.field1226.method6402("version.dat", ""));
                      var1.readUnsignedShort();
                   }
 
                   field1463 = class91.field837;
                }
             } else if (field1463 == class91.field837) {
-               class61.field450 = 100;
+               Login.field450 = 100;
                if (class127.field1209.method6394() > 0 && !class127.field1209.method6404(class276.field3025.field3022)) {
-                  class61.field436 = class364.field4055 + class127.field1209.method6423(class276.field3025.field3022) / 10 + "%";
+                  Login.field436 = class364.field4055 + class127.field1209.method6423(class276.field3025.field3022) / 10 + "%";
                } else {
                   if (class115.field1095 == null) {
                      class115.field1095 = new class485();
                      class115.field1095.method8388(class127.field1209, class107.field1059, class63.field498, class316.field3504, field1498, class270.field2986);
                   }
 
-                  class61.field436 = class364.field4121;
+                  Login.field436 = class364.field4121;
                   field1463 = class91.field851;
                }
             } else {
@@ -1412,7 +1412,7 @@ public final class Client extends GameShell implements class438, OAuthApi, class
    }
 
    static final void method5258() {
-      field1436.method2146();
+      serverConnection.method2146();
       method3256();
       class109.field1065.method4534();
 
@@ -1433,12 +1433,12 @@ public final class Client extends GameShell implements class438, OAuthApi, class
       method5258();
       switch (var0) {
          case 1:
-            class61.method6370(24);
-            class61.method2098(class364.field4254, class364.field4255, class364.field4256);
+            Login.method6370(24);
+            Login.method2098(class364.field4254, class364.field4255, class364.field4256);
             break;
          case 2:
-            class61.method6370(24);
-            class61.method2098(class364.field4251, class364.field4252, class364.field4205);
+            Login.method6370(24);
+            Login.method2098(class364.field4251, class364.field4252, class364.field4205);
       }
 
    }
@@ -1500,16 +1500,16 @@ public final class Client extends GameShell implements class438, OAuthApi, class
       } else {
          field1497.method7068();
          updateGameState(40);
-         class109.field1069 = field1436.method2137();
-         field1436.method2150();
+         class109.field1069 = serverConnection.method2137();
+         serverConnection.method2150();
       }
    }
 
    static final void method6480(boolean var0) {
       if (var0) {
-         field1471 = class61.field451 ? class132.field1242 : class132.field1244;
+         authType = Login.field451 ? class132.field1242 : class132.field1244;
       } else {
-         field1471 = class141.field1307.method1688(class61.field441) ? class132.field1248 : class132.field1243;
+         authType = class141.field1307.method1688(Login.loginUsername) ? class132.field1248 : class132.field1243;
       }
 
    }
@@ -1656,22 +1656,22 @@ public final class Client extends GameShell implements class438, OAuthApi, class
                int var11 = var9 * var6 - var5 * var8 >> 11;
                int var12 = class146.field1362.field949 + var10 >> 7;
                int var13 = class146.field1362.field963 - var11 >> 7;
-               class308 var14 = class308.method8607(class309.field3447, field1436.field1046);
-               var14.field3351.writeByte(18);
-               var14.field3351.writeShort(class342.field3837 + var12);
-               var14.field3351.writeByteAdd(field1666.method4103(82) ? (field1666.method4103(81) ? 2 : 1) : 0);
-               var14.field3351.writeShortLE(class144.field1352 + var13);
-               var14.field3351.writeByte(var5);
-               var14.field3351.writeByte(var6);
-               var14.field3351.writeShort(field1569);
-               var14.field3351.writeByte(57);
-               var14.field3351.writeByte(0);
-               var14.field3351.writeByte(0);
-               var14.field3351.writeByte(89);
-               var14.field3351.writeShort(class146.field1362.field949);
-               var14.field3351.writeShort(class146.field1362.field963);
-               var14.field3351.writeByte(63);
-               field1436.method2148(var14);
+               class308 var14 = class308.method8607(class309.field3447, serverConnection.field1046);
+               var14.packet.writeByte(18);
+               var14.packet.writeShort(class342.field3837 + var12);
+               var14.packet.writeByteAdd(field1666.method4103(82) ? (field1666.method4103(81) ? 2 : 1) : 0);
+               var14.packet.writeShortLE(class144.field1352 + var13);
+               var14.packet.writeByte(var5);
+               var14.packet.writeByte(var6);
+               var14.packet.writeShort(field1569);
+               var14.packet.writeByte(57);
+               var14.packet.writeByte(0);
+               var14.packet.writeByte(0);
+               var14.packet.writeByte(89);
+               var14.packet.writeShort(class146.field1362.field949);
+               var14.packet.writeShort(class146.field1362.field963);
+               var14.packet.writeByte(63);
+               serverConnection.method2148(var14);
                field1513 = var12;
                field1680 = var13;
             }
@@ -1738,10 +1738,10 @@ public final class Client extends GameShell implements class438, OAuthApi, class
          }
       }
 
-      class308 var3 = class308.method8607(class309.field3436, field1436.field1046);
-      var3.field3351.writeByte(var0.length() + 1);
-      var3.field3351.writeString(var0);
-      field1436.method2148(var3);
+      class308 var3 = class308.method8607(class309.field3436, serverConnection.field1046);
+      var3.packet.writeByte(var0.length() + 1);
+      var3.packet.writeString(var0);
+      serverConnection.method2148(var3);
    }
 
    static final int method1193(int var0) {
@@ -2273,15 +2273,15 @@ public final class Client extends GameShell implements class438, OAuthApi, class
    }
 
    static int method5791() {
-      return field1462 ? 2 : 1;
+      return isResizable ? 2 : 1;
    }
 
    static void method7275() {
-      class308 var1 = class308.method8607(class309.field3389, field1436.field1046);
-      var1.field3351.writeByte(method5791());
-      var1.field3351.writeShort(class343.field3838);
-      var1.field3351.writeShort(class488.field4948);
-      field1436.method2148(var1);
+      class308 var1 = class308.method8607(class309.field3389, serverConnection.field1046);
+      var1.packet.writeByte(method5791());
+      var1.packet.writeShort(class343.field3838);
+      var1.packet.writeShort(class488.field4948);
+      serverConnection.method2148(var1);
    }
 
    static final void method2100(String var0, boolean var1) {
@@ -2781,14 +2781,14 @@ public final class Client extends GameShell implements class438, OAuthApi, class
                      if (var7) {
                         int[] var4 = var0.field2543.method6334();
                         if (var4 != null) {
-                           class308 var5 = class308.method8607(class309.field3453, field1436.field1046);
-                           var5.field3351.method8934(var0.field2543.field3607);
-                           var5.field3351.writeIntME(var4[1]);
-                           var5.field3351.writeIntIME(var0.field2543.method6210());
-                           var5.field3351.writeIntLE(var4[2]);
-                           var5.field3351.writeIntLE(var4[0]);
-                           var5.field3351.writeIntIME(var0.field2543.field3606);
-                           field1436.method2148(var5);
+                           class308 var5 = class308.method8607(class309.field3453, serverConnection.field1046);
+                           var5.packet.method8934(var0.field2543.field3607);
+                           var5.packet.writeIntME(var4[1]);
+                           var5.packet.writeIntIME(var0.field2543.method6210());
+                           var5.packet.writeIntLE(var4[2]);
+                           var5.packet.writeIntLE(var4[0]);
+                           var5.packet.writeIntIME(var0.field2543.field3606);
+                           serverConnection.method2148(var5);
                         }
                      }
                }
@@ -3689,7 +3689,7 @@ public final class Client extends GameShell implements class438, OAuthApi, class
       return var0 * var4 / 256;
    }
 
-   static final void method5654(boolean var0, class497 var1) {
+   static final void method5654(boolean var0, PacketBuffer var1) {
       field1505 = var0;
       int var3;
       int var4;
@@ -3913,15 +3913,15 @@ public final class Client extends GameShell implements class438, OAuthApi, class
 
    static final void method4193(boolean var0) {
       method2290();
-      ++field1436.field1052;
-      if (field1436.field1052 >= 50 || var0) {
-         field1436.field1052 = 0;
-         if (!field1487 && field1436.method2137() != null) {
-            class308 var2 = class308.method8607(class309.field3390, field1436.field1046);
-            field1436.method2148(var2);
+      ++serverConnection.field1052;
+      if (serverConnection.field1052 >= 50 || var0) {
+         serverConnection.field1052 = 0;
+         if (!field1487 && serverConnection.method2137() != null) {
+            class308 var2 = class308.method8607(class309.field3390, serverConnection.field1046);
+            serverConnection.method2148(var2);
 
             try {
-               field1436.method2131();
+               serverConnection.method2131();
             } catch (IOException var4) {
                field1487 = true;
             }
@@ -4128,7 +4128,7 @@ public final class Client extends GameShell implements class438, OAuthApi, class
                var16 = class44.field306 - 1;
             }
 
-            if (field1549) {
+            if (isLowDetail) {
                class109.field1065.method4580(class88.field798);
             } else {
                class109.field1065.method4580(0);
@@ -4145,9 +4145,9 @@ public final class Client extends GameShell implements class438, OAuthApi, class
             class184.field1914.method5637();
             class308 var20;
             if (class124.field1180.method690()) {
-               var20 = class308.method8607(class309.field3427, field1436.field1046);
-               var20.field3351.writeInt(1057001181);
-               field1436.method2148(var20);
+               var20 = class308.method8607(class309.field3427, serverConnection.field1046);
+               var20.packet.writeInt(1057001181);
+               serverConnection.method2148(var20);
             }
 
             if (!field1505) {
@@ -4169,8 +4169,8 @@ public final class Client extends GameShell implements class438, OAuthApi, class
             updateGameState(30);
             method2290();
             class88.method3293();
-            var20 = class308.method8607(class309.field3440, field1436.field1046);
-            field1436.method2148(var20);
+            var20 = class308.method8607(class309.field3440, serverConnection.field1046);
+            serverConnection.method2148(var20);
             GameShell.method3439();
          }
       }
@@ -4317,7 +4317,7 @@ public final class Client extends GameShell implements class438, OAuthApi, class
 
    static final void method3852(int var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7) {
       if (var2 >= 1 && var3 >= 1 && var2 <= 102 && var3 <= 102) {
-         if (field1549 && var0 != class44.field306) {
+         if (isLowDetail && var0 != class44.field306) {
             return;
          }
 
@@ -4653,7 +4653,7 @@ public final class Client extends GameShell implements class438, OAuthApi, class
       }
    }
 
-   static final void method1190(class497 var0) {
+   static final void method1190(PacketBuffer var0) {
       var0.method8476();
       int var2 = var0.method8483(8);
       int var3;
@@ -4913,9 +4913,9 @@ public final class Client extends GameShell implements class438, OAuthApi, class
             }
 
             if (null != var11) {
-               var12 = class308.method8607(class309.field3387, field1436.field1046);
-               var12.field3351.writeShortAdd(var11.field2047);
-               field1436.method2148(var12);
+               var12 = class308.method8607(class309.field3387, serverConnection.field1046);
+               var12.packet.writeShortAdd(var11.field2047);
+               serverConnection.method2148(var12);
             }
          }
       }
@@ -4930,13 +4930,13 @@ public final class Client extends GameShell implements class438, OAuthApi, class
             field1681 = 0;
             field1513 = var0;
             field1680 = var1;
-            var14 = class308.method8607(class309.field3426, field1436.field1046);
-            var14.field3351.writeShortAdd(class306.field3338);
-            var14.field3351.method8934(class103.field1020);
-            var14.field3351.writeIntIME(class354.field3921);
-            var14.field3351.writeShortAdd(var3);
-            var14.field3351.writeByte(field1666.method4103(82) ? 1 : 0);
-            field1436.method2148(var14);
+            var14 = class308.method8607(class309.field3426, serverConnection.field1046);
+            var14.packet.writeShortAdd(class306.field3338);
+            var14.packet.method8934(class103.field1020);
+            var14.packet.writeIntIME(class354.field3921);
+            var14.packet.writeShortAdd(var3);
+            var14.packet.writeByte(field1666.method4103(82) ? 1 : 0);
+            serverConnection.method2148(var14);
          }
       }
 
@@ -4950,10 +4950,10 @@ public final class Client extends GameShell implements class438, OAuthApi, class
             field1681 = 0;
             field1513 = var0;
             field1680 = var1;
-            var14 = class308.method8607(class309.field3407, field1436.field1046);
-            var14.field3351.method8934(var3);
-            var14.field3351.writeByteSub(field1666.method4103(82) ? 1 : 0);
-            field1436.method2148(var14);
+            var14 = class308.method8607(class309.field3407, serverConnection.field1046);
+            var14.packet.method8934(var3);
+            var14.packet.writeByteSub(field1666.method4103(82) ? 1 : 0);
+            serverConnection.method2148(var14);
          }
       }
 
@@ -4966,10 +4966,10 @@ public final class Client extends GameShell implements class438, OAuthApi, class
             field1681 = 0;
             field1513 = var0;
             field1680 = var1;
-            var14 = class308.method8607(class309.field3393, field1436.field1046);
-            var14.field3351.writeByte(field1666.method4103(82) ? 1 : 0);
-            var14.field3351.method8934(var3);
-            field1436.method2148(var14);
+            var14 = class308.method8607(class309.field3393, serverConnection.field1046);
+            var14.packet.writeByte(field1666.method4103(82) ? 1 : 0);
+            var14.packet.method8934(var3);
+            serverConnection.method2148(var14);
          }
       }
 
@@ -4982,10 +4982,10 @@ public final class Client extends GameShell implements class438, OAuthApi, class
             field1681 = 0;
             field1513 = var0;
             field1680 = var1;
-            var14 = class308.method8607(class309.field3419, field1436.field1046);
-            var14.field3351.method8934(var3);
-            var14.field3351.writeByteNeg(field1666.method4103(82) ? 1 : 0);
-            field1436.method2148(var14);
+            var14 = class308.method8607(class309.field3419, serverConnection.field1046);
+            var14.packet.method8934(var3);
+            var14.packet.writeByteNeg(field1666.method4103(82) ? 1 : 0);
+            serverConnection.method2148(var14);
          }
       }
 
@@ -4998,10 +4998,10 @@ public final class Client extends GameShell implements class438, OAuthApi, class
             field1681 = 0;
             field1513 = var0;
             field1680 = var1;
-            var14 = class308.method8607(class309.field3383, field1436.field1046);
-            var14.field3351.method8934(var3);
-            var14.field3351.writeByteSub(field1666.method4103(82) ? 1 : 0);
-            field1436.method2148(var14);
+            var14 = class308.method8607(class309.field3383, serverConnection.field1046);
+            var14.packet.method8934(var3);
+            var14.packet.writeByteSub(field1666.method4103(82) ? 1 : 0);
+            serverConnection.method2148(var14);
          }
       }
 
@@ -5011,9 +5011,9 @@ public final class Client extends GameShell implements class438, OAuthApi, class
          field1442 = var8;
          field1551 = 2;
          field1681 = 0;
-         var15 = class308.method8607(class309.field3433, field1436.field1046);
-         var15.field3351.writeShort(var3);
-         field1436.method2148(var15);
+         var15 = class308.method8607(class309.field3433, serverConnection.field1046);
+         var15.packet.writeShort(var3);
+         serverConnection.method2148(var15);
       }
 
       if (var2 == 48) {
@@ -5025,10 +5025,10 @@ public final class Client extends GameShell implements class438, OAuthApi, class
             field1681 = 0;
             field1513 = var0;
             field1680 = var1;
-            var14 = class308.method8607(class309.field3423, field1436.field1046);
-            var14.field3351.writeShortAdd(var3);
-            var14.field3351.writeByteNeg(field1666.method4103(82) ? 1 : 0);
-            field1436.method2148(var14);
+            var14 = class308.method8607(class309.field3423, serverConnection.field1046);
+            var14.packet.writeShortAdd(var3);
+            var14.packet.writeByteNeg(field1666.method4103(82) ? 1 : 0);
+            serverConnection.method2148(var14);
          }
       }
 
@@ -5039,12 +5039,12 @@ public final class Client extends GameShell implements class438, OAuthApi, class
          field1681 = 0;
          field1513 = var0;
          field1680 = var1;
-         var15 = class308.method8607(class309.field3392, field1436.field1046);
-         var15.field3351.writeByte(field1666.method4103(82) ? 1 : 0);
-         var15.field3351.method8934(var3);
-         var15.field3351.method8934(class144.field1352 + var1);
-         var15.field3351.method8934(var0 + class342.field3837);
-         field1436.method2148(var15);
+         var15 = class308.method8607(class309.field3392, serverConnection.field1046);
+         var15.packet.writeByte(field1666.method4103(82) ? 1 : 0);
+         var15.packet.method8934(var3);
+         var15.packet.method8934(class144.field1352 + var1);
+         var15.packet.method8934(var0 + class342.field3837);
+         serverConnection.method2148(var15);
       }
 
       if (var2 == 12) {
@@ -5056,10 +5056,10 @@ public final class Client extends GameShell implements class438, OAuthApi, class
             field1681 = 0;
             field1513 = var0;
             field1680 = var1;
-            var14 = class308.method8607(class309.field3442, field1436.field1046);
-            var14.field3351.writeShortLE(var3);
-            var14.field3351.writeByte(field1666.method4103(82) ? 1 : 0);
-            field1436.method2148(var14);
+            var14 = class308.method8607(class309.field3442, serverConnection.field1046);
+            var14.packet.writeShortLE(var3);
+            var14.packet.writeByte(field1666.method4103(82) ? 1 : 0);
+            serverConnection.method2148(var14);
          }
       }
 
@@ -5076,14 +5076,14 @@ public final class Client extends GameShell implements class438, OAuthApi, class
                class63.method1516(var18);
             }
 
-            var14 = class308.method8607(class309.field3377, field1436.field1046);
-            var14.field3351.writeShortAdd(field1597);
-            var14.field3351.writeShortLE(var0);
-            var14.field3351.writeShortAdd(field1596);
-            var14.field3351.method8934(var4);
-            var14.field3351.writeIntME(class48.field347);
-            var14.field3351.writeIntME(var1);
-            field1436.method2148(var14);
+            var14 = class308.method8607(class309.field3377, serverConnection.field1046);
+            var14.packet.writeShortAdd(field1597);
+            var14.packet.writeShortLE(var0);
+            var14.packet.writeShortAdd(field1596);
+            var14.packet.method8934(var4);
+            var14.packet.writeIntME(class48.field347);
+            var14.packet.writeIntME(var1);
+            serverConnection.method2148(var14);
          }
       }
 
@@ -5096,13 +5096,13 @@ public final class Client extends GameShell implements class438, OAuthApi, class
             field1681 = 0;
             field1513 = var0;
             field1680 = var1;
-            var14 = class308.method8607(class309.field3370, field1436.field1046);
-            var14.field3351.writeIntIME(class48.field347);
-            var14.field3351.writeShortLE(field1596);
-            var14.field3351.writeShortLE(field1597);
-            var14.field3351.writeShortLE(var3);
-            var14.field3351.writeByte(field1666.method4103(82) ? 1 : 0);
-            field1436.method2148(var14);
+            var14 = class308.method8607(class309.field3370, serverConnection.field1046);
+            var14.packet.writeIntIME(class48.field347);
+            var14.packet.writeShortLE(field1596);
+            var14.packet.writeShortLE(field1597);
+            var14.packet.writeShortLE(var3);
+            var14.packet.writeByte(field1666.method4103(82) ? 1 : 0);
+            serverConnection.method2148(var14);
          }
       }
 
@@ -5113,15 +5113,15 @@ public final class Client extends GameShell implements class438, OAuthApi, class
          field1681 = 0;
          field1513 = var0;
          field1680 = var1;
-         var15 = class308.method8607(class309.field3401, field1436.field1046);
-         var15.field3351.writeShortLE(var3);
-         var15.field3351.writeShortLE(class103.field1020);
-         var15.field3351.writeShortLE(class306.field3338);
-         var15.field3351.writeShortLE(class342.field3837 + var0);
-         var15.field3351.writeByteAdd(field1666.method4103(82) ? 1 : 0);
-         var15.field3351.writeInt(class354.field3921);
-         var15.field3351.writeShortLE(class144.field1352 + var1);
-         field1436.method2148(var15);
+         var15 = class308.method8607(class309.field3401, serverConnection.field1046);
+         var15.packet.writeShortLE(var3);
+         var15.packet.writeShortLE(class103.field1020);
+         var15.packet.writeShortLE(class306.field3338);
+         var15.packet.writeShortLE(class342.field3837 + var0);
+         var15.packet.writeByteAdd(field1666.method4103(82) ? 1 : 0);
+         var15.packet.writeInt(class354.field3921);
+         var15.packet.writeShortLE(class144.field1352 + var1);
+         serverConnection.method2148(var15);
       }
 
       if (var2 == 47) {
@@ -5133,10 +5133,10 @@ public final class Client extends GameShell implements class438, OAuthApi, class
             field1681 = 0;
             field1513 = var0;
             field1680 = var1;
-            var14 = class308.method8607(class309.field3417, field1436.field1046);
-            var14.field3351.writeShortAdd(var3);
-            var14.field3351.writeByte(field1666.method4103(82) ? 1 : 0);
-            field1436.method2148(var14);
+            var14 = class308.method8607(class309.field3417, serverConnection.field1046);
+            var14.packet.writeShortAdd(var3);
+            var14.packet.writeByte(field1666.method4103(82) ? 1 : 0);
+            serverConnection.method2148(var14);
          }
       }
 
@@ -5149,10 +5149,10 @@ public final class Client extends GameShell implements class438, OAuthApi, class
             field1681 = 0;
             field1513 = var0;
             field1680 = var1;
-            var14 = class308.method8607(class309.field3441, field1436.field1046);
-            var14.field3351.method8934(var3);
-            var14.field3351.writeByteSub(field1666.method4103(82) ? 1 : 0);
-            field1436.method2148(var14);
+            var14 = class308.method8607(class309.field3441, serverConnection.field1046);
+            var14.packet.method8934(var3);
+            var14.packet.writeByteSub(field1666.method4103(82) ? 1 : 0);
+            serverConnection.method2148(var14);
          }
       }
 
@@ -5165,19 +5165,19 @@ public final class Client extends GameShell implements class438, OAuthApi, class
             field1681 = 0;
             field1513 = var0;
             field1680 = var1;
-            var14 = class308.method8607(class309.field3429, field1436.field1046);
-            var14.field3351.writeShort(var3);
-            var14.field3351.writeByteAdd(field1666.method4103(82) ? 1 : 0);
-            field1436.method2148(var14);
+            var14 = class308.method8607(class309.field3429, serverConnection.field1046);
+            var14.packet.writeShort(var3);
+            var14.packet.writeByteAdd(field1666.method4103(82) ? 1 : 0);
+            serverConnection.method2148(var14);
          }
       }
 
       int var16;
       class332 var19;
       if (var2 == 29) {
-         var15 = class308.method8607(class309.field3458, field1436.field1046);
-         var15.field3351.writeInt(var1);
-         field1436.method2148(var15);
+         var15 = class308.method8607(class309.field3458, serverConnection.field1046);
+         var15.packet.writeInt(var1);
+         serverConnection.method2148(var15);
          var19 = class332.method3765(var1);
          if (var19 != null && null != var19.field3727 && var19.field3727[0][0] == 5) {
             var16 = var19.field3727[0][1];
@@ -5195,12 +5195,12 @@ public final class Client extends GameShell implements class438, OAuthApi, class
          field1681 = 0;
          field1513 = var0;
          field1680 = var1;
-         var15 = class308.method8607(class309.field3362, field1436.field1046);
-         var15.field3351.writeShortAdd(class342.field3837 + var0);
-         var15.field3351.writeByteAdd(field1666.method4103(82) ? 1 : 0);
-         var15.field3351.writeShortAdd(var3);
-         var15.field3351.writeShortAdd(class144.field1352 + var1);
-         field1436.method2148(var15);
+         var15 = class308.method8607(class309.field3362, serverConnection.field1046);
+         var15.packet.writeShortAdd(class342.field3837 + var0);
+         var15.packet.writeByteAdd(field1666.method4103(82) ? 1 : 0);
+         var15.packet.writeShortAdd(var3);
+         var15.packet.writeShortAdd(class144.field1352 + var1);
+         serverConnection.method2148(var15);
       }
 
       if (var2 == 50) {
@@ -5212,10 +5212,10 @@ public final class Client extends GameShell implements class438, OAuthApi, class
             field1681 = 0;
             field1513 = var0;
             field1680 = var1;
-            var14 = class308.method8607(class309.field3456, field1436.field1046);
-            var14.field3351.writeShort(var3);
-            var14.field3351.writeByteNeg(field1666.method4103(82) ? 1 : 0);
-            field1436.method2148(var14);
+            var14 = class308.method8607(class309.field3456, serverConnection.field1046);
+            var14.packet.writeShort(var3);
+            var14.packet.writeByteNeg(field1666.method4103(82) ? 1 : 0);
+            serverConnection.method2148(var14);
          }
       }
 
@@ -5228,13 +5228,13 @@ public final class Client extends GameShell implements class438, OAuthApi, class
             field1681 = 0;
             field1513 = var0;
             field1680 = var1;
-            var14 = class308.method8607(class309.field3446, field1436.field1046);
-            var14.field3351.method8934(class103.field1020);
-            var14.field3351.method8934(class306.field3338);
-            var14.field3351.writeIntLE(class354.field3921);
-            var14.field3351.writeShort(var3);
-            var14.field3351.writeByte(field1666.method4103(82) ? 1 : 0);
-            field1436.method2148(var14);
+            var14 = class308.method8607(class309.field3446, serverConnection.field1046);
+            var14.packet.method8934(class103.field1020);
+            var14.packet.method8934(class306.field3338);
+            var14.packet.writeIntLE(class354.field3921);
+            var14.packet.writeShort(var3);
+            var14.packet.writeByte(field1666.method4103(82) ? 1 : 0);
+            serverConnection.method2148(var14);
          }
       }
 
@@ -5257,15 +5257,15 @@ public final class Client extends GameShell implements class438, OAuthApi, class
          field1681 = 0;
          field1513 = var0;
          field1680 = var1;
-         var15 = class308.method8607(class309.field3397, field1436.field1046);
-         var15.field3351.writeShortLE(class306.field3338);
-         var15.field3351.writeShortLE(class103.field1020);
-         var15.field3351.writeShortLE(var3);
-         var15.field3351.writeShortLE(class144.field1352 + var1);
-         var15.field3351.method8934(class342.field3837 + var0);
-         var15.field3351.writeByteAdd(field1666.method4103(82) ? 1 : 0);
-         var15.field3351.writeIntME(class354.field3921);
-         field1436.method2148(var15);
+         var15 = class308.method8607(class309.field3397, serverConnection.field1046);
+         var15.packet.writeShortLE(class306.field3338);
+         var15.packet.writeShortLE(class103.field1020);
+         var15.packet.writeShortLE(var3);
+         var15.packet.writeShortLE(class144.field1352 + var1);
+         var15.packet.method8934(class342.field3837 + var0);
+         var15.packet.writeByteAdd(field1666.method4103(82) ? 1 : 0);
+         var15.packet.writeIntME(class354.field3921);
+         serverConnection.method2148(var15);
       }
 
       if (var2 == 57 || var2 == 1007) {
@@ -5307,10 +5307,10 @@ public final class Client extends GameShell implements class438, OAuthApi, class
                field1681 = 0;
                field1513 = var0;
                field1680 = var1;
-               var14 = class308.method8607(class309.field3402, field1436.field1046);
-               var14.field3351.writeByte(field1666.method4103(82) ? 1 : 0);
-               var14.field3351.writeShort(var3);
-               field1436.method2148(var14);
+               var14 = class308.method8607(class309.field3402, serverConnection.field1046);
+               var14.packet.writeByte(field1666.method4103(82) ? 1 : 0);
+               var14.packet.writeShort(var3);
+               serverConnection.method2148(var14);
             }
          }
 
@@ -5323,13 +5323,13 @@ public final class Client extends GameShell implements class438, OAuthApi, class
                field1681 = 0;
                field1513 = var0;
                field1680 = var1;
-               var14 = class308.method8607(class309.field3452, field1436.field1046);
-               var14.field3351.writeShortAdd(var3);
-               var14.field3351.writeIntME(class48.field347);
-               var14.field3351.writeByte(field1666.method4103(82) ? 1 : 0);
-               var14.field3351.writeShort(field1597);
-               var14.field3351.writeShortLE(field1596);
-               field1436.method2148(var14);
+               var14 = class308.method8607(class309.field3452, serverConnection.field1046);
+               var14.packet.writeShortAdd(var3);
+               var14.packet.writeIntME(class48.field347);
+               var14.packet.writeByte(field1666.method4103(82) ? 1 : 0);
+               var14.packet.writeShort(field1597);
+               var14.packet.writeShortLE(field1596);
+               serverConnection.method2148(var14);
             }
          }
 
@@ -5340,12 +5340,12 @@ public final class Client extends GameShell implements class438, OAuthApi, class
             field1681 = 0;
             field1513 = var0;
             field1680 = var1;
-            var15 = class308.method8607(class309.field3421, field1436.field1046);
-            var15.field3351.method8934(class144.field1352 + var1);
-            var15.field3351.writeShortLE(class342.field3837 + var0);
-            var15.field3351.writeShort(var3);
-            var15.field3351.writeByteAdd(field1666.method4103(82) ? 1 : 0);
-            field1436.method2148(var15);
+            var15 = class308.method8607(class309.field3421, serverConnection.field1046);
+            var15.packet.method8934(class144.field1352 + var1);
+            var15.packet.writeShortLE(class342.field3837 + var0);
+            var15.packet.writeShort(var3);
+            var15.packet.writeByteAdd(field1666.method4103(82) ? 1 : 0);
+            serverConnection.method2148(var15);
          }
 
          if (var2 == 20) {
@@ -5355,12 +5355,12 @@ public final class Client extends GameShell implements class438, OAuthApi, class
             field1681 = 0;
             field1513 = var0;
             field1680 = var1;
-            var15 = class308.method8607(class309.field3434, field1436.field1046);
-            var15.field3351.writeShortAdd(var0 + class342.field3837);
-            var15.field3351.writeShortAdd(var3);
-            var15.field3351.writeShortLE(var1 + class144.field1352);
-            var15.field3351.writeByteNeg(field1666.method4103(82) ? 1 : 0);
-            field1436.method2148(var15);
+            var15 = class308.method8607(class309.field3434, serverConnection.field1046);
+            var15.packet.writeShortAdd(var0 + class342.field3837);
+            var15.packet.writeShortAdd(var3);
+            var15.packet.writeShortLE(var1 + class144.field1352);
+            var15.packet.writeByteNeg(field1666.method4103(82) ? 1 : 0);
+            serverConnection.method2148(var15);
          }
 
          if (var2 == 17) {
@@ -5370,15 +5370,15 @@ public final class Client extends GameShell implements class438, OAuthApi, class
             field1681 = 0;
             field1513 = var0;
             field1680 = var1;
-            var15 = class308.method8607(class309.field3425, field1436.field1046);
-            var15.field3351.writeShortLE(var1 + class144.field1352);
-            var15.field3351.writeShortAdd(field1596);
-            var15.field3351.writeShortAdd(var3);
-            var15.field3351.writeIntLE(class48.field347);
-            var15.field3351.writeShortAdd(field1597);
-            var15.field3351.writeByteNeg(field1666.method4103(82) ? 1 : 0);
-            var15.field3351.writeShort(var0 + class342.field3837);
-            field1436.method2148(var15);
+            var15 = class308.method8607(class309.field3425, serverConnection.field1046);
+            var15.packet.writeShortLE(var1 + class144.field1352);
+            var15.packet.writeShortAdd(field1596);
+            var15.packet.writeShortAdd(var3);
+            var15.packet.writeIntLE(class48.field347);
+            var15.packet.writeShortAdd(field1597);
+            var15.packet.writeByteNeg(field1666.method4103(82) ? 1 : 0);
+            var15.packet.writeShort(var0 + class342.field3837);
+            serverConnection.method2148(var15);
          }
 
          if (var2 == 19) {
@@ -5388,12 +5388,12 @@ public final class Client extends GameShell implements class438, OAuthApi, class
             field1681 = 0;
             field1513 = var0;
             field1680 = var1;
-            var15 = class308.method8607(class309.field3420, field1436.field1046);
-            var15.field3351.writeShortLE(class342.field3837 + var0);
-            var15.field3351.writeByteNeg(field1666.method4103(82) ? 1 : 0);
-            var15.field3351.writeShortLE(var3);
-            var15.field3351.method8934(var1 + class144.field1352);
-            field1436.method2148(var15);
+            var15 = class308.method8607(class309.field3420, serverConnection.field1046);
+            var15.packet.writeShortLE(class342.field3837 + var0);
+            var15.packet.writeByteNeg(field1666.method4103(82) ? 1 : 0);
+            var15.packet.writeShortLE(var3);
+            var15.packet.method8934(var1 + class144.field1352);
+            serverConnection.method2148(var15);
          }
 
          if (var2 == 10) {
@@ -5405,10 +5405,10 @@ public final class Client extends GameShell implements class438, OAuthApi, class
                field1681 = 0;
                field1513 = var0;
                field1680 = var1;
-               var14 = class308.method8607(class309.field3438, field1436.field1046);
-               var14.field3351.writeByte(field1666.method4103(82) ? 1 : 0);
-               var14.field3351.writeShortLE(var3);
-               field1436.method2148(var14);
+               var14 = class308.method8607(class309.field3438, serverConnection.field1046);
+               var14.packet.writeByte(field1666.method4103(82) ? 1 : 0);
+               var14.packet.writeShortLE(var3);
+               serverConnection.method2148(var14);
             }
          }
 
@@ -5419,15 +5419,15 @@ public final class Client extends GameShell implements class438, OAuthApi, class
             field1681 = 0;
             field1513 = var0;
             field1680 = var1;
-            var15 = class308.method8607(class309.field3451, field1436.field1046);
-            var15.field3351.writeByteNeg(field1666.method4103(82) ? 1 : 0);
-            var15.field3351.writeShort(field1597);
-            var15.field3351.writeShort(var3);
-            var15.field3351.writeShort(var1 + class144.field1352);
-            var15.field3351.writeShortAdd(var0 + class342.field3837);
-            var15.field3351.writeShortLE(field1596);
-            var15.field3351.writeIntIME(class48.field347);
-            field1436.method2148(var15);
+            var15 = class308.method8607(class309.field3451, serverConnection.field1046);
+            var15.packet.writeByteNeg(field1666.method4103(82) ? 1 : 0);
+            var15.packet.writeShort(field1597);
+            var15.packet.writeShort(var3);
+            var15.packet.writeShort(var1 + class144.field1352);
+            var15.packet.writeShortAdd(var0 + class342.field3837);
+            var15.packet.writeShortLE(field1596);
+            var15.packet.writeIntIME(class48.field347);
+            serverConnection.method2148(var15);
          }
 
          if (var2 == 3) {
@@ -5437,12 +5437,12 @@ public final class Client extends GameShell implements class438, OAuthApi, class
             field1681 = 0;
             field1513 = var0;
             field1680 = var1;
-            var15 = class308.method8607(class309.field3399, field1436.field1046);
-            var15.field3351.writeShortLE(class144.field1352 + var1);
-            var15.field3351.writeShortLE(class342.field3837 + var0);
-            var15.field3351.writeByteSub(field1666.method4103(82) ? 1 : 0);
-            var15.field3351.writeShort(var3);
-            field1436.method2148(var15);
+            var15 = class308.method8607(class309.field3399, serverConnection.field1046);
+            var15.packet.writeShortLE(class144.field1352 + var1);
+            var15.packet.writeShortLE(class342.field3837 + var0);
+            var15.packet.writeByteSub(field1666.method4103(82) ? 1 : 0);
+            var15.packet.writeShort(var3);
+            serverConnection.method2148(var15);
          }
 
          if (var2 == 24) {
@@ -5454,9 +5454,9 @@ public final class Client extends GameShell implements class438, OAuthApi, class
                }
 
                if (var20) {
-                  var12 = class308.method8607(class309.field3458, field1436.field1046);
-                  var12.field3351.writeInt(var1);
-                  field1436.method2148(var12);
+                  var12 = class308.method8607(class309.field3458, serverConnection.field1046);
+                  var12.packet.writeInt(var1);
+                  serverConnection.method2148(var12);
                }
             }
          }
@@ -5468,12 +5468,12 @@ public final class Client extends GameShell implements class438, OAuthApi, class
             field1681 = 0;
             field1513 = var0;
             field1680 = var1;
-            var15 = class308.method8607(class309.field3413, field1436.field1046);
-            var15.field3351.writeShortAdd(var0 + class342.field3837);
-            var15.field3351.writeByteSub(field1666.method4103(82) ? 1 : 0);
-            var15.field3351.writeShortAdd(var1 + class144.field1352);
-            var15.field3351.method8934(var3);
-            field1436.method2148(var15);
+            var15 = class308.method8607(class309.field3413, serverConnection.field1046);
+            var15.packet.writeShortAdd(var0 + class342.field3837);
+            var15.packet.writeByteSub(field1666.method4103(82) ? 1 : 0);
+            var15.packet.writeShortAdd(var1 + class144.field1352);
+            var15.packet.method8934(var3);
+            serverConnection.method2148(var15);
          }
 
          if (var2 == 21) {
@@ -5483,12 +5483,12 @@ public final class Client extends GameShell implements class438, OAuthApi, class
             field1681 = 0;
             field1513 = var0;
             field1680 = var1;
-            var15 = class308.method8607(class309.field3415, field1436.field1046);
-            var15.field3351.writeByteSub(field1666.method4103(82) ? 1 : 0);
-            var15.field3351.writeShortLE(var3);
-            var15.field3351.method8934(var1 + class144.field1352);
-            var15.field3351.method8934(class342.field3837 + var0);
-            field1436.method2148(var15);
+            var15 = class308.method8607(class309.field3415, serverConnection.field1046);
+            var15.packet.writeByteSub(field1666.method4103(82) ? 1 : 0);
+            var15.packet.writeShortLE(var3);
+            var15.packet.method8934(var1 + class144.field1352);
+            var15.packet.method8934(class342.field3837 + var0);
+            serverConnection.method2148(var15);
          }
 
          if (var2 == 18) {
@@ -5498,12 +5498,12 @@ public final class Client extends GameShell implements class438, OAuthApi, class
             field1681 = 0;
             field1513 = var0;
             field1680 = var1;
-            var15 = class308.method8607(class309.field3369, field1436.field1046);
-            var15.field3351.writeByteSub(field1666.method4103(82) ? 1 : 0);
-            var15.field3351.method8934(var1 + class144.field1352);
-            var15.field3351.method8934(var3);
-            var15.field3351.method8934(var0 + class342.field3837);
-            field1436.method2148(var15);
+            var15 = class308.method8607(class309.field3369, serverConnection.field1046);
+            var15.packet.writeByteSub(field1666.method4103(82) ? 1 : 0);
+            var15.packet.method8934(var1 + class144.field1352);
+            var15.packet.method8934(var3);
+            var15.packet.method8934(var0 + class342.field3837);
+            serverConnection.method2148(var15);
          }
 
          if (var2 == 30 && field1605 == null) {
@@ -5517,11 +5517,11 @@ public final class Client extends GameShell implements class438, OAuthApi, class
             field1442 = var8;
             field1551 = 2;
             field1681 = 0;
-            var15 = class308.method8607(class309.field3374, field1436.field1046);
-            var15.field3351.writeShortLE(var0 + class342.field3837);
-            var15.field3351.writeShortAdd(var3);
-            var15.field3351.method8934(class144.field1352 + var1);
-            field1436.method2148(var15);
+            var15 = class308.method8607(class309.field3374, serverConnection.field1046);
+            var15.packet.writeShortLE(var0 + class342.field3837);
+            var15.packet.writeShortAdd(var3);
+            var15.packet.method8934(class144.field1352 + var1);
+            serverConnection.method2148(var15);
          }
 
          if (var2 == 4) {
@@ -5531,18 +5531,18 @@ public final class Client extends GameShell implements class438, OAuthApi, class
             field1681 = 0;
             field1513 = var0;
             field1680 = var1;
-            var15 = class308.method8607(class309.field3371, field1436.field1046);
-            var15.field3351.writeShortLE(var1 + class144.field1352);
-            var15.field3351.method8934(var3);
-            var15.field3351.writeByte(field1666.method4103(82) ? 1 : 0);
-            var15.field3351.writeShortAdd(class342.field3837 + var0);
-            field1436.method2148(var15);
+            var15 = class308.method8607(class309.field3371, serverConnection.field1046);
+            var15.packet.writeShortLE(var1 + class144.field1352);
+            var15.packet.method8934(var3);
+            var15.packet.writeByte(field1666.method4103(82) ? 1 : 0);
+            var15.packet.writeShortAdd(class342.field3837 + var0);
+            serverConnection.method2148(var15);
          }
 
          if (var2 == 28) {
-            var15 = class308.method8607(class309.field3458, field1436.field1046);
-            var15.field3351.writeInt(var1);
-            field1436.method2148(var15);
+            var15 = class308.method8607(class309.field3458, serverConnection.field1046);
+            var15.packet.writeInt(var1);
+            serverConnection.method2148(var15);
             var19 = class332.method3765(var1);
             if (null != var19 && null != var19.field3727 && 5 == var19.field3727[0][0]) {
                var16 = var19.field3727[0][1];
@@ -5560,10 +5560,10 @@ public final class Client extends GameShell implements class438, OAuthApi, class
                field1681 = 0;
                field1513 = var0;
                field1680 = var1;
-               var14 = class308.method8607(class309.field3431, field1436.field1046);
-               var14.field3351.writeByteSub(field1666.method4103(82) ? 1 : 0);
-               var14.field3351.writeShort(var3);
-               field1436.method2148(var14);
+               var14 = class308.method8607(class309.field3431, serverConnection.field1046);
+               var14.packet.writeByteSub(field1666.method4103(82) ? 1 : 0);
+               var14.packet.writeShort(var3);
+               serverConnection.method2148(var14);
             }
          }
 
@@ -5613,10 +5613,10 @@ public final class Client extends GameShell implements class438, OAuthApi, class
    }
 
    static void method5003(int var0, int var1) {
-      class308 var3 = class308.method8607(class309.field3430, field1436.field1046);
-      var3.field3351.method8934(var1);
-      var3.field3351.writeIntME(var0);
-      field1436.method2148(var3);
+      class308 var3 = class308.method8607(class309.field3430, serverConnection.field1046);
+      var3.packet.method8934(var1);
+      var3.packet.writeIntME(var0);
+      serverConnection.method2148(var3);
    }
 
    static void method7794(int var0, int var1, int var2, int var3, String var4) {
@@ -5643,83 +5643,83 @@ public final class Client extends GameShell implements class438, OAuthApi, class
             if (var8) {
                class308 var11;
                if (var0 == 1) {
-                  var11 = class308.method8607(class309.field3396, field1436.field1046);
-                  var11.field3351.writeInt(var1);
-                  var11.field3351.writeShort(var2);
-                  var11.field3351.writeShort(var3);
-                  field1436.method2148(var11);
+                  var11 = class308.method8607(class309.field3396, serverConnection.field1046);
+                  var11.packet.writeInt(var1);
+                  var11.packet.writeShort(var2);
+                  var11.packet.writeShort(var3);
+                  serverConnection.method2148(var11);
                }
 
                if (var0 == 2) {
-                  var11 = class308.method8607(class309.field3445, field1436.field1046);
-                  var11.field3351.writeInt(var1);
-                  var11.field3351.writeShort(var2);
-                  var11.field3351.writeShort(var3);
-                  field1436.method2148(var11);
+                  var11 = class308.method8607(class309.field3445, serverConnection.field1046);
+                  var11.packet.writeInt(var1);
+                  var11.packet.writeShort(var2);
+                  var11.packet.writeShort(var3);
+                  serverConnection.method2148(var11);
                }
 
                if (var0 == 3) {
-                  var11 = class308.method8607(class309.field3363, field1436.field1046);
-                  var11.field3351.writeInt(var1);
-                  var11.field3351.writeShort(var2);
-                  var11.field3351.writeShort(var3);
-                  field1436.method2148(var11);
+                  var11 = class308.method8607(class309.field3363, serverConnection.field1046);
+                  var11.packet.writeInt(var1);
+                  var11.packet.writeShort(var2);
+                  var11.packet.writeShort(var3);
+                  serverConnection.method2148(var11);
                }
 
                if (var0 == 4) {
-                  var11 = class308.method8607(class309.field3398, field1436.field1046);
-                  var11.field3351.writeInt(var1);
-                  var11.field3351.writeShort(var2);
-                  var11.field3351.writeShort(var3);
-                  field1436.method2148(var11);
+                  var11 = class308.method8607(class309.field3398, serverConnection.field1046);
+                  var11.packet.writeInt(var1);
+                  var11.packet.writeShort(var2);
+                  var11.packet.writeShort(var3);
+                  serverConnection.method2148(var11);
                }
 
                if (var0 == 5) {
-                  var11 = class308.method8607(class309.field3394, field1436.field1046);
-                  var11.field3351.writeInt(var1);
-                  var11.field3351.writeShort(var2);
-                  var11.field3351.writeShort(var3);
-                  field1436.method2148(var11);
+                  var11 = class308.method8607(class309.field3394, serverConnection.field1046);
+                  var11.packet.writeInt(var1);
+                  var11.packet.writeShort(var2);
+                  var11.packet.writeShort(var3);
+                  serverConnection.method2148(var11);
                }
 
                if (var0 == 6) {
-                  var11 = class308.method8607(class309.field3367, field1436.field1046);
-                  var11.field3351.writeInt(var1);
-                  var11.field3351.writeShort(var2);
-                  var11.field3351.writeShort(var3);
-                  field1436.method2148(var11);
+                  var11 = class308.method8607(class309.field3367, serverConnection.field1046);
+                  var11.packet.writeInt(var1);
+                  var11.packet.writeShort(var2);
+                  var11.packet.writeShort(var3);
+                  serverConnection.method2148(var11);
                }
 
                if (var0 == 7) {
-                  var11 = class308.method8607(class309.field3444, field1436.field1046);
-                  var11.field3351.writeInt(var1);
-                  var11.field3351.writeShort(var2);
-                  var11.field3351.writeShort(var3);
-                  field1436.method2148(var11);
+                  var11 = class308.method8607(class309.field3444, serverConnection.field1046);
+                  var11.packet.writeInt(var1);
+                  var11.packet.writeShort(var2);
+                  var11.packet.writeShort(var3);
+                  serverConnection.method2148(var11);
                }
 
                if (var0 == 8) {
-                  var11 = class308.method8607(class309.field3418, field1436.field1046);
-                  var11.field3351.writeInt(var1);
-                  var11.field3351.writeShort(var2);
-                  var11.field3351.writeShort(var3);
-                  field1436.method2148(var11);
+                  var11 = class308.method8607(class309.field3418, serverConnection.field1046);
+                  var11.packet.writeInt(var1);
+                  var11.packet.writeShort(var2);
+                  var11.packet.writeShort(var3);
+                  serverConnection.method2148(var11);
                }
 
                if (var0 == 9) {
-                  var11 = class308.method8607(class309.field3386, field1436.field1046);
-                  var11.field3351.writeInt(var1);
-                  var11.field3351.writeShort(var2);
-                  var11.field3351.writeShort(var3);
-                  field1436.method2148(var11);
+                  var11 = class308.method8607(class309.field3386, serverConnection.field1046);
+                  var11.packet.writeInt(var1);
+                  var11.packet.writeShort(var2);
+                  var11.packet.writeShort(var3);
+                  serverConnection.method2148(var11);
                }
 
                if (var0 == 10) {
-                  var11 = class308.method8607(class309.field3384, field1436.field1046);
-                  var11.field3351.writeInt(var1);
-                  var11.field3351.writeShort(var2);
-                  var11.field3351.writeShort(var3);
-                  field1436.method2148(var11);
+                  var11 = class308.method8607(class309.field3384, serverConnection.field1046);
+                  var11.packet.writeInt(var1);
+                  var11.packet.writeShort(var2);
+                  var11.packet.writeShort(var3);
+                  serverConnection.method2148(var11);
                }
 
             }
@@ -6222,7 +6222,7 @@ public final class Client extends GameShell implements class438, OAuthApi, class
                            Runtime var41 = Runtime.getRuntime();
                            var21 = (int)((var41.totalMemory() - var41.freeMemory()) / 1024L);
                            var22 = 16776960;
-                           if (var21 > 327680 && !field1549) {
+                           if (var21 > 327680 && !isLowDetail) {
                               var22 = 16711680;
                            }
 
@@ -6306,7 +6306,7 @@ public final class Client extends GameShell implements class438, OAuthApi, class
                      class229.method4291();
                   }
 
-                  if (field1462 || field1652[var12] || field1588 > 1) {
+                  if (isResizable || field1652[var12] || field1588 > 1) {
                      if (0 == var11.field3608 && !var11.field3605 && var11.field3719 > var11.field3622) {
                         method2548(var11.field3598 + var13, var14, var11.field3628, var11.field3622, var11.field3719);
                      }
@@ -8189,9 +8189,9 @@ public final class Client extends GameShell implements class438, OAuthApi, class
          }
 
          if (var2 == 326) {
-            class308 var5 = class308.method8607(class309.field3378, field1436.field1046);
-            field1630.method5799(var5.field3351);
-            field1436.method2148(var5);
+            class308 var5 = class308.method8607(class309.field3378, serverConnection.field1046);
+            field1630.method5799(var5.packet);
+            serverConnection.method2148(var5);
             return true;
          } else {
             return false;
@@ -8271,26 +8271,26 @@ public final class Client extends GameShell implements class438, OAuthApi, class
 
    static final void method5752(String var0) {
       if (class6.field42 != null) {
-         class308 var2 = class308.method8607(class309.field3408, field1436.field1046);
-         var2.field3351.writeByte(PacketBuffer.getJagStringSize(var0));
-         var2.field3351.writeString(var0);
-         field1436.method2148(var2);
+         class308 var2 = class308.method8607(class309.field3408, serverConnection.field1046);
+         var2.packet.writeByte(Buffer.getJagStringSize(var0));
+         var2.packet.writeString(var0);
+         serverConnection.method2148(var2);
       }
    }
 
    static final void method2470(String var0) {
       if (!var0.equals("")) {
-         class308 var2 = class308.method8607(class309.field3376, field1436.field1046);
-         var2.field3351.writeByte(PacketBuffer.getJagStringSize(var0));
-         var2.field3351.writeString(var0);
-         field1436.method2148(var2);
+         class308 var2 = class308.method8607(class309.field3376, serverConnection.field1046);
+         var2.packet.writeByte(Buffer.getJagStringSize(var0));
+         var2.packet.writeString(var0);
+         serverConnection.method2148(var2);
       }
    }
 
    static final void method4204() {
-      class308 var1 = class308.method8607(class309.field3376, field1436.field1046);
-      var1.field3351.writeByte(0);
-      field1436.method2148(var1);
+      class308 var1 = class308.method8607(class309.field3376, serverConnection.field1046);
+      var1.packet.writeByte(0);
+      serverConnection.method2148(var1);
    }
 
    static final void method3214(int var0, int var1) {
@@ -8299,12 +8299,12 @@ public final class Client extends GameShell implements class438, OAuthApi, class
          class152 var4 = (class152)var3.field1772.get(var1);
          if (var4.field1391 == -1) {
             String var5 = var4.field1389.method9155();
-            class308 var6 = class308.method8607(class309.field3373, field1436.field1046);
-            var6.field3351.writeByte(3 + PacketBuffer.getJagStringSize(var5));
-            var6.field3351.writeByte(var0);
-            var6.field3351.writeShort(var1);
-            var6.field3351.writeString(var5);
-            field1436.method2148(var6);
+            class308 var6 = class308.method8607(class309.field3373, serverConnection.field1046);
+            var6.packet.writeByte(3 + Buffer.getJagStringSize(var5));
+            var6.packet.writeByte(var0);
+            var6.packet.writeShort(var1);
+            var6.packet.writeString(var5);
+            serverConnection.method2148(var6);
          }
       }
    }
@@ -8314,12 +8314,12 @@ public final class Client extends GameShell implements class438, OAuthApi, class
          if (var1 >= 0 && var1 < field1673[var0].method3279()) {
             class152 var3 = (class152)field1673[var0].field1772.get(var1);
             if (var3.field1391 == -1) {
-               class308 var4 = class308.method8607(class309.field3388, field1436.field1046);
-               var4.field3351.writeByte(3 + PacketBuffer.getJagStringSize(var3.field1389.method9155()));
-               var4.field3351.writeByte(var0);
-               var4.field3351.writeShort(var1);
-               var4.field3351.writeString(var3.field1389.method9155());
-               field1436.method2148(var4);
+               class308 var4 = class308.method8607(class309.field3388, serverConnection.field1046);
+               var4.packet.writeByte(3 + Buffer.getJagStringSize(var3.field1389.method9155()));
+               var4.packet.writeByte(var0);
+               var4.packet.writeShort(var1);
+               var4.packet.writeString(var3.field1389.method9155());
+               serverConnection.method2148(var4);
             }
          }
       }
@@ -8329,13 +8329,13 @@ public final class Client extends GameShell implements class438, OAuthApi, class
       if (null != field1673[var0]) {
          if (var1 >= 0 && var1 < field1673[var0].method3279()) {
             class152 var4 = (class152)field1673[var0].field1772.get(var1);
-            class308 var5 = class308.method8607(class309.field3406, field1436.field1046);
-            var5.field3351.writeByte(4 + PacketBuffer.getJagStringSize(var4.field1389.method9155()));
-            var5.field3351.writeByte(var0);
-            var5.field3351.writeShort(var1);
-            var5.field3351.writeBoolean(var2);
-            var5.field3351.writeString(var4.field1389.method9155());
-            field1436.method2148(var5);
+            class308 var5 = class308.method8607(class309.field3406, serverConnection.field1046);
+            var5.packet.writeByte(4 + Buffer.getJagStringSize(var4.field1389.method9155()));
+            var5.packet.writeByte(var0);
+            var5.packet.writeShort(var1);
+            var5.packet.writeBoolean(var2);
+            var5.packet.writeString(var4.field1389.method9155());
+            serverConnection.method2148(var5);
          }
       }
    }
@@ -8484,12 +8484,12 @@ public final class Client extends GameShell implements class438, OAuthApi, class
       class415.method7428(var0, var1, field1488, 0, 24);
    }
 
-   static void method7097(PacketBuffer var0, int var1) {
+   static void method7097(Buffer var0, int var1) {
       method6929(var0.data, var1);
       class265.method5209(var0, var1);
    }
 
-   static void method4735(PacketBuffer var0) {
+   static void method4735(Buffer var0) {
       if (field1488 != null) {
          var0.writeBytes(field1488, 0, field1488.length);
       } else {
@@ -8548,8 +8548,8 @@ public final class Client extends GameShell implements class438, OAuthApi, class
    }
 
    static void method2128(int var0) {
-      if (var0 != field1467) {
-         field1467 = var0;
+      if (var0 != loginStage) {
+         loginStage = var0;
       }
    }
 
@@ -8618,8 +8618,8 @@ public final class Client extends GameShell implements class438, OAuthApi, class
                      }
                      break;
                   case 4:
-                     if (field1438 == -1) {
-                        field1438 = Integer.parseInt(var2);
+                     if (clientType == -1) {
+                        clientType = Integer.parseInt(var2);
                      }
                      break;
                   case 5:
@@ -8730,17 +8730,17 @@ public final class Client extends GameShell implements class438, OAuthApi, class
          }
 
          class124.field1180 = this;
-         class524.field5157 = field1438;
+         class524.field5157 = clientType;
          method2099();
          if (Boolean.parseBoolean(System.getProperty("jagex.disableBouncyCastle"))) {
             this.field1478 = true;
          }
 
-         if (-1 == field1573) {
+         if (-1 == platformType) {
             if (!this.method2695() && !this.method2884()) {
-               field1573 = 0;
+               platformType = 0;
             } else {
-               field1573 = 5;
+               platformType = 5;
             }
          }
 
@@ -8756,7 +8756,7 @@ public final class Client extends GameShell implements class438, OAuthApi, class
    public void setOtlTokenRequester(OtlTokenRequester var1) {
       if (null != var1) {
          this.field1476 = var1;
-         class61.method6370(10);
+         Login.method6370(10);
       }
    }
 
@@ -8779,7 +8779,7 @@ public final class Client extends GameShell implements class438, OAuthApi, class
    }
 
    boolean method2884() {
-      return null != class20.field114 && !class20.field114.trim().isEmpty() && null != class61.field468 && !class61.field468.trim().isEmpty();
+      return null != class20.field114 && !class20.field114.trim().isEmpty() && null != Login.field468 && !Login.field468.trim().isEmpty();
    }
 
    boolean method3185() {
@@ -8856,9 +8856,9 @@ public final class Client extends GameShell implements class438, OAuthApi, class
          class401.field4487.add(30000);
       }
 
-      class61.field433 = 0 == field1434 ? '\uaa4a' : '\u9c40' + field1432;
+      Login.field433 = 0 == field1434 ? '\uaa4a' : '\u9c40' + field1432;
       class20.field108 = field1434 == 0 ? 443 : field1432 + '\uc350';
-      class329.field3580 = class61.field433;
+      class329.field3580 = Login.field433;
       class48.field350 = class319.field3516;
       class164.field1774 = class319.field3515;
       class252.field2847 = class319.field3513;
@@ -8915,21 +8915,21 @@ public final class Client extends GameShell implements class438, OAuthApi, class
          method4206();
          GameShell.method3439();
       } else if (5 == gameState) {
-         class61.method3299(this, class185.field1996, class112.field1079);
+         Login.method3299(this, class185.field1996, class112.field1079);
          method4206();
          GameShell.method3439();
       } else if (10 != gameState && 11 != gameState) {
          if (gameState == 20) {
-            class61.method3299(this, class185.field1996, class112.field1079);
+            Login.method3299(this, class185.field1996, class112.field1079);
             this.method2705();
          } else if (gameState == 50) {
-            class61.method3299(this, class185.field1996, class112.field1079);
+            Login.method3299(this, class185.field1996, class112.field1079);
             this.method2705();
          } else if (gameState == 25) {
             method2439();
          }
       } else {
-         class61.method3299(this, class185.field1996, class112.field1079);
+         Login.method3299(this, class185.field1996, class112.field1079);
       }
 
       if (gameState == 30) {
@@ -8953,14 +8953,14 @@ public final class Client extends GameShell implements class438, OAuthApi, class
       }
 
       if (0 == gameState) {
-         this.method684(class61.field450, class61.field436, var1);
+         this.method684(Login.field450, Login.field436, var1);
       } else if (5 == gameState) {
-         class61.method7420(class316.field3504, class185.field1996, class112.field1079);
+         Login.method7420(class316.field3504, class185.field1996, class112.field1079);
       } else if (gameState != 10 && gameState != 11) {
          if (gameState == 20) {
-            class61.method7420(class316.field3504, class185.field1996, class112.field1079);
+            Login.method7420(class316.field3504, class185.field1996, class112.field1079);
          } else if (50 == gameState) {
-            class61.method7420(class316.field3504, class185.field1996, class112.field1079);
+            Login.method7420(class316.field3504, class185.field1996, class112.field1079);
          } else if (gameState == 25) {
             if (field1453 == 1) {
                if (field1646 > field1500) {
@@ -8987,10 +8987,10 @@ public final class Client extends GameShell implements class438, OAuthApi, class
             method2100(class364.field4037, false);
          }
       } else {
-         class61.method7420(class316.field3504, class185.field1996, class112.field1079);
+         Login.method7420(class316.field3504, class185.field1996, class112.field1079);
       }
 
-      if (30 == gameState && 0 == field1588 && !var1 && !field1462) {
+      if (30 == gameState && 0 == field1588 && !var1 && !isResizable) {
          for(var3 = 0; var3 < field1648; ++var3) {
             if (field1651[var3]) {
                class159.field1749.method9187(field1581[var3], field1654[var3], field1655[var3], field1656[var3]);
@@ -9017,7 +9017,7 @@ public final class Client extends GameShell implements class438, OAuthApi, class
       }
 
       class514.field5111 = null;
-      field1436.method2146();
+      serverConnection.method2146();
       if (null != class41.field240) {
          synchronized(class41.field240) {
             class41.field240 = null;
@@ -9097,7 +9097,7 @@ public final class Client extends GameShell implements class438, OAuthApi, class
 
                if (2 == js5ConnectState) {
                   class149.js5Socket = class424.newSocketStream((Socket)class292.js5SocketTask.result, 40000, 5000);
-                  PacketBuffer var2 = new PacketBuffer(5);
+                  Buffer var2 = new Buffer(5);
                   var2.writeByte(15);
                   var2.writeInt(215);
                   class149.js5Socket.write(var2.data, 0, 5);
@@ -9139,10 +9139,10 @@ public final class Client extends GameShell implements class438, OAuthApi, class
       class292.js5SocketTask = null;
       class149.js5Socket = null;
       js5ConnectState = 0;
-      if (class329.field3580 == class61.field433) {
+      if (class329.field3580 == Login.field433) {
          class329.field3580 = class20.field108;
       } else {
-         class329.field3580 = class61.field433;
+         class329.field3580 = Login.field433;
       }
 
       ++field1466;
@@ -9168,18 +9168,18 @@ public final class Client extends GameShell implements class438, OAuthApi, class
    }
 
    final void method2705() {
-      class424 var2 = field1436.method2137();
-      class497 var3 = field1436.field1044;
+      class424 var2 = serverConnection.method2137();
+      PacketBuffer var3 = serverConnection.buffer;
 
       try {
-         if (0 == field1467) {
-            if (class204.field2202 == null && (field1484.method1080() || field1468 > 250)) {
-               class204.field2202 = field1484.method1081();
+         if (0 == loginStage) {
+            if (class204.secureRandom == null && (field1484.method1080() || field1468 > 250)) {
+               class204.secureRandom = field1484.method1081();
                field1484.method1079();
                field1484 = null;
             }
 
-            if (null != class204.field2202) {
+            if (null != class204.secureRandom) {
                if (var2 != null) {
                   var2.method7589();
                   var2 = null;
@@ -9188,7 +9188,7 @@ public final class Client extends GameShell implements class438, OAuthApi, class
                class454.field4744 = null;
                field1487 = false;
                field1468 = 0;
-               if (field1472.method8523()) {
+               if (loginMethod.isOAuth()) {
                   if (this.method2695()) {
                      try {
                         this.method2698(class81.field719);
@@ -9205,7 +9205,7 @@ public final class Client extends GameShell implements class438, OAuthApi, class
                      }
 
                      try {
-                        this.method2700(class20.field114, class61.field468);
+                        this.method2700(class20.field114, Login.field468);
                         method2128(20);
                      } catch (Exception var20) {
                         class524.method5856((String)null, var20);
@@ -9220,7 +9220,7 @@ public final class Client extends GameShell implements class438, OAuthApi, class
          }
 
          class3 var23;
-         if (field1467 == 21) {
+         if (loginStage == 21) {
             if (this.field1481 != null) {
                if (!this.field1481.isDone()) {
                   return;
@@ -9291,7 +9291,7 @@ public final class Client extends GameShell implements class438, OAuthApi, class
             method2128(20);
          }
 
-         if (field1467 == 20) {
+         if (loginStage == 20) {
             if (null != this.field1477) {
                if (!this.field1477.isDone()) {
                   return;
@@ -9311,7 +9311,7 @@ public final class Client extends GameShell implements class438, OAuthApi, class
                      return;
                   }
 
-                  this.field1613 = var24.getToken();
+                  this.oauthToken = var24.getToken();
                   this.field1477 = null;
                } catch (Exception var17) {
                   class524.method5856((String)null, var17);
@@ -9348,7 +9348,7 @@ public final class Client extends GameShell implements class438, OAuthApi, class
                if (var25 != null && var25.contains(class461.field4764.method8040())) {
                   try {
                      JSONObject var6 = new JSONObject(var23.method58());
-                     this.field1613 = var6.getString("token");
+                     this.oauthToken = var6.getString("token");
                   } catch (JSONException var16) {
                      class524.method5856((String)null, var16);
                      class343.method6479(65);
@@ -9356,7 +9356,7 @@ public final class Client extends GameShell implements class438, OAuthApi, class
                      return;
                   }
                } else {
-                  this.field1613 = var23.method58();
+                  this.oauthToken = var23.method58();
                }
 
                this.field1550 = null;
@@ -9366,7 +9366,7 @@ public final class Client extends GameShell implements class438, OAuthApi, class
             method2128(1);
          }
 
-         if (field1467 == 1) {
+         if (loginStage == 1) {
             if (class454.field4744 == null) {
                class454.field4744 = GameShell.field272.newSocketTask(class196.field2146, class329.field3580);
             }
@@ -9377,28 +9377,28 @@ public final class Client extends GameShell implements class438, OAuthApi, class
 
             if (class454.field4744.field1859 == 1) {
                var2 = class424.newSocketStream((Socket)class454.field4744.result, 40000, 5000);
-               field1436.method2133(var2);
+               serverConnection.method2133(var2);
                class454.field4744 = null;
                method2128(2);
             }
          }
 
          class308 var27;
-         if (field1467 == 2) {
-            field1436.method2130();
+         if (loginStage == 2) {
+            serverConnection.clearQueue();
             var27 = class308.method2535();
             var27.field3360 = null;
             var27.field3352 = 0;
-            var27.field3351 = new class497(5000);
-            var27.field3351.writeByte(class310.field3462.field3460);
-            field1436.method2148(var27);
-            field1436.method2131();
+            var27.packet = new PacketBuffer(5000);
+            var27.packet.writeByte(LoginType.field3462.opcode);
+            serverConnection.method2148(var27);
+            serverConnection.method2131();
             var3.offset = 0;
             method2128(3);
          }
 
          int var26;
-         if (field1467 == 3) {
+         if (loginStage == 3) {
             if (null != class194.field2126) {
                class194.field2126.method532();
             }
@@ -9419,7 +9419,7 @@ public final class Client extends GameShell implements class438, OAuthApi, class
             }
          }
 
-         if (4 == field1467) {
+         if (4 == loginStage) {
             if (var3.offset < 8) {
                var26 = var2.available();
                if (var26 > 8 - var3.offset) {
@@ -9434,122 +9434,122 @@ public final class Client extends GameShell implements class438, OAuthApi, class
 
             if (var3.offset == 8) {
                var3.offset = 0;
-               class318.field3512 = var3.readLong();
+               class318.serverSeed = var3.readLong();
                method2128(5);
             }
          }
 
-         if (field1467 == 5) {
-            field1436.field1044.offset = 0;
-            field1436.method2130();
-            class497 buf = new class497(500);
-            int[] xteas = new int[]{class204.field2202.nextInt(), class204.field2202.nextInt(), class204.field2202.nextInt(), class204.field2202.nextInt()};
-            buf.offset = 0;
-            buf.writeByte(1);
-            buf.writeInt(xteas[0]);
-            buf.writeInt(xteas[1]);
-            buf.writeInt(xteas[2]);
-            buf.writeInt(xteas[3]);
-            buf.writeLong(class318.field3512);
+         if (loginStage == 5) {
+            serverConnection.buffer.offset = 0;
+            serverConnection.clearQueue();
+            PacketBuffer rsaBuf = new PacketBuffer(500);
+            int[] xteas = new int[]{class204.secureRandom.nextInt(), class204.secureRandom.nextInt(), class204.secureRandom.nextInt(), class204.secureRandom.nextInt()};
+            rsaBuf.offset = 0;
+            rsaBuf.writeByte(1);
+            rsaBuf.writeInt(xteas[0]);
+            rsaBuf.writeInt(xteas[1]);
+            rsaBuf.writeInt(xteas[2]);
+            rsaBuf.writeInt(xteas[3]);
+            rsaBuf.writeLong(class318.serverSeed);
             if (40 == gameState) {
-               buf.writeInt(class375.field4361[0]);
-               buf.writeInt(class375.field4361[1]);
-               buf.writeInt(class375.field4361[2]);
-               buf.writeInt(class375.field4361[3]);
+               rsaBuf.writeInt(class375.field4361[0]);
+               rsaBuf.writeInt(class375.field4361[1]);
+               rsaBuf.writeInt(class375.field4361[2]);
+               rsaBuf.writeInt(class375.field4361[3]);
             } else {
                if (gameState == 50) {
-                  buf.writeByte(class132.field1245.method6917());
-                  buf.writeInt(class70.field576);
+                  rsaBuf.writeByte(class132.field1245.serialId());
+                  rsaBuf.writeInt(class70.field576);
                } else {
-                  buf.writeByte(field1471.method6917());
-                  switch (field1471.field1246) {
+                  rsaBuf.writeByte(authType.serialId());
+                  switch (authType.ordinal) {
                      case 1:
                      case 4:
-                        buf.writeMedium(class428.field4629);
-                        ++buf.offset;
+                        rsaBuf.writeMedium(class428.field4629);
+                        ++rsaBuf.offset;
                         break;
                      case 2:
-                        buf.offset += 4;
+                        rsaBuf.offset += 4;
                         break;
                      case 3:
-                        buf.writeInt(class141.field1307.method1638(class61.field441));
+                        rsaBuf.writeInt(class141.field1307.method1638(Login.loginUsername));
                   }
                }
 
-               if (field1472.method8523()) {
-                  buf.writeByte(class500.field5044.method6917());
-                  buf.writeString(this.field1613);
+               if (loginMethod.isOAuth()) {
+                  rsaBuf.writeByte(LoginMethod.OAUTH.serialId());
+                  rsaBuf.writeString(this.oauthToken);
                } else {
-                  buf.writeByte(class500.field5051.method6917());
-                  buf.writeString(class61.field445);
+                  rsaBuf.writeByte(LoginMethod.NORMAL.serialId());
+                  rsaBuf.writeString(Login.loginPassword);
                }
             }
 
-            buf.encryptRsa(class59.field419, class59.field416);
+            rsaBuf.encryptRsa(LoginEncryption.rsaExponent, LoginEncryption.rsaModulus);
             class375.field4361 = xteas;
-            class308 var7 = class308.method2535();
-            var7.field3360 = null;
-            var7.field3352 = 0;
-            var7.field3351 = new class497(5000);
-            var7.field3351.offset = 0;
+            class308 buf = class308.method2535();
+            buf.field3360 = null;
+            buf.field3352 = 0;
+            buf.packet = new PacketBuffer(5000);
+            buf.packet.offset = 0;
             if (gameState == 40) {
-               var7.field3351.writeByte(class310.field3464.field3460);
+               buf.packet.writeByte(LoginType.RECONNECT.opcode);
             } else {
-               var7.field3351.writeByte(class310.field3463.field3460);
+               buf.packet.writeByte(LoginType.NORMAL.opcode);
             }
 
-            var7.field3351.writeShort(0);
-            int var8 = var7.field3351.offset;
-            var7.field3351.writeInt(215);
-            var7.field3351.writeInt(1);
-            var7.field3351.writeByte(field1438);
-            var7.field3351.writeByte(field1573);
+            buf.packet.writeShort(0);
+            int var8 = buf.packet.offset;
+            buf.packet.writeInt(215);
+            buf.packet.writeInt(1);
+            buf.packet.writeByte(clientType);
+            buf.packet.writeByte(platformType);
             byte var9 = 0;
-            var7.field3351.writeByte(var9);
-            var7.field3351.writeBytes(buf.data, 0, buf.offset);
-            int var10 = var7.field3351.offset;
-            var7.field3351.writeString(class61.field441);
-            var7.field3351.writeByte((field1462 ? 1 : 0) << 1 | (field1549 ? 1 : 0));
-            var7.field3351.writeShort(class343.field3838);
-            var7.field3351.writeShort(class488.field4948);
-            method4735(var7.field3351);
-            var7.field3351.writeString(class44.field305);
-            var7.field3351.writeInt(class37.field183);
+            buf.packet.writeByte(var9);
+            buf.packet.writeBytes(rsaBuf.data, 0, rsaBuf.offset);
+            int var10 = buf.packet.offset;
+            buf.packet.writeString(Login.loginUsername);
+            buf.packet.writeByte((isResizable ? 1 : 0) << 1 | (isLowDetail ? 1 : 0));
+            buf.packet.writeShort(class343.field3838);
+            buf.packet.writeShort(class488.field4948);
+            method4735(buf.packet);
+            buf.packet.writeString(class44.field305);
+            buf.packet.writeInt(class37.field183);
             if (field1441 > 213) {
-               var7.field3351.writeByte(0);
+               buf.packet.writeByte(0);
             }
 
-            PacketBuffer var11 = new PacketBuffer(class191.field2089.method8453());
+            Buffer var11 = new Buffer(class191.field2089.method8453());
             class191.field2089.method8451(var11);
-            var7.field3351.writeBytes(var11.data, 0, var11.data.length);
-            var7.field3351.writeByte(field1438);
-            var7.field3351.writeInt(0);
-            var7.field3351.writeIntME(class186.field2015.field3831);
-            var7.field3351.writeIntLE(class63.field498.field3831);
-            var7.field3351.writeIntME(class150.field1383.field3831);
-            var7.field3351.writeIntLE(0);
-            var7.field3351.writeIntME(class260.field2931.field3831);
-            var7.field3351.writeIntIME(class70.field570.field3831);
-            var7.field3351.writeInt(class131.field1236.field3831);
-            var7.field3351.writeIntIME(class26.field133.field3831);
-            var7.field3351.writeIntLE(class130.field1226.field3831);
-            var7.field3351.writeIntLE(class6.field34.field3831);
-            var7.field3351.writeIntME(class124.field1182.field3831);
-            var7.field3351.writeIntME(class200.field2181.field3831);
-            var7.field3351.writeIntIME(class127.field1209.field3831);
-            var7.field3351.writeIntLE(class379.field4382.field3831);
-            var7.field3351.writeInt(class73.field589.field3831);
-            var7.field3351.writeIntIME(class475.field4839.field3831);
-            var7.field3351.writeInt(class107.field1059.field3831);
-            var7.field3351.writeIntME(class49.field361.field3831);
-            var7.field3351.writeIntIME(class144.field1347.field3831);
-            var7.field3351.writeIntME(class136.field1254.field3831);
-            var7.field3351.writeIntIME(class24.field121.field3831);
-            var7.field3351.method8773(xteas, var10, var7.field3351.offset);
-            var7.field3351.writeLengthShort(var7.field3351.offset - var8);
-            field1436.method2148(var7);
-            field1436.method2131();
-            field1436.field1046 = new class540(xteas);
+            buf.packet.writeBytes(var11.data, 0, var11.data.length);
+            buf.packet.writeByte(clientType);
+            buf.packet.writeInt(0);
+            buf.packet.writeIntME(class186.field2015.field3831);
+            buf.packet.writeIntLE(class63.field498.field3831);
+            buf.packet.writeIntME(class150.field1383.field3831);
+            buf.packet.writeIntLE(0);
+            buf.packet.writeIntME(class260.field2931.field3831);
+            buf.packet.writeIntIME(class70.field570.field3831);
+            buf.packet.writeInt(class131.field1236.field3831);
+            buf.packet.writeIntIME(class26.field133.field3831);
+            buf.packet.writeIntLE(class130.field1226.field3831);
+            buf.packet.writeIntLE(class6.field34.field3831);
+            buf.packet.writeIntME(class124.field1182.field3831);
+            buf.packet.writeIntME(class200.field2181.field3831);
+            buf.packet.writeIntIME(class127.field1209.field3831);
+            buf.packet.writeIntLE(class379.field4382.field3831);
+            buf.packet.writeInt(class73.field589.field3831);
+            buf.packet.writeIntIME(class475.field4839.field3831);
+            buf.packet.writeInt(class107.field1059.field3831);
+            buf.packet.writeIntME(class49.field361.field3831);
+            buf.packet.writeIntIME(class144.field1347.field3831);
+            buf.packet.writeIntME(class136.field1254.field3831);
+            buf.packet.writeIntIME(class24.field121.field3831);
+            buf.packet.method8773(xteas, var10, buf.packet.offset);
+            buf.packet.writeLengthShort(buf.packet.offset - var8);
+            serverConnection.method2148(buf);
+            serverConnection.method2131();
+            serverConnection.field1046 = new class540(xteas);
             int[] var12 = new int[4];
 
             for(int var13 = 0; var13 < 4; ++var13) {
@@ -9561,7 +9561,7 @@ public final class Client extends GameShell implements class438, OAuthApi, class
          }
 
          int var29;
-         if (6 == field1467 && var2.available() > 0) {
+         if (6 == loginStage && var2.available() > 0) {
             var26 = var2.readUnsignedByte();
             if (var26 == 61) {
                var29 = var2.available();
@@ -9574,7 +9574,7 @@ public final class Client extends GameShell implements class438, OAuthApi, class
             } else if (var26 == 2) {
                method2128(14);
             } else if (var26 == 15 && 40 == gameState) {
-               field1436.field1042 = -1;
+               serverConnection.field1042 = -1;
                method2128(19);
             } else if (var26 == 64) {
                method2128(10);
@@ -9593,14 +9593,14 @@ public final class Client extends GameShell implements class438, OAuthApi, class
             }
          }
 
-         if (7 == field1467 && var2.available() >= 2) {
+         if (7 == loginStage && var2.available() >= 2) {
             var2.method7603(var3.data, 0, 2);
             var3.offset = 0;
             class379.field4380 = var3.readUnsignedShort();
             method2128(8);
          }
 
-         if (8 == field1467 && var2.available() >= class379.field4380) {
+         if (8 == loginStage && var2.available() >= class379.field4380) {
             var3.offset = 0;
             var2.method7603(var3.data, var3.offset, class379.field4380);
             class7 var35 = class7.method5783()[var3.readUnsignedByte()];
@@ -9615,7 +9615,7 @@ public final class Client extends GameShell implements class438, OAuthApi, class
             }
          }
 
-         if (field1467 == 9 && this.field1486.method369()) {
+         if (loginStage == 9 && this.field1486.method369()) {
             this.field1485 = this.field1486.method363();
             this.field1486.method362();
             this.field1486 = null;
@@ -9624,50 +9624,50 @@ public final class Client extends GameShell implements class438, OAuthApi, class
                return;
             }
 
-            field1436.method2130();
+            serverConnection.clearQueue();
             var27 = class308.method2535();
             var27.field3360 = null;
             var27.field3352 = 0;
-            var27.field3351 = new class497(5000);
-            var27.field3351.writeByte(class310.field3466.field3460);
-            var27.field3351.writeShort(this.field1485.offset);
-            var27.field3351.writeBytes(this.field1485);
-            field1436.method2148(var27);
-            field1436.method2131();
+            var27.packet = new PacketBuffer(5000);
+            var27.packet.writeByte(LoginType.field3466.opcode);
+            var27.packet.writeShort(this.field1485.offset);
+            var27.packet.writeBytes(this.field1485);
+            serverConnection.method2148(var27);
+            serverConnection.method2131();
             this.field1485 = null;
             method2128(6);
          }
 
-         if (field1467 == 10 && var2.available() > 0) {
+         if (loginStage == 10 && var2.available() > 0) {
             class291.field3123 = var2.readUnsignedByte();
             method2128(11);
          }
 
-         if (11 == field1467 && var2.available() >= class291.field3123) {
+         if (11 == loginStage && var2.available() >= class291.field3123) {
             var2.method7603(var3.data, 0, class291.field3123);
             var3.offset = 0;
             method2128(6);
          }
 
-         if (field1467 == 12 && var2.available() > 0) {
+         if (loginStage == 12 && var2.available() > 0) {
             field1470 = (var2.readUnsignedByte() + 3) * 60;
             method2128(13);
          }
 
-         if (field1467 == 13) {
+         if (loginStage == 13) {
             field1468 = 0;
-            class61.method2098(class364.field4063, class364.field4064, field1470 / 60 + class364.field4325);
+            Login.method2098(class364.field4063, class364.field4064, field1470 / 60 + class364.field4325);
             if (--field1470 <= 0) {
                method2128(0);
             }
 
          } else {
-            if (14 == field1467 && var2.available() >= 1) {
+            if (14 == loginStage && var2.available() >= 1) {
                class40.field231 = var2.readUnsignedByte();
                method2128(15);
             }
 
-            if (15 == field1467 && var2.available() >= class40.field231) {
+            if (15 == loginStage && var2.available() >= class40.field231) {
                boolean var39 = var2.readUnsignedByte() == 1;
                var2.method7603(var3.data, 0, 4);
                var3.offset = 0;
@@ -9677,11 +9677,11 @@ public final class Client extends GameShell implements class438, OAuthApi, class
                   var29 |= var3.method8478() << 16;
                   var29 |= var3.method8478() << 8;
                   var29 |= var3.method8478();
-                  class141.field1307.method1636(class61.field441, var29);
+                  class141.field1307.method1636(Login.loginUsername, var29);
                }
 
                if (field1483) {
-                  class141.field1307.method1630(class61.field441);
+                  class141.field1307.method1630(Login.loginUsername);
                } else {
                   class141.field1307.method1630((String)null);
                }
@@ -9713,11 +9713,11 @@ public final class Client extends GameShell implements class438, OAuthApi, class
                   throw new IOException(var37 + " " + var3.offset);
                }
 
-               field1436.field1048 = var30[var37];
-               field1436.field1042 = field1436.field1048.field3333;
+               serverConnection.field1048 = var30[var37];
+               serverConnection.field1042 = serverConnection.field1048.field3333;
                var2.method7603(var3.data, 0, 2);
                var3.offset = 0;
-               field1436.field1042 = var3.readUnsignedShort();
+               serverConnection.field1042 = var3.readUnsignedShort();
 
                try {
                   Client var41 = class124.field1180;
@@ -9728,10 +9728,10 @@ public final class Client extends GameShell implements class438, OAuthApi, class
                method2128(16);
             }
 
-            if (field1467 == 16) {
-               if (var2.available() >= field1436.field1042) {
+            if (loginStage == 16) {
+               if (var2.available() >= serverConnection.field1042) {
                   var3.offset = 0;
-                  var2.method7603(var3.data, 0, field1436.field1042);
+                  var2.method7603(var3.data, 0, serverConnection.field1042);
                   field1497.method7070();
                   field1446 = -1L;
                   class514.field5111.field731 = 0;
@@ -9739,14 +9739,14 @@ public final class Client extends GameShell implements class438, OAuthApi, class
                   field1450 = true;
                   field1566 = -1L;
                   class44.method264();
-                  field1436.method2130();
-                  field1436.field1044.offset = 0;
-                  field1436.field1048 = null;
-                  field1436.field1049 = null;
-                  field1436.field1054 = null;
-                  field1436.field1055 = null;
-                  field1436.field1042 = 0;
-                  field1436.field1056 = 0;
+                  serverConnection.clearQueue();
+                  serverConnection.buffer.offset = 0;
+                  serverConnection.field1048 = null;
+                  serverConnection.field1049 = null;
+                  serverConnection.field1054 = null;
+                  serverConnection.field1055 = null;
+                  serverConnection.field1042 = 0;
+                  serverConnection.field1056 = 0;
                   field1451 = 0;
                   field1542 = 0;
                   field1452 = 0;
@@ -9858,11 +9858,11 @@ public final class Client extends GameShell implements class438, OAuthApi, class
                   class116.method3290(var3);
                   class293.field3130 = -1;
                   method5654(false, var3);
-                  field1436.field1048 = null;
+                  serverConnection.field1048 = null;
                }
 
             } else {
-               if (17 == field1467 && var2.available() >= 2) {
+               if (17 == loginStage && var2.available() >= 2) {
                   var3.offset = 0;
                   var2.method7603(var3.data, 0, 2);
                   var3.offset = 0;
@@ -9870,28 +9870,28 @@ public final class Client extends GameShell implements class438, OAuthApi, class
                   method2128(18);
                }
 
-               if (field1467 == 18 && var2.available() >= class265.field2960) {
+               if (loginStage == 18 && var2.available() >= class265.field2960) {
                   var3.offset = 0;
                   var2.method7603(var3.data, 0, class265.field2960);
                   var3.offset = 0;
                   String var40 = var3.readString();
                   String var42 = var3.readString();
                   String var33 = var3.readString();
-                  class61.method2098(var40, var42, var33);
+                  Login.method2098(var40, var42, var33);
                   updateGameState(10);
-                  if (field1472.method8523()) {
-                     class61.method6370(9);
+                  if (loginMethod.isOAuth()) {
+                     Login.method6370(9);
                   }
                }
 
-               if (19 != field1467) {
+               if (19 != loginStage) {
                   ++field1468;
                   if (field1468 > 2000) {
                      if (field1712 < 1) {
-                        if (class61.field433 == class329.field3580) {
+                        if (Login.field433 == class329.field3580) {
                            class329.field3580 = class20.field108;
                         } else {
-                           class329.field3580 = class61.field433;
+                           class329.field3580 = Login.field433;
                         }
 
                         ++field1712;
@@ -9901,29 +9901,29 @@ public final class Client extends GameShell implements class438, OAuthApi, class
                      }
                   }
                } else {
-                  if (field1436.field1042 == -1) {
+                  if (serverConnection.field1042 == -1) {
                      if (var2.available() < 2) {
                         return;
                      }
 
                      var2.method7603(var3.data, 0, 2);
                      var3.offset = 0;
-                     field1436.field1042 = var3.readUnsignedShort();
+                     serverConnection.field1042 = var3.readUnsignedShort();
                   }
 
-                  if (var2.available() >= field1436.field1042) {
-                     var2.method7603(var3.data, 0, field1436.field1042);
+                  if (var2.available() >= serverConnection.field1042) {
+                     var2.method7603(var3.data, 0, serverConnection.field1042);
                      var3.offset = 0;
-                     var26 = field1436.field1042;
+                     var26 = serverConnection.field1042;
                      field1497.method7072();
-                     field1436.method2130();
-                     field1436.field1044.offset = 0;
-                     field1436.field1048 = null;
-                     field1436.field1049 = null;
-                     field1436.field1054 = null;
-                     field1436.field1055 = null;
-                     field1436.field1042 = 0;
-                     field1436.field1056 = 0;
+                     serverConnection.clearQueue();
+                     serverConnection.buffer.offset = 0;
+                     serverConnection.field1048 = null;
+                     serverConnection.field1049 = null;
+                     serverConnection.field1054 = null;
+                     serverConnection.field1055 = null;
+                     serverConnection.field1042 = 0;
+                     serverConnection.field1056 = 0;
                      field1451 = 0;
                      field1594 = 0;
                      field1576 = false;
@@ -9962,10 +9962,10 @@ public final class Client extends GameShell implements class438, OAuthApi, class
          }
       } catch (IOException var22) {
          if (field1712 < 1) {
-            if (class61.field433 == class329.field3580) {
+            if (Login.field433 == class329.field3580) {
                class329.field3580 = class20.field108;
             } else {
-               class329.field3580 = class61.field433;
+               class329.field3580 = Login.field433;
             }
 
             ++field1712;
@@ -9994,28 +9994,28 @@ public final class Client extends GameShell implements class438, OAuthApi, class
          }
 
          int var2;
-         for(var2 = 0; var2 < 100 && this.method2712(field1436); ++var2) {
+         for(var2 = 0; var2 < 100 && this.method2712(serverConnection); ++var2) {
          }
 
          if (gameState == 30) {
             int var3;
             class308 var17;
             while(class44.method1389()) {
-               var17 = class308.method8607(class309.field3437, field1436.field1046);
-               var17.field3351.writeByte(0);
-               var3 = var17.field3351.offset;
-               class44.method6521(var17.field3351);
-               var17.field3351.writeLengthByte(var17.field3351.offset - var3);
-               field1436.method2148(var17);
+               var17 = class308.method8607(class309.field3437, serverConnection.field1046);
+               var17.packet.writeByte(0);
+               var3 = var17.packet.offset;
+               class44.method6521(var17.packet);
+               var17.packet.writeLengthByte(var17.packet.offset - var3);
+               serverConnection.method2148(var17);
             }
 
             if (field1497.field4492) {
-               var17 = class308.method8607(class309.field3372, field1436.field1046);
-               var17.field3351.writeByte(0);
-               var3 = var17.field3351.offset;
-               field1497.method7073(var17.field3351);
-               var17.field3351.writeLengthByte(var17.field3351.offset - var3);
-               field1436.method2148(var17);
+               var17 = class308.method8607(class309.field3372, serverConnection.field1046);
+               var17.packet.writeByte(0);
+               var3 = var17.packet.offset;
+               field1497.method7073(var17.packet);
+               var17.packet.writeLengthByte(var17.packet.offset - var3);
+               serverConnection.method2148(var17);
                field1497.method7071();
             }
 
@@ -10039,7 +10039,7 @@ public final class Client extends GameShell implements class438, OAuthApi, class
                   var6 = 0;
                   var7 = 0;
 
-                  for(var8 = 0; var8 < class514.field5111.field731 && (var19 == null || var19.field3351.offset - var4 < 246); ++var8) {
+                  for(var8 = 0; var8 < class514.field5111.field731 && (var19 == null || var19.packet.offset - var4 < 246); ++var8) {
                      var5 = var8;
                      var9 = class514.field5111.field729[var8];
                      if (var9 < -1) {
@@ -10057,10 +10057,10 @@ public final class Client extends GameShell implements class438, OAuthApi, class
 
                      if (field1659 != var10 || field1448 != var9) {
                         if (null == var19) {
-                           var19 = class308.method8607(class309.field3382, field1436.field1046);
-                           var19.field3351.writeByte(0);
-                           var4 = var19.field3351.offset;
-                           class497 var10000 = var19.field3351;
+                           var19 = class308.method8607(class309.field3382, serverConnection.field1046);
+                           var19.packet.writeByte(0);
+                           var4 = var19.packet.offset;
+                           PacketBuffer var10000 = var19.packet;
                            var10000.offset += 2;
                            var6 = 0;
                            var7 = 0;
@@ -10082,25 +10082,25 @@ public final class Client extends GameShell implements class438, OAuthApi, class
                         if (var13 < 8 && var11 >= -32 && var11 <= 31 && var12 >= -32 && var12 <= 31) {
                            var11 += 32;
                            var12 += 32;
-                           var19.field3351.writeShort((var13 << 12) + (var11 << 6) + var12);
+                           var19.packet.writeShort((var13 << 12) + (var11 << 6) + var12);
                         } else if (var13 < 32 && var11 >= -128 && var11 <= 127 && var12 >= -128 && var12 <= 127) {
                            var11 += 128;
                            var12 += 128;
-                           var19.field3351.writeByte(var13 + 128);
-                           var19.field3351.writeShort(var12 + (var11 << 8));
+                           var19.packet.writeByte(var13 + 128);
+                           var19.packet.writeShort(var12 + (var11 << 8));
                         } else if (var13 < 32) {
-                           var19.field3351.writeByte(var13 + 192);
+                           var19.packet.writeByte(var13 + 192);
                            if (var10 != -1 && var9 != -1) {
-                              var19.field3351.writeInt(var10 | var9 << 16);
+                              var19.packet.writeInt(var10 | var9 << 16);
                            } else {
-                              var19.field3351.writeInt(Integer.MIN_VALUE);
+                              var19.packet.writeInt(Integer.MIN_VALUE);
                            }
                         } else {
-                           var19.field3351.writeShort('\ue000' + (var13 & 8191));
+                           var19.packet.writeShort('\ue000' + (var13 & 8191));
                            if (var10 != -1 && var9 != -1) {
-                              var19.field3351.writeInt(var10 | var9 << 16);
+                              var19.packet.writeInt(var10 | var9 << 16);
                            } else {
-                              var19.field3351.writeInt(Integer.MIN_VALUE);
+                              var19.packet.writeInt(Integer.MIN_VALUE);
                            }
                         }
 
@@ -10110,13 +10110,13 @@ public final class Client extends GameShell implements class438, OAuthApi, class
                   }
 
                   if (var19 != null) {
-                     var19.field3351.writeLengthByte(var19.field3351.offset - var4);
-                     var8 = var19.field3351.offset;
-                     var19.field3351.offset = var4;
-                     var19.field3351.writeByte(var6 / var7);
-                     var19.field3351.writeByte(var6 % var7);
-                     var19.field3351.offset = var8;
-                     field1436.method2148(var19);
+                     var19.packet.writeLengthByte(var19.packet.offset - var4);
+                     var8 = var19.packet.offset;
+                     var19.packet.offset = var4;
+                     var19.packet.writeByte(var6 / var7);
+                     var19.packet.writeByte(var6 % var7);
+                     var19.packet.offset = var8;
+                     serverConnection.method2148(var19);
                   }
 
                   if (var5 >= class514.field5111.field731) {
@@ -10154,23 +10154,23 @@ public final class Client extends GameShell implements class438, OAuthApi, class
                }
 
                var6 = (int)var18;
-               var29 = class308.method8607(class309.field3404, field1436.field1046);
-               var29.field3351.writeShort((var6 << 1) + (class41.field256 == 2 ? 1 : 0));
-               var29.field3351.writeShort(var5);
-               var29.field3351.writeShort(var4);
-               field1436.method2148(var29);
+               var29 = class308.method8607(class309.field3404, serverConnection.field1046);
+               var29.packet.writeShort((var6 << 1) + (class41.field256 == 2 ? 1 : 0));
+               var29.packet.writeShort(var5);
+               var29.packet.writeShort(var4);
+               serverConnection.method2148(var29);
             }
 
             if (0 != field1641) {
-               var17 = class308.method8607(class309.field3457, field1436.field1046);
-               var17.field3351.writeShort(field1641);
-               field1436.method2148(var17);
+               var17 = class308.method8607(class309.field3457, serverConnection.field1046);
+               var17.packet.writeShort(field1641);
+               serverConnection.method2148(var17);
             }
 
             if (field1666.field2372 > 0) {
-               var17 = class308.method8607(class309.field3428, field1436.field1046);
-               var17.field3351.writeShort(0);
-               var3 = var17.field3351.offset;
+               var17 = class308.method8607(class309.field3428, serverConnection.field1046);
+               var17.packet.writeShort(0);
+               var3 = var17.packet.offset;
                long var20 = class302.safeTime();
 
                for(var6 = 0; var6 < field1666.field2372; ++var6) {
@@ -10180,12 +10180,12 @@ public final class Client extends GameShell implements class438, OAuthApi, class
                   }
 
                   field1566 = var20;
-                  var17.field3351.method8940((int)var32);
-                  var17.field3351.writeByteAdd(field1666.field2360[var6]);
+                  var17.packet.method8940((int)var32);
+                  var17.packet.writeByteAdd(field1666.field2360[var6]);
                }
 
-               var17.field3351.writeLengthShort(var17.field3351.offset - var3);
-               field1436.method2148(var17);
+               var17.packet.writeLengthShort(var17.packet.offset - var3);
+               serverConnection.method2148(var17);
             }
 
             if (field1530 > 0) {
@@ -10199,24 +10199,24 @@ public final class Client extends GameShell implements class438, OAuthApi, class
             if (field1623 && field1530 <= 0) {
                field1530 = 20;
                field1623 = false;
-               var17 = class308.method8607(class309.field3368, field1436.field1046);
-               var17.field3351.writeShort(field1569);
-               var17.field3351.writeShort(field1649);
-               field1436.method2148(var17);
+               var17 = class308.method8607(class309.field3368, serverConnection.field1046);
+               var17.packet.writeShort(field1569);
+               var17.packet.writeShort(field1649);
+               serverConnection.method2148(var17);
             }
 
             if (class331.field3587 && !field1450) {
                field1450 = true;
-               var17 = class308.method8607(class309.field3411, field1436.field1046);
-               var17.field3351.writeByte(1);
-               field1436.method2148(var17);
+               var17 = class308.method8607(class309.field3411, serverConnection.field1046);
+               var17.packet.writeByte(1);
+               serverConnection.method2148(var17);
             }
 
             if (!class331.field3587 && field1450) {
                field1450 = false;
-               var17 = class308.method8607(class309.field3411, field1436.field1046);
-               var17.field3351.writeByte(0);
-               field1436.method2148(var17);
+               var17 = class308.method8607(class309.field3411, serverConnection.field1046);
+               var17.packet.writeByte(0);
+               serverConnection.method2148(var17);
             }
 
             if (null != class115.field1095) {
@@ -10376,8 +10376,8 @@ public final class Client extends GameShell implements class438, OAuthApi, class
                   field1490 = false;
                }
 
-               ++field1436.field1056;
-               if (field1436.field1056 > 750) {
+               ++serverConnection.field1056;
+               if (serverConnection.field1056 > 750) {
                   method2043();
                } else {
                   method425();
@@ -10454,12 +10454,12 @@ public final class Client extends GameShell implements class438, OAuthApi, class
                      if (var4 != class146.field1362.field759) {
                         var5 = class146.field1362.field945[0] + class342.field3837;
                         var6 = class146.field1362.field1012[0] + class144.field1352;
-                        var29 = class308.method8607(class309.field3432, field1436.field1046);
-                        var29.field3351.writeIntME(0);
-                        var29.field3351.method8934(var5);
-                        var29.field3351.writeByteAdd(var4);
-                        var29.field3351.writeShortAdd(var6);
-                        field1436.method2148(var29);
+                        var29 = class308.method8607(class309.field3432, serverConnection.field1046);
+                        var29.packet.writeIntME(0);
+                        var29.packet.method8934(var5);
+                        var29.packet.writeByteAdd(var4);
+                        var29.packet.writeShortAdd(var6);
+                        serverConnection.method2148(var29);
                      }
 
                      field1641 = 0;
@@ -10506,12 +10506,12 @@ public final class Client extends GameShell implements class438, OAuthApi, class
                                                    if (class234.method4476()) {
                                                       var4 = class234.field2610;
                                                       var5 = class234.field2583;
-                                                      class308 var46 = class308.method8607(class309.field3455, field1436.field1046);
-                                                      var46.field3351.writeByte(5);
-                                                      var46.field3351.writeShort(class342.field3837 + var4);
-                                                      var46.field3351.writeByteAdd(field1666.method4103(82) ? (field1666.method4103(81) ? 2 : 1) : 0);
-                                                      var46.field3351.writeShortLE(class144.field1352 + var5);
-                                                      field1436.method2148(var46);
+                                                      class308 var46 = class308.method8607(class309.field3455, serverConnection.field1046);
+                                                      var46.packet.writeByte(5);
+                                                      var46.packet.writeShort(class342.field3837 + var4);
+                                                      var46.packet.writeByteAdd(field1666.method4103(82) ? (field1666.method4103(81) ? 2 : 1) : 0);
+                                                      var46.packet.writeShortLE(class144.field1352 + var5);
+                                                      serverConnection.method2148(var46);
                                                       class234.method4447();
                                                       field1548 = class41.field257;
                                                       field1442 = class41.field258;
@@ -10677,7 +10677,7 @@ public final class Client extends GameShell implements class438, OAuthApi, class
                                                       }
 
                                                       if (field1666.method4103(13)) {
-                                                         field1436.method2148(class308.method8607(class309.field3366, field1436.field1046));
+                                                         serverConnection.method2148(class308.method8607(class309.field3366, serverConnection.field1046));
                                                          field1521 = 0;
                                                       }
                                                    }
@@ -10795,20 +10795,20 @@ public final class Client extends GameShell implements class438, OAuthApi, class
                                                    if (var4 > 15000 && var6 > 15000) {
                                                       field1542 = 250;
                                                       class41.method1415(14500);
-                                                      var29 = class308.method8607(class309.field3364, field1436.field1046);
-                                                      field1436.method2148(var29);
+                                                      var29 = class308.method8607(class309.field3364, serverConnection.field1046);
+                                                      serverConnection.method2148(var29);
                                                    }
 
                                                    class165.field1782.method1090();
                                                    method2558();
-                                                   ++field1436.field1052;
-                                                   if (field1436.field1052 > 50) {
-                                                      var29 = class308.method8607(class309.field3390, field1436.field1046);
-                                                      field1436.method2148(var29);
+                                                   ++serverConnection.field1052;
+                                                   if (serverConnection.field1052 > 50) {
+                                                      var29 = class308.method8607(class309.field3390, serverConnection.field1046);
+                                                      serverConnection.method2148(var29);
                                                    }
 
                                                    try {
-                                                      field1436.method2131();
+                                                      serverConnection.method2131();
                                                    } catch (IOException var15) {
                                                       method2043();
                                                    }
@@ -10861,11 +10861,11 @@ public final class Client extends GameShell implements class438, OAuthApi, class
    }
 
    public void method5899(int var1, int var2) {
-      if (field1436 != null && null != field1436.field1046) {
+      if (serverConnection != null && null != serverConnection.field1046) {
          if (var1 > -1 && class141.field1307.method1626() > 0 && !field1490) {
-            class308 var4 = class308.method8607(class309.field3449, field1436.field1046);
-            var4.field3351.writeInt(var1);
-            field1436.method2148(var4);
+            class308 var4 = class308.method8607(class309.field3449, serverConnection.field1046);
+            var4.packet.writeInt(var1);
+            serverConnection.method2148(var4);
          }
 
       }
@@ -11011,7 +11011,7 @@ public final class Client extends GameShell implements class438, OAuthApi, class
             class6.field42 = new class427(class454.field4743, class124.field1180);
          }
 
-         class6.field42.method7618(var1.field1044, var2);
+         class6.field42.method7618(var1.buffer, var2);
       }
 
       field1635 = field1624;
@@ -11022,7 +11022,7 @@ public final class Client extends GameShell implements class438, OAuthApi, class
 
    boolean method2711(class106 var1) {
       if (null != class6.field42) {
-         class6.field42.method7628(var1.field1044);
+         class6.field42.method7628(var1.buffer);
       }
 
       field1635 = field1624;
@@ -11033,7 +11033,7 @@ public final class Client extends GameShell implements class438, OAuthApi, class
 
    final boolean method2712(class106 var1) {
       class424 var3 = var1.method2137();
-      class497 var4 = var1.field1044;
+      PacketBuffer var4 = var1.buffer;
       if (null == var3) {
          return false;
       } else {
@@ -11047,7 +11047,7 @@ public final class Client extends GameShell implements class438, OAuthApi, class
                      return false;
                   }
 
-                  var3.method7603(var1.field1044.data, 0, 1);
+                  var3.method7603(var1.buffer.data, 0, 1);
                   var1.field1056 = 0;
                   var1.field1050 = false;
                }
@@ -11058,7 +11058,7 @@ public final class Client extends GameShell implements class438, OAuthApi, class
                      return false;
                   }
 
-                  var3.method7603(var1.field1044.data, 1, 1);
+                  var3.method7603(var1.buffer.data, 1, 1);
                   var1.field1056 = 0;
                }
 
@@ -11257,7 +11257,7 @@ public final class Client extends GameShell implements class438, OAuthApi, class
             if (class305.field3220 == var1.field1048) {
                byte[] var91 = new byte[var1.field1042];
                var4.method8505(var91, 0, var91.length);
-               PacketBuffer var90 = new PacketBuffer(var91);
+               Buffer var90 = new Buffer(var91);
                var81 = var90.readString();
                class45.method1843(var81, true, false);
                var1.field1048 = null;
@@ -12645,12 +12645,12 @@ public final class Client extends GameShell implements class438, OAuthApi, class
                var23 = var4.readInt();
                var24 = var4.readInt();
                var7 = GameShell.method406();
-               class308 var30 = class308.method8607(class309.field3395, field1436.field1046);
-               var30.field3351.writeByteNeg(var7);
-               var30.field3351.writeByteAdd(GameShell.field274);
-               var30.field3351.writeIntLE(var23);
-               var30.field3351.writeInt(var24);
-               field1436.method2148(var30);
+               class308 var30 = class308.method8607(class309.field3395, serverConnection.field1046);
+               var30.packet.writeByteNeg(var7);
+               var30.packet.writeByteAdd(GameShell.field274);
+               var30.packet.writeIntLE(var23);
+               var30.packet.writeInt(var24);
+               serverConnection.method2148(var30);
                var1.field1048 = null;
                return true;
             }
@@ -12686,13 +12686,13 @@ public final class Client extends GameShell implements class438, OAuthApi, class
             }
 
             if (class305.field3288 == var1.field1048) {
-               method5654(false, var1.field1044);
+               method5654(false, var1.buffer);
                var1.field1048 = null;
                return true;
             }
 
             if (class305.field3264 == var1.field1048) {
-               method5654(true, var1.field1044);
+               method5654(true, var1.buffer);
                var1.field1048 = null;
                return true;
             }
@@ -12750,7 +12750,7 @@ public final class Client extends GameShell implements class438, OAuthApi, class
                updateGameState(45);
                var3.method7589();
                var3 = null;
-               class61.method2662(var35);
+               Login.method2662(var35);
                var1.field1048 = null;
                return false;
             }
@@ -13224,14 +13224,14 @@ public final class Client extends GameShell implements class438, OAuthApi, class
                }
 
                if (null != field1616 && method5299(field1512) != null) {
-                  class308 var13 = class308.method8607(class309.field3450, field1436.field1046);
-                  var13.field3351.writeShort(field1512.field3739);
-                  var13.field3351.writeShortLE(field1512.field3607);
-                  var13.field3351.writeShort(field1616.field3607);
-                  var13.field3351.method8934(field1616.field3739);
-                  var13.field3351.writeIntLE(field1512.field3606);
-                  var13.field3351.writeIntME(field1616.field3606);
-                  field1436.method2148(var13);
+                  class308 var13 = class308.method8607(class309.field3450, serverConnection.field1046);
+                  var13.packet.writeShort(field1512.field3739);
+                  var13.packet.writeShortLE(field1512.field3607);
+                  var13.packet.writeShort(field1616.field3607);
+                  var13.packet.method8934(field1616.field3739);
+                  var13.packet.writeIntLE(field1512.field3606);
+                  var13.packet.writeIntME(field1616.field3606);
+                  serverConnection.method2148(var13);
                }
             } else if (this.method2714()) {
                this.method2715(field1614 + field1621, field1615 + field1622);

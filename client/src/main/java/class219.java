@@ -7,7 +7,7 @@ public class class219 extends class470 {
 
    public class219(int var1, byte[] var2) {
       this.field2402 = var1;
-      PacketBuffer var3 = new PacketBuffer(var2);
+      Buffer var3 = new Buffer(var2);
       this.field2400 = var3.readUnsignedByte();
       this.field2404 = new int[this.field2400];
       this.field2405 = new int[this.field2400][];

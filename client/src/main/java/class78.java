@@ -176,7 +176,7 @@ public class class78 extends class470 {
    }
 
    void method1590(byte[] var1) {
-      PacketBuffer var2 = new PacketBuffer(var1);
+      Buffer var2 = new Buffer(var1);
       this.field663 = var2.readInt();
       this.field657 = var2.readInt();
       this.field658 = var2.readInt();

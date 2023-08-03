@@ -3,7 +3,7 @@ public class class29 {
    int field150;
    int field153;
 
-   class29(PacketBuffer var1) {
+   class29(Buffer var1) {
       for(int var2 = 0; var2 < 10; ++var2) {
          int var3 = var1.readUnsignedByte();
          if (var3 != 0) {
@@ -19,7 +19,7 @@ public class class29 {
 
    public static class29 method434(class342 var0, int var1, int var2) {
       byte[] var3 = var0.method6381(var1, var2);
-      return var3 == null ? null : new class29(new PacketBuffer(var3));
+      return var3 == null ? null : new class29(new Buffer(var3));
    }
 
    public class35 method430() {

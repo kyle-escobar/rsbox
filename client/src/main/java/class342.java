@@ -24,7 +24,7 @@ public abstract class class342 {
    }
 
    static final byte[] method5782(byte[] var0) {
-      PacketBuffer var2 = new PacketBuffer(var0);
+      Buffer var2 = new Buffer(var0);
       int var3 = var2.readUnsignedByte();
       int var4 = var2.readInt();
       if (var4 >= 0 && (0 == field3836 || var4 <= field3836)) {
@@ -54,7 +54,7 @@ public abstract class class342 {
 
    void method6379(byte[] var1) {
       this.field3831 = class318.method5851(var1, var1.length);
-      PacketBuffer var3 = new PacketBuffer(method5782(var1));
+      Buffer var3 = new Buffer(method5782(var1));
       int var4 = var3.readUnsignedByte();
       if (var4 >= 5 && var4 <= 7) {
          if (var4 >= 6) {
@@ -368,7 +368,7 @@ public abstract class class342 {
                var22 = class317.method2517(this.field3830[var1], false);
             } else {
                var22 = class317.method2517(this.field3830[var1], true);
-               PacketBuffer var9 = new PacketBuffer(var22);
+               Buffer var9 = new Buffer(var22);
                var9.method8774(var2, 5, var9.data.length);
             }
 
@@ -382,7 +382,7 @@ public abstract class class342 {
                --var10;
                int var11 = var23[var10] & 255;
                var10 -= 4 * var11 * var4;
-               PacketBuffer var12 = new PacketBuffer(var23);
+               Buffer var12 = new Buffer(var23);
                int[] var13 = new int[var4];
                var12.offset = var10;
 

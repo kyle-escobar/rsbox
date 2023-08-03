@@ -79,7 +79,7 @@ public class class66 {
       }
    }
 
-   final void method1403(PacketBuffer var1, class52 var2) {
+   final void method1403(Buffer var1, class52 var2) {
       int var3 = var1.readUnsignedByte();
       this.field516[0] = var3 >> 4;
       this.field516[1] = var3 & 15;

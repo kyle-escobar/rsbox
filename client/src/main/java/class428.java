@@ -46,7 +46,7 @@ public final class class428 {
          byte[] var3 = class515.field5118.method6381(38, var0);
          var2 = new class515();
          if (var3 != null) {
-            var2.method8697(new PacketBuffer(var3));
+            var2.method8697(new Buffer(var3));
          }
 
          var2.method8710();

@@ -60,7 +60,7 @@ public class class359 implements class383 {
 
    }
 
-   public int method6917() {
+   public int serialId() {
       return this.field3965;
    }
 }

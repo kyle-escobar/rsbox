@@ -6,7 +6,7 @@ public class class362 extends class476 {
    class362() {
    }
 
-   static final void method6594(boolean var0, class497 var1) {
+   static final void method6594(boolean var0, PacketBuffer var1) {
       Client.field1561 = 0;
       Client.field1717 = 0;
       Client.method1190(var1);
@@ -21,7 +21,7 @@ public class class362 extends class476 {
       while(true) {
          var3 = 16;
          var4 = 1 << var3;
-         if (var1.method8485(Client.field1436.field1042) < var3 + 12) {
+         if (var1.method8485(Client.serverConnection.field1042) < var3 + 12) {
             break;
          }
 
@@ -427,8 +427,8 @@ public class class362 extends class476 {
          }
       }
 
-      if (var1.offset != Client.field1436.field1042) {
-         throw new RuntimeException(var1.offset + class90.field829 + Client.field1436.field1042);
+      if (var1.offset != Client.serverConnection.field1042) {
+         throw new RuntimeException(var1.offset + class90.field829 + Client.serverConnection.field1042);
       } else {
          for(var3 = 0; var3 < Client.field1565; ++var3) {
             if (Client.field1489[Client.field1491[var3]] == null) {

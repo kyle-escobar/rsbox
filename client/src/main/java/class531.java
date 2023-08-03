@@ -10,7 +10,7 @@ public class class531 {
    class531(int var1, int var2, int var3) {
    }
 
-   public void method9212(PacketBuffer var1, byte[] var2) {
+   public void method9212(Buffer var1, byte[] var2) {
       if (var1.data[var1.offset] == 31 && var1.data[var1.offset + 1] == -117) {
          if (this.field5187 == null) {
             this.field5187 = new Inflater(true);

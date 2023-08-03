@@ -209,7 +209,7 @@ public abstract class class102 extends class228 {
          var9 = new class183();
          var9.field1896 = var1;
          if (var10 != null) {
-            var9.method3433(new PacketBuffer(var10));
+            var9.method3433(new Buffer(var10));
          }
 
          class183.field1889.method5640(var9, (long)var1);
@@ -265,7 +265,7 @@ public abstract class class102 extends class228 {
          var4 = new class183();
          var4.field1896 = var1;
          if (null != var5) {
-            var4.method3433(new PacketBuffer(var5));
+            var4.method3433(new Buffer(var5));
          }
 
          class183.field1889.method5640(var4, (long)var1);

@@ -2,7 +2,7 @@ public class class230 {
    class115[] field2517;
    int field2518;
 
-   class230(PacketBuffer var1, int var2) {
+   class230(Buffer var1, int var2) {
       this.field2517 = new class115[var2];
       this.field2518 = var1.readUnsignedByte();
 

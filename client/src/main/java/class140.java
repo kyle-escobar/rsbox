@@ -29,7 +29,7 @@ public class class140 implements class383 {
       return var2;
    }
 
-   public int method6917() {
+   public int serialId() {
       return this.field1303;
    }
 }

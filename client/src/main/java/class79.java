@@ -22,7 +22,7 @@ public class class79 {
       this.method1610(true);
    }
 
-   class79(PacketBuffer var1) {
+   class79(Buffer var1) {
       if (var1 != null && var1.data != null) {
          int var2 = var1.readUnsignedByte();
          if (var2 >= 0 && var2 <= 10) {
@@ -99,7 +99,7 @@ public class class79 {
             }
          }
 
-         var2 = new class79(new PacketBuffer(var3));
+         var2 = new class79(new Buffer(var3));
       } catch (Exception var7) {
       }
 
@@ -118,7 +118,7 @@ public class class79 {
 
       try {
          var1 = class160.method1257("", class12.field65.field3968, true);
-         PacketBuffer var2 = class141.field1307.method1611();
+         Buffer var2 = class141.field1307.method1611();
          var1.method8610(var2.data, 0, var2.offset);
       } catch (Exception var4) {
       }
@@ -135,8 +135,8 @@ public class class79 {
    void method1610(boolean var1) {
    }
 
-   PacketBuffer method1611() {
-      PacketBuffer var2 = new PacketBuffer(417, true);
+   Buffer method1611() {
+      Buffer var2 = new Buffer(417, true);
       var2.writeByte(10);
       var2.writeByte(this.field700 ? 1 : 0);
       var2.writeByte(this.field691 ? 1 : 0);

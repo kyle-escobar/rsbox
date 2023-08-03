@@ -13,7 +13,7 @@ public class class463 {
 
    public void method8047(class342 var1) {
       byte[] var3 = var1.method6388(class448.field4711.field4710);
-      PacketBuffer var4 = new PacketBuffer(var3);
+      Buffer var4 = new Buffer(var3);
 
       while(true) {
          int var5 = var4.readUnsignedByte();

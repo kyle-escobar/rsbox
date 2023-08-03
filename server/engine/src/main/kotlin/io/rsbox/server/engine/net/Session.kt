@@ -3,6 +3,7 @@ package io.rsbox.server.engine.net
 import io.netty.buffer.ByteBuf
 import io.netty.channel.ChannelHandlerContext
 import io.rsbox.server.engine.net.handshake.HandshakeProtocol
+import io.rsbox.server.util.security.IsaacRandom
 import org.tinylog.kotlin.Logger
 import java.util.concurrent.atomic.AtomicReference
 import kotlin.random.Random
@@ -17,6 +18,9 @@ class Session(val ctx: ChannelHandlerContext) {
     var seed = Random.nextLong(0..Long.MAX_VALUE)
     var xteas = IntArray(4) { 0 }
     var reconnectXteas: IntArray? = null
+
+    val encoderIsaac = IsaacRandom()
+    val decoderIsaac = IsaacRandom()
 
     internal fun onConnect() {
         protocol.set(HandshakeProtocol(this))

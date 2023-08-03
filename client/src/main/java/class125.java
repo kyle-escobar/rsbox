@@ -22,7 +22,7 @@ public class class125 implements class383 {
       return var3;
    }
 
-   public int method6917() {
+   public int serialId() {
       return this.field1191;
    }
 }

@@ -91,7 +91,7 @@ public class class191 extends class476 {
          var2 = new class191();
          var2.field2047 = var0;
          if (null != var3) {
-            var2.method3671(new PacketBuffer(var3));
+            var2.method3671(new Buffer(var3));
          }
 
          var2.method3647();
@@ -108,7 +108,7 @@ public class class191 extends class476 {
    void method3647() {
    }
 
-   void method3671(PacketBuffer var1) {
+   void method3671(Buffer var1) {
       while(true) {
          int var3 = var1.readUnsignedByte();
          if (var3 == 0) {
@@ -119,7 +119,7 @@ public class class191 extends class476 {
       }
    }
 
-   void method3664(PacketBuffer var1, int var2) {
+   void method3664(Buffer var1, int var2) {
       int var4;
       int var5;
       if (var2 == 1) {

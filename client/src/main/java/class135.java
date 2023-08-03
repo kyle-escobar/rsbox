@@ -8,7 +8,7 @@ public class class135 extends class133 {
       this.this$0 = var1;
    }
 
-   void method2457(PacketBuffer var1) {
+   void method2457(Buffer var1) {
       this.field1252 = var1.readString();
       var1.readInt();
    }

@@ -10,7 +10,7 @@ public class class28 {
    }
 
    static final void method412(class301 var0) {
-      class497 var2 = Client.field1436.field1044;
+      PacketBuffer var2 = Client.serverConnection.buffer;
       int var3;
       int var4;
       int var5;

@@ -2,7 +2,7 @@ public class class328 extends class470 {
    byte[] field3574;
    class481 field3573 = new class481(16);
 
-   class328(PacketBuffer var1) {
+   class328(Buffer var1) {
       var1.offset = var1.data.length - 3;
       int var2 = var1.readUnsignedByte();
       int var3 = var1.readUnsignedShort();
@@ -164,7 +164,7 @@ public class class328 extends class470 {
       int var50 = var1.offset;
       var1.offset += var5 * 3;
       this.field3574 = new byte[var4];
-      PacketBuffer var51 = new PacketBuffer(this.field3574);
+      Buffer var51 = new Buffer(this.field3574);
       var51.writeInt(1297377380);
       var51.writeInt(6);
       var51.writeShort(var2 > 1 ? 1 : 0);
@@ -353,6 +353,6 @@ public class class328 extends class470 {
 
    public static class328 method6179(class342 var0, int var1, int var2) {
       byte[] var3 = var0.method6381(var1, var2);
-      return var3 == null ? null : new class328(new PacketBuffer(var3));
+      return var3 == null ? null : new class328(new Buffer(var3));
    }
 }

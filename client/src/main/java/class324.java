@@ -5,7 +5,7 @@ public class class324 {
    class324() throws Throwable {
    }
 
-   public static int method86(PacketBuffer var0, String var1) {
+   public static int method86(Buffer var0, String var1) {
       int var3 = var0.offset;
       int var5 = var1.length();
       byte[] var6 = new byte[var5];

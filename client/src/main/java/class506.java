@@ -1,3 +1,3 @@
 public interface class506 {
-   void method8589(PacketBuffer var1);
+   void method8589(Buffer var1);
 }

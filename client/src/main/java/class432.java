@@ -25,7 +25,7 @@ public class class432 extends class435 {
       }
    }
 
-   public void method7691(PacketBuffer var1, int var2) {
+   public void method7691(Buffer var1, int var2) {
       while(true) {
          if (var1.offset < var2) {
             boolean var4 = var1.readUnsignedByte() == 1;

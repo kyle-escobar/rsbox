@@ -27,7 +27,7 @@ public class class70 {
             field563 = class261.field2935.method2221(new URL(class307.field3346));
          } else if (field563.method2200()) {
             byte[] var1 = field563.method2199();
-            PacketBuffer var2 = new PacketBuffer(var1);
+            Buffer var2 = new Buffer(var1);
             var2.readInt();
             field569 = var2.readUnsignedShort();
             class380.field4385 = new class70[field569];

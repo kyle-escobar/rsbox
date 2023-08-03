@@ -27,7 +27,7 @@ public class class205 extends class476 {
          var2 = new class205();
          var2.field2218 = var0;
          if (var3 != null) {
-            var2.method3855(new PacketBuffer(var3));
+            var2.method3855(new Buffer(var3));
          }
 
          field2205.method5640(var2, (long)var0);
@@ -40,7 +40,7 @@ public class class205 extends class476 {
       field2207.method5637();
    }
 
-   void method3855(PacketBuffer var1) {
+   void method3855(Buffer var1) {
       while(true) {
          int var3 = var1.readUnsignedByte();
          if (var3 == 0) {
@@ -51,7 +51,7 @@ public class class205 extends class476 {
       }
    }
 
-   void method3856(PacketBuffer var1, int var2) {
+   void method3856(Buffer var1, int var2) {
       if (var2 == 1) {
          this.field2208 = var1.readUnsignedShort();
       } else if (var2 == 2) {

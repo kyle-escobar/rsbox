@@ -36,26 +36,26 @@ public class class314 {
 
    static void method5805(boolean var0) {
       if (!class124.field1180.method2695() && !class124.field1180.method3185() && !class124.field1180.method2884()) {
-         class61.field454 = class364.field4230;
-         class61.field435 = class364.field4025;
-         class61.field443 = class364.field4232;
-         class61.method6370(2);
+         Login.field454 = class364.field4230;
+         Login.field435 = class364.field4025;
+         Login.field443 = class364.field4232;
+         Login.method6370(2);
          if (var0) {
-            class61.field445 = "";
+            Login.loginPassword = "";
          }
 
-         if (class61.field441 == null || class61.field441.length() <= 0) {
+         if (Login.loginUsername == null || Login.loginUsername.length() <= 0) {
             if (class141.field1307.method1631() != null) {
-               class61.field441 = class141.field1307.method1631();
+               Login.loginUsername = class141.field1307.method1631();
                Client.field1483 = true;
             } else {
                Client.field1483 = false;
             }
          }
 
-         class61.method7296();
+         Login.method7296();
       } else {
-         class61.method6370(10);
+         Login.method6370(10);
       }
    }
 
@@ -167,7 +167,7 @@ public class class314 {
       }
    }
 
-   public void method5799(PacketBuffer var1) {
+   public void method5799(Buffer var1) {
       var1.writeByte(this.field3486);
 
       int var3;

@@ -1459,7 +1459,7 @@ public class class63 {
             field483[++field479 - 1] = var4.field3632;
             return 1;
          } else if (var0 == 1613) {
-            field483[++field479 - 1] = var4.field3636.method6917();
+            field483[++field479 - 1] = var4.field3636.serialId();
             return 1;
          } else if (var0 == 1614) {
             field483[++field479 - 1] = var4.field3666 ? 1 : 0;
@@ -1751,7 +1751,7 @@ public class class63 {
          field483[++field479 - 1] = var4.field3632;
          return 1;
       } else if (var0 == 2613) {
-         field483[++field479 - 1] = var4.field3636.method6917();
+         field483[++field479 - 1] = var4.field3636.serialId();
          return 1;
       } else if (var0 == 2614) {
          field483[++field479 - 1] = var4.field3666 ? 1 : 0;
@@ -1946,25 +1946,25 @@ public class class63 {
                var11 = class380.method5731(var12);
             }
 
-            class308 var15 = class308.method8607(class309.field3412, Client.field1436.field1046);
-            var15.field3351.writeInt(var11);
-            Client.field1436.method2148(var15);
+            class308 var15 = class308.method8607(class309.field3412, Client.serverConnection.field1046);
+            var15.packet.writeInt(var11);
+            Client.serverConnection.method2148(var15);
             return 1;
          } else {
             class308 var9;
             if (var0 == 3105) {
                var12 = field484[--field486];
-               var9 = class308.method8607(class309.field3391, Client.field1436.field1046);
-               var9.field3351.writeByte(var12.length() + 1);
-               var9.field3351.writeString(var12);
-               Client.field1436.method2148(var9);
+               var9 = class308.method8607(class309.field3391, Client.serverConnection.field1046);
+               var9.packet.writeByte(var12.length() + 1);
+               var9.packet.writeString(var12);
+               Client.serverConnection.method2148(var9);
                return 1;
             } else if (var0 == 3106) {
                var12 = field484[--field486];
-               var9 = class308.method8607(class309.field3414, Client.field1436.field1046);
-               var9.field3351.writeByte(var12.length() + 1);
-               var9.field3351.writeString(var12);
-               Client.field1436.method2148(var9);
+               var9 = class308.method8607(class309.field3414, Client.serverConnection.field1046);
+               var9.packet.writeByte(var12.length() + 1);
+               var9.packet.writeString(var12);
+               Client.serverConnection.method2148(var9);
                return 1;
             } else {
                int var4;
@@ -2005,9 +2005,9 @@ public class class63 {
                   return 1;
                } else if (var0 == 3115) {
                   var4 = field483[--field479];
-                  var9 = class308.method8607(class309.field3403, Client.field1436.field1046);
-                  var9.field3351.writeShort(var4);
-                  Client.field1436.method2148(var9);
+                  var9 = class308.method8607(class309.field3403, Client.serverConnection.field1046);
+                  var9.packet.writeShort(var4);
+                  Client.serverConnection.method2148(var9);
                   return 1;
                } else if (var0 == 3116) {
                   var4 = field483[--field479];
@@ -2019,12 +2019,12 @@ public class class63 {
                   } else if (var6.length() > 500) {
                      return 1;
                   } else {
-                     class308 var7 = class308.method8607(class309.field3454, Client.field1436.field1046);
-                     var7.field3351.writeShort(1 + PacketBuffer.getJagStringSize(var5) + PacketBuffer.getJagStringSize(var6));
-                     var7.field3351.writeString(var6);
-                     var7.field3351.writeString(var5);
-                     var7.field3351.writeByteNeg(var4);
-                     Client.field1436.method2148(var7);
+                     class308 var7 = class308.method8607(class309.field3454, Client.serverConnection.field1046);
+                     var7.packet.writeShort(1 + Buffer.getJagStringSize(var5) + Buffer.getJagStringSize(var6));
+                     var7.packet.writeString(var6);
+                     var7.packet.writeString(var5);
+                     var7.packet.writeByteNeg(var4);
+                     Client.serverConnection.method2148(var7);
                      return 1;
                   }
                } else if (var0 == 3117) {
@@ -2168,7 +2168,7 @@ public class class63 {
                      field483[++field479 - 1] = 0;
                      return 1;
                   } else if (var0 == 3153) {
-                     field483[++field479 - 1] = class61.field450;
+                     field483[++field479 - 1] = Login.field450;
                      return 1;
                   } else if (var0 == 3154) {
                      field483[++field479 - 1] = Client.method3284();
@@ -3547,11 +3547,11 @@ public class class63 {
          }
 
          Client.field1662 = field483[2 + field479];
-         class308 var14 = class308.method8607(class309.field3448, Client.field1436.field1046);
-         var14.field3351.writeByte(Client.field1661);
-         var14.field3351.writeByte(class1.field7.field5213);
-         var14.field3351.writeByte(Client.field1662);
-         Client.field1436.method2148(var14);
+         class308 var14 = class308.method8607(class309.field3448, Client.serverConnection.field1046);
+         var14.packet.writeByte(Client.field1661);
+         var14.packet.writeByte(class1.field7.field5213);
+         var14.packet.writeByte(Client.field1662);
+         Client.serverConnection.method2148(var14);
          return 1;
       } else {
          String var4;
@@ -3563,12 +3563,12 @@ public class class63 {
             field479 -= 2;
             var9 = field483[field479];
             var11 = field483[1 + field479];
-            var7 = class308.method8607(class309.field3385, Client.field1436.field1046);
-            var7.field3351.writeByte(PacketBuffer.getJagStringSize(var4) + 2);
-            var7.field3351.writeString(var4);
-            var7.field3351.writeByte(var9 - 1);
-            var7.field3351.writeByte(var11);
-            Client.field1436.method2148(var7);
+            var7 = class308.method8607(class309.field3385, Client.serverConnection.field1046);
+            var7.packet.writeByte(Buffer.getJagStringSize(var4) + 2);
+            var7.packet.writeString(var4);
+            var7.packet.writeByte(var9 - 1);
+            var7.packet.writeByte(var11);
+            Client.serverConnection.method2148(var7);
             return 1;
          } else {
             class76 var6;
@@ -3631,19 +3631,19 @@ public class class63 {
                      var4 = field484[--field486];
                      var9 = field483[--field479];
                      var12 = class533.method7051(var9, var4, field496, -1);
-                     Client.field1436.method2148(var12);
+                     Client.serverConnection.method2148(var12);
                      return 1;
                   } else if (var0 == 5009) {
                      field486 -= 2;
                      var4 = field484[field486];
                      String var10 = field484[1 + field486];
-                     var12 = class308.method8607(class309.field3416, Client.field1436.field1046);
-                     var12.field3351.writeShort(0);
-                     int var13 = var12.field3351.offset;
-                     var12.field3351.writeString(var4);
-                     class324.method86(var12.field3351, var10);
-                     var12.field3351.writeLengthShort(var12.field3351.offset - var13);
-                     Client.field1436.method2148(var12);
+                     var12 = class308.method8607(class309.field3416, Client.serverConnection.field1046);
+                     var12.packet.writeShort(0);
+                     int var13 = var12.packet.offset;
+                     var12.packet.writeString(var4);
+                     class324.method86(var12.packet, var10);
+                     var12.packet.writeLengthShort(var12.packet.offset - var13);
+                     Client.serverConnection.method2148(var12);
                      return 1;
                   } else if (var0 == 5010) {
                      var4 = field484[--field486];
@@ -3651,7 +3651,7 @@ public class class63 {
                      var9 = field483[field479];
                      var11 = field483[1 + field479];
                      var7 = class533.method7051(var9, var4, field496, var11);
-                     Client.field1436.method2148(var7);
+                     Client.serverConnection.method2148(var7);
                      return 1;
                   } else if (var0 != 5015) {
                      if (var0 == 5016) {
@@ -4070,7 +4070,7 @@ public class class63 {
                      field483[++field479 - 1] = Client.field1440 ? 1 : 0;
                      return 1;
                   } else if (var0 == 6519) {
-                     field483[++field479 - 1] = Client.field1438;
+                     field483[++field479 - 1] = Client.clientType;
                      return 1;
                   } else if (var0 == 6520) {
                      return 1;
@@ -4094,7 +4094,7 @@ public class class63 {
                      field483[++field479 - 1] = 1;
                      return 1;
                   } else if (var0 == 6527) {
-                     field483[++field479 - 1] = Client.field1573;
+                     field483[++field479 - 1] = Client.platformType;
                      return 1;
                   } else {
                      return 2;

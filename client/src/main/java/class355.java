@@ -12,9 +12,9 @@ public class class355 {
    class481 field3930 = new class481(4096);
    class481 field3932 = new class481(4096);
    class481 field3942 = new class481(4096);
-   PacketBuffer field3922;
-   PacketBuffer field3926 = new PacketBuffer(8);
-   PacketBuffer field3941;
+   Buffer field3922;
+   Buffer field3926 = new Buffer(8);
+   Buffer field3941;
    int field3923 = 0;
    int field3924 = 0;
    int field3928 = 0;
@@ -47,10 +47,10 @@ public class class355 {
                throw new IOException();
             } else {
                class362 var5;
-               PacketBuffer var6;
+               Buffer var6;
                while(this.field3928 < 200 && this.field3937 > 0) {
                   var5 = (class362)this.field3942.method8186();
-                  var6 = new PacketBuffer(4);
+                  var6 = new Buffer(4);
                   var6.writeByte(1);
                   var6.writeMedium((int)var5.field4816);
                   this.field3936.write(var6.data, 0, 4);
@@ -61,7 +61,7 @@ public class class355 {
 
                while(this.field3924 < 200 && this.field3931 > 0) {
                   var5 = (class362)this.field3929.method6641();
-                  var6 = new PacketBuffer(4);
+                  var6 = new Buffer(4);
                   var6.writeByte(0);
                   var6.writeMedium((int)var5.field4816);
                   this.field3936.write(var6.data, 0, 4);
@@ -94,7 +94,7 @@ public class class355 {
                   int var10;
                   byte[] var10000;
                   int var10001;
-                  PacketBuffer var23;
+                  Buffer var23;
                   if (var7 > 0) {
                      var8 = var7 - this.field3926.offset;
                      if (var8 > var21) {
@@ -136,7 +136,7 @@ public class class355 {
 
                         int var16 = var11 == 0 ? 5 : 9;
                         this.field3935 = var15;
-                        this.field3941 = new PacketBuffer(this.field3935.field3998 + var16 + var12);
+                        this.field3941 = new Buffer(this.field3935.field3998 + var16 + var12);
                         this.field3941.writeByte(var11);
                         this.field3941.writeInt(var12);
                         this.field3938 = 8;
@@ -241,7 +241,7 @@ public class class355 {
    public void method6532(boolean var1) {
       if (this.field3936 != null) {
          try {
-            PacketBuffer var3 = new PacketBuffer(4);
+            Buffer var3 = new Buffer(4);
             var3.writeByte(var1 ? 2 : 3);
             var3.writeMedium(0);
             this.field3936.write(var3.data, 0, 4);
@@ -283,7 +283,7 @@ public class class355 {
                if (var4 == null) {
                   if (this.field3944 != 0) {
                      try {
-                        PacketBuffer var9 = new PacketBuffer(4);
+                        Buffer var9 = new Buffer(4);
                         var9.writeByte(4);
                         var9.writeByte(this.field3944);
                         var9.writeShort(0);

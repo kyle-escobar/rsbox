@@ -3,7 +3,7 @@ public class class308 extends class470 {
    static class308[] field3355 = new class308[300];
    static int field3354 = 0;
    public class309 field3360;
-   public class497 field3351;
+   public PacketBuffer packet;
    public int field3352;
    public int field3353;
 
@@ -19,19 +19,19 @@ public class class308 extends class470 {
       var3.field3360 = var0;
       var3.field3352 = var0.field3375;
       if (-1 == var3.field3352) {
-         var3.field3351 = new class497(260);
+         var3.packet = new PacketBuffer(260);
       } else if (-2 == var3.field3352) {
-         var3.field3351 = new class497(10000);
+         var3.packet = new PacketBuffer(10000);
       } else if (var3.field3352 <= 18) {
-         var3.field3351 = new class497(20);
+         var3.packet = new PacketBuffer(20);
       } else if (var3.field3352 <= 98) {
-         var3.field3351 = new class497(100);
+         var3.packet = new PacketBuffer(100);
       } else {
-         var3.field3351 = new class497(260);
+         var3.packet = new PacketBuffer(260);
       }
 
-      var3.field3351.method8474(var1);
-      var3.field3351.method8477(var3.field3360.field3424);
+      var3.packet.method8474(var1);
+      var3.packet.method8477(var3.field3360.field3424);
       var3.field3353 = 0;
       return var3;
    }

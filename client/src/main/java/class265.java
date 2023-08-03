@@ -15,7 +15,7 @@ public class class265 implements class383 {
       this.field2957 = var2;
    }
 
-   public static void method5209(PacketBuffer var0, int var1) {
+   public static void method5209(Buffer var0, int var1) {
       if (null != class160.field1755) {
          try {
             class160.field1755.method8669(0L);
@@ -64,7 +64,7 @@ public class class265 implements class383 {
 
    }
 
-   public int method6917() {
+   public int serialId() {
       return this.field2957;
    }
 }

@@ -25,10 +25,10 @@ public class class56 {
    }
 
    static final void method100(String var0) {
-      class308 var2 = class308.method8607(class309.field3410, Client.field1436.field1046);
-      var2.field3351.writeByte(PacketBuffer.getJagStringSize(var0));
-      var2.field3351.writeString(var0);
-      Client.field1436.method2148(var2);
+      class308 var2 = class308.method8607(class309.field3410, Client.serverConnection.field1046);
+      var2.packet.writeByte(Buffer.getJagStringSize(var0));
+      var2.packet.writeString(var0);
+      Client.serverConnection.method2148(var2);
    }
 
    static final void method2170() {
@@ -40,18 +40,18 @@ public class class56 {
    }
 
    static final void method1985(String var0) {
-      class308 var2 = class308.method8607(class309.field3435, Client.field1436.field1046);
-      var2.field3351.writeByte(PacketBuffer.getJagStringSize(var0));
-      var2.field3351.writeString(var0);
-      Client.field1436.method2148(var2);
+      class308 var2 = class308.method8607(class309.field3435, Client.serverConnection.field1046);
+      var2.packet.writeByte(Buffer.getJagStringSize(var0));
+      var2.packet.writeString(var0);
+      Client.serverConnection.method2148(var2);
    }
 
    static final void method4752(String var0, int var1) {
-      class308 var3 = class308.method8607(class309.field3439, Client.field1436.field1046);
-      var3.field3351.writeByte(PacketBuffer.getJagStringSize(var0) + 1);
-      var3.field3351.writeString(var0);
-      var3.field3351.writeByteSub(var1);
-      Client.field1436.method2148(var3);
+      class308 var3 = class308.method8607(class309.field3439, Client.serverConnection.field1046);
+      var3.packet.writeByte(Buffer.getJagStringSize(var0) + 1);
+      var3.packet.writeString(var0);
+      var3.packet.writeByteSub(var1);
+      Client.serverConnection.method2148(var3);
    }
 
    static int method1160(int var0, class81 var1, boolean var2) {
@@ -304,7 +304,7 @@ public class class56 {
       this.field403 = 1;
    }
 
-   final void method1137(PacketBuffer var1, int var2) {
+   final void method1137(Buffer var1, int var2) {
       this.field401.method7691(var1, var2);
       this.field403 = 2;
 
@@ -413,10 +413,10 @@ public class class56 {
          if (var3.method9157()) {
             if (this.field401.method7724(var3)) {
                Client.field1679 = Client.field1624;
-               class308 var4 = class308.method8607(class309.field3381, Client.field1436.field1046);
-               var4.field3351.writeByte(PacketBuffer.getJagStringSize(var1));
-               var4.field3351.writeString(var1);
-               Client.field1436.method2148(var4);
+               class308 var4 = class308.method8607(class309.field3381, Client.serverConnection.field1046);
+               var4.packet.writeByte(Buffer.getJagStringSize(var1));
+               var4.packet.writeString(var1);
+               Client.serverConnection.method2148(var4);
             }
 
             for(int var6 = 0; var6 < class116.field1116; ++var6) {
@@ -440,10 +440,10 @@ public class class56 {
             if (this.field402.method7724(var4)) {
                Client.field1679 = Client.field1624;
                if (var2) {
-                  class308 var5 = class308.method8607(class309.field3422, Client.field1436.field1046);
-                  var5.field3351.writeByte(PacketBuffer.getJagStringSize(var1));
-                  var5.field3351.writeString(var1);
-                  Client.field1436.method2148(var5);
+                  class308 var5 = class308.method8607(class309.field3422, Client.serverConnection.field1046);
+                  var5.packet.writeByte(Buffer.getJagStringSize(var1));
+                  var5.packet.writeString(var1);
+                  Client.serverConnection.method2148(var5);
                }
             }
 

@@ -53,25 +53,25 @@ public class class40 {
          if (null != var8 && class146.field1362 != var8 && null != var8.field740 && var8.field740.equals(var6)) {
             class308 var9;
             if (var0 == 1) {
-               var9 = class308.method8607(class309.field3441, Client.field1436.field1046);
-               var9.field3351.method8934(var4[var7]);
-               var9.field3351.writeByteSub(0);
-               Client.field1436.method2148(var9);
+               var9 = class308.method8607(class309.field3441, Client.serverConnection.field1046);
+               var9.packet.method8934(var4[var7]);
+               var9.packet.writeByteSub(0);
+               Client.serverConnection.method2148(var9);
             } else if (var0 == 4) {
-               var9 = class308.method8607(class309.field3417, Client.field1436.field1046);
-               var9.field3351.writeShortAdd(var4[var7]);
-               var9.field3351.writeByte(0);
-               Client.field1436.method2148(var9);
+               var9 = class308.method8607(class309.field3417, Client.serverConnection.field1046);
+               var9.packet.writeShortAdd(var4[var7]);
+               var9.packet.writeByte(0);
+               Client.serverConnection.method2148(var9);
             } else if (var0 == 6) {
-               var9 = class308.method8607(class309.field3407, Client.field1436.field1046);
-               var9.field3351.method8934(var4[var7]);
-               var9.field3351.writeByteSub(0);
-               Client.field1436.method2148(var9);
+               var9 = class308.method8607(class309.field3407, Client.serverConnection.field1046);
+               var9.packet.method8934(var4[var7]);
+               var9.packet.writeByteSub(0);
+               Client.serverConnection.method2148(var9);
             } else if (var0 == 7) {
-               var9 = class308.method8607(class309.field3456, Client.field1436.field1046);
-               var9.field3351.writeShort(var4[var7]);
-               var9.field3351.writeByteNeg(0);
-               Client.field1436.method2148(var9);
+               var9 = class308.method8607(class309.field3456, Client.serverConnection.field1046);
+               var9.packet.writeShort(var4[var7]);
+               var9.packet.writeByteNeg(0);
+               Client.serverConnection.method2148(var9);
             }
 
             var5 = true;

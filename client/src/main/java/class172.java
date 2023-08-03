@@ -11,7 +11,7 @@ public class class172 extends class133 {
       this.field1824 = -1;
    }
 
-   void method2457(PacketBuffer var1) {
+   void method2457(Buffer var1) {
       this.field1824 = var1.readUnsignedShort();
    }
 

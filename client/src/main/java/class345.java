@@ -17,7 +17,7 @@ public class class345 {
       field3844 = new class343();
    }
 
-   public class345(PacketBuffer var1, boolean var2) {
+   public class345(Buffer var1, boolean var2) {
       int var3 = var1.readUnsignedShort();
       boolean var4 = var1.readUnsignedByte() == 1;
       byte var5;

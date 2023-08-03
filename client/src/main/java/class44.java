@@ -27,7 +27,7 @@ public class class44 {
       return var1 != null;
    }
 
-   public static void method6521(class497 var0) {
+   public static void method6521(PacketBuffer var0) {
       class49 var2 = (class49)field304.method6847();
       if (null != var2) {
          int var3 = var0.offset;
@@ -121,7 +121,7 @@ public class class44 {
       }
    }
 
-   public static void method4045(PacketBuffer var0, int var1) {
+   public static void method4045(Buffer var0, int var1) {
       class49 var3 = new class49();
       var3.field359 = var0.readUnsignedByte();
       var3.field360 = var0.readInt();

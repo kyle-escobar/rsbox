@@ -11,7 +11,7 @@ public class class211 extends class470 {
    int[] field2270;
    int[] field2273;
 
-   class211(PacketBuffer var1) {
+   class211(Buffer var1) {
       this.field2266 = var1.readUnsignedShort();
       this.field2262 = var1.readUnsignedByte() == 1;
       int var2 = var1.readUnsignedByte();

@@ -11,13 +11,13 @@ public final class class434 implements Comparable {
 
    static void method7715(class342 var0, int var1) {
       if ((var1 & 536870912) != 0) {
-         class61.field465 = class538.method8011(var0, "logo_deadman_mode", "");
+         Login.field465 = class538.method8011(var0, "logo_deadman_mode", "");
       } else if (0 != (var1 & 1073741824)) {
-         class61.field465 = class538.method8011(var0, "logo_seasonal_mode", "");
+         Login.field465 = class538.method8011(var0, "logo_seasonal_mode", "");
       } else if ((var1 & 256) != 0) {
-         class61.field465 = class538.method8011(var0, "logo_speedrunning", "");
+         Login.field465 = class538.method8011(var0, "logo_speedrunning", "");
       } else {
-         class61.field465 = class538.method8011(var0, "logo", "");
+         Login.field465 = class538.method8011(var0, "logo", "");
       }
 
    }

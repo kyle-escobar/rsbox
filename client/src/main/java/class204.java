@@ -3,7 +3,7 @@ import java.security.SecureRandom;
 public class class204 {
    public static int field2196;
    static int field2200;
-   static SecureRandom field2202;
+   static SecureRandom secureRandom;
    public short[] field2198;
    public short[] field2201;
 

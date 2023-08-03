@@ -15,7 +15,7 @@ public class class115 {
    public class115 field1096;
    public final int field1101;
 
-   public class115(int var1, PacketBuffer var2, boolean var3) {
+   public class115(int var1, Buffer var2, boolean var3) {
       this.field1101 = var2.readShort();
       this.field1098 = new class455[var1];
       this.field1099 = new class455[this.field1098.length];

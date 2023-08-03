@@ -16,7 +16,7 @@ public class class194 implements class383 {
       return new class194[]{field2125, field2124, field2129};
    }
 
-   public int method6917() {
+   public int serialId() {
       return this.field2123;
    }
 }

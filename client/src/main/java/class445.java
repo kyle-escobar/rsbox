@@ -5,9 +5,9 @@ public abstract class class445 implements class279 {
    class445(int var1) {
    }
 
-   abstract void method7831(PacketBuffer var1, int var2);
+   abstract void method7831(Buffer var1, int var2);
 
-   public void method7840(PacketBuffer var1) {
+   public void method7840(Buffer var1) {
       while(true) {
          int var3 = var1.readUnsignedByte();
          if (var3 == 0) {

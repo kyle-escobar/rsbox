@@ -33,7 +33,7 @@ public class class197 extends class476 {
       return var0 >= 0 && var0 < class324.field3540.length && class324.field3540[var0] != null ? class324.field3540[var0] : new class197(var0);
    }
 
-   public void method3769(PacketBuffer var1) {
+   public void method3769(Buffer var1) {
       while(true) {
          int var3 = var1.readUnsignedByte();
          if (var3 == 0) {
@@ -44,7 +44,7 @@ public class class197 extends class476 {
       }
    }
 
-   void method3770(PacketBuffer var1, int var2) {
+   void method3770(Buffer var1, int var2) {
       if (var2 == 1) {
          this.field2152 = var1.method8814();
       } else if (var2 == 2) {

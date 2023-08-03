@@ -3,11 +3,11 @@ public class class175 {
    long field1846;
    long field1847 = -1L;
 
-   public class175(PacketBuffer var1) {
+   public class175(Buffer var1) {
       this.method3383(var1);
    }
 
-   void method3383(PacketBuffer var1) {
+   void method3383(Buffer var1) {
       this.field1846 = var1.readLong();
       this.field1847 = var1.readLong();
 

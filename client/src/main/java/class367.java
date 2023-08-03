@@ -9,7 +9,7 @@ public class class367 {
    public class367() {
    }
 
-   public class367(PacketBuffer var1, boolean var2) {
+   public class367(Buffer var1, boolean var2) {
       this.field4342 = var1.readByte();
       this.field4337 = var1.readUnsignedShort();
       this.field4340 = var1.readInt();
@@ -22,7 +22,7 @@ public class class367 {
 
    }
 
-   static Integer method78(PacketBuffer var0) {
+   static Integer method78(Buffer var0) {
       int var2 = 0;
       boolean var3 = false;
 

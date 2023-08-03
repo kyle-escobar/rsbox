@@ -47,7 +47,7 @@ public final class class84 extends class102 {
       this.field744 = false;
    }
 
-   final void method1784(PacketBuffer var1) {
+   final void method1784(Buffer var1) {
       var1.offset = 0;
       int var3 = var1.readUnsignedByte();
       boolean var4 = true;

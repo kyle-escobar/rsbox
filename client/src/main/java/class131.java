@@ -21,7 +21,7 @@ public class class131 implements class383 {
       return this.field1235;
    }
 
-   public int method6917() {
+   public int serialId() {
       return this.field1234;
    }
 }

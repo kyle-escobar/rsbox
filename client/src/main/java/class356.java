@@ -13,7 +13,7 @@ public class class356 implements class383 {
       return new class356[]{field3949, field3953, field3950, field3951};
    }
 
-   public int method6917() {
+   public int serialId() {
       return this.field3952;
    }
 }

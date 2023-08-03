@@ -18,7 +18,7 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.Random;
 
-public class class61 {
+public class Login {
    static boolean field429;
    static boolean field451;
    static boolean field455;
@@ -44,10 +44,10 @@ public class class61 {
    static String field435;
    static String field436;
    static String field440;
-   static String field441;
+   static String loginUsername;
    static String field443;
    static String field444;
-   static String field445;
+   static String loginPassword;
    static String field448;
    static String field453;
    static String field454;
@@ -71,8 +71,8 @@ public class class61 {
       field454 = "";
       field435 = "";
       field443 = "";
-      field441 = "";
-      field445 = "";
+      loginUsername = "";
+      loginPassword = "";
       field446 = 0;
       field461 = new String[8];
       field448 = "";
@@ -95,7 +95,7 @@ public class class61 {
       field442 = new String[]{"logo_speedrunning"};
    }
 
-   class61() throws Throwable {
+   Login() throws Throwable {
    }
 
    static int method6489(class342 var0) {
@@ -119,7 +119,7 @@ public class class61 {
    static String method6() {
       String var1;
       if (class141.field1307.method1615()) {
-         String var3 = field441;
+         String var3 = loginUsername;
          int var5 = var3.length();
          char[] var6 = new char[var5];
 
@@ -130,7 +130,7 @@ public class class61 {
          String var4 = new String(var6);
          var1 = var4;
       } else {
-         var1 = field441;
+         var1 = loginUsername;
       }
 
       return var1;
@@ -161,7 +161,7 @@ public class class61 {
    }
 
    static void method7296() {
-      if (Client.field1483 && field441 != null && field441.length() > 0) {
+      if (Client.field1483 && loginUsername != null && loginUsername.length() > 0) {
          field452 = 1;
       } else {
          field452 = 0;
@@ -351,13 +351,13 @@ public class class61 {
                         var11 = class81.field718 - 80;
                         var32 = 321;
                         if (var6 == 1 && var7 >= var11 - 75 && var7 <= var11 + 75 && var8 >= var32 - 20 && var8 <= var32 + 20) {
-                           field441 = field441.trim();
-                           if (field441.length() == 0) {
+                           loginUsername = loginUsername.trim();
+                           if (loginUsername.length() == 0) {
                               method2098(class364.field4105, class364.field4142, class364.field4247);
                               return;
                            }
 
-                           if (field445.length() == 0) {
+                           if (loginPassword.length() == 0) {
                               method2098(class364.field4046, class364.field4259, class364.field4146);
                               return;
                            }
@@ -371,8 +371,8 @@ public class class61 {
                         var11 = 180 + field434 + 80;
                         if (var6 == 1 && var7 >= var11 - 75 && var7 <= var11 + 75 && var8 >= var32 - 20 && var8 <= var32 + 20) {
                            method6370(0);
-                           field441 = "";
-                           field445 = "";
+                           loginUsername = "";
+                           loginPassword = "";
                            class428.field4629 = 0;
                            field466 = "";
                            field451 = true;
@@ -394,7 +394,7 @@ public class class61 {
                         if (var6 == 1 && field455) {
                            class141.field1307.method1677(!class141.field1307.method1615());
                            if (!class141.field1307.method1615()) {
-                              field441 = "";
+                              loginUsername = "";
                               class141.field1307.method1630((String)null);
                               method7296();
                            }
@@ -416,8 +416,8 @@ public class class61 {
                                              }
 
                                              method1162(var29.field2370);
-                                             if (85 == var29.field2371 && field441.length() > 0) {
-                                                field441 = field441.substring(0, field441.length() - 1);
+                                             if (85 == var29.field2371 && loginUsername.length() > 0) {
+                                                loginUsername = loginUsername.substring(0, loginUsername.length() - 1);
                                              }
 
                                              if (84 == var29.field2371 || 80 == var29.field2371) {
@@ -426,13 +426,13 @@ public class class61 {
 
                                              var38 = var29.field2370;
                                              var34 = field453.indexOf(var38) != -1;
-                                             if (var34 && field441.length() < 320) {
-                                                field441 = field441 + var29.field2370;
+                                             if (var34 && loginUsername.length() < 320) {
+                                                loginUsername = loginUsername + var29.field2370;
                                              }
                                           } else {
                                              method6370(0);
-                                             field441 = "";
-                                             field445 = "";
+                                             loginUsername = "";
+                                             loginPassword = "";
                                              class428.field4629 = 0;
                                              field466 = "";
                                              field451 = true;
@@ -443,18 +443,18 @@ public class class61 {
                                     }
                                  } while(field452 != 1);
 
-                                 if (var29.field2371 == 85 && field445.length() > 0) {
-                                    field445 = field445.substring(0, field445.length() - 1);
+                                 if (var29.field2371 == 85 && loginPassword.length() > 0) {
+                                    loginPassword = loginPassword.substring(0, loginPassword.length() - 1);
                                  } else if (84 == var29.field2371 || var29.field2371 == 80) {
                                     field452 = 0;
                                     if (84 == var29.field2371) {
-                                       field441 = field441.trim();
-                                       if (field441.length() == 0) {
+                                       loginUsername = loginUsername.trim();
+                                       if (loginUsername.length() == 0) {
                                           method2098(class364.field4105, class364.field4142, class364.field4247);
                                           return;
                                        }
 
-                                       if (field445.length() == 0) {
+                                       if (loginPassword.length() == 0) {
                                           method2098(class364.field4046, class364.field4259, class364.field4146);
                                           return;
                                        }
@@ -469,15 +469,15 @@ public class class61 {
                                  if ((var29.method4103(82) || var29.method4103(87)) && var29.field2371 == 67) {
                                     Clipboard var40 = Toolkit.getDefaultToolkit().getSystemClipboard();
                                     var41 = var40.getContents(class124.field1180);
-                                    var15 = 20 - field445.length();
+                                    var15 = 20 - loginPassword.length();
                                     break;
                                  }
 
                                  if (CP1252UTF8.method1754(var29.field2370)) {
                                     var38 = var29.field2370;
                                     var34 = field453.indexOf(var38) != -1;
-                                    if (var34 && field445.length() < 20) {
-                                       field445 = field445 + var29.field2370;
+                                    if (var34 && loginPassword.length() < 20) {
+                                       loginPassword = loginPassword + var29.field2370;
                                     }
                                  }
                               }
@@ -490,7 +490,7 @@ public class class61 {
 
                               while(true) {
                                  if (var43 >= var42) {
-                                    field445 = field445 + var44.substring(0, var42);
+                                    loginPassword = loginPassword + var44.substring(0, var42);
                                     continue label1056;
                                  }
 
@@ -589,8 +589,8 @@ public class class61 {
                               var10 = field434 + 180 + 80;
                               if (var6 == 1 && var7 >= var10 - 75 && var7 <= var10 + 75 && var8 >= var11 - 20 && var8 <= var11 + 20) {
                                  method6370(0);
-                                 field441 = "";
-                                 field445 = "";
+                                 loginUsername = "";
+                                 loginPassword = "";
                                  class428.field4629 = 0;
                                  field466 = "";
                               }
@@ -607,8 +607,8 @@ public class class61 {
 
                                  if (var29.field2371 == 13) {
                                     method6370(0);
-                                    field441 = "";
-                                    field445 = "";
+                                    loginUsername = "";
+                                    loginPassword = "";
                                     class428.field4629 = 0;
                                     field466 = "";
                                  } else {
@@ -672,8 +672,8 @@ public class class61 {
                                     if (13 == var29.field2371) {
                                        class314.method5805(true);
                                     } else {
-                                       if (var29.field2371 == 85 && field441.length() > 0) {
-                                          field441 = field441.substring(0, field441.length() - 1);
+                                       if (var29.field2371 == 85 && loginUsername.length() > 0) {
+                                          loginUsername = loginUsername.substring(0, loginUsername.length() - 1);
                                        }
 
                                        if (var29.field2371 == 84) {
@@ -681,8 +681,8 @@ public class class61 {
                                           return;
                                        }
 
-                                       if (var34 && field441.length() < 320) {
-                                          field441 = field441 + var29.field2370;
+                                       if (var34 && loginUsername.length() < 320) {
+                                          loginUsername = loginUsername + var29.field2370;
                                        }
                                     }
                                  }
@@ -864,7 +864,7 @@ public class class61 {
                                     var33 = 209;
                                     if (84 == var29.field2371 || var6 == 1 && var7 >= var10 - 109 && var7 <= var10 + 109 && var8 >= var33 && var8 <= var33 + 68) {
                                        method2098(class364.field4316, class364.field4249, class364.field4292);
-                                       Client.field1472 = class500.field5044;
+                                       Client.loginMethod = LoginMethod.OAUTH;
                                        Client.method6480(false);
                                        Client.updateGameState(20);
                                     }
@@ -1061,15 +1061,15 @@ public class class61 {
 
       method6370(var2);
       if (var0) {
-         field441 = "";
-         field445 = "";
+         loginUsername = "";
+         loginPassword = "";
          class428.field4629 = 0;
          field466 = "";
       }
 
-      if (field441 == null || field441.length() <= 0) {
+      if (loginUsername == null || loginUsername.length() <= 0) {
          if (class141.field1307.method1631() != null) {
-            field441 = class141.field1307.method1631();
+            loginUsername = class141.field1307.method1631();
             Client.field1483 = true;
          } else {
             Client.field1483 = false;
@@ -1080,8 +1080,8 @@ public class class61 {
    }
 
    static void method1467() {
-      field441 = field441.trim();
-      if (field441.length() == 0) {
+      loginUsername = loginUsername.trim();
+      if (loginUsername.length() == 0) {
          method2098(class364.field4282, class364.field4242, class364.field4218);
       } else {
          long var2;
@@ -1096,7 +1096,7 @@ public class class61 {
             var6.write("data1=req");
             var6.flush();
             InputStream var7 = var5.getInputStream();
-            PacketBuffer var8 = new PacketBuffer(new byte[1000]);
+            Buffer var8 = new Buffer(new byte[1000]);
 
             while(true) {
                int var9 = var7.read(var8.data, var8.offset, 1000 - var8.offset);
@@ -1121,10 +1121,10 @@ public class class61 {
          if (var2 == 0L) {
             var1 = 5;
          } else {
-            String var27 = field441;
+            String var27 = loginUsername;
             Random var28 = new Random();
-            PacketBuffer var30 = new PacketBuffer(128);
-            PacketBuffer var10 = new PacketBuffer(128);
+            Buffer var30 = new Buffer(128);
+            Buffer var10 = new Buffer(128);
             int[] var11 = new int[]{var28.nextInt(), var28.nextInt(), (int)(var2 >> 32), (int)var2};
             var30.writeByte(10);
 
@@ -1154,16 +1154,16 @@ public class class61 {
             Client.method4735(var10);
             var10.writeLong(var28.nextLong());
             var10.encryptRsa(class68.field530, class68.field531);
-            var12 = PacketBuffer.getJagStringSize(var27);
+            var12 = Buffer.getJagStringSize(var27);
             if (var12 % 8 != 0) {
                var12 += 8 - var12 % 8;
             }
 
-            PacketBuffer var13 = new PacketBuffer(var12);
+            Buffer var13 = new Buffer(var12);
             var13.writeString(var27);
             var13.offset = var12;
             var13.method8771(var11);
-            PacketBuffer var14 = new PacketBuffer(var10.offset + var30.offset + 5 + var13.offset);
+            Buffer var14 = new Buffer(var10.offset + var30.offset + 5 + var13.offset);
             var14.writeByte(2);
             var14.writeByte(var30.offset);
             var14.writeBytes(var30.data, 0, var30.offset);
@@ -1184,7 +1184,7 @@ public class class61 {
                var18.write("data2=" + class532.method8695(var15) + "&dest=" + class532.method8695("passwordchoice.ws"));
                var18.flush();
                InputStream var19 = var17.getInputStream();
-               var14 = new PacketBuffer(new byte[1000]);
+               var14 = new Buffer(new byte[1000]);
 
                while(true) {
                   int var20 = var19.read(var14.data, var14.offset, 1000 - var14.offset);
@@ -1321,7 +1321,7 @@ public class class61 {
 
                var0.method7163(class407.method7161(var6), 180 + field434 - 70, var4, 16777215, 0);
                var4 += 15;
-               var8 = field445;
+               var8 = loginPassword;
                var10 = var8.length();
                var11 = new char[var10];
 
@@ -1390,7 +1390,7 @@ public class class61 {
 
                   var0.method7163(class407.method7161(var6) + (0 == field452 & Client.field1445 % 40 < 20 ? class90.method5890(16776960) + class90.field832 : ""), class81.field718 - 70, var4, 16777215, 0);
                   var4 += 15;
-                  var8 = field445;
+                  var8 = loginPassword;
                   var10 = var8.length();
                   var11 = new char[var10];
 

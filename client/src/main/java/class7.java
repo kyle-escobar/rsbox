@@ -12,7 +12,7 @@ public class class7 implements class383 {
       return new class7[]{field47};
    }
 
-   public int method6917() {
+   public int serialId() {
       return this.field44;
    }
 }

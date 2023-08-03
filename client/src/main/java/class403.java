@@ -50,7 +50,7 @@ public class class403 {
       this.method7070();
    }
 
-   public void method7073(PacketBuffer var1) {
+   public void method7073(Buffer var1) {
       class76.method1563(var1, this.field4495);
       class76.method1563(var1, this.field4491);
       class76.method1563(var1, this.field4496);

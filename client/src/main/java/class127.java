@@ -102,14 +102,14 @@ public class class127 {
                if (var8 instanceof Integer) {
                   var3 += 4;
                } else if (var8 instanceof String) {
-                  var3 += PacketBuffer.getJagStringSize((String)var8);
+                  var3 += Buffer.getJagStringSize((String)var8);
                }
 
                ++var4;
             }
          }
 
-         PacketBuffer var21 = new PacketBuffer(var3);
+         Buffer var21 = new Buffer(var3);
          var21.writeByte(2);
          var21.writeShort(var4);
          Iterator var22 = this.field1203.entrySet().iterator();
@@ -155,7 +155,7 @@ public class class127 {
                }
             }
 
-            PacketBuffer var25 = new PacketBuffer(var3);
+            Buffer var25 = new Buffer(var3);
             if (var25.data.length - var25.offset >= 1) {
                int var6 = var25.readUnsignedByte();
                if (var6 >= 0 && var6 <= 2) {

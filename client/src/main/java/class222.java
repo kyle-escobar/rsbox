@@ -10,9 +10,9 @@ public abstract class class222 {
    static void method4213(int var0) {
       Client.field1658 = 0L;
       if (var0 >= 2) {
-         Client.field1462 = true;
+         Client.isResizable = true;
       } else {
-         Client.field1462 = false;
+         Client.isResizable = false;
       }
 
       if (Client.method5791() == 1) {

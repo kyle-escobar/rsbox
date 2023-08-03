@@ -16,7 +16,7 @@ public class class157 extends class133 {
       this.field1742 = 0;
    }
 
-   void method2457(PacketBuffer var1) {
+   void method2457(Buffer var1) {
       if (var1.readUnsignedByte() != 255) {
          --var1.offset;
          this.field1737 = var1.readLong();

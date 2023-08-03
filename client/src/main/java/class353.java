@@ -32,7 +32,7 @@ public class class353 implements class383 {
       return field3915.field3894 == var0;
    }
 
-   public int method6917() {
+   public int serialId() {
       return this.field3894;
    }
 }

@@ -21,7 +21,7 @@ public final class class455 {
       this.method7988(var1);
    }
 
-   public class455(PacketBuffer var1, boolean var2) {
+   public class455(Buffer var1, boolean var2) {
       this.method7945(var1, var2);
    }
 
@@ -45,7 +45,7 @@ public final class class455 {
       }
    }
 
-   void method7945(PacketBuffer var1, boolean var2) {
+   void method7945(Buffer var1, boolean var2) {
       if (var2) {
          class464 var4 = new class464();
          int var7 = var1.readShort();

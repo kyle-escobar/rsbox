@@ -28,7 +28,7 @@ public class class98 implements class383 {
          var2 = new class184();
          var2.field1912 = var0;
          if (var3 != null) {
-            var2.method3460(new PacketBuffer(var3));
+            var2.method3460(new Buffer(var3));
          }
 
          var2.method3470();
@@ -42,7 +42,7 @@ public class class98 implements class383 {
       }
    }
 
-   public int method6917() {
+   public int serialId() {
       return this.field913;
    }
 }

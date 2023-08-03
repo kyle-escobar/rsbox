@@ -13,8 +13,8 @@ public class class221 {
 
    class221(byte[] var1, class219 var2) {
       this.field2437 = var2;
-      PacketBuffer var3 = new PacketBuffer(var1);
-      PacketBuffer var4 = new PacketBuffer(var1);
+      Buffer var3 = new Buffer(var1);
+      Buffer var4 = new Buffer(var1);
       var3.offset = 2;
       int var5 = var3.readUnsignedByte();
       int var6 = -1;

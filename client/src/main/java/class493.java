@@ -55,7 +55,7 @@ public class class493 extends class470 {
       this.field4978 = var26;
    }
 
-   public void method8451(PacketBuffer var1) {
+   public void method8451(Buffer var1) {
       var1.writeByte(9);
       var1.writeByte(this.field4993);
       var1.writeByte(this.field4969 ? 1 : 0);
@@ -91,14 +91,14 @@ public class class493 extends class470 {
 
    public int method8453() {
       int var2 = 39;
-      var2 += PacketBuffer.method6819(this.field4973);
-      var2 += PacketBuffer.method6819(this.field4981);
-      var2 += PacketBuffer.method6819(this.field4980);
-      var2 += PacketBuffer.method6819(this.field4983);
-      var2 += PacketBuffer.method6819(this.field4988);
-      var2 += PacketBuffer.method6819(this.field4962);
-      var2 += PacketBuffer.method6819(this.field4992);
-      var2 += PacketBuffer.method6819(this.field4978);
+      var2 += Buffer.method6819(this.field4973);
+      var2 += Buffer.method6819(this.field4981);
+      var2 += Buffer.method6819(this.field4980);
+      var2 += Buffer.method6819(this.field4983);
+      var2 += Buffer.method6819(this.field4988);
+      var2 += Buffer.method6819(this.field4962);
+      var2 += Buffer.method6819(this.field4992);
+      var2 += Buffer.method6819(this.field4978);
       return var2;
    }
 }

@@ -17,7 +17,7 @@ public class class202 extends class476 {
    void method3831() {
    }
 
-   void method3824(PacketBuffer var1) {
+   void method3824(Buffer var1) {
       while(true) {
          int var3 = var1.readUnsignedByte();
          if (var3 == 0) {
@@ -28,7 +28,7 @@ public class class202 extends class476 {
       }
    }
 
-   void method3822(PacketBuffer var1, int var2) {
+   void method3822(Buffer var1, int var2) {
       if (var2 == 249) {
          this.field2190 = class200.method2466(var1, this.field2190);
       }

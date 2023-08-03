@@ -15,7 +15,7 @@ public class class156 extends class476 {
    public class156(class342 var1, class342 var2, int var3, boolean var4) {
       this.field1423 = var3;
       byte[] var5 = var1.method6381(this.field1423 >> 16 & '\uffff', this.field1423 & '\uffff');
-      PacketBuffer var6 = new PacketBuffer(var5);
+      Buffer var6 = new Buffer(var5);
       int var7 = var6.readUnsignedByte();
       int var8 = var6.readUnsignedShort();
       byte[] var9;
@@ -30,7 +30,7 @@ public class class156 extends class476 {
       this.field1429 = class34.field173.submit(new class155(this, var6, var7));
    }
 
-   void method2659(PacketBuffer var1, int var2) {
+   void method2659(Buffer var1, int var2) {
       var1.readUnsignedShort();
       var1.readUnsignedShort();
       this.field1427 = var1.readUnsignedByte();

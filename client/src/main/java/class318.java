@@ -5,7 +5,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 class class318 implements Callable {
    static class453 field3508;
    static int field3509;
-   static long field3512;
+   static long serverSeed;
    // $FF: synthetic field
    final class289 this$0;
    // $FF: synthetic field
@@ -84,7 +84,7 @@ class class318 implements Callable {
    }
 
    public static int method5851(byte[] var0, int var1) {
-      return PacketBuffer.method6596(var0, 0, var1);
+      return Buffer.method6596(var0, 0, var1);
    }
 
    public Object call() {

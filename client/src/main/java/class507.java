@@ -31,7 +31,7 @@ public class class507 implements class383 {
       return null;
    }
 
-   public static void method8600(Object var0, PacketBuffer var1) {
+   public static void method8600(Object var0, Buffer var1) {
       Class var4 = var0.getClass();
       class507 var5 = method8594(var4);
       if (null == var5) {
@@ -42,11 +42,11 @@ public class class507 implements class383 {
       }
    }
 
-   public int method6917() {
+   public int serialId() {
       return this.field5073;
    }
 
-   public Object method8596(PacketBuffer var1) {
+   public Object method8596(Buffer var1) {
       return this.field5076.method8512(var1);
    }
 }

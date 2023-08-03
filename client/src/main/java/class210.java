@@ -12,7 +12,7 @@ public class class210 {
          byte[] var3 = class202.field2192.method6381(34, var0);
          var2 = new class202();
          if (null != var3) {
-            var2.method3824(new PacketBuffer(var3));
+            var2.method3824(new Buffer(var3));
          }
 
          var2.method3831();

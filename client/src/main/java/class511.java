@@ -13,7 +13,7 @@ public class class511 {
       return var0 >>> 4 & field5097;
    }
 
-   static Object[] method302(PacketBuffer var0, int[] var1) {
+   static Object[] method302(Buffer var0, int[] var1) {
       int var3 = var0.readUnsignedSmartByteShort();
       Object[] var4 = new Object[var3 * var1.length];
 

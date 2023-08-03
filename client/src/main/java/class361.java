@@ -32,7 +32,7 @@ public class class361 implements class383 {
       return new class361[]{field3979, field3983, field3977, field3991, field3993, field3982, field3992, field3984, field3994, field3980, field3989, field3987, field3978, field3986, field3990, field3988, field3985};
    }
 
-   public int method6917() {
+   public int serialId() {
       return this.field3981;
    }
 }
