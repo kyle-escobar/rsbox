@@ -25,7 +25,7 @@ public class class56 {
    }
 
    static final void method100(String var0) {
-      class308 var2 = class308.method8607(class309.field3410, Client.serverConnection.field1046);
+      class308 var2 = class308.method8607(ClientPacket.field3410, Client.serverConnection.field1046);
       var2.packet.writeByte(Buffer.getJagStringSize(var0));
       var2.packet.writeString(var0);
       Client.serverConnection.method2148(var2);
@@ -40,14 +40,14 @@ public class class56 {
    }
 
    static final void method1985(String var0) {
-      class308 var2 = class308.method8607(class309.field3435, Client.serverConnection.field1046);
+      class308 var2 = class308.method8607(ClientPacket.field3435, Client.serverConnection.field1046);
       var2.packet.writeByte(Buffer.getJagStringSize(var0));
       var2.packet.writeString(var0);
       Client.serverConnection.method2148(var2);
    }
 
    static final void method4752(String var0, int var1) {
-      class308 var3 = class308.method8607(class309.field3439, Client.serverConnection.field1046);
+      class308 var3 = class308.method8607(ClientPacket.field3439, Client.serverConnection.field1046);
       var3.packet.writeByte(Buffer.getJagStringSize(var0) + 1);
       var3.packet.writeString(var0);
       var3.packet.writeByteSub(var1);
@@ -413,7 +413,7 @@ public class class56 {
          if (var3.method9157()) {
             if (this.field401.method7724(var3)) {
                Client.field1679 = Client.field1624;
-               class308 var4 = class308.method8607(class309.field3381, Client.serverConnection.field1046);
+               class308 var4 = class308.method8607(ClientPacket.field3381, Client.serverConnection.field1046);
                var4.packet.writeByte(Buffer.getJagStringSize(var1));
                var4.packet.writeString(var1);
                Client.serverConnection.method2148(var4);
@@ -440,7 +440,7 @@ public class class56 {
             if (this.field402.method7724(var4)) {
                Client.field1679 = Client.field1624;
                if (var2) {
-                  class308 var5 = class308.method8607(class309.field3422, Client.serverConnection.field1046);
+                  class308 var5 = class308.method8607(ClientPacket.field3422, Client.serverConnection.field1046);
                   var5.packet.writeByte(Buffer.getJagStringSize(var1));
                   var5.packet.writeString(var1);
                   Client.serverConnection.method2148(var5);

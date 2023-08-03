@@ -5,6 +5,7 @@ import io.netty.channel.ChannelOption
 import io.netty.channel.nio.NioEventLoopGroup
 import io.netty.channel.socket.nio.NioServerSocketChannel
 import io.rsbox.server.config.ServerConfig
+import io.rsbox.server.engine.net.game.GamePackets
 import io.rsbox.server.engine.net.pipeline.NetworkChannelInitializer
 import org.tinylog.kotlin.Logger
 import java.net.InetSocketAddress
@@ -27,6 +28,8 @@ class NetworkServer {
 
     fun start() {
         Logger.info("Starting engine network server.")
+
+        GamePackets.load()
 
         val socketAddress = InetSocketAddress(ServerConfig.NETWORK.ADDRESS, ServerConfig.NETWORK.PORT)
         bootstrap.bind(socketAddress).addListener {

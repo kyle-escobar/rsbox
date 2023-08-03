@@ -2,7 +2,7 @@ public class class308 extends class470 {
    static class154 field3359;
    static class308[] field3355 = new class308[300];
    static int field3354 = 0;
-   public class309 field3360;
+   public ClientPacket field3360;
    public PacketBuffer packet;
    public int field3352;
    public int field3353;
@@ -14,10 +14,10 @@ public class class308 extends class470 {
       return 0 == field3354 ? new class308() : field3355[--field3354];
    }
 
-   public static class308 method8607(class309 var0, class540 var1) {
+   public static class308 method8607(ClientPacket var0, class540 var1) {
       class308 var3 = method2535();
       var3.field3360 = var0;
-      var3.field3352 = var0.field3375;
+      var3.field3352 = var0.opcode;
       if (-1 == var3.field3352) {
          var3.packet = new PacketBuffer(260);
       } else if (-2 == var3.field3352) {
@@ -31,7 +31,7 @@ public class class308 extends class470 {
       }
 
       var3.packet.method8474(var1);
-      var3.packet.method8477(var3.field3360.field3424);
+      var3.packet.method8477(var3.field3360.length);
       var3.field3353 = 0;
       return var3;
    }

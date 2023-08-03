@@ -1946,7 +1946,7 @@ public class class63 {
                var11 = class380.method5731(var12);
             }
 
-            class308 var15 = class308.method8607(class309.field3412, Client.serverConnection.field1046);
+            class308 var15 = class308.method8607(ClientPacket.field3412, Client.serverConnection.field1046);
             var15.packet.writeInt(var11);
             Client.serverConnection.method2148(var15);
             return 1;
@@ -1954,14 +1954,14 @@ public class class63 {
             class308 var9;
             if (var0 == 3105) {
                var12 = field484[--field486];
-               var9 = class308.method8607(class309.field3391, Client.serverConnection.field1046);
+               var9 = class308.method8607(ClientPacket.field3391, Client.serverConnection.field1046);
                var9.packet.writeByte(var12.length() + 1);
                var9.packet.writeString(var12);
                Client.serverConnection.method2148(var9);
                return 1;
             } else if (var0 == 3106) {
                var12 = field484[--field486];
-               var9 = class308.method8607(class309.field3414, Client.serverConnection.field1046);
+               var9 = class308.method8607(ClientPacket.field3414, Client.serverConnection.field1046);
                var9.packet.writeByte(var12.length() + 1);
                var9.packet.writeString(var12);
                Client.serverConnection.method2148(var9);
@@ -2005,7 +2005,7 @@ public class class63 {
                   return 1;
                } else if (var0 == 3115) {
                   var4 = field483[--field479];
-                  var9 = class308.method8607(class309.field3403, Client.serverConnection.field1046);
+                  var9 = class308.method8607(ClientPacket.field3403, Client.serverConnection.field1046);
                   var9.packet.writeShort(var4);
                   Client.serverConnection.method2148(var9);
                   return 1;
@@ -2019,7 +2019,7 @@ public class class63 {
                   } else if (var6.length() > 500) {
                      return 1;
                   } else {
-                     class308 var7 = class308.method8607(class309.field3454, Client.serverConnection.field1046);
+                     class308 var7 = class308.method8607(ClientPacket.field3454, Client.serverConnection.field1046);
                      var7.packet.writeShort(1 + Buffer.getJagStringSize(var5) + Buffer.getJagStringSize(var6));
                      var7.packet.writeString(var6);
                      var7.packet.writeString(var5);
@@ -3547,7 +3547,7 @@ public class class63 {
          }
 
          Client.field1662 = field483[2 + field479];
-         class308 var14 = class308.method8607(class309.field3448, Client.serverConnection.field1046);
+         class308 var14 = class308.method8607(ClientPacket.field3448, Client.serverConnection.field1046);
          var14.packet.writeByte(Client.field1661);
          var14.packet.writeByte(class1.field7.field5213);
          var14.packet.writeByte(Client.field1662);
@@ -3563,7 +3563,7 @@ public class class63 {
             field479 -= 2;
             var9 = field483[field479];
             var11 = field483[1 + field479];
-            var7 = class308.method8607(class309.field3385, Client.serverConnection.field1046);
+            var7 = class308.method8607(ClientPacket.field3385, Client.serverConnection.field1046);
             var7.packet.writeByte(Buffer.getJagStringSize(var4) + 2);
             var7.packet.writeString(var4);
             var7.packet.writeByte(var9 - 1);
@@ -3637,7 +3637,7 @@ public class class63 {
                      field486 -= 2;
                      var4 = field484[field486];
                      String var10 = field484[1 + field486];
-                     var12 = class308.method8607(class309.field3416, Client.serverConnection.field1046);
+                     var12 = class308.method8607(ClientPacket.field3416, Client.serverConnection.field1046);
                      var12.packet.writeShort(0);
                      int var13 = var12.packet.offset;
                      var12.packet.writeString(var4);

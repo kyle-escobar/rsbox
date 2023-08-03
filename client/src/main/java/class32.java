@@ -80,7 +80,7 @@ public class class32 {
          var13 = class146.field1362.field759;
          var14 = class342.field3837 + (class468.field4805 >> 7);
          var15 = (class44.field302 >> 7) + class144.field1352;
-         class308 var16 = class308.method8607(class309.field3432, Client.serverConnection.field1046);
+         class308 var16 = class308.method8607(ClientPacket.field3432, Client.serverConnection.field1046);
          var16.packet.writeIntME(Client.field1540);
          var16.packet.method8934(var14);
          var16.packet.writeByteAdd(var13);

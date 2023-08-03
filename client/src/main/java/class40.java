@@ -53,22 +53,22 @@ public class class40 {
          if (null != var8 && class146.field1362 != var8 && null != var8.field740 && var8.field740.equals(var6)) {
             class308 var9;
             if (var0 == 1) {
-               var9 = class308.method8607(class309.field3441, Client.serverConnection.field1046);
+               var9 = class308.method8607(ClientPacket.field3441, Client.serverConnection.field1046);
                var9.packet.method8934(var4[var7]);
                var9.packet.writeByteSub(0);
                Client.serverConnection.method2148(var9);
             } else if (var0 == 4) {
-               var9 = class308.method8607(class309.field3417, Client.serverConnection.field1046);
+               var9 = class308.method8607(ClientPacket.field3417, Client.serverConnection.field1046);
                var9.packet.writeShortAdd(var4[var7]);
                var9.packet.writeByte(0);
                Client.serverConnection.method2148(var9);
             } else if (var0 == 6) {
-               var9 = class308.method8607(class309.field3407, Client.serverConnection.field1046);
+               var9 = class308.method8607(ClientPacket.field3407, Client.serverConnection.field1046);
                var9.packet.method8934(var4[var7]);
                var9.packet.writeByteSub(0);
                Client.serverConnection.method2148(var9);
             } else if (var0 == 7) {
-               var9 = class308.method8607(class309.field3456, Client.serverConnection.field1046);
+               var9 = class308.method8607(ClientPacket.field3456, Client.serverConnection.field1046);
                var9.packet.writeShort(var4[var7]);
                var9.packet.writeByteNeg(0);
                Client.serverConnection.method2148(var9);
