@@ -31,7 +31,7 @@ public class class28 {
          var10 = var2.method8749();
          if (var8 >= 0 && var9 >= 0 && var8 < 104 && var9 < 104) {
             var11 = var4 + 1;
-            if (class146.field1362.field945[0] >= var8 - var11 && class146.field1362.field945[0] <= var8 + var11 && class146.field1362.field1012[0] >= var9 - var11 && class146.field1362.field1012[0] <= var11 + var9 && class141.field1307.method1629() != 0 && var5 > 0 && Client.field1632 < 50) {
+            if (class146.field1362.field945[0] >= var8 - var11 && class146.field1362.field945[0] <= var8 + var11 && class146.field1362.field1012[0] >= var9 - var11 && class146.field1362.field1012[0] <= var11 + var9 && class141.clientPreferences.method1629() != 0 && var5 > 0 && Client.field1632 < 50) {
                Client.field1684[Client.field1632] = var10;
                Client.field1685[Client.field1632] = var5;
                Client.field1686[Client.field1632] = var6;

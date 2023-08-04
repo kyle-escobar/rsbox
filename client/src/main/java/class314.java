@@ -45,11 +45,11 @@ public class class314 {
          }
 
          if (Login.loginUsername == null || Login.loginUsername.length() <= 0) {
-            if (class141.field1307.method1631() != null) {
-               Login.loginUsername = class141.field1307.method1631();
-               Client.field1483 = true;
+            if (class141.clientPreferences.method1631() != null) {
+               Login.loginUsername = class141.clientPreferences.method1631();
+               Client.isUsernameRemembered = true;
             } else {
-               Client.field1483 = false;
+               Client.isUsernameRemembered = false;
             }
          }
 

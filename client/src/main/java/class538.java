@@ -89,7 +89,7 @@ public class class538 {
       if (!var0.method6401(var1, var2)) {
          return null;
       } else {
-         int var4 = var0.method6395(var1);
+         int var4 = var0.getGroupId(var1);
          int var5 = var0.method6400(var4, var2);
          byte[] var8 = var0.method6381(var4, var5);
          boolean var7;
@@ -130,7 +130,7 @@ public class class538 {
       if (!var0.method6401(var1, var2)) {
          return null;
       } else {
-         int var4 = var0.method6395(var1);
+         int var4 = var0.getGroupId(var1);
          int var5 = var0.method6400(var4, var2);
          return method1776(var0, var4, var5);
       }

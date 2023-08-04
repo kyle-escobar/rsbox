@@ -55,7 +55,7 @@ public class class81 extends class476 {
          return var3;
       } else {
          String var4 = String.valueOf(var0);
-         int var5 = class130.field1226.method6395(var4);
+         int var5 = class130.field1226.getGroupId(var4);
          if (var5 == -1) {
             return null;
          } else {

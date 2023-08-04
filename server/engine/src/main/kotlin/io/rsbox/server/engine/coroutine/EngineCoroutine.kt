@@ -6,7 +6,7 @@ import kotlin.coroutines.intrinsics.suspendCoroutineUninterceptedOrReturn
 import kotlin.coroutines.cancellation.CancellationException
 import kotlin.reflect.KClass
 
-private val CoroutineContext.task: EngineCoroutineTask get() = get(EngineCoroutineTask) ?: error("Engine coroutine task has not been set.")
+val CoroutineContext.task: EngineCoroutineTask get() = get(EngineCoroutineTask) ?: error("Engine coroutine task has not been set.")
 
 suspend fun wait(ticks: Int = 1) {
     if(ticks <= 0) return
@@ -24,9 +24,9 @@ suspend fun waitUntil(predicate: () -> Boolean) {
     }
 }
 
-suspend fun <T : Any> waitForEvent(event: KClass<T>): T {
+suspend inline fun <reified T : Any> waitForEvent(noinline predicate: (T) -> Boolean = { true }): T {
     return suspendCoroutineUninterceptedOrReturn {
-        it.context.task.wait(event, it)
+        it.context.task.wait(T::class, predicate, it)
         COROUTINE_SUSPENDED
     }
 }
@@ -71,8 +71,8 @@ class EngineCoroutineTask(private var coroutine: EngineCoroutine<out Any>? = nul
         coroutine = EngineCoroutine(continuation, condition)
     }
 
-    fun <T : Any> wait(event: KClass<T>, continuation: Continuation<T>) {
-        val condition = EngineCoroutineEventState(event)
+    fun <T : Any> wait(event: KClass<T>, predicate: (T) -> Boolean, continuation: Continuation<T>) {
+        val condition = EngineCoroutineEventState(event, predicate)
         coroutine = EngineCoroutine(continuation, condition)
     }
 
@@ -137,7 +137,8 @@ class EngineCoroutinePredicateState(private val predicate: () -> Boolean) : Engi
 
 class EngineCoroutineEventState<T : Any>(
     val type: KClass<T>,
-    var resume: Boolean = false
+    val predicate: (T) -> Boolean,
+    private var resume: Boolean = false
 ) : EngineCoroutineState<T> {
 
     private lateinit var value: T
@@ -148,7 +149,7 @@ class EngineCoroutineEventState<T : Any>(
     }
 
     override fun resume(): Boolean {
-        return resume
+        return resume && predicate(value)
     }
 
     override fun get(): T {

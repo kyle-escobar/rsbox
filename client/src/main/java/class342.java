@@ -450,7 +450,7 @@ public abstract class class342 {
       }
    }
 
-   public int method6395(String var1) {
+   public int getGroupId(String var1) {
       var1 = var1.toLowerCase();
       return this.field3823.method9181(class380.method559(var1));
    }

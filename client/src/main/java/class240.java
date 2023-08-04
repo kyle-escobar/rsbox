@@ -148,7 +148,7 @@ public final class class240 {
          this.field2665 = false;
          this.field2660 = true;
          System.nanoTime();
-         int var5 = var1.method6395(class276.field3025.field3022);
+         int var5 = var1.getGroupId(class276.field3025.field3022);
          int var6 = var1.method6400(var5, var2);
          Buffer var7 = new Buffer(var1.method6402(class276.field3025.field3022, var2));
          Buffer var8 = new Buffer(var1.method6402(class276.field3021.field3022, var2));

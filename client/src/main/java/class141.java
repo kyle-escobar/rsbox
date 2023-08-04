@@ -1,5 +1,5 @@
 public class class141 extends class133 {
-   static class79 field1307;
+   static class79 clientPreferences;
    boolean field1308;
    byte field1305;
    byte field1306;

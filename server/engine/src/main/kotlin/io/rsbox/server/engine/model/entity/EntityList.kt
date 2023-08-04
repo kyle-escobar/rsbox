@@ -31,7 +31,7 @@ class EntityList<T>(
 
     override fun isEmpty(): Boolean = size == 0
 
-    fun forEachEntry(action: (T) -> Unit) {
+    suspend fun forEachEntry(action: suspend (T) -> Unit) {
         entries.filterNotNull().forEach { action(it) }
     }
 

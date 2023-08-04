@@ -314,8 +314,8 @@ public class class56 {
       }
 
       class119.method2159();
-      if (null != class6.field42) {
-         class6.field42.method7620();
+      if (null != Js5Index.field42) {
+         Js5Index.field42.method7620();
       }
 
    }
@@ -425,8 +425,8 @@ public class class56 {
             }
 
             class119.method2159();
-            if (class6.field42 != null) {
-               class6.field42.method7620();
+            if (Js5Index.field42 != null) {
+               Js5Index.field42.method7620();
             }
 
          }

@@ -19,6 +19,6 @@ abstract class Entity {
     var index: Int = -1
     var invisible = false
 
-    abstract fun cycle()
+    abstract suspend fun cycle()
 
 }

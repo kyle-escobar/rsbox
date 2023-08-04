@@ -2,7 +2,7 @@ import java.util.concurrent.Future;
 
 public class class4 {
    static int field24;
-   static int[][] field26;
+   static int[][] xteaKeys;
    String field23;
    Future field25;
 

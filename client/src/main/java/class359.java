@@ -18,9 +18,9 @@ public class class359 implements class383 {
 
    static final void method6580(int var0) {
       var0 = Math.min(Math.max(var0, 0), 255);
-      if (var0 != class141.field1307.method1626()) {
+      if (var0 != class141.clientPreferences.method1626()) {
          label35: {
-            if (class141.field1307.method1626() == 0) {
+            if (class141.clientPreferences.method1626() == 0) {
                boolean var2 = !class303.field3198.isEmpty();
                if (var2) {
                   class363 var3 = class24.field121;
@@ -55,7 +55,7 @@ public class class359 implements class383 {
             }
          }
 
-         class141.field1307.method1676(var0);
+         class141.clientPreferences.method1676(var0);
       }
 
    }

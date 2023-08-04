@@ -3,7 +3,7 @@ import java.util.Comparator;
 
 public class class118 implements Comparator {
    public static int field1132;
-   static int[] field1130;
+   static int[] regionMapArchiveIds;
    static GarbageCollectorMXBean field1133;
    final boolean field1131;
 

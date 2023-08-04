@@ -7,6 +7,9 @@ import io.rsbox.server.engine.model.entity.Player
 import io.rsbox.server.engine.net.Message
 import io.rsbox.server.engine.net.Protocol
 import io.rsbox.server.engine.net.Session
+import io.rsbox.server.engine.net.StatusResponse
+import io.rsbox.server.engine.net.game.GameProtocol
+import io.rsbox.server.engine.net.game.packet.server.RebuildNormalServerPacket
 
 class LoginProtocol(session: Session) : Protocol(session) {
 
@@ -22,8 +25,19 @@ class LoginProtocol(session: Session) : Protocol(session) {
         if(msg !is LoginRequest) return
 
         val player = Player.create(msg)
+        if(world.players.contains(player)) {
+            session.writeAndFlush(StatusResponse.ACCOUNT_ONLINE)
+            return
+        }
 
         world.players.add(player)
-        player.login()
+
+        val response = LoginResponse(player)
+        session.writeAndFlush(response).addListener {
+            if(it.isSuccess) {
+                session.protocol.set(GameProtocol(session))
+                player.login()
+            }
+        }
     }
 }

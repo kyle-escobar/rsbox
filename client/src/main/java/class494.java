@@ -26,7 +26,7 @@ public class class494 {
             if (!var8.method6401(var10, "")) {
                var7 = null;
             } else {
-               int var11 = var8.method6395(var10);
+               int var11 = var8.getGroupId(var10);
                int var12 = var8.method6400(var11, "");
                var7 = class538.method7037(var8, var9, var11, var12);
             }

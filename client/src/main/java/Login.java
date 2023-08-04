@@ -104,7 +104,7 @@ public class Login {
 
       for(int var4 = 0; var4 < var3.length; ++var4) {
          String var5 = var3[var4];
-         if (var0.method6395(var5) != -1) {
+         if (var0.getGroupId(var5) != -1) {
             ++var2;
          }
       }
@@ -118,7 +118,7 @@ public class Login {
 
    static String method6() {
       String var1;
-      if (class141.field1307.method1615()) {
+      if (class141.clientPreferences.method1615()) {
          String var3 = loginUsername;
          int var5 = var3.length();
          char[] var6 = new char[var5];
@@ -161,7 +161,7 @@ public class Login {
    }
 
    static void method7296() {
-      if (Client.field1483 && loginUsername != null && loginUsername.length() > 0) {
+      if (Client.isUsernameRemembered && loginUsername != null && loginUsername.length() > 0) {
          field452 = 1;
       } else {
          field452 = 0;
@@ -174,8 +174,8 @@ public class Login {
          method59(var0);
       } else {
          if ((1 == class41.field256 || !class40.field238 && 4 == class41.field256) && class41.field257 >= 765 + field447 - 50 && class41.field258 >= 453) {
-            class141.field1307.method1616(!class141.field1307.method1617());
-            if (!class141.field1307.method1617()) {
+            class141.clientPreferences.method1616(!class141.clientPreferences.method1617());
+            if (!class141.clientPreferences.method1617()) {
                ArrayList var4 = new ArrayList();
                var4.add(new class322(class24.field121, "scape main", "", 255, false));
                class303.method2298(var4, 0, 0, 0, 100, false);
@@ -382,9 +382,9 @@ public class Login {
                         var32 = 277;
                         field463 = var7 >= var11 && var7 < class132.field1241 + var11 && var8 >= var32 && var8 < class458.field4755 + var32;
                         if (var6 == 1 && field463) {
-                           Client.field1483 = !Client.field1483;
-                           if (!Client.field1483 && class141.field1307.method1631() != null) {
-                              class141.field1307.method1630((String)null);
+                           Client.isUsernameRemembered = !Client.isUsernameRemembered;
+                           if (!Client.isUsernameRemembered && class141.clientPreferences.method1631() != null) {
+                              class141.clientPreferences.method1630((String)null);
                            }
                         }
 
@@ -392,10 +392,10 @@ public class Login {
                         var32 = 277;
                         field455 = var7 >= var11 && var7 < class132.field1241 + var11 && var8 >= var32 && var8 < class458.field4755 + var32;
                         if (var6 == 1 && field455) {
-                           class141.field1307.method1677(!class141.field1307.method1615());
-                           if (!class141.field1307.method1615()) {
+                           class141.clientPreferences.method1677(!class141.clientPreferences.method1615());
+                           if (!class141.clientPreferences.method1615()) {
                               loginUsername = "";
-                              class141.field1307.method1630((String)null);
+                              class141.clientPreferences.method1630((String)null);
                               method7296();
                            }
                         }
@@ -889,7 +889,7 @@ public class Login {
                                     var10 = class81.field718 - 80;
                                     var33 = 311;
                                     if (var6 == 1 && var7 >= var10 - 75 && var7 <= var10 + 75 && var8 >= var33 - 20 && var8 <= var33 + 20) {
-                                       class141.field1307.method1632(Client.field1437);
+                                       class141.clientPreferences.method1632(Client.field1437);
                                        method5882(true);
                                     }
 
@@ -1052,7 +1052,7 @@ public class Login {
 
    static void method5882(boolean var0) {
       byte var2 = 0;
-      boolean var3 = class141.field1307.method1687() >= Client.field1437;
+      boolean var3 = class141.clientPreferences.method1687() >= Client.field1437;
       if (!var3) {
          var2 = 12;
       } else if (class124.field1180.method2695() || class124.field1180.method3185() || class124.field1180.method2884()) {
@@ -1068,11 +1068,11 @@ public class Login {
       }
 
       if (loginUsername == null || loginUsername.length() <= 0) {
-         if (class141.field1307.method1631() != null) {
-            loginUsername = class141.field1307.method1631();
-            Client.field1483 = true;
+         if (class141.clientPreferences.method1631() != null) {
+            loginUsername = class141.clientPreferences.method1631();
+            Client.isUsernameRemembered = true;
          } else {
-            Client.field1483 = false;
+            Client.isUsernameRemembered = false;
          }
       }
 
@@ -1407,12 +1407,12 @@ public class Login {
                   var4 += 15;
                   var15 = 277;
                   var10 = class81.field718 + -117;
-                  var23 = method529(Client.field1483, field463);
+                  var23 = method529(Client.isUsernameRemembered, field463);
                   var23.method9316(var10, var15);
                   var10 += var23.field5216 + 5;
                   var1.method7163(class364.field4265, var10, var15 + 13, 16776960, 0);
                   var10 = 24 + class81.field718;
-                  var23 = method529(class141.field1307.method1615(), field455);
+                  var23 = method529(class141.clientPreferences.method1615(), field455);
                   var23.method9316(var10, var15);
                   var10 += var23.field5216 + 5;
                   var1.method7163(class364.field4266, var10, var15 + 13, 16776960, 0);
@@ -1748,7 +1748,7 @@ public class Login {
             class535.method9226(var28);
          }
 
-         class311.field3469[class141.field1307.method1617() ? 1 : 0].method9316(765 + field447 - 40, 463);
+         class311.field3469[class141.clientPreferences.method1617() ? 1 : 0].method9316(765 + field447 - 40, 463);
          if (Client.gameState > 5 && class384.field4403 == class63.field496) {
             if (null != class467.field4793) {
                var4 = 5 + field447;
@@ -1785,7 +1785,7 @@ public class Login {
          if (!var4.method6401("sl_back", "")) {
             var3 = null;
          } else {
-            var5 = var4.method6395("sl_back");
+            var5 = var4.getGroupId("sl_back");
             var6 = var4.method6400(var5, "");
             var3 = class538.method8028(var4, var5, var6);
          }

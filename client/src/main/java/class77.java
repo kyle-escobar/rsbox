@@ -90,13 +90,13 @@ public final class class77 extends class470 {
                var6 += var5.field639 - var2;
             }
 
-            if (var6 - 64 <= var5.field642 && class141.field1307.method1629() != 0 && var0 == var5.field637) {
+            if (var6 - 64 <= var5.field642 && class141.clientPreferences.method1629() != 0 && var0 == var5.field637) {
                var6 -= 64;
                if (var6 < 0) {
                   var6 = 0;
                }
 
-               int var7 = (var5.field642 - var6) * class141.field1307.method1629() / var5.field642;
+               int var7 = (var5.field642 - var6) * class141.clientPreferences.method1629() / var5.field642;
                if (null == var5.field646) {
                   if (var5.field641 >= 0) {
                      class29 var8 = class29.method434(class136.field1254, var5.field641, 0);

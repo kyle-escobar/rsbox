@@ -1,5 +1,5 @@
 public class class139 extends class163 {
-   static byte[][] field1290;
+   static byte[][] regionLandArchives;
    byte field1292;
    int field1288;
    String field1289;

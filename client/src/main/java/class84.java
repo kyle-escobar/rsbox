@@ -255,7 +255,7 @@ public final class class84 extends class102 {
    }
 
    void method1818() {
-      this.field746 = null != class6.field42 && class6.field42.method7720(this.field740) ? class426.field4611 : class426.field4612;
+      this.field746 = null != Js5Index.field42 && Js5Index.field42.method7720(this.field740) ? class426.field4611 : class426.field4612;
    }
 
    void method1780() {

@@ -340,7 +340,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
          class488.field4948 -= var3.bottom + var3.top;
       }
 
-      this.field287 = new class6(this);
+      this.field287 = new Js5Index(this);
       var2.setBackground(Color.BLACK);
       var2.setLayout((LayoutManager)null);
       var2.add(this.field287);

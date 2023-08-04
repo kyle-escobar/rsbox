@@ -93,7 +93,7 @@ public class class485 {
       this.field4891.put(class244.field2687, var5.get(field4887));
       this.field4891.put(class244.field2688, var5.get(field4889));
       this.field4898 = new class488(var1);
-      int var8 = this.field4884.method6395(class276.field3025.field3022);
+      int var8 = this.field4884.getGroupId(class276.field3025.field3022);
       int[] var9 = this.field4884.method6392(var8);
       int var10 = null == var9 ? 0 : var9.length;
       this.field4893 = new HashMap(var10);

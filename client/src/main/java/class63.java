@@ -1993,10 +1993,10 @@ public class class63 {
                   class40.field238 = field483[--field479] == 1;
                   return 1;
                } else if (var0 == 3111) {
-                  field483[++field479 - 1] = class141.field1307.method1613() ? 1 : 0;
+                  field483[++field479 - 1] = class141.clientPreferences.method1613() ? 1 : 0;
                   return 1;
                } else if (var0 == 3112) {
-                  class141.field1307.method1612(field483[--field479] == 1);
+                  class141.clientPreferences.method1612(field483[--field479] == 1);
                   return 1;
                } else if (var0 == 3113) {
                   var12 = field484[--field486];
@@ -2128,30 +2128,30 @@ public class class63 {
                   boolean var8;
                   if (var0 == 3141) {
                      var8 = field483[--field479] == 1;
-                     class141.field1307.method1677(var8);
+                     class141.clientPreferences.method1677(var8);
                      return 1;
                   } else if (var0 == 3142) {
-                     field483[++field479 - 1] = class141.field1307.method1615() ? 1 : 0;
+                     field483[++field479 - 1] = class141.clientPreferences.method1615() ? 1 : 0;
                      return 1;
                   } else if (var0 == 3143) {
                      var8 = field483[--field479] == 1;
-                     Client.field1483 = var8;
+                     Client.isUsernameRemembered = var8;
                      if (!var8) {
-                        class141.field1307.method1630("");
+                        class141.clientPreferences.method1630("");
                      }
 
                      return 1;
                   } else if (var0 == 3144) {
-                     field483[++field479 - 1] = Client.field1483 ? 1 : 0;
+                     field483[++field479 - 1] = Client.isUsernameRemembered ? 1 : 0;
                      return 1;
                   } else if (var0 == 3145) {
                      return 1;
                   } else if (var0 == 3146) {
                      var8 = field483[--field479] == 1;
-                     class141.field1307.method1616(!var8);
+                     class141.clientPreferences.method1616(!var8);
                      return 1;
                   } else if (var0 == 3147) {
-                     field483[++field479 - 1] = class141.field1307.method1617() ? 0 : 1;
+                     field483[++field479 - 1] = class141.clientPreferences.method1617() ? 0 : 1;
                      return 1;
                   } else if (var0 == 3148) {
                      return 1;
@@ -2475,16 +2475,16 @@ public class class63 {
                   if (class82.field728 == var5) {
                      switch (var4.field912) {
                         case 1:
-                           var6 = class141.field1307.method1615() ? 1 : 0;
+                           var6 = class141.clientPreferences.method1615() ? 1 : 0;
                            break;
                         case 2:
-                           var6 = class141.field1307.method1617() ? 1 : 0;
+                           var6 = class141.clientPreferences.method1617() ? 1 : 0;
                            break;
                         case 3:
-                           var6 = class141.field1307.method1694() ? 1 : 0;
+                           var6 = class141.clientPreferences.method1694() ? 1 : 0;
                            break;
                         case 4:
-                           var6 = class141.field1307.method1609();
+                           var6 = class141.clientPreferences.method1609();
                            break;
                         case 5:
                            var6 = Client.method3234();
@@ -2496,18 +2496,18 @@ public class class63 {
                   } else {
                      switch (var5.field725) {
                         case 1:
-                           var6 = class141.field1307.method1613() ? 1 : 0;
+                           var6 = class141.clientPreferences.method1613() ? 1 : 0;
                            break;
                         case 2:
-                           var7 = class141.field1307.method1626();
+                           var7 = class141.clientPreferences.method1626();
                            var6 = Math.round((float)(var7 * 100) / 255.0F);
                            break;
                         case 3:
-                           var7 = class141.field1307.method1628();
+                           var7 = class141.clientPreferences.method1628();
                            var6 = Math.round((float)(var7 * 100) / 127.0F);
                            break;
                         case 4:
-                           var7 = class141.field1307.method1629();
+                           var7 = class141.clientPreferences.method1629();
                            var6 = Math.round((float)(var7 * 100) / 127.0F);
                            break;
                         default:
@@ -2561,20 +2561,20 @@ public class class63 {
                if (var5 == class82.field728) {
                   switch (var4.field912) {
                      case 1:
-                        class141.field1307.method1677(var6 == 1);
+                        class141.clientPreferences.method1677(var6 == 1);
                         break;
                      case 2:
-                        class141.field1307.method1616(var6 == 1);
+                        class141.clientPreferences.method1616(var6 == 1);
                         break;
                      case 3:
-                        class141.field1307.method1667(var6 == 1);
+                        class141.clientPreferences.method1667(var6 == 1);
                         break;
                      case 4:
                         if (var6 < 0) {
                            var6 = 0;
                         }
 
-                        class141.field1307.method1621(var6);
+                        class141.clientPreferences.method1621(var6);
                         break;
                      case 5:
                         Client.method2230(var6);
@@ -2586,7 +2586,7 @@ public class class63 {
                } else {
                   switch (var5.field725) {
                      case 1:
-                        class141.field1307.method1612(var6 == 1);
+                        class141.clientPreferences.method1612(var6 == 1);
                         break;
                      case 2:
                         var6 = Math.min(Math.max(var6, 0), 100);
@@ -3766,7 +3766,7 @@ public class class63 {
 
             return 1;
          } else if (var0 == 5308) {
-            field483[++field479 - 1] = class141.field1307.method1635();
+            field483[++field479 - 1] = class141.clientPreferences.method1635();
             return 1;
          } else if (var0 != 5309) {
             if (var0 == 5310) {
@@ -3778,7 +3778,7 @@ public class class63 {
          } else {
             var4 = field483[--field479];
             if (var4 == 1 || var4 == 2) {
-               class141.field1307.method1720(var4);
+               class141.clientPreferences.method1720(var4);
             }
 
             return 1;

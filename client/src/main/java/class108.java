@@ -52,7 +52,7 @@ public class class108 extends class442 {
          Login.field466 = "";
          Login.field451 = true;
          Login.field457 = false;
-         if (!class141.field1307.method1617()) {
+         if (!class141.clientPreferences.method1617()) {
             ArrayList var6 = new ArrayList();
             var6.add(new class322(class24.field121, "scape main", "", 255, false));
             class303.method2298(var6, 0, 0, 0, 100, false);

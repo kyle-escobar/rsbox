@@ -2,6 +2,8 @@ package io.rsbox.server.engine.model.entity
 
 import io.rsbox.server.config.ServerConfig
 import io.rsbox.server.engine.model.coord.Tile
+import io.rsbox.server.engine.model.manager.GpiManager
+import io.rsbox.server.engine.model.manager.SceneManager
 import io.rsbox.server.engine.net.Session
 import io.rsbox.server.engine.net.game.GameProtocol
 import io.rsbox.server.engine.net.login.LoginRequest
@@ -13,6 +15,12 @@ class Player internal constructor(val session: Session) : Entity() {
     init {
         session.player = this
     }
+
+    /*
+     * Player context Managers
+     */
+    val gpi = GpiManager(this)
+    val scene = SceneManager(this)
 
     override val sizeX = 1
     override val sizeY = 1
@@ -27,23 +35,27 @@ class Player internal constructor(val session: Session) : Entity() {
     var privilege = 3
     var isMember = true
 
-    override fun cycle() {
+    override suspend fun cycle() {
 
+    }
+
+    private fun init() {
+        gpi.init()
+        scene.init()
     }
 
     fun login() {
         Logger.info("[$username] has connected to the server.")
-
-        val response = LoginResponse(this)
-        session.writeAndFlush(response).addListener {
-            if(it.isSuccess) {
-                session.protocol.set(GameProtocol(session))
-            }
-        }
+        this.init()
     }
 
     fun logout() {
         Logger.info("[$username] has disconnected from the server.")
+        world.players.remove(this)
+    }
+
+    override fun equals(other: Any?): Boolean {
+        return other is Player && other.username == username && other.passwordHash == passwordHash
     }
 
     companion object {

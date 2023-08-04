@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.BitSet;
 
 public class class299 extends class470 {
-   static int[] field3155;
+   static int[] regions;
    byte[] field3159 = new byte[128];
    byte[] field3160 = new byte[128];
    byte[] field3164 = new byte[128];

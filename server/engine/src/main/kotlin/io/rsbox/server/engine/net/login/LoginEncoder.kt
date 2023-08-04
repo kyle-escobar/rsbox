@@ -10,7 +10,7 @@ class LoginEncoder(private val session: Session) {
         if(msg !is LoginResponse) return
 
         out.writeByte(2)
-        out.writeByte(26)
+        out.writeByte(37)
         out.writeBoolean(false)
         out.writeInt(0)
         out.writeByte(msg.player.privilege)
@@ -18,6 +18,7 @@ class LoginEncoder(private val session: Session) {
         out.writeShort(msg.player.index)
         out.writeBoolean(msg.player.isMember)
         out.writeLong(msg.player.session.seed)
+        out.writeLong(0L)
         out.writeLong(0L)
     }
 

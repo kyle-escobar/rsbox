@@ -113,12 +113,12 @@ public class class79 {
       return var2;
    }
 
-   static void method6485() {
+   static void saveClientPreferences() {
       class508 var1 = null;
 
       try {
          var1 = class160.method1257("", class12.field65.field3968, true);
-         Buffer var2 = class141.field1307.method1611();
+         Buffer var2 = class141.clientPreferences.method1611();
          var1.method8610(var2.data, 0, var2.offset);
       } catch (Exception var4) {
       }
@@ -164,7 +164,7 @@ public class class79 {
 
    void method1612(boolean var1) {
       this.field700 = var1;
-      method6485();
+      saveClientPreferences();
    }
 
    boolean method1613() {
@@ -173,7 +173,7 @@ public class class79 {
 
    void method1677(boolean var1) {
       this.field690 = var1;
-      method6485();
+      saveClientPreferences();
    }
 
    boolean method1615() {
@@ -182,7 +182,7 @@ public class class79 {
 
    void method1616(boolean var1) {
       this.field691 = var1;
-      method6485();
+      saveClientPreferences();
    }
 
    boolean method1617() {
@@ -191,7 +191,7 @@ public class class79 {
 
    void method1667(boolean var1) {
       this.field698 = var1;
-      method6485();
+      saveClientPreferences();
    }
 
    void method1649() {
@@ -204,7 +204,7 @@ public class class79 {
 
    void method1621(int var1) {
       this.field687 = var1;
-      method6485();
+      saveClientPreferences();
    }
 
    int method1609() {
@@ -213,7 +213,7 @@ public class class79 {
 
    void method1623(double var1) {
       this.field694 = var1;
-      method6485();
+      saveClientPreferences();
    }
 
    double method1624() {
@@ -222,7 +222,7 @@ public class class79 {
 
    void method1676(int var1) {
       this.field695 = var1;
-      method6485();
+      saveClientPreferences();
    }
 
    int method1626() {
@@ -231,7 +231,7 @@ public class class79 {
 
    void method1627(int var1) {
       this.field692 = var1;
-      method6485();
+      saveClientPreferences();
    }
 
    int method1628() {
@@ -240,7 +240,7 @@ public class class79 {
 
    void method1704(int var1) {
       this.field696 = var1;
-      method6485();
+      saveClientPreferences();
    }
 
    int method1629() {
@@ -249,7 +249,7 @@ public class class79 {
 
    void method1630(String var1) {
       this.field699 = var1;
-      method6485();
+      saveClientPreferences();
    }
 
    String method1631() {
@@ -258,7 +258,7 @@ public class class79 {
 
    void method1632(int var1) {
       this.field689 = var1;
-      method6485();
+      saveClientPreferences();
    }
 
    int method1687() {
@@ -267,7 +267,7 @@ public class class79 {
 
    void method1720(int var1) {
       this.field697 = var1;
-      method6485();
+      saveClientPreferences();
    }
 
    int method1635() {
@@ -283,7 +283,7 @@ public class class79 {
       }
 
       this.field701.put(var4, var2);
-      method6485();
+      saveClientPreferences();
    }
 
    boolean method1688(String var1) {

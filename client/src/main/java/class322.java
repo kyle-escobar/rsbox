@@ -13,7 +13,7 @@ public class class322 {
    public int field3527 = 0;
 
    public class322(class342 var1, String var2, String var3, int var4, boolean var5) {
-      this.field3524 = var1.method6395(var2);
+      this.field3524 = var1.getGroupId(var2);
       this.field3526 = var1.method6400(this.field3524, var3);
       this.method5872(var1, this.field3524, this.field3526, var4, var5);
    }

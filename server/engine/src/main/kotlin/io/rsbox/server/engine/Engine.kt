@@ -56,6 +56,7 @@ class Engine {
     }
 
     private suspend fun cycle() {
+        world.players.forEachEntry { it.session.cycle() }
         world.players.forEachEntry { it.cycle() }
         world.players.forEachEntry { it.session.flush() }
     }

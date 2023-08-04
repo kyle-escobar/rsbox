@@ -10,7 +10,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class class173 {
-   static int[] field1840;
+   static int[] regionLandArchiveIds;
    class113 field1827;
    float[] field1834 = new float[4];
    int field1830 = -1;
