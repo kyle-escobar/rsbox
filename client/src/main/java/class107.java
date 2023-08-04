@@ -1,9 +1,9 @@
 final class class107 implements class334 {
    static class363 field1059;
    // $FF: synthetic field
-   final class332 val$cc;
+   final Component val$cc;
 
-   class107(class332 var1) {
+   class107(Component var1) {
       this.val$cc = var1;
    }
 

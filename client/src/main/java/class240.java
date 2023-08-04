@@ -29,7 +29,7 @@ public final class class240 {
       this.field2668 = var4;
    }
 
-   static final void method4651(class332 var0, int var1, int var2, int var3) {
+   static final void method4651(Component var0, int var1, int var2, int var3) {
       Client.method2290();
       class321 var5 = var0.method6222(false);
       if (null != var5) {

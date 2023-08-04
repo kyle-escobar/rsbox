@@ -7,7 +7,7 @@ public class class93 extends class470 {
    }
 
    static int method5753(int var0, int var1) {
-      class93 var3 = (class93)field858.method8184((long)var0);
+      class93 var3 = (class93)field858.get((long)var0);
       if (var3 == null) {
          return -1;
       } else {
@@ -16,7 +16,7 @@ public class class93 extends class470 {
    }
 
    static int method8154(int var0, int var1) {
-      class93 var3 = (class93)field858.method8184((long)var0);
+      class93 var3 = (class93)field858.get((long)var0);
       if (var3 == null) {
          return 0;
       } else {
@@ -25,7 +25,7 @@ public class class93 extends class470 {
    }
 
    static int method1586(int var0, int var1) {
-      class93 var3 = (class93)field858.method8184((long)var0);
+      class93 var3 = (class93)field858.get((long)var0);
       if (null == var3) {
          return 0;
       } else if (var1 == -1) {
@@ -44,10 +44,10 @@ public class class93 extends class470 {
    }
 
    static void method3491(int var0, int var1, int var2, int var3) {
-      class93 var5 = (class93)field858.method8184((long)var0);
+      class93 var5 = (class93)field858.get((long)var0);
       if (var5 == null) {
          var5 = new class93();
-         field858.method8193(var5, (long)var0);
+         field858.put(var5, (long)var0);
       }
 
       if (var5.field860.length <= var1) {
@@ -74,7 +74,7 @@ public class class93 extends class470 {
    }
 
    static void method1534(int var0) {
-      class93 var2 = (class93)field858.method8184((long)var0);
+      class93 var2 = (class93)field858.get((long)var0);
       if (var2 != null) {
          var2.method8116();
       }

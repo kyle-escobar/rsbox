@@ -1,7 +1,7 @@
 package io.rsbox.server.engine.model.coord
 
 @JvmInline
-value class Tile(val packed: Int) {
+value class     Tile(val packed: Int) {
 
     val x get() = packed and 0x7FFF
 

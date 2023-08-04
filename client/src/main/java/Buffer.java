@@ -316,7 +316,7 @@ public class Buffer extends class470 {
       return (this.readUnsignedByte() & 1) == 1;
    }
 
-   public String method8758() {
+   public String readStringOrNull() {
       if (this.data[this.offset] == 0) {
          ++this.offset;
          return null;
@@ -602,27 +602,27 @@ public class Buffer extends class470 {
       this.data[++this.offset - 1] = (byte)(var1 + 128);
    }
 
-   public void method8934(int var1) {
+   public void writeShortLEAdd(int var1) {
       this.data[++this.offset - 1] = (byte)(var1 + 128);
       this.data[++this.offset - 1] = (byte)(var1 >> 8);
    }
 
-   public int method8749() {
+   public int readUnsignedShortLE() {
       this.offset += 2;
       return (this.data[this.offset - 2] & 255) + ((this.data[this.offset - 1] & 255) << 8);
    }
 
-   public int method8778() {
+   public int readUnsignedShortAdd() {
       this.offset += 2;
       return (this.data[this.offset - 1] - 128 & 255) + ((this.data[this.offset - 2] & 255) << 8);
    }
 
-   public int method8792() {
+   public int readUnsignedShortLEAdd() {
       this.offset += 2;
       return ((this.data[this.offset - 1] & 255) << 8) + (this.data[this.offset - 2] - 128 & 255);
    }
 
-   public int readShortLEAdd() {
+   public int readShortLE() {
       this.offset += 2;
       int var2 = ((this.data[this.offset - 1] & 255) << 8) + (this.data[this.offset - 2] & 255);
       if (var2 > 32767) {
@@ -642,23 +642,26 @@ public class Buffer extends class470 {
       return var2;
    }
 
-   public void method8940(int var1) {
+   // 1, 2, 3
+   public void writeMediumLE(int var1) {
       this.data[++this.offset - 1] = (byte)var1;
       this.data[++this.offset - 1] = (byte)(var1 >> 8);
       this.data[++this.offset - 1] = (byte)(var1 >> 16);
    }
 
-   public int method8796() {
+   public int readUnsignedMediumLE() {
       this.offset += 3;
       return (this.data[this.offset - 3] & 255) + ((this.data[this.offset - 2] & 255) << 8) + ((this.data[this.offset - 1] & 255) << 16);
    }
 
-   public int method8952() {
+   // 2, 1, 3
+   public int readUnsignedMediumME() {
       this.offset += 3;
       return (this.data[this.offset - 2] & 255) + ((this.data[this.offset - 1] & 255) << 8) + ((this.data[this.offset - 3] & 255) << 16);
    }
 
-   public int method8798() {
+   // 1, 3, 2
+   public int readUnsignedMediumIME() {
       this.offset += 3;
       int var2 = (this.data[this.offset - 1] & 255) + ((this.data[this.offset - 3] & 255) << 8) + ((this.data[this.offset - 2] & 255) << 16);
       if (var2 > 8388607) {
@@ -668,6 +671,7 @@ public class Buffer extends class470 {
       return var2;
    }
 
+   // 1, 2, 3, 4
    public void writeIntLE(int var1) {
       this.data[++this.offset - 1] = (byte)var1;
       this.data[++this.offset - 1] = (byte)(var1 >> 8);
@@ -675,6 +679,7 @@ public class Buffer extends class470 {
       this.data[++this.offset - 1] = (byte)(var1 >> 24);
    }
 
+   // 2, 1, 4, 3
    public void writeIntME(int var1) {
       this.data[++this.offset - 1] = (byte)(var1 >> 8);
       this.data[++this.offset - 1] = (byte)var1;
@@ -682,6 +687,7 @@ public class Buffer extends class470 {
       this.data[++this.offset - 1] = (byte)(var1 >> 16);
    }
 
+   // 3, 4, 1, 2
    public void writeIntIME(int var1) {
       this.data[++this.offset - 1] = (byte)(var1 >> 16);
       this.data[++this.offset - 1] = (byte)(var1 >> 24);
@@ -689,17 +695,20 @@ public class Buffer extends class470 {
       this.data[++this.offset - 1] = (byte)(var1 >> 8);
    }
 
-   public int method8998() {
+   // 4, 3, 2, 1
+   public int readIntLE() {
       this.offset += 4;
       return ((this.data[this.offset - 1] & 255) << 24) + ((this.data[this.offset - 2] & 255) << 16) + ((this.data[this.offset - 3] & 255) << 8) + (this.data[this.offset - 4] & 255);
    }
 
-   public int method8862() {
+   // 3, 4, 1, 2
+   public int writeIntME() {
       this.offset += 4;
       return (this.data[this.offset - 3] & 255) + ((this.data[this.offset - 4] & 255) << 8) + ((this.data[this.offset - 1] & 255) << 16) + ((this.data[this.offset - 2] & 255) << 24);
    }
 
-   public int method8804() {
+   // 2, 1, 4, 3
+   public int writeIntIME() {
       this.offset += 4;
       return ((this.data[this.offset - 3] & 255) << 24) + ((this.data[this.offset - 4] & 255) << 16) + ((this.data[this.offset - 1] & 255) << 8) + (this.data[this.offset - 2] & 255);
    }

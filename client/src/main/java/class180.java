@@ -10,7 +10,7 @@ public class class180 extends class163 {
    }
 
    void method3248(Buffer var1) {
-      this.field1878 = var1.method8758();
+      this.field1878 = var1.readStringOrNull();
       if (null != this.field1878) {
          var1.readUnsignedByte();
          this.field1880 = var1.readByte();

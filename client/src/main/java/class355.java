@@ -54,7 +54,7 @@ public class class355 {
                   var6.writeByte(1);
                   var6.writeMedium((int)var5.field4816);
                   this.field3936.write(var6.data, 0, 4);
-                  this.field3927.method8193(var5, var5.field4816);
+                  this.field3927.put(var5, var5.field4816);
                   --this.field3937;
                   ++this.field3928;
                }
@@ -66,7 +66,7 @@ public class class355 {
                   var6.writeMedium((int)var5.field4816);
                   this.field3936.write(var6.data, 0, 4);
                   var5.method8161();
-                  this.field3932.method8193(var5, var5.field4816);
+                  this.field3932.put(var5, var5.field4816);
                   --this.field3931;
                   ++this.field3924;
                }
@@ -123,10 +123,10 @@ public class class355 {
                         int var11 = this.field3926.readUnsignedByte();
                         int var12 = this.field3926.readInt();
                         long var13 = (long)(var10 + (var9 << 16));
-                        class362 var15 = (class362)this.field3927.method8184(var13);
+                        class362 var15 = (class362)this.field3927.get(var13);
                         this.field3934 = true;
                         if (var15 == null) {
-                           var15 = (class362)this.field3932.method8184(var13);
+                           var15 = (class362)this.field3932.get(var13);
                            this.field3934 = false;
                         }
 
@@ -305,13 +305,13 @@ public class class355 {
                }
 
                this.field3929.method6643(var4);
-               this.field3930.method8193(var4, var4.field4816);
+               this.field3930.put(var4, var4.field4816);
                ++this.field3931;
                --this.field3924;
             }
          }
 
-         this.field3942.method8193(var4, var4.field4816);
+         this.field3942.put(var4, var4.field4816);
          ++this.field3937;
          --this.field3928;
       }
@@ -361,22 +361,22 @@ public class class355 {
 
    void method6536(class363 var1, int var2, int var3, int var4, byte var5, boolean var6) {
       long var8 = (long)(var3 + (var2 << 16));
-      class362 var10 = (class362)this.field3942.method8184(var8);
+      class362 var10 = (class362)this.field3942.get(var8);
       if (var10 == null) {
-         var10 = (class362)this.field3927.method8184(var8);
+         var10 = (class362)this.field3927.get(var8);
          if (null == var10) {
-            var10 = (class362)this.field3930.method8184(var8);
+            var10 = (class362)this.field3930.get(var8);
             if (var10 != null) {
                if (var6) {
                   var10.method8161();
-                  this.field3942.method8193(var10, var8);
+                  this.field3942.put(var10, var8);
                   --this.field3931;
                   ++this.field3937;
                }
 
             } else {
                if (!var6) {
-                  var10 = (class362)this.field3932.method8184(var8);
+                  var10 = (class362)this.field3932.get(var8);
                   if (var10 != null) {
                      return;
                   }
@@ -387,11 +387,11 @@ public class class355 {
                var10.field3999 = var4;
                var10.field3998 = var5;
                if (var6) {
-                  this.field3942.method8193(var10, var8);
+                  this.field3942.put(var10, var8);
                   ++this.field3937;
                } else {
                   this.field3929.method6642(var10);
-                  this.field3930.method8193(var10, var8);
+                  this.field3930.put(var10, var8);
                   ++this.field3931;
                }
 
@@ -402,7 +402,7 @@ public class class355 {
 
    void method6537(int var1, int var2) {
       long var4 = (long)((var1 << 16) + var2);
-      class362 var6 = (class362)this.field3930.method8184(var4);
+      class362 var6 = (class362)this.field3930.get(var4);
       if (null != var6) {
          this.field3929.method6643(var6);
       }

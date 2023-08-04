@@ -1,5 +1,5 @@
 public class class358 {
-   static class332 field3961;
+   static Component field3961;
 
    static {
       int var0 = 0;

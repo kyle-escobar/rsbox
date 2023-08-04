@@ -1,5 +1,5 @@
 public class class404 extends class406 {
-   static class332 field4504;
+   static Component field4504;
    boolean field4501 = false;
    int field4502;
    long field4503;

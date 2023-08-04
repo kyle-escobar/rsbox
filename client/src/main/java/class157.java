@@ -22,7 +22,7 @@ public class class157 extends class133 {
          this.field1737 = var1.readLong();
       }
 
-      this.field1738 = var1.method8758();
+      this.field1738 = var1.readStringOrNull();
       this.field1742 = var1.readUnsignedShort();
    }
 

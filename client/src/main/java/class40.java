@@ -54,7 +54,7 @@ public class class40 {
             class308 var9;
             if (var0 == 1) {
                var9 = class308.method8607(ClientPacket.field3441, Client.serverConnection.field1046);
-               var9.packet.method8934(var4[var7]);
+               var9.packet.writeShortLEAdd(var4[var7]);
                var9.packet.writeByteSub(0);
                Client.serverConnection.method2148(var9);
             } else if (var0 == 4) {
@@ -64,7 +64,7 @@ public class class40 {
                Client.serverConnection.method2148(var9);
             } else if (var0 == 6) {
                var9 = class308.method8607(ClientPacket.field3407, Client.serverConnection.field1046);
-               var9.packet.method8934(var4[var7]);
+               var9.packet.writeShortLEAdd(var4[var7]);
                var9.packet.writeByteSub(0);
                Client.serverConnection.method2148(var9);
             } else if (var0 == 7) {

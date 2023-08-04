@@ -1,5 +1,8 @@
 package io.rsbox.server.cache
 
+import io.netty.buffer.ByteBufAllocator
+import io.netty.buffer.Unpooled
+import io.netty.buffer.UnpooledByteBufAllocator
 import io.rsbox.server.cache.model.Archive
 import io.rsbox.server.common.get
 import io.rsbox.server.config.XteaConfig
@@ -20,8 +23,8 @@ class GameCache {
     lateinit var mapArchive: MapArchive private set
 
     fun load() {
-        store = Store.open(CACHE_DIR.toPath())
-        cache = Cache.open(store)
+        store = Store.open(CACHE_DIR.toPath(), UnpooledByteBufAllocator.DEFAULT)
+        cache = Cache.open(store, UnpooledByteBufAllocator.DEFAULT)
         masterIndex = Js5MasterIndex.create(store)
 
         /*

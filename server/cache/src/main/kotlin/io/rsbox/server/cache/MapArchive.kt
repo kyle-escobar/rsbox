@@ -3,6 +3,7 @@
 package io.rsbox.server.cache
 
 import io.netty.buffer.ByteBuf
+import io.netty.buffer.Unpooled
 import io.rsbox.server.cache.map.MapRegionEntry
 import io.rsbox.server.cache.map.MapRegionLocation
 import io.rsbox.server.cache.map.MapRegionTerrain
@@ -46,6 +47,7 @@ class MapArchive(private val entryMap: MutableMap<Int, MapRegionEntry> = mutable
                     for(y in 0 until 64) {
                         val data = GameCache.cache.read(id, "m${entry.regionX}_${entry.regionY}", 0)
                         entry.terrain[entry.pack(x, y, level)] = data.loadTerrain()
+                        data.release()
                     }
                 }
             }
@@ -53,12 +55,16 @@ class MapArchive(private val entryMap: MutableMap<Int, MapRegionEntry> = mutable
             /*
              * Load region map locations (objects)
              */
+
+            var data: ByteBuf = Unpooled.buffer()
             try {
-                GameCache.cache.read(id, "l${entry.regionX}_${entry.regionY}", 0, xteas.toXteaKey()).loadLocs(entry)
+                data = GameCache.cache.read(id, "l${entry.regionX}_${entry.regionY}", 0, xteas.toXteaKey())
             } catch(e: Exception) {
                 /*
                  * Do nothing.
                  */
+            } finally {
+                data.release()
             }
 
             return entry
@@ -71,23 +77,27 @@ class MapArchive(private val entryMap: MutableMap<Int, MapRegionEntry> = mutable
             overlayRotation: Int = 0,
             collision: Int = 0,
             underlayId: Int = 0
-        ): MapRegionTerrain = when(val opcode = readUnsignedShort()) {
-            0 -> MapRegionTerrain(collision)
-            1 -> {
-                discard(1)
-                MapRegionTerrain(collision)
+        ): MapRegionTerrain {
+            this.retain()
+            return when(val opcode = readUnsignedShort()) {
+                0 -> MapRegionTerrain(collision)
+                1 -> {
+                    discard(1)
+                    MapRegionTerrain(collision)
+                }
+                else -> loadTerrain(
+                    height = height,
+                    overlayId = if(opcode in 2..49) readShort().toInt() else overlayId,
+                    overlayPath = if(opcode in 2..49) (opcode - 2) / 4 else overlayPath,
+                    overlayRotation = if(opcode in 2..49) opcode - 2 and 3 else overlayRotation,
+                    collision = if(opcode in 50..81) opcode - 49 else collision,
+                    underlayId = if(opcode > 81) opcode - 81 else underlayId
+                )
             }
-            else -> loadTerrain(
-                height = height,
-                overlayId = if(opcode in 2..49) readShort().toInt() else overlayId,
-                overlayPath = if(opcode in 2..49) (opcode - 2) / 4 else overlayPath,
-                overlayRotation = if(opcode in 2..49) opcode - 2 and 3 else overlayRotation,
-                collision = if(opcode in 50..81) opcode - 49 else collision,
-                underlayId = if(opcode > 81) opcode - 81 else underlayId
-            )
         }
 
         private tailrec fun ByteBuf.loadLocs(entry: MapRegionEntry, locId: Int = -1) {
+            this.retain()
             val offset = readIncrSmallSmart()
             if(offset == 0) return
             loadLocationCollision(entry, locId + offset, 0)
@@ -95,6 +105,7 @@ class MapArchive(private val entryMap: MutableMap<Int, MapRegionEntry> = mutable
         }
 
         private tailrec fun ByteBuf.loadLocationCollision(entry: MapRegionEntry, locId: Int, packedLocation: Int) {
+            this.retain()
             val offset = readUnsignedShortSmart()
             if(offset == 0) return
             val attributes = readUnsignedByte().toInt()

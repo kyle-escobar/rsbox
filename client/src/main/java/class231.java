@@ -2,9 +2,9 @@ public class class231 implements class27 {
    static class523[] field2524;
    boolean field2523 = false;
    boolean field2528 = false;
-   class332 field2525 = null;
+   Component field2525 = null;
 
-   public void method4393(class332 var1) {
+   public void method4393(Component var1) {
       this.method4390();
       if (null != var1) {
          this.field2525 = var1;
@@ -22,14 +22,14 @@ public class class231 implements class27 {
 
    }
 
-   public class332 method4389() {
+   public Component method4389() {
       return this.field2525;
    }
 
    public void method4390() {
       if (null != this.field2525) {
          class338 var2 = this.field2525.method6244();
-         class332 var3 = this.field2525;
+         Component var3 = this.field2525;
          this.field2525 = null;
          if (var2 != null) {
             var2.field3786.method5902(false);
@@ -62,7 +62,7 @@ public class class231 implements class27 {
                      break;
                   default:
                      if (this.method4392(var1)) {
-                        Client.method3898(this.field2525);
+                        Client.setDirty(this.field2525);
                      }
                }
             }
@@ -120,7 +120,7 @@ public class class231 implements class27 {
                   return false;
                } else {
                   if (var8.method408(var1) && var7.method6164(var1)) {
-                     Client.method3898(this.field2525);
+                     Client.setDirty(this.field2525);
                   }
 
                   return var8.method398(var1);

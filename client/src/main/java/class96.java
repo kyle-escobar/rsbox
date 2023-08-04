@@ -1,5 +1,5 @@
 public class class96 {
-   public static class332[][] field884;
+   public static Component[][] interfaces;
    public static class342 field885;
    static class347 field883;
    int field881 = 0;

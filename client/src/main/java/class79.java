@@ -49,7 +49,7 @@ public class class79 {
             }
 
             if (var2 > 4) {
-               this.field699 = var1.method8758();
+               this.field699 = var1.readStringOrNull();
             }
 
             if (var2 > 5) {

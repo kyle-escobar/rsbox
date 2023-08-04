@@ -2,7 +2,7 @@ import java.util.Comparator;
 
 final class class348 implements Comparator {
    static void method6500(int var0) {
-      class93 var2 = (class93)class93.field858.method8184((long)var0);
+      class93 var2 = (class93)class93.field858.get((long)var0);
       if (null != var2) {
          for(int var3 = 0; var3 < var2.field860.length; ++var3) {
             var2.field860[var3] = -1;

@@ -1,5 +1,5 @@
 public class class271 {
-   static class332[] field2990;
+   static Component[] field2990;
    final int field2987;
    final int field2988;
    final int field2989;

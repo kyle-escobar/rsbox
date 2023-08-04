@@ -211,7 +211,7 @@ public class class485 {
                var11 = this.field4933.field3582;
                class308 var12 = class308.method8607(ClientPacket.field3432, Client.serverConnection.field1046);
                var12.packet.writeIntME(0);
-               var12.packet.method8934(var13);
+               var12.packet.writeShortLEAdd(var13);
                var12.packet.writeByteAdd(var11);
                var12.packet.writeShortAdd(var10);
                Client.serverConnection.method2148(var12);

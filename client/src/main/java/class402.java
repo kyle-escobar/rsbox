@@ -8,15 +8,15 @@ public class class402 extends RuntimeException {
       Client.serverConnection.method2148(var1);
       class63.field477 = true;
 
-      for(class92 var2 = (class92) Client.field1601.method8186(); var2 != null; var2 = (class92) Client.field1601.method8194()) {
-         if (0 == var2.field854 || 3 == var2.field854) {
-            class102.method2083(var2, true);
+      for(SubInterface var2 = (SubInterface) Client.activeSubInterfaces.method8186(); var2 != null; var2 = (SubInterface) Client.activeSubInterfaces.method8194()) {
+         if (0 == var2.type || 3 == var2.type) {
+            class102.closeSubInterface(var2, true);
          }
       }
 
-      if (null != Client.field1605) {
-         Client.method3898(Client.field1605);
-         Client.field1605 = null;
+      if (null != Client.meslayerPauseButtonComponent) {
+         Client.setDirty(Client.meslayerPauseButtonComponent);
+         Client.meslayerPauseButtonComponent = null;
       }
 
       class63.field477 = false;

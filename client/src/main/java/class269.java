@@ -1,5 +1,5 @@
 public class class269 {
-   static class332 field2984;
+   static Component field2984;
    byte[][][] field2982;
    int field2981;
 

@@ -43,8 +43,8 @@ public class class17 {
    }
 
    static final void method297(int var0, int var1, int var2, int var3, int var4, int var5, int var6) {
-      if (class332.method1200(var0)) {
-         Client.method2579(class96.field884[var0], -1, var1, var2, var3, var4, var5, var6);
+      if (Component.method1200(var0)) {
+         Client.method2579(class96.interfaces[var0], -1, var1, var2, var3, var4, var5, var6);
       }
    }
 

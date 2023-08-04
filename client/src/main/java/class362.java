@@ -115,13 +115,13 @@ public class class362 extends class476 {
          }
 
          if (0 != (var16 & 1)) {
-            var15.field776 = class191.method4208(var1.method8778());
+            var15.field776 = class191.method4208(var1.readUnsignedShortAdd());
             Client.method3032(var15);
             var15.method1879();
          }
 
          if (0 != (var16 & 4)) {
-            var17 = var1.method8749();
+            var17 = var1.readUnsignedShortLE();
             if (var17 == 65535) {
                var17 = -1;
             }
@@ -150,7 +150,7 @@ public class class362 extends class476 {
          }
 
          if (0 != (var16 & 64)) {
-            var1.method8749();
+            var1.readUnsignedShortLE();
             var1.readInt();
          }
 
@@ -201,7 +201,7 @@ public class class362 extends class476 {
                   var22 = new short[var11];
 
                   for(var20 = 0; var20 < var11; ++var20) {
-                     var22[var20] = (short)var1.method8778();
+                     var22[var20] = (short)var1.readUnsignedShortAdd();
                   }
                }
 
@@ -242,7 +242,7 @@ public class class362 extends class476 {
                   var19 = new short[var10];
 
                   for(var11 = 0; var11 < var10; ++var11) {
-                     var19[var11] = (short)var1.method8749();
+                     var19[var11] = (short)var1.readUnsignedShortLE();
                   }
                }
 
@@ -256,7 +256,7 @@ public class class362 extends class476 {
                   var22 = new short[var11];
 
                   for(var20 = 0; var20 < var11; ++var20) {
-                     var22[var20] = (short)var1.method8749();
+                     var22[var20] = (short)var1.readUnsignedShortLE();
                   }
                }
 
@@ -271,22 +271,22 @@ public class class362 extends class476 {
          }
 
          if ((var16 & 262144) != 0) {
-            var17 = var1.method8862();
-            var15.field995 = (var17 & 1) != 0 ? var1.method8749() : var15.field776.field2050;
+            var17 = var1.writeIntME();
+            var15.field995 = (var17 & 1) != 0 ? var1.readUnsignedShortLE() : var15.field776.field2050;
             var15.field948 = 0 != (var17 & 2) ? var1.readUnsignedShort() : var15.field776.field2054;
             var15.field993 = (var17 & 4) != 0 ? var1.readUnsignedShort() : var15.field776.field2083;
-            var15.field1004 = (var17 & 8) != 0 ? var1.method8749() : 2045371335 * var15.field776.field2061 * 551218679;
-            var15.field1001 = 0 != (var17 & 16) ? var1.method8792() : var15.field776.field2057;
-            var15.field984 = 0 != (var17 & 32) ? var1.method8778() : var15.field776.field2058;
-            var15.field953 = (var17 & 64) != 0 ? var1.method8778() : var15.field776.field2043;
+            var15.field1004 = (var17 & 8) != 0 ? var1.readUnsignedShortLE() : 2045371335 * var15.field776.field2061 * 551218679;
+            var15.field1001 = 0 != (var17 & 16) ? var1.readUnsignedShortLEAdd() : var15.field776.field2057;
+            var15.field984 = 0 != (var17 & 32) ? var1.readUnsignedShortAdd() : var15.field776.field2058;
+            var15.field953 = (var17 & 64) != 0 ? var1.readUnsignedShortAdd() : var15.field776.field2043;
             var15.field952 = (var17 & 128) != 0 ? var1.readUnsignedShort() : var15.field776.field2060;
-            var15.field955 = 0 != (var17 & 256) ? var1.method8792() : var15.field776.field2045;
-            var15.field956 = (var17 & 512) != 0 ? var1.method8792() : var15.field776.field2062;
-            var15.field969 = 0 != (var17 & 1024) ? var1.method8749() : 1478538629 * var15.field776.field2063 * -1703871667;
-            var15.field958 = 0 != (var17 & 2048) ? var1.method8749() : var15.field776.field2064;
-            var15.field959 = 0 != (var17 & 4096) ? var1.method8792() : 1944282437 * var15.field776.field2065 * 904488333;
-            var15.field960 = (var17 & 8192) != 0 ? var1.method8778() : 881727523 * var15.field776.field2071 * 1352095627;
-            var15.field989 = (var17 & 16384) != 0 ? var1.method8749() : 1344848923 * var15.field776.field2052 * -1626376685;
+            var15.field955 = 0 != (var17 & 256) ? var1.readUnsignedShortLEAdd() : var15.field776.field2045;
+            var15.field956 = (var17 & 512) != 0 ? var1.readUnsignedShortLEAdd() : var15.field776.field2062;
+            var15.field969 = 0 != (var17 & 1024) ? var1.readUnsignedShortLE() : 1478538629 * var15.field776.field2063 * -1703871667;
+            var15.field958 = 0 != (var17 & 2048) ? var1.readUnsignedShortLE() : var15.field776.field2064;
+            var15.field959 = 0 != (var17 & 4096) ? var1.readUnsignedShortLEAdd() : 1944282437 * var15.field776.field2065 * 904488333;
+            var15.field960 = (var17 & 8192) != 0 ? var1.readUnsignedShortAdd() : 881727523 * var15.field776.field2071 * 1352095627;
+            var15.field989 = (var17 & 16384) != 0 ? var1.readUnsignedShortLE() : 1344848923 * var15.field776.field2052 * -1626376685;
          }
 
          if ((var16 & 131072) != 0) {
@@ -295,7 +295,7 @@ public class class362 extends class476 {
             for(var8 = 0; var8 < var17; ++var8) {
                var9 = var1.readUnsignedByteNeg();
                var10 = var1.readUnsignedShort();
-               var11 = var1.method8862();
+               var11 = var1.writeIntME();
                var15.method2080(var9, var10, var11 >> 16, var11 & '\uffff');
             }
          }
@@ -306,8 +306,8 @@ public class class362 extends class476 {
             var15.field954 = var1.readByte();
             var15.field982 = var1.readByte();
             var15.field964 = var1.readUnsignedShort() + Client.field1445;
-            var15.field997 = var1.method8749() + Client.field1445;
-            var15.field990 = var1.method8778();
+            var15.field997 = var1.readUnsignedShortLE() + Client.field1445;
+            var15.field990 = var1.readUnsignedShortAdd();
             var15.field1010 = 1;
             var15.field1015 = 0;
             var15.field992 += var15.field945[0];
@@ -317,8 +317,8 @@ public class class362 extends class476 {
          }
 
          if ((var16 & 2) != 0) {
-            var17 = var1.method8792();
-            var8 = var1.method8792();
+            var17 = var1.readUnsignedShortLEAdd();
+            var8 = var1.readUnsignedShortLEAdd();
             var15.field980 = var1.readUnsignedByte() == 1;
             if (Client.revision >= 212) {
                var15.field978 = var17;
@@ -334,7 +334,7 @@ public class class362 extends class476 {
          }
 
          if (0 != (var16 & 4096)) {
-            var15.field941 = Client.field1445 + var1.method8749();
+            var15.field941 = Client.field1445 + var1.readUnsignedShortLE();
             var15.field1002 = Client.field1445 + var1.readUnsignedShort();
             var15.field1003 = var1.readByteAdd();
             var15.field996 = var1.readByte();
@@ -388,7 +388,7 @@ public class class362 extends class476 {
          }
 
          if (0 != (var16 & 16384)) {
-            var15.field1016 = var1.method8998();
+            var15.field1016 = var1.readIntLE();
          }
 
          if (0 != (var16 & 65536)) {

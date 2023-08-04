@@ -326,7 +326,7 @@ public class class116 {
 
          int var18;
          if ((var5 & 32) != 0) {
-            var4.field975 = var0.method8792();
+            var4.field975 = var0.readUnsignedShortLEAdd();
             var4.field975 += var0.readUnsignedByte() << 16;
             var18 = 16777215;
             if (var4.field975 == var18) {
@@ -336,7 +336,7 @@ public class class116 {
 
          int var8;
          if ((var5 & 2) != 0) {
-            var18 = var0.method8749();
+            var18 = var0.readUnsignedShortLE();
             if (var18 == 65535) {
                var18 = -1;
             }
@@ -400,9 +400,9 @@ public class class116 {
             var4.field994 = var0.readByteAdd();
             var4.field954 = var0.readByteAdd();
             var4.field982 = var0.readByteSub();
-            var4.field964 = var0.method8778() + Client.field1445;
-            var4.field997 = var0.method8792() + Client.field1445;
-            var4.field990 = var0.method8792();
+            var4.field964 = var0.readUnsignedShortAdd() + Client.field1445;
+            var4.field997 = var0.readUnsignedShortLEAdd() + Client.field1445;
+            var4.field990 = var0.readUnsignedShortLEAdd();
             if (var4.field744) {
                var4.field992 += var4.field758;
                var4.field994 += var4.field766;
@@ -443,7 +443,7 @@ public class class116 {
          int var28;
          int var29;
          if ((var5 & 2048) != 0) {
-            var18 = var0.method8792();
+            var18 = var0.readUnsignedShortLEAdd();
             var8 = var18 >> 8;
             var21 = var8 >= 13 && var8 <= 20 ? var8 - 12 : 0;
             class361 var22 = (class361)class373.method1724(class361.method2121(), var0.readUnsignedByteAdd());
@@ -501,7 +501,7 @@ public class class116 {
             for(var8 = 0; var8 < var18; ++var8) {
                var21 = var0.readUnsignedByteSub();
                var10 = var0.readUnsignedShort();
-               var11 = var0.method8804();
+               var11 = var0.writeIntIME();
                var4.method2080(var21, var10, var11 >> 16, var11 & '\uffff');
             }
          }
@@ -548,7 +548,7 @@ public class class116 {
          }
 
          if ((var5 & 128) != 0) {
-            var4.field977 = var0.method8778();
+            var4.field977 = var0.readUnsignedShortAdd();
             if (var4.field1010 == 0) {
                var4.field1007 = var4.field977;
                var4.method2073();
@@ -557,7 +557,7 @@ public class class116 {
 
          if (0 != (var5 & 256)) {
             var4.field941 = Client.field1445 + var0.readUnsignedShort();
-            var4.field1002 = Client.field1445 + var0.method8792();
+            var4.field1002 = Client.field1445 + var0.readUnsignedShortLEAdd();
             var4.field1003 = var0.readByteSub();
             var4.field996 = var0.readByteNeg();
             var4.field1005 = var0.readByte();

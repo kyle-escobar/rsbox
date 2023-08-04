@@ -241,10 +241,10 @@ public class class328 extends class470 {
                      var51.writeByte(var71);
                      if (var71 > 0) {
                         int var72 = var61[var52];
-                        class336 var73 = (class336)this.field3573.method8184((long)var72);
+                        class336 var73 = (class336)this.field3573.get((long)var72);
                         if (var73 == null) {
                            var73 = new class336(var65);
-                           this.field3573.method8193(var73, (long)var72);
+                           this.field3573.put(var73, (long)var72);
                         }
 
                         var73.field3779.set(var70);

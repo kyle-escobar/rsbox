@@ -3,7 +3,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 
-public class class332 extends class470 {
+public class Component extends class470 {
    public static boolean field3737;
    public static boolean[] field3674;
    static class290 field3599 = new class290(50);
@@ -40,8 +40,8 @@ public class class332 extends class470 {
    public byte[][] field3683;
    public byte[][] field3694;
    public class314 field3664;
-   public class332 field3714;
-   public class332[] field3743;
+   public Component field3714;
+   public Component[] field3743;
    public class522 field3636;
    public int field3589;
    public int field3590;
@@ -170,7 +170,7 @@ public class class332 extends class470 {
       field3737 = false;
    }
 
-   public class332() {
+   public Component() {
       this.field3636 = class522.field5138;
       this.field3637 = 0;
       this.field3638 = 0;
@@ -236,21 +236,21 @@ public class class332 extends class470 {
       this.field3755 = false;
    }
 
-   public static class332 method3765(int var0) {
+   public static Component getComponent(int var0) {
       int var2 = var0 >> 16;
       int var3 = var0 & '\uffff';
-      if (null == class96.field884[var2] || class96.field884[var2][var3] == null) {
+      if (null == class96.interfaces[var2] || class96.interfaces[var2][var3] == null) {
          boolean var4 = method1200(var2);
          if (!var4) {
             return null;
          }
       }
 
-      return class96.field884[var2][var3];
+      return class96.interfaces[var2][var3];
    }
 
-   public static class332 method1772(int var0, int var1) {
-      class332 var3 = method3765(var0);
+   public static Component method1772(int var0, int var1) {
+      Component var3 = getComponent(var0);
       if (var1 == -1) {
          return var3;
       } else {
@@ -269,20 +269,20 @@ public class class332 extends class470 {
             field3674[var0] = true;
             return true;
          } else {
-            if (null == class96.field884[var0]) {
-               class96.field884[var0] = new class332[var2];
+            if (null == class96.interfaces[var0]) {
+               class96.interfaces[var0] = new Component[var2];
             }
 
             for(int var3 = 0; var3 < var2; ++var3) {
-               if (class96.field884[var0][var3] == null) {
+               if (class96.interfaces[var0][var3] == null) {
                   byte[] var4 = class96.field885.method6381(var0, var3);
                   if (var4 != null) {
-                     class96.field884[var0][var3] = new class332();
-                     class96.field884[var0][var3].field3606 = (var0 << 16) + var3;
+                     class96.interfaces[var0][var3] = new Component();
+                     class96.interfaces[var0][var3].field3606 = (var0 << 16) + var3;
                      if (var4[0] == -1) {
-                        class96.field884[var0][var3].method6212(new Buffer(var4));
+                        class96.interfaces[var0][var3].method6212(new Buffer(var4));
                      } else {
-                        class96.field884[var0][var3].method6285(new Buffer(var4));
+                        class96.interfaces[var0][var3].method6285(new Buffer(var4));
                      }
                   }
                }
@@ -301,8 +301,8 @@ public class class332 extends class470 {
       field3684.method5637();
    }
 
-   static class332 method4680(int var0, class332 var1, int var2, int var3, int var4, int var5, int var6, float[] var7) {
-      class332 var9 = new class332();
+   static Component method4680(int var0, Component var1, int var2, int var3, int var4, int var5, int var6, float[] var7) {
+      Component var9 = new Component();
       var9.field3608 = var0;
       var9.field3625 = var1.field3606;
       var9.field3607 = var2;
@@ -318,7 +318,7 @@ public class class332 extends class470 {
       return var9;
    }
 
-   public static void method3413(class332 var0, int var1, int var2) {
+   public static void method3413(Component var0, int var1, int var2) {
       class314 var4 = var0.field3664;
       boolean var5 = var2 != var4.field3486;
       var4.field3486 = var2;
@@ -371,12 +371,12 @@ public class class332 extends class470 {
       var4.method5804();
    }
 
-   public static void method5687(class332 var0, int var1, int var2) {
+   public static void method5687(Component var0, int var1, int var2) {
       var0.field3664.field3484[var1] = var2;
       var0.field3664.method5804();
    }
 
-   public static void method2415(class332 var0, int var1) {
+   public static void method2415(Component var0, int var1) {
       class185 var3 = class185.method2355(var1);
       var0.field3664.field3483[var3.field2009] = var1 + 512;
       if (var3.field1978 != -1) {
@@ -390,7 +390,7 @@ public class class332 extends class470 {
       var0.field3664.method5804();
    }
 
-   public static void method4653(class332 var0, class314 var1, boolean var2) {
+   public static void method4653(Component var0, class314 var1, boolean var2) {
       var0.field3650 = 7;
       var0.field3664 = new class314(var1);
       if (!var2) {
@@ -1175,11 +1175,11 @@ public class class332 extends class470 {
       ArrayList var2 = this.field3675.method3316();
       ArrayList var3 = this.field3675.method3317();
       int var4 = var2.size() + var3.size();
-      this.field3743 = new class332[var4];
+      this.field3743 = new Component[var4];
       int var5 = 0;
 
       Iterator var6;
-      class332 var8;
+      Component var8;
       for(var6 = var2.iterator(); var6.hasNext(); this.field3743[var5++] = var8) {
          class182 var7 = (class182)var6.next();
          var8 = method4680(5, this, var5, 0, 0, 0, 0, var7.field1882);

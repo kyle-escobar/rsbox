@@ -1,7 +1,7 @@
 public class class87 extends class470 {
    boolean field785;
-   class332 field786;
-   class332 field794;
+   Component field786;
+   Component field794;
    int field784;
    int field787;
    int field788;
@@ -20,7 +20,7 @@ public class class87 extends class470 {
       this.field795 = var1;
    }
 
-   public void method1904(class332 var1) {
+   public void method1904(Component var1) {
       this.field786 = var1;
    }
 }

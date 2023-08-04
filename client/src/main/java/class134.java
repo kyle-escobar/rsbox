@@ -32,7 +32,7 @@ public class class134 extends class133 {
          this.field1250 = var1.readLong();
       }
 
-      this.field1251 = var1.method8758();
+      this.field1251 = var1.readStringOrNull();
    }
 
    void method2458(class154 var1) {

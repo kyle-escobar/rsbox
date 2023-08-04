@@ -1,11 +1,11 @@
 import java.util.ArrayList;
 
-public class class92 extends class470 {
+public class SubInterface extends class470 {
    boolean field852 = false;
-   int field853;
-   int field854;
+   int id;
+   int type;
 
-   class92() {
+   SubInterface() {
    }
 
    public static boolean method1973(int var0) {

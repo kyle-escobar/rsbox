@@ -522,7 +522,7 @@ public class class154 {
                }
 
                if (this.field1414) {
-                  this.field1417[var5] = var1.method8758();
+                  this.field1417[var5] = var1.readStringOrNull();
                }
 
                this.field1408[var5] = var1.readByte();
@@ -561,7 +561,7 @@ public class class154 {
                }
 
                if (this.field1414) {
-                  this.field1418[var5] = var1.method8758();
+                  this.field1418[var5] = var1.readStringOrNull();
                }
             }
          }

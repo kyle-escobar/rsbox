@@ -17,7 +17,7 @@ public final class class481 {
 
    }
 
-   public class470 method8184(long var1) {
+   public class470 get(long var1) {
       class470 var3 = this.field4874[(int)(var1 & (long)(this.field4872 - 1))];
 
       for(this.field4873 = var3.field4817; this.field4873 != var3; this.field4873 = this.field4873.field4817) {
@@ -46,7 +46,7 @@ public final class class481 {
       return var1;
    }
 
-   public void method8193(class470 var1, long var2) {
+   public void put(class470 var1, long var2) {
       if (var1.field4815 != null) {
          var1.method8116();
       }

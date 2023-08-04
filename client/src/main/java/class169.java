@@ -27,7 +27,7 @@ public class class169 extends class133 {
          this.field1806 = var1.readLong();
       }
 
-      this.field1809 = var1.method8758();
+      this.field1809 = var1.readStringOrNull();
    }
 
    void method2458(class154 var1) {

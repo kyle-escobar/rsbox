@@ -252,7 +252,7 @@ public class class56 {
       }
    }
 
-   static void method1161(class332 var0, int var1, int var2, boolean var3) {
+   static void method1161(Component var0, int var1, int var2, boolean var3) {
       int var5 = var0.field3598;
       int var6 = var0.field3622;
       if (var0.field3592 == 0) {

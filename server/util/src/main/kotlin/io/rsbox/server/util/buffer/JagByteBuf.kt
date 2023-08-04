@@ -249,19 +249,39 @@ class JagByteBuf(private val buffer: ByteBuf = Unpooled.buffer()) {
             }
             MIDDLE -> {
                 if(transform != NONE) throw IllegalArgumentException("Middle endian can not have a transformation.")
-                if(type != INT) throw IllegalArgumentException("Middle endian only supports Integer data types.")
-                buffer.writeByte((longValue shr 8).toByte().toInt())
-                buffer.writeByte(longValue.toByte().toInt())
-                buffer.writeByte((longValue shr 24).toByte().toInt())
-                buffer.writeByte((longValue shr 16).toByte().toInt())
+                if(type != INT && type != MEDIUM) throw IllegalArgumentException("Middle endian only supports Integer or Medium data types.")
+                when(type) {
+                    INT -> {
+                        buffer.writeByte((longValue shr 8).toByte().toInt())
+                        buffer.writeByte(longValue.toByte().toInt())
+                        buffer.writeByte((longValue shr 24).toByte().toInt())
+                        buffer.writeByte((longValue shr 16).toByte().toInt())
+                    }
+                    MEDIUM -> {
+                        buffer.writeByte((longValue shr 8).toByte().toInt())
+                        buffer.writeByte(longValue.toByte().toInt())
+                        buffer.writeByte((longValue shr 16).toByte().toInt())
+                    }
+                    else -> throw IllegalArgumentException("Invalid data type for middle endian.")
+                }
             }
             INVERSE_MIDDLE -> {
                 if(transform != NONE) throw IllegalArgumentException("Inverse Middle endian can not have a transformation.")
-                if(type != INT) throw IllegalArgumentException("Inverse Middle endian only supports Integer data types.")
-                buffer.writeByte((longValue shr 16).toByte().toInt())
-                buffer.writeByte((longValue shr 24).toByte().toInt())
-                buffer.writeByte(longValue.toByte().toInt())
-                buffer.writeByte((longValue shr 8).toByte().toInt())
+                if(type != INT && type != MEDIUM) throw IllegalArgumentException("Inverse Middle endian only supports Integer and Medium data types.")
+                when(type) {
+                    INT -> {
+                        buffer.writeByte((longValue shr 16).toByte().toInt())
+                        buffer.writeByte((longValue shr 24).toByte().toInt())
+                        buffer.writeByte(longValue.toByte().toInt())
+                        buffer.writeByte((longValue shr 8).toByte().toInt())
+                    }
+                    MEDIUM -> {
+                        buffer.writeByte(longValue.toByte().toInt())
+                        buffer.writeByte((longValue shr 16).toByte().toInt())
+                        buffer.writeByte((longValue shr 8).toByte().toInt())
+                    }
+                    else -> throw IllegalArgumentException("Invalid data type for inverse middle endian.")
+                }
             }
         }
     }
@@ -437,19 +457,39 @@ class JagByteBuf(private val buffer: ByteBuf = Unpooled.buffer()) {
             }
             MIDDLE -> {
                 if(transform != NONE) throw IllegalArgumentException("Middle endian can not have a transformation.")
-                if(type != INT) throw IllegalArgumentException("Middle endian only supports Integer data types.")
-                longValue = longValue or (buffer.readByte().toInt() and 0xFF shl 8).toLong()
-                longValue = longValue or (buffer.readByte().toInt() and 0xFF).toLong()
-                longValue = longValue or (buffer.readByte().toInt() and 0xFF shl 24).toLong()
-                longValue = longValue or (buffer.readByte().toInt() and 0xFF shl 16).toLong()
+                if(type != INT && type != MEDIUM) throw IllegalArgumentException("Middle endian only supports Integer data types.")
+                when(type) {
+                    INT -> {
+                        longValue = longValue or (buffer.readByte().toInt() and 0xFF shl 8).toLong()
+                        longValue = longValue or (buffer.readByte().toInt() and 0xFF).toLong()
+                        longValue = longValue or (buffer.readByte().toInt() and 0xFF shl 24).toLong()
+                        longValue = longValue or (buffer.readByte().toInt() and 0xFF shl 16).toLong()
+                    }
+                    MEDIUM -> {
+                        longValue = longValue or (buffer.readByte().toInt() and 0xFF shl 8).toLong()
+                        longValue = longValue or (buffer.readByte().toInt() and 0xFF).toLong()
+                        longValue = longValue or (buffer.readByte().toInt() and 0xFF shl 16).toLong()
+                    }
+                    else -> throw IllegalArgumentException("Invalid data type for middle endian.")
+                }
             }
             INVERSE_MIDDLE -> {
                 if(transform != NONE) throw IllegalArgumentException("Inverse Middle endian can not have a transformation.")
-                if(type != INT) throw IllegalArgumentException("Inverse Middle endian only supports Integer data types.")
-                longValue = longValue or (buffer.readByte().toInt() and 0xFF shl 16).toLong()
-                longValue = longValue or (buffer.readByte().toInt() and 0xFF shl 24).toLong()
-                longValue = longValue or (buffer.readByte().toInt() and 0xFF).toLong()
-                longValue = longValue or (buffer.readByte().toInt() and 0xFF shl 8).toLong()
+                if(type != INT && type != MEDIUM) throw IllegalArgumentException("Inverse Middle endian only supports Integer or Medium data types.")
+                when(type) {
+                    INT -> {
+                        longValue = longValue or (buffer.readByte().toInt() and 0xFF shl 16).toLong()
+                        longValue = longValue or (buffer.readByte().toInt() and 0xFF shl 24).toLong()
+                        longValue = longValue or (buffer.readByte().toInt() and 0xFF).toLong()
+                        longValue = longValue or (buffer.readByte().toInt() and 0xFF shl 8).toLong()
+                    }
+                    MEDIUM -> {
+                        longValue = longValue or (buffer.readByte().toInt() and 0xFF).toLong()
+                        longValue = longValue or (buffer.readByte().toInt() and 0xFF shl 16).toLong()
+                        longValue = longValue or (buffer.readByte().toInt() and 0xFF shl 8).toLong()
+                    }
+                    else -> throw IllegalArgumentException("Invalid data type for inverse middle endian.")
+                }
             }
             else -> throw IllegalArgumentException("Unknown endian type.")
         }

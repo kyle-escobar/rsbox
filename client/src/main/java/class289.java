@@ -59,7 +59,7 @@ public class class289 extends class51 {
 
       for(class336 var6 = (class336)var1.field3573.method8186(); var6 != null; var6 = (class336)var1.field3573.method8194()) {
          int var7 = (int)var6.field4816;
-         class299 var8 = (class299)this.field3085.method8184((long)var7);
+         class299 var8 = (class299)this.field3085.get((long)var7);
          if (var8 == null) {
             byte[] var10 = var2.method6388(var7);
             class299 var9;
@@ -75,7 +75,7 @@ public class class289 extends class51 {
                continue;
             }
 
-            this.field3085.method8193(var9, (long)var7);
+            this.field3085.put(var9, (long)var7);
          }
 
          if (!var8.method5690(var3, var6.field3779)) {
@@ -195,7 +195,7 @@ public class class289 extends class51 {
          }
       }
 
-      class299 var9 = (class299)this.field3085.method8184((long)this.field3088[var1]);
+      class299 var9 = (class299)this.field3085.get((long)this.field3088[var1]);
       if (null != var9) {
          if (var9.field3158[var2] != null) {
             class35 var10 = var9.field3158[var2].method1183();

@@ -17,7 +17,7 @@ public class class139 extends class163 {
          var1.readLong();
       }
 
-      this.field1289 = var1.method8758();
+      this.field1289 = var1.readStringOrNull();
       this.field1288 = var1.readUnsignedShort();
       this.field1292 = var1.readByte();
       var1.readLong();

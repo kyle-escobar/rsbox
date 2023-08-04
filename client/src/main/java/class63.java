@@ -446,13 +446,13 @@ public class class63 {
          if (var5 == 0) {
             throw new RuntimeException();
          } else {
-            class332 var7 = class332.method3765(var4);
+            Component var7 = Component.getComponent(var4);
             if (null == var7.field3743) {
-               var7.field3743 = new class332[var12 + 1];
+               var7.field3743 = new Component[var12 + 1];
             }
 
             if (var7.field3743.length <= var12) {
-               class332[] var8 = new class332[var12 + 1];
+               Component[] var8 = new Component[var12 + 1];
 
                for(int var9 = 0; var9 < var7.field3743.length; ++var9) {
                   var8[var9] = var7.field3743[var9];
@@ -464,7 +464,7 @@ public class class63 {
             if (var12 > 0 && null == var7.field3743[var12 - 1]) {
                throw new RuntimeException("" + (var12 - 1));
             } else {
-               class332 var13 = new class332();
+               Component var13 = new Component();
                var13.field3608 = var5;
                var13.field3625 = var13.field3606 = var7.field3606;
                var13.field3607 = var12;
@@ -482,26 +482,26 @@ public class class63 {
                   class358.field3961 = var13;
                }
 
-               Client.method3898(var7);
+               Client.setDirty(var7);
                return 1;
             }
          }
       } else {
-         class332 var10;
+         Component var10;
          if (var0 == 101) {
             var10 = var2 ? class44.field301 : class358.field3961;
-            class332 var11 = class332.method3765(var10.field3606);
+            Component var11 = Component.getComponent(var10.field3606);
             var11.field3743[var10.field3607] = null;
-            Client.method3898(var11);
+            Client.setDirty(var11);
             return 1;
          } else if (var0 == 102) {
-            var10 = class332.method3765(field483[--field479]);
+            var10 = Component.getComponent(field483[--field479]);
             var10.field3743 = null;
-            Client.method3898(var10);
+            Client.setDirty(var10);
             return 1;
          } else if (var0 != 200) {
             if (var0 == 201) {
-               var10 = class332.method3765(field483[--field479]);
+               var10 = Component.getComponent(field483[--field479]);
                if (null != var10) {
                   field483[++field479 - 1] = 1;
                   if (var2) {
@@ -521,7 +521,7 @@ public class class63 {
             field479 -= 2;
             var4 = field483[field479];
             var5 = field483[1 + field479];
-            class332 var6 = class332.method1772(var4, var5);
+            Component var6 = Component.method1772(var4, var5);
             if (null != var6 && var5 != -1) {
                field483[++field479 - 1] = 1;
                if (var2) {
@@ -540,11 +540,11 @@ public class class63 {
 
    static int method2166(int var0, class81 var1, boolean var2) {
       int var4 = -1;
-      class332 var5;
+      Component var5;
       if (var0 >= 2000) {
          var0 -= 1000;
          var4 = field483[--field479];
-         var5 = class332.method3765(var4);
+         var5 = Component.getComponent(var4);
       } else {
          var5 = var2 ? class44.field301 : class358.field3961;
       }
@@ -555,10 +555,10 @@ public class class63 {
          var5.field3616 = field483[field479 + 1];
          var5.field3700 = field483[field479 + 2];
          var5.field3612 = field483[field479 + 3];
-         Client.method3898(var5);
+         Client.setDirty(var5);
          class124.field1180.method2717(var5);
          if (var4 != -1 && var5.field3608 == 0) {
-            class34.method512(class96.field884[var4 >> 16], var5, false);
+            class34.calculateLayerDimensions(class96.interfaces[var4 >> 16], var5, false);
          }
 
          return 1;
@@ -568,10 +568,10 @@ public class class63 {
          var5.field3740 = field483[field479 + 1];
          var5.field3592 = field483[field479 + 2];
          var5.field3614 = field483[field479 + 3];
-         Client.method3898(var5);
+         Client.setDirty(var5);
          class124.field1180.method2717(var5);
          if (var4 != -1 && var5.field3608 == 0) {
-            class34.method512(class96.field884[var4 >> 16], var5, false);
+            class34.calculateLayerDimensions(class96.interfaces[var4 >> 16], var5, false);
          }
 
          return 1;
@@ -579,7 +579,7 @@ public class class63 {
          boolean var6 = field483[--field479] == 1;
          if (var6 != var5.field3626) {
             var5.field3626 = var6;
-            Client.method3898(var5);
+            Client.setDirty(var5);
          }
 
          return 1;
@@ -596,11 +596,11 @@ public class class63 {
 
    static int method1083(int var0, class81 var1, boolean var2) {
       int var5 = -1;
-      class332 var4;
+      Component var4;
       if (var0 >= 2000) {
          var0 -= 1000;
          var5 = field483[--field479];
-         var4 = class332.method3765(var5);
+         var4 = Component.getComponent(var5);
       } else {
          var4 = var2 ? class44.field301 : class358.field3961;
       }
@@ -613,7 +613,7 @@ public class class63 {
          if (12 == var4.field3608) {
             class327 var8 = var4.method6277();
             if (null != var8 && var8.method5950(var14, var11)) {
-               Client.method3898(var4);
+               Client.setDirty(var4);
             }
          } else {
             var4.field3627 = var14;
@@ -634,42 +634,42 @@ public class class63 {
                var4.field3628 = 0;
             }
 
-            Client.method3898(var4);
+            Client.setDirty(var4);
          }
 
          return 1;
       } else if (var0 == 1101) {
          var4.field3718 = field483[--field479];
-         Client.method3898(var4);
+         Client.setDirty(var4);
          return 1;
       } else if (var0 == 1102) {
          var4.field3721 = field483[--field479] == 1;
-         Client.method3898(var4);
+         Client.setDirty(var4);
          return 1;
       } else if (var0 == 1103) {
          var4.field3637 = field483[--field479];
-         Client.method3898(var4);
+         Client.setDirty(var4);
          return 1;
       } else if (var0 == 1104) {
          var4.field3639 = field483[--field479];
-         Client.method3898(var4);
+         Client.setDirty(var4);
          return 1;
       } else if (var0 == 1105) {
          var4.field3641 = field483[--field479];
-         Client.method3898(var4);
+         Client.setDirty(var4);
          return 1;
       } else if (var0 == 1106) {
          var4.field3644 = field483[--field479];
-         Client.method3898(var4);
+         Client.setDirty(var4);
          return 1;
       } else if (var0 == 1107) {
          var4.field3645 = field483[--field479] == 1;
-         Client.method3898(var4);
+         Client.setDirty(var4);
          return 1;
       } else if (var0 == 1108) {
          var4.field3650 = 1;
          var4.field3603 = field483[--field479];
-         Client.method3898(var4);
+         Client.setDirty(var4);
          return 1;
       } else if (var0 == 1109) {
          field479 -= 6;
@@ -679,7 +679,7 @@ public class class63 {
          var4.field3659 = field483[3 + field479];
          var4.field3750 = field483[field479 + 4];
          var4.field3661 = field483[field479 + 5];
-         Client.method3898(var4);
+         Client.setDirty(var4);
          return 1;
       } else if (var0 == 1110) {
          var14 = field483[--field479];
@@ -687,19 +687,19 @@ public class class63 {
             var4.field3654 = var14;
             var4.field3741 = 0;
             var4.field3742 = 0;
-            Client.method3898(var4);
+            Client.setDirty(var4);
          }
 
          return 1;
       } else if (var0 == 1111) {
          var4.field3665 = field483[--field479] == 1;
-         Client.method3898(var4);
+         Client.setDirty(var4);
          return 1;
       } else if (var0 == 1112) {
          String var15 = field484[--field486];
          if (!var15.equals(var4.field3621)) {
             var4.field3621 = var15;
-            Client.method3898(var4);
+            Client.setDirty(var4);
          }
 
          return 1;
@@ -714,7 +714,7 @@ public class class63 {
                }
             }
 
-            Client.method3898(var4);
+            Client.setDirty(var4);
             return 1;
          } else if (var0 == 1114) {
             field479 -= 3;
@@ -730,61 +730,61 @@ public class class63 {
                var4.field3671 = field483[field479 + 2];
             }
 
-            Client.method3898(var4);
+            Client.setDirty(var4);
             return 1;
          } else if (var0 == 1115) {
             var4.field3688 = field483[--field479] == 1;
-            Client.method3898(var4);
+            Client.setDirty(var4);
             return 1;
          } else if (var0 == 1116) {
             var4.field3696 = field483[--field479];
-            Client.method3898(var4);
+            Client.setDirty(var4);
             return 1;
          } else if (var0 == 1117) {
             var4.field3709 = field483[--field479];
-            Client.method3898(var4);
+            Client.setDirty(var4);
             return 1;
          } else if (var0 == 1118) {
             var4.field3648 = field483[--field479] == 1;
-            Client.method3898(var4);
+            Client.setDirty(var4);
             return 1;
          } else if (var0 == 1119) {
             var4.field3649 = field483[--field479] == 1;
-            Client.method3898(var4);
+            Client.setDirty(var4);
             return 1;
          } else if (var0 == 1120) {
             field479 -= 2;
             var4.field3629 = field483[field479];
             var4.field3719 = field483[field479 + 1];
-            Client.method3898(var4);
+            Client.setDirty(var4);
             if (var5 != -1 && var4.field3608 == 0) {
-               class34.method512(class96.field884[var5 >> 16], var4, false);
+               class34.calculateLayerDimensions(class96.interfaces[var5 >> 16], var4, false);
             }
 
             return 1;
          } else if (var0 == 1121) {
             Client.method5003(var4.field3606, var4.field3607);
-            Client.field1605 = var4;
-            Client.method3898(var4);
+            Client.meslayerPauseButtonComponent = var4;
+            Client.setDirty(var4);
             return 1;
          } else if (var0 == 1122) {
             var4.field3642 = field483[--field479];
-            Client.method3898(var4);
+            Client.setDirty(var4);
             return 1;
          } else if (var0 == 1123) {
             var4.field3632 = field483[--field479];
-            Client.method3898(var4);
+            Client.setDirty(var4);
             return 1;
          } else if (var0 == 1124) {
             var4.field3638 = field483[--field479];
-            Client.method3898(var4);
+            Client.setDirty(var4);
             return 1;
          } else if (var0 == 1125) {
             var14 = field483[--field479];
             class522 var10 = (class522)class373.method1724(class522.method4400(), var14);
             if (var10 != null) {
                var4.field3636 = var10;
-               Client.method3898(var4);
+               Client.setDirty(var4);
             }
 
             return 1;
@@ -800,7 +800,7 @@ public class class63 {
                return 1;
             } else if (var0 == 1129) {
                var4.field3643 = field484[--field486];
-               Client.method3898(var4);
+               Client.setDirty(var4);
                return 1;
             } else if (var0 == 1130) {
                var4.method6291(field484[--field486], class261.field2935, Client.get214LoginResponseLong());
@@ -819,7 +819,7 @@ public class class63 {
                   var13 = var4.method6242();
                   if (var13 != null) {
                      var13.field3781 = field483[field479];
-                     Client.method3898(var4);
+                     Client.setDirty(var4);
                   }
 
                   return 1;
@@ -828,7 +828,7 @@ public class class63 {
                   var13 = var4.method6242();
                   if (var13 != null) {
                      var13.field3782 = field483[field479];
-                     Client.method3898(var4);
+                     Client.setDirty(var4);
                   }
 
                   return 1;
@@ -845,7 +845,7 @@ public class class63 {
                   var13 = var4.method6242();
                   if (var13 != null) {
                      var13.field3783 = field483[field479];
-                     Client.method3898(var4);
+                     Client.setDirty(var4);
                   }
 
                   return 1;
@@ -853,7 +853,7 @@ public class class63 {
                   --field479;
                   var9 = var4.method6277();
                   if (null != var9 && var9.method6073(field483[field479])) {
-                     Client.method3898(var4);
+                     Client.setDirty(var4);
                   }
 
                   return 1;
@@ -861,7 +861,7 @@ public class class63 {
                   --field479;
                   var9 = var4.method6277();
                   if (null != var9 && var9.method5909(field483[field479])) {
-                     Client.method3898(var4);
+                     Client.setDirty(var4);
                   }
 
                   return 1;
@@ -869,7 +869,7 @@ public class class63 {
                   --field479;
                   var9 = var4.method6277();
                   if (var9 != null && var9.method5910(field483[field479])) {
-                     Client.method3898(var4);
+                     Client.setDirty(var4);
                   }
 
                   return 1;
@@ -884,7 +884,7 @@ public class class63 {
                            Client.field1528.method4393(var4);
                         }
 
-                        Client.method3898(var4);
+                        Client.setDirty(var4);
                      }
 
                      return 1;
@@ -892,7 +892,7 @@ public class class63 {
                      var12 = field483[--field479] == 1;
                      if (!var12 && Client.field1528.method4389() == var4) {
                         Client.field1528.method4390();
-                        Client.method3898(var4);
+                        Client.setDirty(var4);
                      }
 
                      var7 = var4.method6277();
@@ -905,7 +905,7 @@ public class class63 {
                      field479 -= 2;
                      var9 = var4.method6277();
                      if (var9 != null && var9.method5926(field483[field479], field483[1 + field479])) {
-                        Client.method3898(var4);
+                        Client.setDirty(var4);
                      }
 
                      return 1;
@@ -913,7 +913,7 @@ public class class63 {
                      --field479;
                      var9 = var4.method6277();
                      if (var9 != null && var9.method5926(field483[field479], field483[field479])) {
-                        Client.method3898(var4);
+                        Client.setDirty(var4);
                      }
 
                      return 1;
@@ -922,7 +922,7 @@ public class class63 {
                      var9 = var4.method6277();
                      if (var9 != null) {
                         var9.method5915(field483[field479]);
-                        Client.method3898(var4);
+                        Client.setDirty(var4);
                      }
 
                      return 1;
@@ -947,7 +947,7 @@ public class class63 {
                      var9 = var4.method6277();
                      if (var9 != null) {
                         var9.method6019(field483[field479]);
-                        Client.method3898(var4);
+                        Client.setDirty(var4);
                      }
 
                      return 1;
@@ -983,15 +983,15 @@ public class class63 {
    }
 
    static int method1174(int var0, class81 var1, boolean var2) {
-      class332 var4;
+      Component var4;
       if (var0 >= 2000) {
          var0 -= 1000;
-         var4 = class332.method3765(field483[--field479]);
+         var4 = Component.getComponent(field483[--field479]);
       } else {
          var4 = var2 ? class44.field301 : class358.field3961;
       }
 
-      Client.method3898(var4);
+      Client.setDirty(var4);
       int var5;
       int var6;
       if (var0 != 1200 && var0 != 1205 && var0 != 1212) {
@@ -1005,14 +1005,14 @@ public class class63 {
             return 1;
          } else if (var0 == 1207) {
             boolean var8 = field483[--field479] == 1;
-            class332.method4653(var4, class146.field1362.field764, var8);
+            Component.method4653(var4, class146.field1362.field764, var8);
             return 1;
          } else if (var0 == 1208) {
             var5 = field483[--field479];
             if (null == var4.field3664) {
                throw new RuntimeException("");
             } else {
-               class332.method2415(var4, var5);
+               Component.method2415(var4, var5);
                return 1;
             }
          } else if (var0 == 1209) {
@@ -1022,7 +1022,7 @@ public class class63 {
             if (var4.field3664 == null) {
                throw new RuntimeException("");
             } else {
-               class332.method5687(var4, var5, var6);
+               Component.method5687(var4, var5, var6);
                return 1;
             }
          } else if (var0 == 1210) {
@@ -1030,7 +1030,7 @@ public class class63 {
             if (null == var4.field3664) {
                throw new RuntimeException("");
             } else {
-               class332.method3413(var4, class146.field1362.field764.field3486, var5);
+               Component.method3413(var4, class146.field1362.field764.field3486, var5);
                return 1;
             }
          } else {
@@ -1069,10 +1069,10 @@ public class class63 {
 
    static int method282(int var0, class81 var1, boolean var2) {
       boolean var4 = true;
-      class332 var5;
+      Component var5;
       if (var0 >= 2000) {
          var0 -= 1000;
-         var5 = class332.method3765(field483[--field479]);
+         var5 = Component.getComponent(field483[--field479]);
          var4 = false;
       } else {
          var5 = var2 ? class44.field301 : class358.field3961;
@@ -1094,7 +1094,7 @@ public class class63 {
             field479 -= 2;
             var9 = field483[field479];
             var11 = field483[field479 + 1];
-            var5.field3714 = class332.method1772(var9, var11);
+            var5.field3714 = Component.method1772(var9, var11);
             return 1;
          } else if (var0 == 1302) {
             var5.field3691 = field483[--field479] == 1;
@@ -1201,7 +1201,7 @@ public class class63 {
       }
    }
 
-   static final void method7035(class332 var0, int var1, byte[] var2, byte[] var3) {
+   static final void method7035(Component var0, int var1, byte[] var2, byte[] var3) {
       if (null == var0.field3694) {
          if (null == var2) {
             return;
@@ -1230,7 +1230,7 @@ public class class63 {
       var0.field3683[var1] = var3;
    }
 
-   static final void method3593(class332 var0, int var1, int var2, int var3) {
+   static final void method3593(Component var0, int var1, int var2, int var3) {
       if (null == var0.field3640) {
          throw new RuntimeException();
       } else {
@@ -1239,7 +1239,7 @@ public class class63 {
       }
    }
 
-   static final void method1390(class332 var0, int var1) {
+   static final void method1390(Component var0, int var1) {
       if (var0.field3694 == null) {
          throw new RuntimeException();
       } else {
@@ -1252,10 +1252,10 @@ public class class63 {
    }
 
    static int method69(int var0, class81 var1, boolean var2) {
-      class332 var4;
+      Component var4;
       if (var0 >= 2000) {
          var0 -= 1000;
-         var4 = class332.method3765(field483[--field479]);
+         var4 = Component.getComponent(field483[--field479]);
       } else {
          var4 = var2 ? class44.field301 : class358.field3961;
       }
@@ -1383,7 +1383,7 @@ public class class63 {
    }
 
    static int method283(int var0, class81 var1, boolean var2) {
-      class332 var4 = var2 ? class44.field301 : class358.field3961;
+      Component var4 = var2 ? class44.field301 : class358.field3961;
       if (var0 == 1500) {
          field483[++field479 - 1] = var4.field3619;
          return 1;
@@ -1408,7 +1408,7 @@ public class class63 {
    }
 
    static int method7679(int var0, class81 var1, boolean var2) {
-      class332 var4 = var2 ? class44.field301 : class358.field3961;
+      Component var4 = var2 ? class44.field301 : class358.field3961;
       if (var0 == 1600) {
          field483[++field479 - 1] = var4.field3627;
          return 1;
@@ -1555,7 +1555,7 @@ public class class63 {
    }
 
    static int method1825(int var0, class81 var1, boolean var2) {
-      class332 var4 = var2 ? class44.field301 : class358.field3961;
+      Component var4 = var2 ? class44.field301 : class358.field3961;
       if (var0 == 1700) {
          field483[++field479 - 1] = var4.field3739;
          return 1;
@@ -1580,7 +1580,7 @@ public class class63 {
       }
    }
 
-   static int method1194(class332 var0) {
+   static int method1194(Component var0) {
       if (11 != var0.field3608) {
          --field486;
          field483[++field479 - 1] = -1;
@@ -1592,7 +1592,7 @@ public class class63 {
       }
    }
 
-   static int method2554(class332 var0) {
+   static int method2554(Component var0) {
       if (var0.field3608 != 11) {
          field484[field486 - 1] = "";
          return 1;
@@ -1604,7 +1604,7 @@ public class class63 {
    }
 
    static int method4662(int var0, class81 var1, boolean var2) {
-      class332 var4 = var2 ? class44.field301 : class358.field3961;
+      Component var4 = var2 ? class44.field301 : class358.field3961;
       if (var0 == 1800) {
          field483[++field479 - 1] = class323.method5357(Client.method2338(var4));
          return 1;
@@ -1634,7 +1634,7 @@ public class class63 {
    }
 
    static int method6367(int var0, class81 var1, boolean var2) {
-      class332 var4;
+      Component var4;
       if (var0 != 1927 && var0 != 2927) {
          int var9;
          if (var0 == 1928) {
@@ -1653,7 +1653,7 @@ public class class63 {
             var9 = field483[1 + field479];
             int var6 = field483[field479 + 2];
             if (var6 >= 1 && var6 <= 10) {
-               class80 var7 = new class80(var6, var8, var9, class332.method3765(var8).field3739);
+               class80 var7 = new class80(var6, var8, var9, Component.getComponent(var8).field3739);
                field493.add(var7);
                return 1;
             } else {
@@ -1666,7 +1666,7 @@ public class class63 {
          throw new RuntimeException();
       } else {
          if (var0 >= 2000) {
-            var4 = class332.method3765(field483[--field479]);
+            var4 = Component.getComponent(field483[--field479]);
          } else {
             var4 = var2 ? class44.field301 : class358.field3961;
          }
@@ -1685,7 +1685,7 @@ public class class63 {
    }
 
    static int method3586(int var0, class81 var1, boolean var2) {
-      class332 var4 = class332.method3765(field483[--field479]);
+      Component var4 = Component.getComponent(field483[--field479]);
       if (var0 == 2500) {
          field483[++field479 - 1] = var4.field3619;
          return 1;
@@ -1710,7 +1710,7 @@ public class class63 {
    }
 
    static int method587(int var0, class81 var1, boolean var2) {
-      class332 var4 = class332.method3765(field483[--field479]);
+      Component var4 = Component.getComponent(field483[--field479]);
       if (var0 == 2600) {
          field483[++field479 - 1] = var4.field3627;
          return 1;
@@ -1849,13 +1849,13 @@ public class class63 {
    }
 
    static int method3277(int var0, class81 var1, boolean var2) {
-      class332 var4;
+      Component var4;
       if (var0 == 2700) {
-         var4 = class332.method3765(field483[--field479]);
+         var4 = Component.getComponent(field483[--field479]);
          field483[++field479 - 1] = var4.field3739;
          return 1;
       } else if (var0 == 2701) {
-         var4 = class332.method3765(field483[--field479]);
+         var4 = Component.getComponent(field483[--field479]);
          if (var4.field3739 != -1) {
             field483[++field479 - 1] = var4.field3630;
          } else {
@@ -1865,7 +1865,7 @@ public class class63 {
          return 1;
       } else if (var0 == 2702) {
          int var6 = field483[--field479];
-         class92 var5 = (class92) Client.field1601.method8184((long)var6);
+         SubInterface var5 = (SubInterface) Client.activeSubInterfaces.get((long)var6);
          if (null != var5) {
             field483[++field479 - 1] = 1;
          } else {
@@ -1874,17 +1874,17 @@ public class class63 {
 
          return 1;
       } else if (var0 == 2706) {
-         field483[++field479 - 1] = Client.field1600;
+         field483[++field479 - 1] = Client.rootInterface;
          return 1;
       } else if (var0 == 2707) {
-         var4 = class332.method3765(field483[--field479]);
+         var4 = Component.getComponent(field483[--field479]);
          field483[++field479 - 1] = var4.method6232() ? 1 : 0;
          return 1;
       } else if (var0 == 2708) {
-         var4 = class332.method3765(field483[--field479]);
+         var4 = Component.getComponent(field483[--field479]);
          return method1194(var4);
       } else if (var0 == 2709) {
-         var4 = class332.method3765(field483[--field479]);
+         var4 = Component.getComponent(field483[--field479]);
          return method2554(var4);
       } else {
          return 2;
@@ -1892,7 +1892,7 @@ public class class63 {
    }
 
    static int method1989(int var0, class81 var1, boolean var2) {
-      class332 var4 = class332.method3765(field483[--field479]);
+      Component var4 = Component.getComponent(field483[--field479]);
       if (var0 == 2800) {
          field483[++field479 - 1] = class323.method5357(Client.method2338(var4));
          return 1;
@@ -1979,14 +1979,14 @@ public class class63 {
                   var4 = field483[field479];
                   var11 = field483[1 + field479];
                   int var14 = field483[2 + field479];
-                  class332 var16 = class332.method3765(var14);
+                  Component var16 = Component.getComponent(var14);
                   Client.method6574(var16, var4, var11);
                   return 1;
                } else if (var0 == 3109) {
                   field479 -= 2;
                   var4 = field483[field479];
                   var11 = field483[field479 + 1];
-                  class332 var13 = var2 ? class44.field301 : class358.field3961;
+                  Component var13 = var2 ? class44.field301 : class358.field3961;
                   Client.method6574(var13, var4, var11);
                   return 1;
                } else if (var0 == 3110) {
@@ -4723,13 +4723,13 @@ public class class63 {
       return 2;
    }
 
-   static void method1076(int var0) {
+   static void executeLoadHook(int var0) {
       if (var0 != -1) {
-         if (class332.method1200(var0)) {
-            class332[] var2 = class96.field884[var0];
+         if (Component.method1200(var0)) {
+            Component[] var2 = class96.interfaces[var0];
 
             for(int var3 = 0; var3 < var2.length; ++var3) {
-               class332 var4 = var2[var3];
+               Component var4 = var2[var3];
                if (var4.field3705 != null) {
                   class87 var5 = new class87();
                   var5.field786 = var4;

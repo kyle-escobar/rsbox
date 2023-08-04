@@ -47,7 +47,7 @@ public class class34 {
       }
 
       var3.offset = 0;
-      var2.field709 = var3.method8758();
+      var2.field709 = var3.readStringOrNull();
       var2.field712 = new int[var6];
       var2.field713 = new int[var6];
       var2.field710 = new String[var6];
@@ -66,7 +66,7 @@ public class class34 {
       return var2;
    }
 
-   static void method512(class332[] var0, class332 var1, boolean var2) {
+   static void calculateLayerDimensions(Component[] var0, Component var1, boolean var2) {
       int var4 = 0 != var1.field3629 ? var1.field3629 : var1.field3598;
       int var5 = var1.field3719 != 0 ? var1.field3719 : var1.field3622;
       Client.method834(var0, var1.field3606, var4, var5, var2);
@@ -74,11 +74,11 @@ public class class34 {
          Client.method834(var1.field3743, var1.field3606, var4, var5, var2);
       }
 
-      class92 var6 = (class92) Client.field1601.method8184((long)var1.field3606);
+      SubInterface var6 = (SubInterface) Client.activeSubInterfaces.get((long)var1.field3606);
       if (var6 != null) {
-         int var7 = var6.field853;
-         if (class332.method1200(var7)) {
-            Client.method834(class96.field884[var7], -1, var4, var5, var2);
+         int var7 = var6.id;
+         if (Component.method1200(var7)) {
+            Client.method834(class96.interfaces[var7], -1, var4, var5, var2);
          }
       }
 
@@ -89,7 +89,7 @@ public class class34 {
 
    class35 method502(int var1, int var2, int[] var3) {
       long var5 = this.method507(var1, var2, false);
-      class58 var7 = (class58)this.field169.method8184(var5);
+      class58 var7 = (class58)this.field169.get(var5);
       if (null != var7) {
          return var7.method1183();
       } else if (var3 != null && var3[0] <= 0) {
@@ -100,7 +100,7 @@ public class class34 {
             return null;
          } else {
             class35 var9 = var8.method430();
-            this.field169.method8193(new class58(var9), var5);
+            this.field169.put(new class58(var9), var5);
             if (var3 != null) {
                var3[0] -= var9.field178.length;
             }
@@ -112,7 +112,7 @@ public class class34 {
 
    class58 method522(int var1, int var2) {
       long var4 = this.method507(var1, var2, true);
-      class58 var6 = (class58)this.field169.method8184(var4);
+      class58 var6 = (class58)this.field169.get(var4);
       if (var6 != null) {
          return var6;
       } else {
@@ -121,7 +121,7 @@ public class class34 {
             return new class58();
          } else {
             class58 var8 = new class58(var7);
-            this.field169.method8193(var8, var4);
+            this.field169.put(var8, var4);
             return var8;
          }
       }

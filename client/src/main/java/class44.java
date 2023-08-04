@@ -9,7 +9,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 public class class44 {
-   static class332 field301;
+   static Component field301;
    static class382 field304 = new class382();
    static int field302;
    static int field306;

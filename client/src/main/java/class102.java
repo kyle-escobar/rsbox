@@ -80,21 +80,21 @@ public abstract class class102 extends class228 {
    class102() {
    }
 
-   static final void method2083(class92 var0, boolean var1) {
-      int var3 = var0.field853;
+   static final void closeSubInterface(SubInterface var0, boolean var1) {
+      int var3 = var0.id;
       int var4 = (int)var0.field4816;
       var0.method8116();
-      if (var1 && var3 != -1 && class332.field3674[var3]) {
+      if (var1 && var3 != -1 && Component.field3674[var3]) {
          class96.field885.method6396(var3);
-         if (null != class96.field884[var3]) {
-            for(int var5 = 0; var5 < class96.field884[var3].length; ++var5) {
-               if (null != class96.field884[var3][var5]) {
-                  class96.field884[var3][var5] = null;
+         if (null != class96.interfaces[var3]) {
+            for(int var5 = 0; var5 < class96.interfaces[var3].length; ++var5) {
+               if (null != class96.interfaces[var3][var5]) {
+                  class96.interfaces[var3][var5] = null;
                }
             }
 
-            class96.field884[var3] = null;
-            class332.field3674[var3] = false;
+            class96.interfaces[var3] = null;
+            Component.field3674[var3] = false;
          }
       }
 
@@ -104,13 +104,13 @@ public abstract class class102 extends class228 {
          }
       }
 
-      class332 var7 = class332.method3765(var4);
+      Component var7 = Component.getComponent(var4);
       if (null != var7) {
-         Client.method3898(var7);
+         Client.setDirty(var7);
       }
 
-      if (Client.field1600 != -1) {
-         Client.method1839(Client.field1600, 1);
+      if (Client.rootInterface != -1) {
+         Client.destroyInterface(Client.rootInterface, 1);
       }
 
    }
