@@ -16,6 +16,10 @@ class World {
         Logger.info("Loading game world.")
     }
 
+    fun cycle() {
+
+    }
+
     companion object {
         const val MAX_PLAYERS = 2048
         const val MAX_NPCS = 65535

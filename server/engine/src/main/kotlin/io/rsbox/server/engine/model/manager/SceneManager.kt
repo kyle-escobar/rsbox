@@ -1,8 +1,6 @@
 package io.rsbox.server.engine.model.manager
 
-import io.rsbox.server.engine.model.coord.Chunk
-import io.rsbox.server.engine.model.coord.Region
-import io.rsbox.server.engine.model.coord.Tile
+import io.rsbox.server.engine.model.Tile
 import io.rsbox.server.engine.model.entity.Player
 import io.rsbox.server.engine.net.game.packet.server.RebuildNormalServerPacket
 
@@ -10,22 +8,21 @@ class SceneManager(private val player: Player) {
 
     var baseTile: Tile = player.tile
 
-    val loadedRegions: List<Region> get() {
-        val ret = mutableListOf<Region>()
-        val baseChunk = baseTile.toChunk()
+    val regionIds: List<Int> get() {
+        val list = mutableListOf<Int>()
 
-        val lx = (baseChunk.x - 6) / Chunk.SIZE
-        val ly = (baseChunk.y - 6) / Chunk.SIZE
-        val rx = (baseChunk.x + 6) / Chunk.SIZE
-        val ry = (baseChunk.y + 6) / Chunk.SIZE
+        val lx = (baseTile.chunkX - 6) / 8
+        val ly = (baseTile.chunkY - 6) / 8
+        val rx = (baseTile.chunkX + 6) / 8
+        val ry = (baseTile.chunkY + 6) / 8
 
-        for(x in lx..rx) {
-            for(y in ly .. ry) {
-                ret.add(Region(x, y))
+        for(chunkX in lx..rx) {
+            for(chunkY in ly .. ry) {
+                list.add((chunkX shl 8) + chunkY)
             }
         }
 
-        return ret
+        return list
     }
 
     fun init() {

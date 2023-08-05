@@ -1,7 +1,7 @@
 package io.rsbox.server.engine.model.entity
 
 import io.rsbox.server.config.ServerConfig
-import io.rsbox.server.engine.model.coord.Tile
+import io.rsbox.server.engine.model.Tile
 import io.rsbox.server.engine.model.manager.GpiManager
 import io.rsbox.server.engine.model.manager.InterfaceManager
 import io.rsbox.server.engine.model.manager.SceneManager
@@ -63,10 +63,6 @@ class Player internal constructor(val session: Session) : Entity() {
     }
 
     companion object {
-        fun File.printFileName() {
-            println(this.name)
-        }
-
         fun create(request: LoginRequest): Player {
             val player = Player(request.session)
             player.username = request.username
@@ -77,9 +73,6 @@ class Player internal constructor(val session: Session) : Entity() {
             player.session.reconnectXteas = request.reconnectXteas
             player.session.encoderIsaac.init(IntArray(4) { player.session.xteas[it] + 50 })
             player.session.decoderIsaac.init(player.session.xteas)
-
-            val f = File("test.txt")
-            f.printFileName()
 
             return player
         }

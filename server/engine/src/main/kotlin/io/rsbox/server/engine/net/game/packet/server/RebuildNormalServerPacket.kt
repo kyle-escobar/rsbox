@@ -21,23 +21,23 @@ data class RebuildNormalServerPacket(
         override fun encode(session: Session, packet: RebuildNormalServerPacket, out: JagByteBuf) {
             if(packet.gpi) {
                 out.switchWriteAccess(BIT_MODE)
-                out.writeBits(packet.player.tile.to30BitInteger(), 30)
+                out.writeBits(packet.player.tile.packed, 30)
                 for(i in 1 until World.MAX_PLAYERS) {
                     if(i == packet.player.index) continue
-                    out.writeBits(packet.player.gpi.tileMultipliers[i], 18)
+                    out.writeBits(packet.player.gpi.tileUpdates[i], 18)
                 }
                 out.switchWriteAccess(BYTE_MODE)
             }
 
-            val chunk = packet.player.scene.baseTile.toChunk()
-            val loadedRegions = packet.player.scene.loadedRegions
+            val baseTile = packet.player.scene.baseTile
+            val loadedRegions = packet.player.scene.regionIds
 
-            out.writeShort(chunk.y)
-            out.writeShort(chunk.x)
+            out.writeShort(baseTile.chunkX)
+            out.writeShort(baseTile.chunkY)
             out.writeShort(loadedRegions.size)
 
-            loadedRegions.forEach { region ->
-                XteaConfig.getRegionKey(region.id).forEach { out.writeInt(it) }
+            loadedRegions.forEach { regionId ->
+                XteaConfig.getRegionKey(regionId).forEach { out.writeInt(it) }
             }
         }
     }

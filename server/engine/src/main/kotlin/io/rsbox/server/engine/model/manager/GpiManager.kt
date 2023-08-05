@@ -15,7 +15,7 @@ class GpiManager(private val player: Player) {
     var externalPlayerCount = 0
     val externalPlayerIndexes = IntArray(World.MAX_PLAYERS)
 
-    val tileMultipliers = IntArray(World.MAX_PLAYERS)
+    val tileUpdates = IntArray(World.MAX_PLAYERS)
     val skipFlags = IntArray(World.MAX_PLAYERS)
 
     fun init() {
@@ -25,7 +25,21 @@ class GpiManager(private val player: Player) {
         for(index in 1 until World.MAX_PLAYERS) {
             if(index == player.index) continue
             externalPlayerIndexes[externalPlayerCount++] = index
-            tileMultipliers[index] = world.players[index]?.tile?.to18BitInteger() ?: 0
+            tileUpdates[index] = world.players[index]?.tile?.regionPacked ?: 0
+        }
+    }
+
+    fun reset() {
+        localPlayerCount = 0
+        externalPlayerCount = 0
+
+        for(i in 1 until World.MAX_PLAYERS) {
+            skipFlags[i] = skipFlags[i] shr 0x1
+            if(localPlayers[i]?.tile ?: error("") != null) {
+                localPlayerIndexes[localPlayerCount++] = i
+            } else {
+                externalPlayerIndexes[externalPlayerCount++] = i
+            }
         }
     }
 }

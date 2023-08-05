@@ -3873,7 +3873,7 @@ public final class Client extends GameShell implements class438, OAuthApi, class
 
                for(int var18 = 0; var18 < 4; ++var18) {
                   if (var16 >= 0 && var17 >= 0 && var16 < 104 && var17 < 104) {
-                     field1568[var18][var14][var15] = field1568[var18][var16][var17];
+                     field1568[var18][var14][var15] =  field1568[var18][var16][var17];
                   } else {
                      field1568[var18][var14][var15] = null;
                   }
