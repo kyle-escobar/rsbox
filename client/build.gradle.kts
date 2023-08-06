@@ -18,3 +18,9 @@ tasks {
         classpath = sourceSets["main"].runtimeClasspath
     }
 }
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(11))
+    }
+}

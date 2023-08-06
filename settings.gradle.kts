@@ -4,6 +4,9 @@ plugins {
 
 rootProject.name = "rsbox"
 
+include(":toolbox")
+include(":toolbox:updater")
+
 include(":client")
 
 include(":server")

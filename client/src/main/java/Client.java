@@ -9721,7 +9721,7 @@ public final class Client extends GameShell implements class438, OAuthApi, class
 
                try {
                   Client var41 = class124.field1180;
-                  JSObject.getWindow(var41).call("zap", (Object[])null);
+                  //JSObject.getWindow(var41).call("zap", (Object[])null);
                } catch (Throwable var14) {
                }
 

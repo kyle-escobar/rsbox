@@ -1,5 +1,9 @@
 plugins {
-    kotlin("jvm") version "1.7.21"
+    kotlin("jvm") version "1.9.0"
+}
+
+tasks.wrapper {
+    gradleVersion = "8.2.1"
 }
 
 allprojects {
@@ -23,5 +27,15 @@ allprojects {
 
     tasks.test {
         useJUnitPlatform()
+    }
+}
+
+allprojects {
+    if(name != "client") {
+        kotlin {
+            jvmToolchain {
+                languageVersion.set(JavaLanguageVersion.of(11))
+            }
+        }
     }
 }
