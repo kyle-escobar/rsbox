@@ -10,6 +10,8 @@ dependencies {
     implementation("org.ow2.asm:asm-commons:_")
     implementation("org.ow2.asm:asm-util:_")
     implementation("org.ow2.asm:asm-tree:_")
+    implementation("net.fabricmc:fabric-fernflower:_")
+    implementation("org.reactfx:reactfx:_")
 }
 
 javafx {
