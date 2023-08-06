@@ -2,37 +2,19 @@ package io.rsbox.toolbox.updater.ui
 
 import javafx.scene.control.MenuBar
 import javafx.scene.control.SeparatorMenuItem
-import javafx.scene.input.KeyCode.getKeyCode
 import tornadofx.item
 import tornadofx.menu
 import tornadofx.separator
-import java.awt.Toolkit
 import java.awt.event.InputEvent
 import java.awt.event.KeyEvent
-import java.awt.event.KeyEvent.VK_A
-import javax.swing.JFrame
-import javax.swing.JMenu
-import javax.swing.JMenuBar
-import javax.swing.JMenuItem
-import javax.swing.JSeparator
-import javax.swing.KeyStroke
+import javax.swing.*
 import kotlin.system.exitProcess
 
 class MenuBar {
 
     private val menuBar = MenuBar().apply {
         menu("File") {
-            item("New Project", "CTRL+N")
-            item("Open Project", "CTRL+O")
-            separator()
-            item("Save Project", "CTRL+S") {
-                isDisable = true
-            }
-            item("Save Mappings", "ALT+S") {
-                isDisable = true
-            }
-            separator()
-            item("Exit", "CTRL+Q") {
+            item("Exit") {
                 setOnAction {
                     exitProcess(0)
                 }
@@ -40,7 +22,6 @@ class MenuBar {
         }
 
         menu("Edit") {
-            item("Preferences")
         }
 
         menu("Match") {
@@ -54,11 +35,6 @@ class MenuBar {
             item("Auto-Match Static-Fields")
             separator()
             item("Matching Statistics")
-        }
-
-        menu("Mapping") {
-            item("Apply Mappings")
-            item("Remap Jar")
         }
     }
 

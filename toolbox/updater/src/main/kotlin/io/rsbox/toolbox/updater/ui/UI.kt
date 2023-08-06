@@ -3,17 +3,21 @@ package io.rsbox.toolbox.updater.ui
 import io.rsbox.toolbox.updater.log.Logger
 import javafx.application.Platform
 import javafx.embed.swing.JFXPanel
+import javafx.stage.Modality
 import javafx.stage.Stage
+import tornadofx.App
+import tornadofx.FX
+import tornadofx.View
+import tornadofx.runAsync
 import java.awt.Dimension
-import java.awt.Toolkit
-import java.util.concurrent.Executors
-import javax.swing.ImageIcon
-import javax.swing.JFrame
-import javax.swing.SwingUtilities
-import javax.swing.UIManager
+import javax.swing.*
+import kotlin.reflect.KClass
 import kotlin.system.exitProcess
 
 object UI : JFrame("RSBox Updater") {
+
+    private lateinit var app: App
+    private lateinit var stage: Stage
 
     init {
         defaultCloseOperation = EXIT_ON_CLOSE
@@ -25,7 +29,7 @@ object UI : JFrame("RSBox Updater") {
         UIManager.put("TitlePane.unifiedBackground", false)
 
         val font = UIManager.getFont("defaultFont")
-        val newFont = font.deriveFont(14f)
+        val newFont = font.deriveFont(12f)
         UIManager.put("defaultFont", newFont)
     }
 
@@ -36,11 +40,12 @@ object UI : JFrame("RSBox Updater") {
         MenuBar().apply(this)
 
         Platform.runLater {
-            val stage = Stage()
-            val app = MainApp()
+            stage = Stage()
+            app = MainApp()
+
             app.start(stage)
 
-            stage.scene.stylesheets.add(UI::class.java.getResource("/styles/one-dark.css")!!.toExternalForm())
+            //stage.scene.stylesheets.add(UI::class.java.getResource("/styles/one-dark.css")!!.toExternalForm())
             wrapper.scene = stage.scene
 
             SwingUtilities.invokeLater {
@@ -49,7 +54,7 @@ object UI : JFrame("RSBox Updater") {
                 requestFocusInWindow()
             }
 
-            Executors.newSingleThreadExecutor().execute {
+            runAsync {
                 init()
             }
         }
@@ -62,12 +67,29 @@ object UI : JFrame("RSBox Updater") {
         exitProcess(0)
     }
 
+    fun openDialog(viewClass: KClass<out View>) {
+        val dialog = JDialog(this)
+        dialog.preferredSize = Dimension(500, 500)
+        dialog.size = dialog.preferredSize
+        dialog.setLocationRelativeTo(this)
+
+        val wrapper = JFXPanel()
+        dialog.add(wrapper)
+
+        Platform.runLater {
+            val view = FX.find(viewClass.java)
+
+            val stage = view.openModal(modality = Modality.APPLICATION_MODAL, owner = this.stage.owner)!!
+            view.modalStage?.hide()
+
+            wrapper.scene = stage.scene
+
+            dialog.title = view.title
+            dialog.isVisible = true
+        }
+    }
+
     private fun init() {
         Logger.info("Successfully started Updater application.")
-
-        while(true) {
-            Thread.sleep(1000)
-            Logger.info("Message test")
-        }
     }
 }
