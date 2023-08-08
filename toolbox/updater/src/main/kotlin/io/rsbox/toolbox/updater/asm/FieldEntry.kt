@@ -1,8 +1,10 @@
 package io.rsbox.toolbox.updater.asm
 
+import io.rsbox.toolbox.updater.asm.util.AsmUtil.isNameObfuscated
 import io.rsbox.toolbox.updater.util.identityHashSetOf
 import org.objectweb.asm.Opcodes
 import org.objectweb.asm.Opcodes.ACC_PUBLIC
+import org.objectweb.asm.Type
 import org.objectweb.asm.tree.AbstractInsnNode
 import org.objectweb.asm.tree.FieldNode
 
@@ -16,13 +18,14 @@ class FieldEntry(override val cls: ClassEntry, val node: FieldNode) : MemberEntr
         }
     }
 
-    val access = node.access
+    override val access = node.access
     val desc = node.desc
     val value = node.value
 
-    val id = "$name:$desc"
+    val id = "$name.$desc"
     var phantom = false
 
+    val type = Type.getType(desc)
     lateinit var typeClass: ClassEntry
 
     val readsRefs = identityHashSetOf<MethodEntry>()
@@ -36,6 +39,8 @@ class FieldEntry(override val cls: ClassEntry, val node: FieldNode) : MemberEntr
     fun isStatic() = (access and Opcodes.ACC_STATIC) != 0
 
     fun init() {
+        nameObfuscated = name.isNameObfuscated()
+
         typeClass = group.getOrCreateClass(desc)
         typeClass.fieldTypeRefs.add(this)
         classRefs.add(typeClass)

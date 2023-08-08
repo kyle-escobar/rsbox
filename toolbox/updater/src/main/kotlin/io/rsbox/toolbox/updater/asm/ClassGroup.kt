@@ -1,7 +1,6 @@
 package io.rsbox.toolbox.updater.asm
 
 import io.rsbox.toolbox.updater.asm.util.AsmUtil
-import io.rsbox.toolbox.updater.log.Logger
 import io.rsbox.toolbox.updater.util.identityHashSetOf
 import org.objectweb.asm.ClassReader
 import org.objectweb.asm.Opcodes.*
@@ -19,6 +18,7 @@ import java.util.ArrayDeque
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.atomic.AtomicInteger
 import java.util.jar.JarFile
+
 
 class ClassGroup(val env: ClassEnv, val shared: Boolean) {
 
@@ -50,6 +50,7 @@ class ClassGroup(val env: ClassEnv, val shared: Boolean) {
     }
 
     fun getClass(name: String) = classMap[name] ?: arrayClassMap[name]
+    fun getClassById(id: String) = getClass(if(id[0] == '[') id else if(id[0] == 'L') id.substring(1, id.length - 1) else id)
 
     fun getOrCreateClass(className: String): ClassEntry {
         val name = if(className[0] == '[') className else if(className[0] == 'L') className.substring(1, className.length - 1) else className
@@ -232,16 +233,12 @@ class ClassGroup(val env: ClassEnv, val shared: Boolean) {
     private fun processB(cls: ClassEntry) {
         cls.methods.forEach { method ->
             if(method.phantom) return
-            method.instructions.forEach { insn ->
+            method.instructions.forEach insnLoop@ { insn ->
                 when(insn) {
                     // Process method instruction
                     is MethodInsnNode -> {
                         val owner = getOrCreateClass(insn.owner)
-                        var dst = owner.resolveMethod(insn.name, insn.desc, insn.itf || insn.opcode == INVOKEINTERFACE)
-                        if(dst == null) {
-                            Logger.info("Generating phantom method: ${insn.owner}.${insn.name}${insn.desc}.")
-                            dst = MethodEntry.create(owner, insn.name, insn.desc).also { cls.addMethod(it) }
-                        }
+                        val dst = owner.resolveMethod(insn.name, insn.desc, insn.itf || insn.opcode == INVOKEINTERFACE) ?: return@insnLoop
 
                         dst.refsIn.add(method)
                         method.refsOut.add(dst)
@@ -252,11 +249,7 @@ class ClassGroup(val env: ClassEnv, val shared: Boolean) {
                     // Process field instruction
                     is FieldInsnNode -> {
                         val owner = getOrCreateClass(insn.owner)
-                        var dst = owner.resolveField(insn.name, insn.desc)
-                        if(dst == null) {
-                            Logger.info("Generating phantom field: ${insn.owner}.${insn.name}:${insn.desc}.")
-                            dst = FieldEntry.create(owner, insn.name, insn.desc).also { cls.addField(it) }
-                        }
+                        val dst = owner.resolveField(insn.name, insn.desc) ?: return@insnLoop
 
                         if(insn.opcode == GETSTATIC || insn.opcode == GETFIELD) {
                             dst.readsRefs.add(method)
@@ -282,73 +275,116 @@ class ClassGroup(val env: ClassEnv, val shared: Boolean) {
         }
     }
 
-    private fun processC(c: ClassEntry) {
-        var cls = c
-        if(cls.childClasses.isNotEmpty() || cls.implementers.isNotEmpty()) return
-
-        val methods = hashMapOf<String, MethodEntry>()
+    private fun processC(cls: ClassEntry) {
         val queue = ArrayDeque<ClassEntry>()
-        queue.add(cls)
+        val visited = identityHashSetOf<ClassEntry>()
 
-        while(queue.poll()?.also { cls = it } != null) {
-            cls.methods.forEach { method ->
-                val prev = methods[method.id]
-                if(method.isHierarchyBarrier()) {
-                    if(method.hierarchy.isEmpty()) {
-                        method.hierarchy = identityHashSetOf(method)
-                    }
-                } else if(prev != null) {
-                    if(method.hierarchy.isEmpty()) {
-                        method.hierarchy = prev.hierarchy
-                        method.hierarchy.add(method)
-                    } else if(method.hierarchy != prev.hierarchy) {
-                        prev.hierarchy.forEach { m ->
-                            method.hierarchy.add(m)
-                            m.hierarchy = method.hierarchy
-                        }
-                    }
+        cls.methods.forEach method@ { method ->
+            queue.clear()
+            visited.clear()
+
+            if(method.isConstructor() || method.isInitializer()) return@method
+            if(method.isHierarchyBarrier()) return@method
+
+            if(method.cls.superClass != null) queue.add(method.cls.superClass!!)
+            queue.addAll(method.cls.interfaces)
+
+            var c = method.cls
+            while(queue.poll()?.also { c = it } != null) {
+                if(!visited.add(c)) continue
+
+                val m = c.getMethod(method.name, method.desc)
+
+                if(m != null && !m.isHierarchyBarrier()) {
+                    method.parents.add(m)
+                    m.children.add(method)
                 } else {
-                    methods[method.id] = method
-                    if(method.hierarchy.isEmpty()) {
-                        method.hierarchy = identityHashSetOf()
-                        method.hierarchy.add(method)
-                    }
+                    if(c.superClass != null) queue.add(c.superClass!!)
+                    queue.addAll(c.interfaces)
                 }
             }
+        }
 
-            if(cls.superClass != null) queue.add(cls.superClass!!)
-            queue.addAll(cls.interfaces)
+        cls.fields.forEach field@ { field ->
+            queue.clear()
+            visited.clear()
+
+            if(field.isHierarchyBarrier()) return@field
+
+            if(field.cls.superClass != null) queue.add(field.cls.superClass!!)
+            queue.addAll(field.cls.interfaces)
+
+            var c = field.cls
+            while(queue.poll()?.also { c = it } != null) {
+                if(!visited.add(c)) continue
+
+                val f = c.getField(field.name, field.desc)
+
+                if(f != null && !f.isHierarchyBarrier()) {
+                    field.parents.add(f)
+                    f.children.add(field)
+                } else {
+                    if(c.superClass != null) queue.add(c.superClass!!)
+                    queue.addAll(c.interfaces)
+                }
+            }
         }
     }
 
     private fun processD(cls: ClassEntry) {
-        val queue = ArrayDeque<ClassEntry>()
-        val visited = identityHashSetOf<ClassEntry>()
-        val obfChecked = identityHashSetOf<MutableSet<MethodEntry>>()
+        cls.methods.forEach method@ { method ->
+            val queue = ArrayDeque<MethodEntry>()
+            val visited = identityHashSetOf<MethodEntry>()
 
-        for(method in cls.methods) {
-            if(method.hierarchy.size > 1) {
-                computeIndirectRelationships(method, queue, visited)
+            if(method.hierarchy != null) return@method
 
-                if (obfChecked.add(method.hierarchy) && method.isNameObfuscated()) {
-                    method.hierarchy.forEach { m ->
-                        if (!m.isNameObfuscated()) {
-                            method.hierarchyNameObfuscated = false
-                            return@forEach
-                        }
-                    }
+            queue.add(method)
+            visited.add(method)
+
+            var nameObf = true
+
+            var m = method
+            while(queue.poll()?.also { m = it } != null) {
+                if (m.hierarchy != null) {
+                    visited.addAll(m.hierarchy!!)
+                } else {
+                    m.parents.forEach { if (visited.add(it)) queue.add(it) }
+                    m.children.forEach { if (visited.add(it)) queue.add(it) }
                 }
+                nameObf = nameObf and m.nameObfuscated
             }
 
-            if(!method.isConstructor() && !method.isInitializer()) {
-                computeMethodType(method)
+            visited.forEach {
+                it.hierarchy = identityHashSetOf(visited)
+                it.nameObfuscated = it.nameObfuscated and nameObf
             }
         }
 
-        cls.fields.forEach { field ->
-            field.hierarchy = identityHashSetOf(field)
-            if(field.writesRefs.size == 1) {
-                // TODO: Analyze for field initializing instructions
+        cls.fields.forEach field@ { field ->
+            val queue = ArrayDeque<FieldEntry>()
+            val visited = identityHashSetOf<FieldEntry>()
+
+            if(field.hierarchy != null) return@field
+
+            queue.add(field)
+            visited.add(field)
+
+            var nameObf = true
+
+            var f = field
+            while(queue.poll()?.also { f = it } != null) {
+                if (f.hierarchy != null) {
+                    visited.addAll(f.hierarchy!!)
+                } else {
+                    f.parents.forEach { if (visited.add(it)) queue.add(it) }
+                    f.children.forEach { if (visited.add(it)) queue.add(it) }
+                }
+                nameObf = nameObf and f.nameObfuscated
+            }
+
+            visited.forEach {
+                it.hierarchy = identityHashSetOf(visited)
+                it.nameObfuscated = it.nameObfuscated and nameObf
             }
         }
     }
@@ -365,7 +401,7 @@ class ClassGroup(val env: ClassEnv, val shared: Boolean) {
         for(method in cls.methods) {
             if(!method.isNameObfuscated()) continue
 
-            if(method.hierarchy.isEmpty()) {
+            if(method.hierarchy!!.isEmpty()) {
                 method.tempName = "m$groupName$memberIndex"
                 memberIndex++
             } else if(!method.hasTempName()) {
@@ -384,52 +420,7 @@ class ClassGroup(val env: ClassEnv, val shared: Boolean) {
         }
     }
 
-    private fun MethodEntry.isHierarchyBarrier(): Boolean {
+    private fun MemberEntry<*>.isHierarchyBarrier(): Boolean {
         return (access and (ACC_PRIVATE or ACC_STATIC)) != 0
-    }
-
-    private fun computeIndirectRelationships(method: MethodEntry, queue: ArrayDeque<ClassEntry>, visited: MutableSet<ClassEntry>) {
-        if(method.isConstructor() || method.isInitializer()) return
-        if(method.isHierarchyBarrier()) return
-
-        if(method.cls.superClass != null) queue.add(method.cls.superClass!!)
-        queue.addAll(method.cls.interfaces)
-
-        var cls: ClassEntry?
-        while(queue.poll().also { cls = it } != null) {
-            if(!visited.add(cls!!)) continue
-
-            val m = cls?.getMethod(method.name, method.desc)
-            if(m != null && !m.isHierarchyBarrier()) {
-                method.parents.add(m)
-                m.children.add(method)
-            } else {
-                if(cls?.superClass != null) queue.add(cls!!.superClass!!)
-                queue.addAll(cls!!.interfaces)
-            }
-        }
-
-        visited.clear()
-    }
-
-    private fun computeMethodType(method: MethodEntry): Boolean {
-        if(!method.isSynthetic() || !method.isPrivate() || method.refsIn.isEmpty()) return false
-
-        method.refsIn.forEach { m ->
-            var found = false
-
-            val itr = m.node.instructions.iterator()
-            while(itr.hasNext()) {
-                val insn = itr.next()
-                when(insn) {
-                    is MethodInsnNode -> {
-                        val owner = getOrCreateClass(insn.owner)
-                        if(owner.resolveMethod(insn.name, insn.desc, insn.itf) == method) return false
-                    }
-                }
-            }
-        }
-
-        return true
     }
 }

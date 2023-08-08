@@ -5,6 +5,7 @@ import io.rsbox.toolbox.updater.util.identityHashSetOf
 abstract class MemberEntry<T : Matchable<T>> : Matchable<T>() {
 
     abstract val cls: ClassEntry
+    abstract val access: Int
 
     val group get() = cls.group
     val env get() = cls.env
@@ -12,8 +13,7 @@ abstract class MemberEntry<T : Matchable<T>> : Matchable<T>() {
     fun isShared() = cls.isShared()
 
     val parents = identityHashSetOf<T>()
-    val children = identityHashSetOf<T>()
+    val children= identityHashSetOf<T>()
 
-    var hierarchy = identityHashSetOf<T>()
-    var hierarchyNameObfuscated = this.isNameObfuscated()
+    var hierarchy: MutableSet<T>? = null
 }

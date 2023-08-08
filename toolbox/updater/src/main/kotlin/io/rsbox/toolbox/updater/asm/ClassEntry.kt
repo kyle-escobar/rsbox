@@ -1,5 +1,6 @@
 package io.rsbox.toolbox.updater.asm
 
+import io.rsbox.toolbox.updater.asm.util.AsmUtil.isNameObfuscated
 import io.rsbox.toolbox.updater.util.identityHashSetOf
 import org.objectweb.asm.ClassWriter
 import org.objectweb.asm.Opcodes.*
@@ -50,6 +51,7 @@ class ClassEntry(val node: ClassNode) : Matchable<ClassEntry>() {
 
     fun init(group: ClassGroup) {
         this.group = group
+        this.nameObfuscated = name.isNameObfuscated()
 
         if(name[0] == '[') {
             val type = Type.getType(name)
@@ -73,7 +75,7 @@ class ClassEntry(val node: ClassNode) : Matchable<ClassEntry>() {
     }
 
     fun getMethod(name: String, desc: String) = methodMap["$name$desc"]
-    fun getField(name: String, desc: String) = fieldMap["$name:$desc"]
+    fun getField(name: String, desc: String) = fieldMap["$name$desc"]
 
     fun resolveMethod(name: String, desc: String, toInterface: Boolean): MethodEntry? {
         if(!toInterface) {

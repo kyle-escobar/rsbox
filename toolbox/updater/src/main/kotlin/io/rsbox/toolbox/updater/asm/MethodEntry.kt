@@ -1,5 +1,6 @@
 package io.rsbox.toolbox.updater.asm
 
+import io.rsbox.toolbox.updater.asm.util.AsmUtil.isNameObfuscated
 import io.rsbox.toolbox.updater.util.identityHashSetOf
 import org.objectweb.asm.Opcodes.*
 import org.objectweb.asm.Type
@@ -15,7 +16,7 @@ class MethodEntry(override val cls: ClassEntry, val node: MethodNode) : MemberEn
         }
     }
 
-    val access = node.access
+    override val access = node.access
     val desc = node.desc
 
     val tryCatchBlocks = node.tryCatchBlocks
@@ -51,6 +52,8 @@ class MethodEntry(override val cls: ClassEntry, val node: MethodNode) : MemberEn
     fun isInitializer() = name == "<clinit>"
     
     fun init() {
+        nameObfuscated = name.isNameObfuscated()
+
         returnType = group.getOrCreateClass(type.returnType.internalName)
         classRefs.add(returnType)
         returnType.methodTypeRefs.add(this)

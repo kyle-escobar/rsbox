@@ -25,7 +25,7 @@ class MainView : View("Updater") {
         currentStage?.requestFocus()
 
         runAsync {
-            Updater.init()
+            Updater.start()
         } ui {
             controller.init()
         }
