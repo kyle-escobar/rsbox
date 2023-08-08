@@ -15,4 +15,5 @@ abstract class MemberEntry<T : Matchable<T>> : Matchable<T>() {
     val children = identityHashSetOf<T>()
 
     var hierarchy = identityHashSetOf<T>()
+    var hierarchyNameObfuscated = this.isNameObfuscated()
 }

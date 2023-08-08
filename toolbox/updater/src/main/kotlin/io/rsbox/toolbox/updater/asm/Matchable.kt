@@ -11,7 +11,8 @@ abstract class Matchable<T : Matchable<T>> {
 
     var uid = -1
 
-    fun isNameObfuscated() = name.isNameObfuscated()
+    var nameObfuscated = true
+    fun isNameObfuscated() = nameObfuscated
 
     var match: T? = null
 

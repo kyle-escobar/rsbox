@@ -324,10 +324,20 @@ class ClassGroup(val env: ClassEnv, val shared: Boolean) {
     private fun processD(cls: ClassEntry) {
         val queue = ArrayDeque<ClassEntry>()
         val visited = identityHashSetOf<ClassEntry>()
+        val obfChecked = identityHashSetOf<MutableSet<MethodEntry>>()
 
         for(method in cls.methods) {
             if(method.hierarchy.size > 1) {
                 computeIndirectRelationships(method, queue, visited)
+
+                if (obfChecked.add(method.hierarchy) && method.isNameObfuscated()) {
+                    method.hierarchy.forEach { m ->
+                        if (!m.isNameObfuscated()) {
+                            method.hierarchyNameObfuscated = false
+                            return@forEach
+                        }
+                    }
+                }
             }
 
             if(!method.isConstructor() && !method.isInitializer()) {
