@@ -1,9 +1,6 @@
 package io.rsbox.toolbox.updater.ui.view.tab.src
 
-import io.rsbox.toolbox.updater.asm.ClassEntry
-import io.rsbox.toolbox.updater.asm.Matchable
-import io.rsbox.toolbox.updater.asm.MemberEntry
-import io.rsbox.toolbox.updater.asm.MethodEntry
+import io.rsbox.toolbox.updater.asm.*
 import io.rsbox.toolbox.updater.decompile.Decompiler
 import io.rsbox.toolbox.updater.ui.Events
 import javafx.concurrent.Worker
@@ -20,6 +17,7 @@ class SrcSourceTab : Tab("Source") {
     private var lastMatchable: Matchable<*>? = null
 
    init {
+       webView.engine.isJavaScriptEnabled = true
        webView.engine.loadWorker.stateProperty().addListener { observable, oldValue, newValue ->
            if(newValue == Worker.State.SUCCEEDED) {
                content = webView
@@ -61,13 +59,22 @@ class SrcSourceTab : Tab("Source") {
 
     @Suppress("UNCHECKED_CAST")
     fun scrollTo(node: Matchable<*>) {
-        val name = when(node.name) {
-            "<init>", "<clinit>" -> (node as MemberEntry<MethodEntry>).cls.name
-            else -> node.name
+        val name = when {
+            node is ClassEntry -> node.name
+            node is MethodEntry -> node.name
+            node is FieldEntry -> node.name
+            else -> return
         }
-        webView.engine.executeScript("window.scrollBy(0, document.evaluate(\"//*[text()[contains(., \'$name\')]][last()]\", document.body).iterateNext().getBoundingClientRect().top);" +
-                "document.evaluate(\"//*[text()[contains(., '$name')]][last()]\", document.body).iterateNext().style.background = \"lightblue\";" +
-                "setTimeout(function() { document.evaluate(\"//*[text()[contains(., '$name')]][last()]\", document.body).iterateNext().style.background = null; }, 1500);")
+
+        webView.engine.executeScript("" +
+                "            element = document.evaluate(\"//*[text()[contains(., '$name')]][last()]\", document.body).iterateNext();" +
+                "            if (element) {" +
+                "                window.scrollBy(0, element.getBoundingClientRect().top);" +
+                "                element.style.background = \"lightblue\";" +
+                "                setTimeout(function() {" +
+                "                    element.style.background = null;" +
+                "                }, 1500);" +
+                "            }")
     }
 
     companion object {

@@ -1,8 +1,12 @@
 package io.rsbox.toolbox.updater.ui.view
 
+import io.rsbox.toolbox.updater.Updater
+import io.rsbox.toolbox.updater.ui.controller.AppController
 import tornadofx.*
 
 class MainView : View("Updater") {
+
+    private val controller: AppController by inject()
 
     override val root = gridpane {
         setPrefSize(1280.0, 900.0)
@@ -19,5 +23,11 @@ class MainView : View("Updater") {
 
     override fun onDock() {
         currentStage?.requestFocus()
+
+        runAsync {
+            Updater.init()
+        } ui {
+            controller.init()
+        }
     }
 }

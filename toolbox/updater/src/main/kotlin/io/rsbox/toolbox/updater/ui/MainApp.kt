@@ -8,13 +8,4 @@ import tornadofx.runAsync
 import tornadofx.ui
 
 class MainApp : App(MainView::class) {
-
-    private val controller: AppController by inject()
-
-    override fun init() {
-        runAsync {
-            Updater.init()
-            controller.init()
-        }
-    }
 }

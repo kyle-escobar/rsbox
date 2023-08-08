@@ -14,5 +14,5 @@ abstract class MemberEntry<T : Matchable<T>> : Matchable<T>() {
     val parents = identityHashSetOf<T>()
     val children = identityHashSetOf<T>()
 
-    val hierarchyMembers = identityHashSetOf<T>()
+    var hierarchy = identityHashSetOf<T>()
 }

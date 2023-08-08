@@ -6,6 +6,7 @@ import org.objectweb.asm.Opcodes.*
 import org.objectweb.asm.Type
 import org.objectweb.asm.tree.ClassNode
 import java.util.ArrayDeque
+import java.util.concurrent.ConcurrentHashMap
 
 class ClassEntry(val node: ClassNode) : Matchable<ClassEntry>() {
 
@@ -29,11 +30,23 @@ class ClassEntry(val node: ClassNode) : Matchable<ClassEntry>() {
     var outerClass: ClassEntry? = null
     val innerClasses = identityHashSetOf<ClassEntry>()
 
-    private val methodMap = hashMapOf<String, MethodEntry>()
+    val strings = mutableListOf<String>()
+    val numbers = mutableListOf<Number>()
+
+    val methodTypeRefs = identityHashSetOf<MethodEntry>()
+    val fieldTypeRefs = identityHashSetOf<FieldEntry>()
+
+    private val methodMap = ConcurrentHashMap<String, MethodEntry>()
     val methods get() = methodMap.values
 
-    private val fieldMap = hashMapOf<String, FieldEntry>()
+    private val fieldMap = ConcurrentHashMap<String, FieldEntry>()
     val fields get() = fieldMap.values
+
+    val memberMethods get() = methods.filter { !it.isStatic() }
+    val memberFields get() = fields.filter { !it.isStatic() }
+
+    val staticMethods get() = methods.filter { it.isStatic() }
+    val staticFields get() = fields.filter { it.isStatic() }
 
     fun init(group: ClassGroup) {
         this.group = group

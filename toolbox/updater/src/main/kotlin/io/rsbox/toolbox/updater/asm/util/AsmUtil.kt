@@ -1,4 +1,4 @@
-package io.rsbox.toolbox.updater.asm
+package io.rsbox.toolbox.updater.asm.util
 
 import org.objectweb.asm.ClassReader
 import org.objectweb.asm.tree.ClassNode

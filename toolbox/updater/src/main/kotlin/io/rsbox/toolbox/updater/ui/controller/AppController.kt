@@ -1,6 +1,5 @@
 package io.rsbox.toolbox.updater.ui.controller
 
-import io.rsbox.toolbox.updater.Matcher
 import io.rsbox.toolbox.updater.Updater
 import io.rsbox.toolbox.updater.asm.Matchable
 import io.rsbox.toolbox.updater.util.CompareUtil
@@ -10,7 +9,7 @@ import tornadofx.asObservable
 
 class AppController : Controller() {
 
-    private val env = Matcher.env
+    private val env get() = Updater.env
     private val srcGroup get() = env.groupA
     private val dstGroup get() = env.groupB
 

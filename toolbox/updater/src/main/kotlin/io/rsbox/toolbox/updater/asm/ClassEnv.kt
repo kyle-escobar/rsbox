@@ -11,7 +11,6 @@ class ClassEnv {
     fun init(jarA: File, jarB: File) {
         groupA.init(jarA)
         groupB.init(jarB)
-
         groupA.process()
         groupB.process()
     }
