@@ -1,6 +1,6 @@
 package io.rsbox.toolbox.updater.asm
 
-import io.rsbox.toolbox.updater.asm.util.AsmUtil.isNameObfuscated
+import io.rsbox.toolbox.updater.asm.util.AsmUtil.obfuscated
 import io.rsbox.toolbox.updater.util.identityHashSetOf
 import org.objectweb.asm.Opcodes.*
 import org.objectweb.asm.Type
@@ -52,7 +52,11 @@ class MethodEntry(override val cls: ClassEntry, val node: MethodNode) : MemberEn
     fun isInitializer() = name == "<clinit>"
     
     fun init() {
-        nameObfuscated = name.isNameObfuscated()
+        if(isShared()) {
+            match = this
+        }
+
+        nameObfuscated = name.obfuscated()
 
         returnType = group.getOrCreateClass(type.returnType.internalName)
         classRefs.add(returnType)

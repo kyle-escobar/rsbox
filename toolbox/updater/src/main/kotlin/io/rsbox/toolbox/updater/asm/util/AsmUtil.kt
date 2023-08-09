@@ -12,7 +12,7 @@ object AsmUtil {
         return node
     }
 
-    fun String.isNameObfuscated(): Boolean {
+    fun String.obfuscated(): Boolean {
         return arrayOf("class", "method", "field").any { this.startsWith(it) }
     }
 }

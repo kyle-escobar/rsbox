@@ -167,7 +167,7 @@ class ClassGroup(val env: ClassEnv, val shared: Boolean) {
         val virtualMethodIndex = AtomicInteger()
 
         initClasses.forEach { cls ->
-            val curClassIndex = if(cls.isNameObfuscated()) classIndex++ else -1
+            val curClassIndex = if(cls.nameObfuscated) classIndex++ else -1
             processE(cls, curClassIndex, virtualMethodIndex)
         }
 
@@ -275,116 +275,88 @@ class ClassGroup(val env: ClassEnv, val shared: Boolean) {
         }
     }
 
+    /*
+     * Build the member hierarchy for both methods and fields.
+     */
     private fun processC(cls: ClassEntry) {
+        if(cls.childClasses.isNotEmpty() || cls.implementers.isNotEmpty()) return
+
+        val methods = hashMapOf<String, MethodEntry>()
+        val fields = hashMapOf<String, FieldEntry>()
         val queue = ArrayDeque<ClassEntry>()
-        val visited = identityHashSetOf<ClassEntry>()
 
-        cls.methods.forEach method@ { method ->
-            queue.clear()
-            visited.clear()
+        queue.add(cls)
+        var curCls = cls
+        while(queue.poll()?.also { curCls = it } != null) {
+            /* Method Hierarchy */
+            curCls.methods.forEach { method ->
+                var prev: MethodEntry = method
 
-            if(method.isConstructor() || method.isInitializer()) return@method
-            if(method.isHierarchyBarrier()) return@method
-
-            if(method.cls.superClass != null) queue.add(method.cls.superClass!!)
-            queue.addAll(method.cls.interfaces)
-
-            var c = method.cls
-            while(queue.poll()?.also { c = it } != null) {
-                if(!visited.add(c)) continue
-
-                val m = c.getMethod(method.name, method.desc)
-
-                if(m != null && !m.isHierarchyBarrier()) {
-                    method.parents.add(m)
-                    m.children.add(method)
+                if(method.isHierarchyBarrier()) {
+                    if(method.hierarchy == null) {
+                        method.hierarchy = MemberHierarchy(identityHashSetOf(method), method.nameObfuscated)
+                    }
+                } else if(methods[method.id]?.also { prev = it } != null) {
+                    if(method.hierarchy == null) {
+                        method.hierarchy = prev.hierarchy
+                        method.hierarchy!!.addMember(method)
+                    } else if(method.hierarchy != prev.hierarchy) {
+                        prev.hierarchy!!.members.forEach { member ->
+                            method.hierarchy!!.addMember(member)
+                            member.hierarchy = method.hierarchy
+                        }
+                    }
                 } else {
-                    if(c.superClass != null) queue.add(c.superClass!!)
-                    queue.addAll(c.interfaces)
+                    methods[method.id] = method
+
+                    if(method.hierarchy == null) {
+                        method.hierarchy = MemberHierarchy(identityHashSetOf(), method.nameObfuscated)
+                        method.hierarchy!!.addMember(method)
+                    }
                 }
             }
-        }
 
-        cls.fields.forEach field@ { field ->
-            queue.clear()
-            visited.clear()
-
-            if(field.isHierarchyBarrier()) return@field
-
-            if(field.cls.superClass != null) queue.add(field.cls.superClass!!)
-            queue.addAll(field.cls.interfaces)
-
-            var c = field.cls
-            while(queue.poll()?.also { c = it } != null) {
-                if(!visited.add(c)) continue
-
-                val f = c.getField(field.name, field.desc)
-
-                if(f != null && !f.isHierarchyBarrier()) {
-                    field.parents.add(f)
-                    f.children.add(field)
-                } else {
-                    if(c.superClass != null) queue.add(c.superClass!!)
-                    queue.addAll(c.interfaces)
-                }
-            }
+            if(curCls.superClass != null) queue.add(curCls.superClass!!)
+            queue.addAll(curCls.interfaces)
         }
     }
 
     private fun processD(cls: ClassEntry) {
-        cls.methods.forEach method@ { method ->
-            val queue = ArrayDeque<MethodEntry>()
-            val visited = identityHashSetOf<MethodEntry>()
+        val queue = ArrayDeque<ClassEntry>()
+        val visited = identityHashSetOf<ClassEntry>()
+        val checked = identityHashSetOf<MethodEntry>()
 
-            if(method.hierarchy != null) return@method
+        cls.methods.forEach { method ->
+            if(method.hierarchy!!.members.size > 1) {
+                run childLoop@ {
+                    if(method.isConstructor() || method.isInitializer()) return@childLoop
+                    if(method.isHierarchyBarrier()) return@childLoop
 
-            queue.add(method)
-            visited.add(method)
+                    if(method.cls.superClass != null) queue.add(method.cls.superClass!!)
+                    queue.addAll(method.cls.interfaces)
 
-            var nameObf = true
+                    var curCls = cls
+                    while(queue.poll()?.also { curCls = it } != null) {
+                        if(!visited.add(curCls)) continue
 
-            var m = method
-            while(queue.poll()?.also { m = it } != null) {
-                if (m.hierarchy != null) {
-                    visited.addAll(m.hierarchy!!)
-                } else {
-                    m.parents.forEach { if (visited.add(it)) queue.add(it) }
-                    m.children.forEach { if (visited.add(it)) queue.add(it) }
+                        val m = curCls.getMethod(method.name, method.desc)
+
+                        if(m != null && !m.isHierarchyBarrier()) {
+                            method.parents.add(m)
+                            m.parents.add(method)
+                        } else {
+                            if(curCls.superClass != null) queue.add(curCls.superClass!!)
+                            queue.addAll(curCls.interfaces)
+                        }
+                    }
                 }
-                nameObf = nameObf and m.nameObfuscated
             }
 
-            visited.forEach {
-                it.hierarchy = identityHashSetOf(visited)
-                it.nameObfuscated = it.nameObfuscated and nameObf
-            }
-        }
-
-        cls.fields.forEach field@ { field ->
-            val queue = ArrayDeque<FieldEntry>()
-            val visited = identityHashSetOf<FieldEntry>()
-
-            if(field.hierarchy != null) return@field
-
-            queue.add(field)
-            visited.add(field)
-
-            var nameObf = true
-
-            var f = field
-            while(queue.poll()?.also { f = it } != null) {
-                if (f.hierarchy != null) {
-                    visited.addAll(f.hierarchy!!)
-                } else {
-                    f.parents.forEach { if (visited.add(it)) queue.add(it) }
-                    f.children.forEach { if (visited.add(it)) queue.add(it) }
+            cls.fields.forEach { f ->
+                f.hierarchy = MemberHierarchy(identityHashSetOf(f), f.nameObfuscated)
+                if(f.writesRefs.size == 1) {
+                    // TODO : Extract <clinit> and grab the relative active
                 }
-                nameObf = nameObf and f.nameObfuscated
-            }
-
-            visited.forEach {
-                it.hierarchy = identityHashSetOf(visited)
-                it.nameObfuscated = it.nameObfuscated and nameObf
             }
         }
     }
@@ -392,28 +364,22 @@ class ClassGroup(val env: ClassEnv, val shared: Boolean) {
     private fun processE(cls: ClassEntry, currentClassIndex: Int, virtualMethodIndex: AtomicInteger) {
         val groupName = if(isGroupA()) "a" else "b"
 
-        if(cls.isNameObfuscated()) {
+        if(cls.nameObfuscated) {
             cls.tempName = "c$groupName$currentClassIndex"
         }
 
         var memberIndex = 0
 
         for(method in cls.methods) {
-            if(!method.isNameObfuscated()) continue
-
-            if(method.hierarchy!!.isEmpty()) {
-                method.tempName = "m$groupName$memberIndex"
-                memberIndex++
-            } else if(!method.hasTempName()) {
-                val name = "vm$groupName${virtualMethodIndex.getAndIncrement()}"
-                method.tempName = name
-            }
+            if(!method.nameObfuscated) continue
+            method.tempName = "m$groupName$memberIndex"
+            memberIndex++
         }
 
         memberIndex = 0
 
         for(field in cls.fields) {
-            if(!field.isNameObfuscated()) continue
+            if(!field.nameObfuscated) continue
 
             field.tempName = "f$groupName$memberIndex"
             memberIndex++

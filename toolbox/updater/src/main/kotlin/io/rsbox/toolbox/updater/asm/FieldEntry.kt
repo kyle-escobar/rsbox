@@ -1,6 +1,6 @@
 package io.rsbox.toolbox.updater.asm
 
-import io.rsbox.toolbox.updater.asm.util.AsmUtil.isNameObfuscated
+import io.rsbox.toolbox.updater.asm.util.AsmUtil.obfuscated
 import io.rsbox.toolbox.updater.util.identityHashSetOf
 import org.objectweb.asm.Opcodes
 import org.objectweb.asm.Opcodes.ACC_PUBLIC
@@ -39,7 +39,11 @@ class FieldEntry(override val cls: ClassEntry, val node: FieldNode) : MemberEntr
     fun isStatic() = (access and Opcodes.ACC_STATIC) != 0
 
     fun init() {
-        nameObfuscated = name.isNameObfuscated()
+        if(isShared()) {
+            match = this
+        }
+
+        nameObfuscated = name.obfuscated()
 
         typeClass = group.getOrCreateClass(desc)
         typeClass.fieldTypeRefs.add(this)

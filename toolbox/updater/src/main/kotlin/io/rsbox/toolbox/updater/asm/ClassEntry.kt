@@ -1,6 +1,6 @@
 package io.rsbox.toolbox.updater.asm
 
-import io.rsbox.toolbox.updater.asm.util.AsmUtil.isNameObfuscated
+import io.rsbox.toolbox.updater.asm.util.AsmUtil.obfuscated
 import io.rsbox.toolbox.updater.util.identityHashSetOf
 import org.objectweb.asm.ClassWriter
 import org.objectweb.asm.Opcodes.*
@@ -51,7 +51,7 @@ class ClassEntry(val node: ClassNode) : Matchable<ClassEntry>() {
 
     fun init(group: ClassGroup) {
         this.group = group
-        this.nameObfuscated = name.isNameObfuscated()
+        this.nameObfuscated = name.obfuscated()
 
         if(name[0] == '[') {
             val type = Type.getType(name)
