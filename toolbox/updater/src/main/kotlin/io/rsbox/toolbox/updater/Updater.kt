@@ -7,8 +7,16 @@ import io.rsbox.toolbox.updater.asm.MethodEntry
 import io.rsbox.toolbox.updater.classifier.ClassifierLevel
 import io.rsbox.toolbox.updater.classifier.ClassClassifier
 import io.rsbox.toolbox.updater.classifier.ClassifierUtil
+import io.rsbox.toolbox.updater.classifier.RankResult
 import io.rsbox.toolbox.updater.log.Logger
+import io.rsbox.toolbox.updater.ui.MainApp
+import io.rsbox.toolbox.updater.util.identityHashSetOf
+import tornadofx.launch
 import java.io.File
+import java.util.Collections
+import java.util.IdentityHashMap
+import java.util.concurrent.ConcurrentHashMap
+import kotlin.math.sqrt
 
 object Updater {
 
@@ -40,7 +48,8 @@ object Updater {
         jarA = File(args[0])
         jarB = File(args[1])
 
-        start()
+        launch<MainApp>()
+        //start()
     }
 
     private fun init() {
@@ -58,6 +67,7 @@ object Updater {
         init()
 
         Logger.info("Starting updating of class environment.")
+
 
         /*
          * Start the initial automatch. We first go ahead and match non-obfuscated
@@ -193,6 +203,22 @@ object Updater {
     }
 
     fun autoMatchClasses(level: ClassifierLevel, absThreshold: Double, relThreshold: Double): Boolean {
+        val filter = { cls: ClassEntry -> !cls.hasMatch() && cls.matchable }
+
+        val srcClasses = env.groupA.classes.filter(filter)
+        val dstClasses = env.groupB.classes.filter(filter)
+
+        val maxScore = ClassClassifier.getMaxScore(level)
+        val maxMismatch = maxScore - getRawScore(absThreshold * (1 - relThreshold), maxScore)
+        val matches = ConcurrentHashMap<ClassEntry, ClassEntry>()
+
+        for(srcCls in srcClasses)  {
+            val ranking = ClassifierUtil.rank(srcCls, dstClasses.toTypedArray(), ClassClassifier.getAnalyzers(level), ClassifierUtil::isMaybeEqual, maxMismatch)
+            if(checkRank(ranking, maxScore)) {
+                val match = ranking[0].subject
+            }
+        }
+
         return true
     }
 
@@ -210,5 +236,43 @@ object Updater {
 
     fun autoMatchStaticFields(level: ClassifierLevel, absThreshold: Double, relThreshold: Double): Boolean {
         return true
+    }
+
+    fun checkRank(ranking: List<RankResult<*>>, maxScore: Double): Boolean {
+        if(ranking.isEmpty()) return false
+
+        val score = getScore(ranking[0].score, maxScore)
+        if(score < absAutoMatchThreshold) return false
+
+        return if(ranking.size == 1) {
+            true
+        } else {
+            val nextScore = getScore(ranking[1].score, maxScore)
+            nextScore < score * (1 - relAutoMatchThreshold)
+        }
+    }
+
+    fun getScore(rawScore: Double, maxScore: Double): Double {
+        val ret = rawScore / maxScore
+        return ret * ret
+    }
+
+    private fun getRawScore(score: Double, maxScore: Double): Double {
+        return sqrt(score) * maxScore
+    }
+
+    fun <T> reduceMatches(matches: MutableMap<T, T>) {
+        val matched = Collections.newSetFromMap<T>(IdentityHashMap(matches.size))
+        val conflicts = identityHashSetOf<T>()
+
+        matches.values.forEach { match ->
+            if(!matched.add(match)) {
+                conflicts.add(match)
+            }
+        }
+
+        if(conflicts.isNotEmpty()) {
+            matches.values.removeAll(conflicts)
+        }
     }
 }

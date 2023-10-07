@@ -9,17 +9,867 @@
     <style>
         #code {
             display: contents;
-            padding: 1em;
-            max-width: 100%;
+            padding: 0em;
         }
 
-        .highlighted-code {
-            color: white;
-            background: deepskyblue;
+        .highlight {
+            background-color: yellow;
         }
     </style>
+
+    <script>
+let currentHighlightIndex = 0; // To keep track of which highlight is currently in focus
+
+function highlightText(element, searchText, highlightClass = 'highlight') {
+    // Reset current highlight index
+    currentHighlightIndex = 0;
+
+    // Remove any existing highlights first
+    const existingHighlights = element.querySelectorAll(`.${highlightClass}`);
+    existingHighlights.forEach(highlight => {
+        const parent = highlight.parentNode;
+        while (highlight.firstChild) {
+            parent.insertBefore(highlight.firstChild, highlight);
+        }
+        parent.removeChild(highlight);
+    });
+
+    // Escape special characters in search text for regex
+    const escapedSearchText = searchText.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+
+    // Create a regular expression to find the search text
+    const regex = new RegExp(`(${escapedSearchText})`, 'gi');
+
+    // Split the element's innerHTML by the regex
+    const parts = element.innerHTML.split(regex);
+
+    // Reconstruct the innerHTML, wrapping the matched text with a highlight span
+    element.innerHTML = parts.map((part, index) => {
+        if (index % 2 === 1) {
+            return `<span class="${highlightClass}">${part}</span>`;
+        }
+        return part;
+    }).join('');
+
+    // Scroll to the first highlighted match
+    scrollToHighlight(element, highlightClass);
+}
+
+function scrollToHighlight(element, highlightClass) {
+    const highlights = element.querySelectorAll(`.${highlightClass}`);
+    if (highlights.length > 0) {
+        if (currentHighlightIndex >= highlights.length) {
+            currentHighlightIndex = 0; // Loop back to the first match
+        }
+        highlights[currentHighlightIndex].scrollIntoView({
+            behavior: 'smooth',
+            block: 'center'
+        });
+    }
+}
+
+function nextHighlight() {
+	currentHighlightIndex++;
+    scrollToHighlight(document.body, 'highlight');
+}
+    </script>
 </head>
 <body>
-<pre><code class="language-java" id="code">%text%</code></pre>
+<pre><code class="language-java" id="code">import java.applet.Applet;
+import java.awt.Canvas;
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.Frame;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Insets;
+import java.awt.LayoutManager;
+import java.awt.Rectangle;
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.ClipboardOwner;
+import java.awt.datatransfer.StringSelection;
+import java.awt.event.ActionEvent;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+import java.awt.image.ImageObserver;
+import java.lang.management.GarbageCollectorMXBean;
+import java.lang.management.ManagementFactory;
+import java.net.URL;
+import java.util.Iterator;
+
+public abstract class old_class2 extends Applet implements Runnable, FocusListener, WindowListener {
+	protected static int old_field12;
+	protected static old_class350 old_field35;
+	protected static old_class482 old_field7;
+	static boolean old_field14;
+	static int old_field10;
+	static int old_field27;
+	static int old_field4;
+	static int old_field8;
+	static int old_field9;
+	static Image old_field29;
+	static long old_field30;
+	static long old_field37;
+	static long old_field6;
+	static long[] old_field13;
+	static long[] old_field5;
+	static old_class2 old_field18;
+	static volatile boolean old_field34;
+	boolean old_field2;
+	boolean old_field28;
+	int old_field16;
+	int old_field19;
+	int old_field21;
+	int old_field25;
+	int old_field3;
+	int old_field36;
+	Canvas old_field24;
+	Frame old_field23;
+	Clipboard old_field32;
+	old_class295 old_field31;
+	final EventQueue old_field33;
+	protected boolean old_field22;
+	protected int old_field20;
+	protected int old_field26;
+	volatile boolean old_field11;
+	volatile boolean old_field15;
+	volatile long old_field17;
+
+	static {
+		old_field18 = null;
+		old_field4 = 0;
+		old_field30 = 0L;
+		old_field14 = false;
+		old_field9 = 20;
+		old_field10 = 1;
+		old_field12 = 0;
+		old_field5 = new long[32];
+		old_field13 = new long[32];
+		old_field27 = 500;
+		old_field34 = true;
+		old_field35 = new old_class350();
+		old_field6 = -1L;
+		old_field37 = -1L;
+	}
+
+	protected old_class2() {
+		this.old_field2 = false;
+		this.old_field16 = 0;
+		this.old_field36 = 0;
+		this.old_field22 = false;
+		this.old_field15 = true;
+		this.old_field28 = false;
+		this.old_field11 = false;
+		this.old_field17 = 0L;
+		EventQueue var1 = null;
+
+		try {
+			var1 = Toolkit.getDefaultToolkit().getSystemEventQueue();
+		} catch (Throwable var3) {
+		}
+
+		this.old_field33 = var1;
+		old_class496 var2 = new old_class496();
+		old_class498.old_field4119 = var2;
+	}
+
+	protected abstract void old_method12(byte var1);
+
+	protected abstract void old_method23(boolean var1, int var2);
+
+	protected abstract void old_method27(int var1);
+
+	protected abstract void old_method33(int var1);
+
+	protected abstract void old_method34(int var1);
+
+	protected abstract void old_method4(int var1);
+
+	@Override
+	public abstract void init();
+
+	protected final void old_method3(int var1, int var2, int var3) {
+		if (var1 != this.old_field25 || this.old_field21 != var2) {
+			this.old_method21((byte)0);
+		}
+
+		this.old_field25 = var1;
+		this.old_field21 = var2;
+	}
+
+	final void old_method29(Object var1, int var2) {
+		if (this.old_field33 != null) {
+			for (int var3 = 0; var3 < 50 && this.old_field33.peekEvent() != null; ++var3) {
+				old_class338.old_method1494(1L);
+			}
+
+			if (var1 != null) {
+				this.old_field33.postEvent(new ActionEvent(var1, 1001, "dummy"));
+			}
+
+		}
+	}
+
+	protected old_class15 old_method37(byte var1) {
+		if (null == this.old_field31) {
+			this.old_field31 = new old_class295();
+			this.old_field31.old_method1265(this.old_field24, (short)-260);
+		}
+
+		return this.old_field31;
+	}
+
+	protected void old_method5(byte var1) {
+		this.old_field32 = this.getToolkit().getSystemClipboard();
+	}
+
+	protected void old_method6(String var1, short var2) {
+		this.old_field32.setContents(new StringSelection(var1), (ClipboardOwner)null);
+	}
+
+	protected Clipboard old_method7(int var1) {
+		return this.old_field32;
+	}
+
+	protected final void old_method8(int var1) {
+		if (old_class482.old_field4029.toLowerCase().indexOf("microsoft") != -1) {
+			old_class489.old_field4045[186] = 57;
+			old_class489.old_field4045[187] = 27;
+			old_class489.old_field4045[188] = 71;
+			old_class489.old_field4045[189] = 26;
+			old_class489.old_field4045[190] = 72;
+			old_class489.old_field4045[191] = 73;
+			old_class489.old_field4045[192] = 58;
+			old_class489.old_field4045[219] = 42;
+			old_class489.old_field4045[220] = 74;
+			old_class489.old_field4045[221] = 43;
+			old_class489.old_field4045[222] = 59;
+			old_class489.old_field4045[223] = 28;
+		} else {
+			old_class489.old_field4045[44] = 71;
+			old_class489.old_field4045[45] = 26;
+			old_class489.old_field4045[46] = 72;
+			old_class489.old_field4045[47] = 73;
+			old_class489.old_field4045[59] = 57;
+			old_class489.old_field4045[61] = 27;
+			old_class489.old_field4045[91] = 42;
+			old_class489.old_field4045[92] = 74;
+			old_class489.old_field4045[93] = 43;
+			old_class489.old_field4045[192] = 28;
+			old_class489.old_field4045[222] = 58;
+			old_class489.old_field4045[520] = 59;
+		}
+
+		old_field35.old_method1525(this.old_field24, (byte)77);
+	}
+
+	protected final void old_method9(byte var1) {
+		old_field35.old_method1529(2096534148);
+	}
+
+	protected void old_method35(old_class126 var1, int var2, int var3) {
+		old_field35.old_method1526(var1, var2, 226491014);
+	}
+
+	protected final void old_method10(int var1) {
+		Canvas var2 = this.old_field24;
+		var2.addMouseListener(old_class353.old_field2559);
+		var2.addMouseMotionListener(old_class353.old_field2559);
+		var2.addFocusListener(old_class353.old_field2559);
+	}
+
+	final void old_method11(byte var1) {
+		Container var2 = this.old_method25(1712423174);
+		if (var2 != null) {
+			old_class202 var3 = this.old_method26(-1200932701);
+			this.old_field20 = Math.max(var3.old_field1599, this.old_field3);
+			this.old_field26 = Math.max(var3.old_field1597, this.old_field19);
+			if (this.old_field20 <= 0) {
+				this.old_field20 = 1;
+			}
+
+			if (this.old_field26 <= 0) {
+				this.old_field26 = 1;
+			}
+
+			old_class485.old_field4033 = Math.min(this.old_field20, this.old_field25);
+			old_class157.old_field1092 = Math.min(this.old_field26, this.old_field21);
+			this.old_field16 = (this.old_field20 - old_class485.old_field4033) / 2;
+			this.old_field36 = 0;
+			this.old_field24.setSize(old_class485.old_field4033, old_class157.old_field1092);
+			old_class178.old_field1182 = new old_class374(old_class485.old_field4033, old_class157.old_field1092, this.old_field24, this.old_field22);
+			if (this.old_field23 == var2) {
+				Insets var4 = this.old_field23.getInsets();
+				this.old_field24.setLocation(var4.left + this.old_field16, var4.top + this.old_field36);
+			} else {
+				this.old_field24.setLocation(this.old_field16, this.old_field36);
+			}
+
+			this.old_field15 = true;
+			this.old_method12((byte)59);
+		}
+	}
+
+	void old_method31(int var1) {
+		int var2 = this.old_field16;
+		int var3 = this.old_field36;
+		int var4 = this.old_field20 - old_class485.old_field4033 - var2;
+		int var5 = this.old_field26 - old_class157.old_field1092 - var3;
+		if (var2 > 0 || var4 > 0 || var3 > 0 || var5 > 0) {
+			try {
+				Container var6 = this.old_method25(-743328043);
+				int var7 = 0;
+				int var8 = 0;
+				if (var6 == this.old_field23) {
+					Insets var9 = this.old_field23.getInsets();
+					var7 = var9.left;
+					var8 = var9.top;
+				}
+
+				Graphics var11 = var6.getGraphics();
+				var11.setColor(Color.black);
+				if (var2 > 0) {
+					var11.fillRect(var7, var8, var2, this.old_field26);
+				}
+
+				if (var3 > 0) {
+					var11.fillRect(var7, var8, this.old_field20, var3);
+				}
+
+				if (var4 > 0) {
+					var11.fillRect(var7 + this.old_field20 - var4, var8, var4, this.old_field26);
+				}
+
+				if (var5 > 0) {
+					var11.fillRect(var7, this.old_field26 + var8 - var5, this.old_field20, var5);
+				}
+			} catch (Exception var10) {
+			}
+		}
+
+	}
+
+	final void old_method32(short var1) {
+		old_field35.old_method1528(this.old_field24, (byte)70);
+		Canvas var2 = this.old_field24;
+		var2.removeMouseListener(old_class353.old_field2559);
+		var2.removeMouseMotionListener(old_class353.old_field2559);
+		var2.removeFocusListener(old_class353.old_field2559);
+		old_class353.old_field2548 = 0;
+		if (this.old_field31 != null) {
+			this.old_field31.old_method1266(this.old_field24, (byte)0);
+		}
+
+		this.old_method13((byte)3);
+		old_field35.old_method1525(this.old_field24, (byte)103);
+		Canvas var3 = this.old_field24;
+		var3.addMouseListener(old_class353.old_field2559);
+		var3.addMouseMotionListener(old_class353.old_field2559);
+		var3.addFocusListener(old_class353.old_field2559);
+		if (this.old_field31 != null) {
+			this.old_field31.old_method1265(this.old_field24, (short)-32608);
+		}
+
+		this.old_method21((byte)0);
+	}
+
+	protected final void old_method22(int var1, int var2, int var3, int var4, int var5) {
+		try {
+			if (old_field18 != null) {
+				++old_field4;
+				if (old_field4 >= 3) {
+					this.old_method24("alreadyloaded", 1928885886);
+					return;
+				}
+
+				this.getAppletContext().showDocument(this.getDocumentBase(), "_self");
+				return;
+			}
+
+			old_field18 = this;
+			old_class485.old_field4033 = 765;
+			old_class157.old_field1092 = 503;
+			old_class186.old_field1542 = 216;
+			old_class186.old_field1538 = 1;
+			old_class186.old_field1536 = this;
+			if (old_field7 == null) {
+				old_field7 = new old_class482();
+			}
+
+			old_field7.old_method2460(this, 1, 1501831193);
+		} catch (Exception var7) {
+			old_class7.old_method85((String)null, var7, 1965906954);
+			this.old_method24("crash", -1036494341);
+		}
+
+	}
+
+	final synchronized void old_method13(byte var1) {
+		Container var2 = this.old_method25(-1637240751);
+		if (this.old_field24 != null) {
+			this.old_field24.removeFocusListener(this);
+			var2.remove(this.old_field24);
+		}
+
+		old_class485.old_field4033 = Math.max(var2.getWidth(), this.old_field3);
+		old_class157.old_field1092 = Math.max(var2.getHeight(), this.old_field19);
+		Insets var3;
+		if (this.old_field23 != null) {
+			var3 = this.old_field23.getInsets();
+			old_class485.old_field4033 -= var3.right + var3.left;
+			old_class157.old_field1092 -= var3.bottom + var3.top;
+		}
+
+		this.old_field24 = new old_class516(this);
+		var2.setBackground(Color.BLACK);
+		var2.setLayout((LayoutManager)null);
+		var2.add(this.old_field24);
+		this.old_field24.setSize(old_class485.old_field4033, old_class157.old_field1092);
+		this.old_field24.setVisible(true);
+		this.old_field24.setBackground(Color.BLACK);
+		if (var2 == this.old_field23) {
+			var3 = this.old_field23.getInsets();
+			this.old_field24.setLocation(this.old_field16 + var3.left, this.old_field36 + var3.top);
+		} else {
+			this.old_field24.setLocation(this.old_field16, this.old_field36);
+		}
+
+		this.old_field24.addFocusListener(this);
+		this.old_field24.requestFocus();
+		this.old_field15 = true;
+		if (null != old_class178.old_field1182 && old_class178.old_field1182.old_field1681 == old_class485.old_field4033 && old_class157.old_field1092 == old_class178.old_field1182.old_field1683) {
+			((old_class374)old_class178.old_field1182).old_method1759(this.old_field24, (short)10944);
+			old_class178.old_field1182.old_method885(0, 0, (byte)-46);
+		} else {
+			old_class178.old_field1182 = new old_class374(old_class485.old_field4033, old_class157.old_field1092, this.old_field24, this.old_field22);
+		}
+
+		this.old_field11 = false;
+		this.old_field17 = old_class109.old_method539(1534049442);
+	}
+
+	protected void old_method14(boolean var1, int var2) {
+		if (var1 != this.old_field22) {
+			this.old_field22 = var1;
+			old_class178.old_field1182.old_method887(var1, (byte)-37);
+			old_class178.old_field1182.old_method888((byte)-25);
+		}
+
+	}
+
+	protected final boolean old_method30(int var1) {
+		String var2 = this.getDocumentBase().getHost().toLowerCase();
+		if (!var2.equals("jagex.com") && !var2.endsWith(".jagex.com")) {
+			if (!var2.equals("runescape.com") && !var2.endsWith(".runescape.com")) {
+				if (var2.endsWith("127.0.0.1")) {
+					return true;
+				} else {
+					while (var2.length() > 0 && var2.charAt(var2.length() - 1) >= '0' && var2.charAt(var2.length() - 1) <= '9') {
+						var2 = var2.substring(0, var2.length() - 1);
+					}
+
+					if (var2.endsWith("192.168.1.")) {
+						return true;
+					} else {
+						this.old_method24("invalidhost", 1669979986);
+						return false;
+					}
+				}
+			} else {
+				return true;
+			}
+		} else {
+			return true;
+		}
+	}
+
+	@Override
+	public void run() {
+		try {
+			if (old_class482.old_field4029 != null) {
+				String var1 = old_class482.old_field4029.toLowerCase();
+				if (var1.indexOf("sun") != -1 || var1.indexOf("apple") != -1) {
+					String var2 = old_class483.old_field4030;
+					if (var2.equals("1.1") || var2.startsWith("1.1.") || var2.equals("1.2") || var2.startsWith("1.2.") || var2.equals("1.3") || var2.startsWith("1.3.") || var2.equals("1.4") || var2.startsWith("1.4.") || var2.equals("1.5") || var2.startsWith("1.5.") || var2.equals("1.6.0")) {
+						this.old_method24("wrongjava", 305949479);
+						return;
+					}
+
+					if (var2.startsWith("1.6.0_")) {
+						int var3;
+						for (var3 = 6; var3 < var2.length() && old_class146.old_method655(var2.charAt(var3), 770001992); ++var3) {
+						}
+
+						String var4 = var2.substring(6, var3);
+						if (old_class329.old_method1397(var4, -1881729951) && old_class329.old_method1391(var4, -2006181389) < 10) {
+							this.old_method24("wrongjava", 600245820);
+							return;
+						}
+					}
+
+					old_field10 = 5;
+				}
+			}
+
+			this.setFocusCycleRoot(true);
+			this.old_method13((byte)3);
+			this.old_method33(208117174);
+
+			Object var7;
+			try {
+				var7 = new old_class361();
+			} catch (Throwable var5) {
+				var7 = new old_class373();
+			}
+
+			old_class46.old_field219 = (old_class502)var7;
+
+			while (0L == old_field30 || old_class109.old_method539(1742672473) < old_field30) {
+				old_field8 = old_class46.old_field219.old_method2480(old_field9, old_field10, (byte)20);
+
+				for (int var8 = 0; var8 < old_field8; ++var8) {
+					this.old_method15(-1721255354);
+				}
+
+				this.old_method17(543987991);
+				this.old_method29(this.old_field24, -272604069);
+			}
+		} catch (Exception var6) {
+			old_class7.old_method85((String)null, var6, 886881488);
+			this.old_method24("crash", -83914700);
+		}
+
+		this.old_method19((byte)0);
+	}
+
+	void old_method15(int var1) {
+		long var2 = old_class109.old_method539(1856927133);
+		long var4 = old_field13[old_class425.old_field3179];
+		old_field13[old_class425.old_field3179] = var2;
+		old_class425.old_field3179 = old_class425.old_field3179 + 1 & 31;
+		if (0L != var4 && var2 > var4) {
+		}
+
+		synchronized(this) {
+			old_class100.old_field753 = old_field34;
+		}
+
+		this.old_method34(1753601126);
+	}
+
+	protected final void old_method16(int var1) {
+		this.old_field15 = true;
+	}
+
+	void old_method17(int var1) {
+		Container var2 = this.old_method25(1307206888);
+		long var3 = old_class109.old_method539(1925216454);
+		long var5 = old_field5[old_class471.old_field3929];
+		old_field5[old_class471.old_field3929] = var3;
+		old_class471.old_field3929 = old_class471.old_field3929 + 1 & 31;
+		if (var5 != 0L && var3 > var5) {
+			int var7 = (int)(var3 - var5);
+			old_field12 = ((var7 >> 1) + 32000) / var7;
+		}
+
+		if (++old_field27 - 1 > 50) {
+			old_field27 -= 50;
+			this.old_field15 = true;
+			this.old_field24.setSize(old_class485.old_field4033, old_class157.old_field1092);
+			this.old_field24.setVisible(true);
+			if (var2 == this.old_field23) {
+				Insets var8 = this.old_field23.getInsets();
+				this.old_field24.setLocation(this.old_field16 + var8.left, this.old_field36 + var8.top);
+			} else {
+				this.old_field24.setLocation(this.old_field16, this.old_field36);
+			}
+		}
+
+		if (this.old_field11) {
+			this.old_method32((short)239);
+		}
+
+		this.old_method18(-1664691529);
+		this.old_method23(this.old_field15, -1944984067);
+		if (this.old_field15) {
+			this.old_method31(-1724529603);
+		}
+
+		this.old_field15 = false;
+	}
+
+	final void old_method18(int var1) {
+		old_class202 var2 = this.old_method26(790707673);
+		if (this.old_field20 != var2.old_field1599 || this.old_field26 != var2.old_field1597 || this.old_field28) {
+			this.old_method11((byte)122);
+			this.old_field28 = false;
+		}
+
+	}
+
+	final void old_method21(byte var1) {
+		this.old_field28 = true;
+	}
+
+	final synchronized void old_method19(byte var1) {
+		if (!old_field14) {
+			old_field14 = true;
+
+			try {
+				this.old_field24.removeFocusListener(this);
+			} catch (Exception var6) {
+			}
+
+			try {
+				this.old_method4(-1298916795);
+			} catch (Exception var5) {
+			}
+
+			if (this.old_field23 != null) {
+				try {
+					System.exit(0);
+				} catch (Throwable var4) {
+				}
+			}
+
+			if (old_field7 != null) {
+				try {
+					old_field7.old_method2462(629286454);
+				} catch (Exception var3) {
+				}
+			}
+
+			this.old_method27(1929688897);
+		}
+	}
+
+	@Override
+	public final void start() {
+		if (old_field18 == this && !old_field14) {
+			old_field30 = 0L;
+		}
+	}
+
+	@Override
+	public final void stop() {
+		if (this == old_field18 && !old_field14) {
+			old_field30 = old_class109.old_method539(1944376316) + 4000L;
+		}
+	}
+
+	@Override
+	public final void destroy() {
+		if (old_field18 == this && !old_field14) {
+			old_field30 = old_class109.old_method539(2058818803);
+			old_class338.old_method1494(5000L);
+			this.old_method19((byte)0);
+		}
+	}
+
+	@Override
+	public final void update(Graphics var1) {
+		this.paint(var1);
+	}
+
+	@Override
+	public final synchronized void paint(Graphics var1) {
+		if (this == old_field18 && !old_field14) {
+			this.old_field15 = true;
+			if (old_class109.old_method539(2097061841) - this.old_field17 > 1000L) {
+				Rectangle var2 = var1.getClipBounds();
+				if (null == var2 || var2.width >= old_class485.old_field4033 && var2.height >= old_class157.old_field1092) {
+					this.old_field11 = true;
+				}
+			}
+
+		}
+	}
+
+	@Override
+	public final void focusGained(FocusEvent var1) {
+		old_field34 = true;
+		this.old_field15 = true;
+	}
+
+	@Override
+	public final void focusLost(FocusEvent var1) {
+		old_field34 = false;
+	}
+
+	@Override
+	public final void windowActivated(WindowEvent var1) {
+	}
+
+	@Override
+	public final void windowClosed(WindowEvent var1) {
+	}
+
+	@Override
+	public final void windowClosing(WindowEvent var1) {
+		this.destroy();
+	}
+
+	@Override
+	public final void windowDeactivated(WindowEvent var1) {
+	}
+
+	@Override
+	public final void windowDeiconified(WindowEvent var1) {
+	}
+
+	@Override
+	public final void windowIconified(WindowEvent var1) {
+	}
+
+	@Override
+	public final void windowOpened(WindowEvent var1) {
+	}
+
+	protected final void old_method20(int var1, String var2, boolean var3, byte var4) {
+		try {
+			Graphics var5 = this.old_field24.getGraphics();
+			if (null == old_class102.old_field772) {
+				old_class102.old_field772 = new Font("Helvetica", 1, 13);
+				old_class90.old_field571 = this.old_field24.getFontMetrics(old_class102.old_field772);
+			}
+
+			if (var3) {
+				var5.setColor(Color.black);
+				var5.fillRect(0, 0, old_class485.old_field4033, old_class157.old_field1092);
+			}
+
+			Color var6 = new Color(140, 17, 17);
+
+			try {
+				if (null == old_field29) {
+					old_field29 = this.old_field24.createImage(304, 34);
+				}
+
+				Graphics var7 = old_field29.getGraphics();
+				var7.setColor(var6);
+				var7.drawRect(0, 0, 303, 33);
+				var7.fillRect(2, 2, var1 * 3, 30);
+				var7.setColor(Color.black);
+				var7.drawRect(1, 1, 301, 31);
+				var7.fillRect(2 + var1 * 3, 2, 300 - var1 * 3, 30);
+				var7.setFont(old_class102.old_field772);
+				var7.setColor(Color.white);
+				var7.drawString(var2, (304 - old_class90.old_field571.stringWidth(var2)) / 2, 22);
+				var5.drawImage(old_field29, old_class485.old_field4033 / 2 - 152, old_class157.old_field1092 / 2 - 18, (ImageObserver)null);
+			} catch (Exception var10) {
+				int var8 = old_class485.old_field4033 / 2 - 152;
+				int var9 = old_class157.old_field1092 / 2 - 18;
+				var5.setColor(var6);
+				var5.drawRect(var8, var9, 303, 33);
+				var5.fillRect(var8 + 2, var9 + 2, var1 * 3, 30);
+				var5.setColor(Color.black);
+				var5.drawRect(var8 + 1, var9 + 1, 301, 31);
+				var5.fillRect(var8 + 2 + var1 * 3, var9 + 2, 300 - var1 * 3, 30);
+				var5.setFont(old_class102.old_field772);
+				var5.setColor(Color.white);
+				var5.drawString(var2, var8 + (304 - old_class90.old_field571.stringWidth(var2)) / 2, var9 + 22);
+			}
+		} catch (Exception var11) {
+			this.old_field24.repaint();
+		}
+
+	}
+
+	protected final void old_method36(int var1) {
+		old_field29 = null;
+		old_class102.old_field772 = null;
+		old_class90.old_field571 = null;
+	}
+
+	protected void old_method24(String var1, int var2) {
+		if (!this.old_field2) {
+			this.old_field2 = true;
+			System.out.println("error_game_" + var1);
+
+			try {
+				this.getAppletContext().showDocument(new URL(this.getCodeBase(), "error_game_" + var1 + ".ws"), "_self");
+			} catch (Exception var4) {
+			}
+
+		}
+	}
+
+	Container old_method25(int var1) {
+		return (Container)(null != this.old_field23 ? this.old_field23 : this);
+	}
+
+	old_class202 old_method26(int var1) {
+		Container var2 = this.old_method25(1639694997);
+		int var3 = Math.max(var2.getWidth(), this.old_field3);
+		int var4 = Math.max(var2.getHeight(), this.old_field19);
+		if (null != this.old_field23) {
+			Insets var5 = this.old_field23.getInsets();
+			var3 -= var5.right + var5.left;
+			var4 -= var5.top + var5.bottom;
+		}
+
+		return new old_class202(var3, var4);
+	}
+
+	protected final boolean old_method28(int var1) {
+		return null != this.old_field23;
+	}
+
+	protected static final void old_method38(int var0) {
+		old_class46.old_field219.old_method2479(-1021685028);
+
+		int var1;
+		for (var1 = 0; var1 < 32; ++var1) {
+			old_field5[var1] = 0L;
+		}
+
+		for (var1 = 0; var1 < 32; ++var1) {
+			old_field13[var1] = 0L;
+		}
+
+		old_field8 = 0;
+	}
+
+	protected static int old_method39(int var0) {
+		int var1 = 0;
+		if (old_class137.old_field975 == null || !old_class137.old_field975.isValid()) {
+			try {
+				Iterator var2 = ManagementFactory.getGarbageCollectorMXBeans().iterator();
+
+				while (var2.hasNext()) {
+					GarbageCollectorMXBean var3 = (GarbageCollectorMXBean)var2.next();
+					if (var3.isValid()) {
+						old_class137.old_field975 = var3;
+						old_field37 = -1L;
+						old_field6 = -1L;
+					}
+				}
+			} catch (Throwable var10) {
+			}
+		}
+
+		if (old_class137.old_field975 != null) {
+			long var11 = old_class109.old_method539(2073385642);
+			long var4 = old_class137.old_field975.getCollectionTime();
+			if (old_field6 != -1L) {
+				long var6 = var4 - old_field6;
+				long var8 = var11 - old_field37;
+				if (var8 != 0L) {
+					var1 = (int)(var6 * 100L / var8);
+				}
+			}
+
+			old_field6 = var4;
+			old_field37 = var11;
+		}
+
+		return var1;
+	}
+}</code></pre>
 </body>
 </html>

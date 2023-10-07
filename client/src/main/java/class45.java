@@ -5,6 +5,7 @@ import java.net.URI;
 import java.net.URL;
 import netscape.javascript.JSObject;
 
+@SuppressWarnings("ALL")
 public class class45 {
    static Applet field311 = null;
    static String field308 = "";

@@ -47,8 +47,8 @@ public class class9 extends class37 {
 
       for(int var2 = 0; var2 < var1; ++var2) {
          int var3 = super.field187[var2];
-         if ((var3 + 8388608 & -16777216) != 0) {
-            var3 = 8388607 ^ var3 >> 31;
+         if ((var3 + 0x800000 & 0xff000000) != 0) {
+            var3 = 0x7fffff ^ var3 >> 31;
          }
 
          this.field55[var2 * 2] = (byte)(var3 >> 8);

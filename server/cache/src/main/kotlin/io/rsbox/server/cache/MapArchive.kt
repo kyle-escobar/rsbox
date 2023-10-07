@@ -7,14 +7,11 @@ import io.netty.buffer.Unpooled
 import io.rsbox.server.cache.map.MapRegionEntry
 import io.rsbox.server.cache.map.MapRegionLocation
 import io.rsbox.server.cache.map.MapRegionTerrain
-import io.rsbox.server.cache.model.Archive
-import io.rsbox.server.common.inject
 import io.rsbox.server.config.XteaConfig
 import io.rsbox.server.util.buffer.discard
 import io.rsbox.server.util.buffer.readIncrSmallSmart
 import io.rsbox.server.util.buffer.readUnsignedShortSmart
-import org.openrs2.cache.Js5Compression
-import org.openrs2.crypto.XteaKey
+import org.openrs2.crypto.SymmetricKey
 import org.tinylog.kotlin.Logger
 
 class MapArchive(private val entryMap: MutableMap<Int, MapRegionEntry> = mutableMapOf()) : Map<Int, MapRegionEntry> by entryMap {
@@ -135,7 +132,7 @@ class MapArchive(private val entryMap: MutableMap<Int, MapRegionEntry> = mutable
             return loadLocationCollision(entry, locId, packedLocation)
         }
 
-        private fun IntArray.toXteaKey() = XteaKey(this[0], this[1], this[2], this[3])
+        private fun IntArray.toXteaKey() = SymmetricKey(this[0], this[1], this[2], this[3])
     }
 
 }
