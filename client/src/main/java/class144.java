@@ -1,6 +1,6 @@
 public class class144 extends class133 {
    static class363 field1347;
-   static int field1352;
+   static int baseY;
    int field1343;
    int field1344;
    int field1345;

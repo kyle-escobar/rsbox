@@ -2660,8 +2660,8 @@ public class class63 {
             int var6;
             if (var0 == 3308) {
                var4 = class44.field306;
-               var5 = (class146.field1362.field949 >> 7) + class342.field3837;
-               var6 = (class146.field1362.field963 >> 7) + class144.field1352;
+               var5 = (class146.field1362.field949 >> 7) + class342.baseX;
+               var6 = (class146.field1362.field963 >> 7) + class144.baseY;
                field483[++field479 - 1] = var6 + (var4 << 28) + (var5 << 14);
                return 1;
             } else if (var0 == 3309) {
@@ -4129,8 +4129,8 @@ public class class63 {
       int var4;
       if (var0 == 6600) {
          var4 = class44.field306;
-         int var17 = class342.field3837 + (class146.field1362.field949 >> 7);
-         int var13 = class144.field1352 + (class146.field1362.field963 >> 7);
+         int var17 = class342.baseX + (class146.field1362.field949 >> 7);
+         int var13 = class144.baseY + (class146.field1362.field963 >> 7);
          Client.method1738().method8216(var4, var17, var13, true);
          return 1;
       } else {
@@ -4744,9 +4744,9 @@ public class class63 {
 
    static void method6677(int var0, class330 var1, boolean var2) {
       class253 var4 = Client.method1738().method8376(var0);
-      int var5 = class146.field1362.field759;
-      int var6 = (class146.field1362.field949 >> 7) + class342.field3837;
-      int var7 = (class146.field1362.field963 >> 7) + class144.field1352;
+      int var5 = class146.field1362.plane;
+      int var6 = (class146.field1362.field949 >> 7) + class342.baseX;
+      int var7 = (class146.field1362.field963 >> 7) + class144.baseY;
       class330 var8 = new class330(var5, var6, var7);
       Client.method1738().method8333(var4, var8, var1, var2);
    }

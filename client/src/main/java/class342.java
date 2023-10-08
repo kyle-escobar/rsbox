@@ -1,7 +1,7 @@
 public abstract class class342 {
    static class531 field3833 = new class531();
    static int field3836 = 0;
-   static int field3837;
+   static int baseX;
    boolean field3822;
    boolean field3835;
    class527 field3823;

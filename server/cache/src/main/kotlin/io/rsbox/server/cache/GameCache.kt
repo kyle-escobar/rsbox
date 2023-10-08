@@ -32,7 +32,7 @@ class GameCache {
          */
 
         configArchive = ConfigArchive.load(readArchive(ConfigArchive.id))
-        mapArchive = MapArchive.load()
+        mapArchive = MapArchive()
     }
 
     fun readArchive(archiveId: Int): Archive {

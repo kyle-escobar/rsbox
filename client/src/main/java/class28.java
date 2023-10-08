@@ -31,7 +31,7 @@ public class class28 {
          var10 = var2.readUnsignedShortLE();
          if (var8 >= 0 && var9 >= 0 && var8 < 104 && var9 < 104) {
             var11 = var4 + 1;
-            if (class146.field1362.field945[0] >= var8 - var11 && class146.field1362.field945[0] <= var8 + var11 && class146.field1362.field1012[0] >= var9 - var11 && class146.field1362.field1012[0] <= var11 + var9 && class141.clientPreferences.method1629() != 0 && var5 > 0 && Client.field1632 < 50) {
+            if (class146.field1362.pathX[0] >= var8 - var11 && class146.field1362.pathX[0] <= var8 + var11 && class146.field1362.pathY[0] >= var9 - var11 && class146.field1362.pathY[0] <= var11 + var9 && class141.clientPreferences.method1629() != 0 && var5 > 0 && Client.field1632 < 50) {
                Client.field1684[Client.field1632] = var10;
                Client.field1685[Client.field1632] = var5;
                Client.field1686[Client.field1632] = var6;
@@ -157,8 +157,8 @@ public class class28 {
             var4 = (var3 >> 4 & 7) + class265.field2959;
             var5 = class380.field4386 + (var3 & 7);
             var6 = var2.readUnsignedShort();
-            var7 = var2.writeIntIME();
-            var8 = var2.writeIntIME();
+            var7 = var2.readIntIME();
+            var8 = var2.readIntIME();
             if (var4 >= 0 && var5 >= 0 && var4 < 104 && var5 < 104) {
                class368 var38 = Client.field1568[class44.field306][var4][var5];
                if (null != var38) {
@@ -227,11 +227,11 @@ public class class28 {
                   var15 = Client.field1507[var13];
                   byte var16 = var2.readByteAdd();
                   byte var17 = var2.readByte();
-                  class84 var18;
+                  Player var18;
                   if (var7 == Client.localPlayerIndex) {
                      var18 = class146.field1362;
                   } else {
-                     var18 = Client.field1527[var7];
+                     var18 = Client.players[var7];
                   }
 
                   if (var18 != null) {

@@ -25,21 +25,7 @@ class GpiManager(private val player: Player) {
         for(index in 1 until World.MAX_PLAYERS) {
             if(index == player.index) continue
             externalPlayerIndexes[externalPlayerCount++] = index
-            tileUpdates[index] = world.players[index]?.tile?.regionPacked ?: 0
-        }
-    }
-
-    fun reset() {
-        localPlayerCount = 0
-        externalPlayerCount = 0
-
-        for(i in 1 until World.MAX_PLAYERS) {
-            skipFlags[i] = skipFlags[i] shr 0x1
-            if(localPlayers[i]?.tile ?: error("") != null) {
-                localPlayerIndexes[localPlayerCount++] = i
-            } else {
-                externalPlayerIndexes[externalPlayerCount++] = i
-            }
+            tileUpdates[index] = world.players[index]?.tile?.packed18Bit ?: 0
         }
     }
 }

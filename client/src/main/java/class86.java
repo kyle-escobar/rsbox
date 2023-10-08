@@ -44,8 +44,8 @@ public final class class86 extends class102 {
    }
 
    final void method1846(int var1, class223 var2) {
-      int var4 = super.field945[0];
-      int var5 = super.field1012[0];
+      int var4 = super.pathX[0];
+      int var5 = super.pathY[0];
       if (var1 == 0) {
          --var4;
          ++var5;
@@ -91,13 +91,13 @@ public final class class86 extends class102 {
       }
 
       for(int var6 = super.field1010; var6 > 0; --var6) {
-         super.field945[var6] = super.field945[var6 - 1];
-         super.field1012[var6] = super.field1012[var6 - 1];
+         super.pathX[var6] = super.pathX[var6 - 1];
+         super.pathY[var6] = super.pathY[var6 - 1];
          super.field998[var6] = super.field998[var6 - 1];
       }
 
-      super.field945[0] = var4;
-      super.field1012[0] = var5;
+      super.pathX[0] = var4;
+      super.pathY[0] = var5;
       super.field998[0] = var2;
    }
 
@@ -107,21 +107,21 @@ public final class class86 extends class102 {
       }
 
       if (!var3) {
-         int var5 = var1 - super.field945[0];
-         int var6 = var2 - super.field1012[0];
+         int var5 = var1 - super.pathX[0];
+         int var6 = var2 - super.pathY[0];
          if (var5 >= -8 && var5 <= 8 && var6 >= -8 && var6 <= 8) {
             if (super.field1010 < 9) {
                ++super.field1010;
             }
 
             for(int var7 = super.field1010; var7 > 0; --var7) {
-               super.field945[var7] = super.field945[var7 - 1];
-               super.field1012[var7] = super.field1012[var7 - 1];
+               super.pathX[var7] = super.pathX[var7 - 1];
+               super.pathY[var7] = super.pathY[var7 - 1];
                super.field998[var7] = super.field998[var7 - 1];
             }
 
-            super.field945[0] = var1;
-            super.field1012[0] = var2;
+            super.pathX[0] = var1;
+            super.pathY[0] = var2;
             super.field998[0] = class223.field2457;
             return;
          }
@@ -130,10 +130,10 @@ public final class class86 extends class102 {
       super.field1010 = 0;
       super.field1015 = 0;
       super.field1014 = 0;
-      super.field945[0] = var1;
-      super.field1012[0] = var2;
-      super.field949 = 128 * super.field945[0] + super.field981 * 64;
-      super.field963 = 128 * super.field1012[0] + super.field981 * 64;
+      super.pathX[0] = var1;
+      super.pathY[0] = var2;
+      super.field949 = 128 * super.pathX[0] + super.field981 * 64;
+      super.field963 = 128 * super.pathY[0] + super.field981 * 64;
    }
 
    protected final class249 method4273() {

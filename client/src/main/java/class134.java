@@ -11,16 +11,16 @@ public class class134 extends class133 {
    }
 
    static int method2468(PacketBuffer var0) {
-      int var2 = var0.method8483(2);
+      int var2 = var0.readBits(2);
       int var3;
       if (var2 == 0) {
          var3 = 0;
       } else if (var2 == 1) {
-         var3 = var0.method8483(5);
+         var3 = var0.readBits(5);
       } else if (var2 == 2) {
-         var3 = var0.method8483(8);
+         var3 = var0.readBits(8);
       } else {
-         var3 = var0.method8483(11);
+         var3 = var0.readBits(11);
       }
 
       return var3;

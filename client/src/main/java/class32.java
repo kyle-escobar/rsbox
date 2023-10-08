@@ -77,11 +77,11 @@ public class class32 {
       }
 
       if (1 == Client.field1521 && Client.privilege >= 2 && Client.field1445 % 50 == 0 && (class146.field1362.field949 >> 7 != class468.field4805 >> 7 || class44.field302 >> 7 != class146.field1362.field963 >> 7)) {
-         var13 = class146.field1362.field759;
-         var14 = class342.field3837 + (class468.field4805 >> 7);
-         var15 = (class44.field302 >> 7) + class144.field1352;
+         var13 = class146.field1362.plane;
+         var14 = class342.baseX + (class468.field4805 >> 7);
+         var15 = (class44.field302 >> 7) + class144.baseY;
          class308 var16 = class308.method8607(ClientPacket.field3432, Client.serverConnection.field1046);
-         var16.packet.writeIntME(Client.field1540);
+         var16.packet.readIntME(Client.field1540);
          var16.packet.writeShortLEAdd(var14);
          var16.packet.writeByteAdd(var13);
          var16.packet.writeShortAdd(var15);

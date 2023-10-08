@@ -9,7 +9,6 @@ import io.rsbox.server.engine.net.Protocol
 import io.rsbox.server.engine.net.Session
 import io.rsbox.server.engine.net.StatusResponse
 import io.rsbox.server.engine.net.game.GameProtocol
-import io.rsbox.server.engine.net.game.packet.server.RebuildNormalServerPacket
 
 class LoginProtocol(session: Session) : Protocol(session) {
 
@@ -30,7 +29,7 @@ class LoginProtocol(session: Session) : Protocol(session) {
             return
         }
 
-        world.players.add(player)
+        world.addPlayer(player)
 
         val response = LoginResponse(player)
         session.writeAndFlush(response).addListener {

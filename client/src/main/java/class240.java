@@ -78,11 +78,11 @@ public final class class240 {
                }
             }
 
-            var9 = class116.field1116;
-            int[] var16 = class116.field1120;
+            var9 = class116.localPlayerCount;
+            int[] var16 = class116.localPlayerIndexes;
 
             for(var11 = 0; var11 < var9; ++var11) {
-               class84 var19 = Client.field1527[var16[var11]];
+               Player var19 = Client.players[var16[var11]];
                if (var19 != null && var19.method2065() && !var19.field760 && class146.field1362 != var19) {
                   var13 = var19.field949 / 32 - class146.field1362.field949 / 32;
                   int var14 = var19.field963 / 32 - class146.field1362.field963 / 32;
@@ -111,13 +111,13 @@ public final class class240 {
                }
 
                if (2 == Client.field1452) {
-                  var11 = 2 + (Client.field1455 * 4 - class342.field3837 * 4) - class146.field1362.field949 / 32;
-                  var12 = Client.field1523 * 4 - class144.field1352 * 4 + 2 - class146.field1362.field963 / 32;
+                  var11 = 2 + (Client.field1455 * 4 - class342.baseX * 4) - class146.field1362.field949 / 32;
+                  var12 = Client.field1523 * 4 - class144.baseY * 4 + 2 - class146.field1362.field963 / 32;
                   Client.method3217(var1, var2, var11, var12, class95.field878[1], var5);
                }
 
-               if (Client.field1452 == 10 && Client.field1454 >= 0 && Client.field1454 < Client.field1527.length) {
-                  class84 var21 = Client.field1527[Client.field1454];
+               if (Client.field1452 == 10 && Client.field1454 >= 0 && Client.field1454 < Client.players.length) {
+                  Player var21 = Client.players[Client.field1454];
                   if (var21 != null) {
                      var12 = var21.field949 / 32 - class146.field1362.field949 / 32;
                      var13 = var21.field963 / 32 - class146.field1362.field963 / 32;

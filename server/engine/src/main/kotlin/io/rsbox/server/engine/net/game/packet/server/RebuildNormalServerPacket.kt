@@ -21,7 +21,7 @@ data class RebuildNormalServerPacket(
         override fun encode(session: Session, packet: RebuildNormalServerPacket, out: JagByteBuf) {
             if(packet.gpi) {
                 out.switchWriteAccess(BIT_MODE)
-                out.writeBits(packet.player.tile.packed, 30)
+                out.writeBits(packet.player.tile.packed30Bit, 30)
                 for(i in 1 until World.MAX_PLAYERS) {
                     if(i == packet.player.index) continue
                     out.writeBits(packet.player.gpi.tileUpdates[i], 18)

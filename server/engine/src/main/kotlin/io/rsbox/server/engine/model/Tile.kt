@@ -1,29 +1,34 @@
 package io.rsbox.server.engine.model
 
 import kotlin.math.abs
-import kotlin.math.max
+import kotlin.math.ceil
+import kotlin.math.sqrt
 
 @JvmInline
 value class Tile(val packed: Int) {
 
     constructor(x: Int, y: Int, level: Int = 0) : this(
-        (y and 0x3FFF) or ((x and 0x3FFF) shl 14) or ((level and 0x3) shl 28)
+        ((x and 0x7FFF) or ((y and 0x7FFF) shl 15) or (level shl 30))
     )
 
-    val x get() = packed shr 14 and 0x3FFF
-    val y get() = packed and 0x3FFF
-    val level get() = packed shr 28 and 0x3
+    val x get() = packed and 0x7FFF
+    val y get() = (packed shr 15) and 0x7FFF
+    val level get() = (packed ushr 30) and 0x3
 
-    val chunkX get() = (x shr 3)
-    val chunkY get() = (y shr 3)
-    val chunkId get() = chunkX or (chunkY shl 11) or (level shl 22)
+    val chunkX get() = x shr 3
+    val chunkY get() = y shr 3
 
-    val regionX get() = (x shr 6)
-    val regionY get() = (y shr 6)
+    val regionBaseX get() = (x shr 3) - 6
+    val regionBaseY get() = (y shr 3) - 6
+    val regionX get() = x shr 6
+    val regionY get() = y shr 6
     val regionId get() = (regionX shl 8) or regionY
-    val regionPacked get() = y shr 13 or (x shr 13 shl 8) or (level shl 16)
 
-    val packedOffset get() = ((x and 0x7) shl 4) or (y and 0x7)
+    val packed18Bit get() = (y shr 13) or ((x shr 13) shl 8) or ((level and 0x3) shl 16)
+    val packed30Bit get() = (y and 0x3FFF) or ((x and 0x3FFF) shl 14) or ((level and 0x3) shl 28)
+
+    val chunkBase get() = Tile(chunkX, chunkY, level)
+    val regionBase get() = Tile(regionBaseX, regionBaseY, level)
 
     fun clone() = Tile(packed)
 
@@ -33,18 +38,20 @@ value class Tile(val packed: Int) {
         level + dlevel
     )
 
-    fun distanceTo(other: Tile): Int {
-        val dx = abs(other.x - x)
-        val dy = abs(other.y - y)
-        return max(dx, dy)
+    fun isWithinRadius(other: Tile, radius: Int): Boolean {
+        if(other.level != level) return false
+        val dx = abs(x - other.x)
+        val dy = abs(y - other.y)
+        return dx <= radius && dy <= radius
     }
 
-    fun withinDistance(other: Tile, distance: Int = 15): Boolean {
-        if(other.level != level) return false
-        val dx = other.x - x
-        val dy = other.y - y
-        return dx <= distance && dx >= -distance && dy <= distance && dy >= -distance
+    fun distanceTo(other: Tile): Int {
+        val dx = x - other.x
+        val dy = y - other.y
+        return ceil(sqrt(((dx * dx + dy * dy).toDouble()))).toInt()
     }
+
+    fun deltaTo(other: Tile) = abs(x - other.x) + abs(y - other.y)
 
     override fun toString(): String {
         return "Tile(x=$x, y=$y, level=$level)"

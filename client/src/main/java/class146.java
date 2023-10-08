@@ -1,7 +1,7 @@
 import java.util.concurrent.Callable;
 
 class class146 implements Callable {
-   static class84 field1362;
+   static Player field1362;
    static int field1364;
    // $FF: synthetic field
    final class120[] val$curveLoadJobs;

@@ -12,31 +12,31 @@ final class class348 implements Comparator {
       }
    }
 
-   static void method6498(PacketBuffer var0, int var1) {
-      boolean var3 = var0.method8483(1) == 1;
+   static void readPlayerUpdate(PacketBuffer buf, int index) {
+      boolean var3 = buf.readBits(1) == 1;
       if (var3) {
-         class116.field1124[++class116.field1121 - 1] = var1;
+         class116.pendingPlayerUpdateIndexes[++class116.pendingUpdateCount - 1] = index;
       }
 
-      int var4 = var0.method8483(2);
-      class84 var5 = Client.field1527[var1];
+      int var4 = buf.readBits(2);
+      Player player = Client.players[index];
       if (var4 == 0) {
          if (var3) {
-            var5.field744 = false;
-         } else if (Client.localPlayerIndex == var1) {
+            player.teleporting = false;
+         } else if (Client.localPlayerIndex == index) {
             throw new RuntimeException();
          } else {
-            class116.field1115[var1] = (var5.field759 << 28) + (var5.field945[0] + class342.field3837 >> 13 << 14) + (var5.field1012[0] + class144.field1352 >> 13);
-            if (var5.field977 != -1) {
-               class116.field1122[var1] = var5.field977;
+            class116.playerRegions[index] = (player.plane << 28) + (player.pathX[0] + class342.baseX >> 13 << 14) + (player.pathY[0] + class144.baseY >> 13);
+            if (player.field977 != -1) {
+               class116.field1122[index] = player.field977;
             } else {
-               class116.field1122[var1] = var5.field1007;
+               class116.field1122[index] = player.field1007;
             }
 
-            class116.field1123[var1] = var5.field975;
-            Client.field1527[var1] = null;
-            if (var0.method8483(1) != 0) {
-               class116.method3853(var0, var1);
+            class116.targetIndexes[index] = player.targetIndex;
+            Client.players[index] = null;
+            if (buf.readBits(1) != 0) {
+               class116.readExternalPlayerUpdate(buf, index);
             }
 
          }
@@ -45,9 +45,9 @@ final class class348 implements Comparator {
          int var7;
          int var8;
          if (var4 == 1) {
-            var6 = var0.method8483(3);
-            var7 = var5.field945[0];
-            var8 = var5.field1012[0];
+            var6 = buf.readBits(3);
+            var7 = player.pathX[0];
+            var8 = player.pathY[0];
             if (var6 == 0) {
                --var7;
                --var8;
@@ -70,24 +70,24 @@ final class class348 implements Comparator {
                ++var8;
             }
 
-            if (var1 != Client.localPlayerIndex || var5.field949 >= 1536 && var5.field963 >= 1536 && var5.field949 < 11776 && var5.field963 < 11776) {
+            if (index != Client.localPlayerIndex || player.field949 >= 1536 && player.field963 >= 1536 && player.field949 < 11776 && player.field963 < 11776) {
                if (var3) {
-                  var5.field744 = true;
-                  var5.field758 = var7;
-                  var5.field766 = var8;
+                  player.teleporting = true;
+                  player.field758 = var7;
+                  player.field766 = var8;
                } else {
-                  var5.field744 = false;
-                  var5.method1786(var7, var8, class116.field1114[var1]);
+                  player.teleporting = false;
+                  player.method1786(var7, var8, class116.field1114[index]);
                }
             } else {
-               var5.method1795(var7, var8);
-               var5.field744 = false;
+               player.method1795(var7, var8);
+               player.teleporting = false;
             }
 
          } else if (var4 == 2) {
-            var6 = var0.method8483(4);
-            var7 = var5.field945[0];
-            var8 = var5.field1012[0];
+            var6 = buf.readBits(4);
+            var7 = player.pathX[0];
+            var8 = player.pathY[0];
             if (var6 == 0) {
                var7 -= 2;
                var8 -= 2;
@@ -134,28 +134,28 @@ final class class348 implements Comparator {
                var8 += 2;
             }
 
-            if (Client.localPlayerIndex != var1 || var5.field949 >= 1536 && var5.field963 >= 1536 && var5.field949 < 11776 && var5.field963 < 11776) {
+            if (Client.localPlayerIndex != index || player.field949 >= 1536 && player.field963 >= 1536 && player.field949 < 11776 && player.field963 < 11776) {
                if (var3) {
-                  var5.field744 = true;
-                  var5.field758 = var7;
-                  var5.field766 = var8;
+                  player.teleporting = true;
+                  player.field758 = var7;
+                  player.field766 = var8;
                } else {
-                  var5.field744 = false;
-                  var5.method1786(var7, var8, class116.field1114[var1]);
+                  player.teleporting = false;
+                  player.method1786(var7, var8, class116.field1114[index]);
                }
             } else {
-               var5.method1795(var7, var8);
-               var5.field744 = false;
+               player.method1795(var7, var8);
+               player.teleporting = false;
             }
 
          } else {
-            var6 = var0.method8483(1);
+            var6 = buf.readBits(1);
             int var9;
             int var10;
             int var11;
             int var12;
             if (var6 == 0) {
-               var7 = var0.method8483(12);
+               var7 = buf.readBits(12);
                var8 = var7 >> 10;
                var9 = var7 >> 5 & 31;
                if (var9 > 15) {
@@ -167,51 +167,51 @@ final class class348 implements Comparator {
                   var10 -= 32;
                }
 
-               var11 = var5.field945[0] + var9;
-               var12 = var5.field1012[0] + var10;
-               if (var1 != Client.localPlayerIndex || var5.field949 >= 1536 && var5.field963 >= 1536 && var5.field949 < 11776 && var5.field963 < 11776) {
+               var11 = player.pathX[0] + var9;
+               var12 = player.pathY[0] + var10;
+               if (index != Client.localPlayerIndex || player.field949 >= 1536 && player.field963 >= 1536 && player.field949 < 11776 && player.field963 < 11776) {
                   if (var3) {
-                     var5.field744 = true;
-                     var5.field758 = var11;
-                     var5.field766 = var12;
+                     player.teleporting = true;
+                     player.field758 = var11;
+                     player.field766 = var12;
                   } else {
-                     var5.field744 = false;
-                     var5.method1786(var11, var12, class116.field1114[var1]);
+                     player.teleporting = false;
+                     player.method1786(var11, var12, class116.field1114[index]);
                   }
                } else {
-                  var5.method1795(var11, var12);
-                  var5.field744 = false;
+                  player.method1795(var11, var12);
+                  player.teleporting = false;
                }
 
-               var5.field759 = (byte)(var8 + var5.field759 & 3);
-               if (var1 == Client.localPlayerIndex) {
-                  class44.field306 = var5.field759;
+               player.plane = (byte)(var8 + player.plane & 3);
+               if (index == Client.localPlayerIndex) {
+                  class44.field306 = player.plane;
                }
 
             } else {
-               var7 = var0.method8483(30);
+               var7 = buf.readBits(30);
                var8 = var7 >> 28;
                var9 = var7 >> 14 & 16383;
                var10 = var7 & 16383;
-               var11 = (class342.field3837 + var5.field945[0] + var9 & 16383) - class342.field3837;
-               var12 = (var10 + var5.field1012[0] + class144.field1352 & 16383) - class144.field1352;
-               if (Client.localPlayerIndex != var1 || var5.field949 >= 1536 && var5.field963 >= 1536 && var5.field949 < 11776 && var5.field963 < 11776) {
+               var11 = (class342.baseX + player.pathX[0] + var9 & 16383) - class342.baseX;
+               var12 = (var10 + player.pathY[0] + class144.baseY & 16383) - class144.baseY;
+               if (Client.localPlayerIndex != index || player.field949 >= 1536 && player.field963 >= 1536 && player.field949 < 11776 && player.field963 < 11776) {
                   if (var3) {
-                     var5.field744 = true;
-                     var5.field758 = var11;
-                     var5.field766 = var12;
+                     player.teleporting = true;
+                     player.field758 = var11;
+                     player.field766 = var12;
                   } else {
-                     var5.field744 = false;
-                     var5.method1786(var11, var12, class116.field1114[var1]);
+                     player.teleporting = false;
+                     player.method1786(var11, var12, class116.field1114[index]);
                   }
                } else {
-                  var5.method1795(var11, var12);
-                  var5.field744 = false;
+                  player.method1795(var11, var12);
+                  player.teleporting = false;
                }
 
-               var5.field759 = (byte)(var5.field759 + var8 & 3);
-               if (var1 == Client.localPlayerIndex) {
-                  class44.field306 = var5.field759;
+               player.plane = (byte)(player.plane + var8 & 3);
+               if (index == Client.localPlayerIndex) {
+                  class44.field306 = player.plane;
                }
 
             }
@@ -219,10 +219,10 @@ final class class348 implements Comparator {
       }
    }
 
-   static void method6499(class84 var0, boolean var1) {
+   static void method6499(Player var0, boolean var1) {
       if (var0 != null && var0.method2065() && !var0.field760) {
          var0.field756 = false;
-         if ((Client.isLowDetail && class116.field1116 > 50 || class116.field1116 > 200) && var1 && var0.field989 == var0.field1013) {
+         if ((Client.isLowDetail && class116.localPlayerCount > 50 || class116.localPlayerCount > 200) && var1 && var0.field989 == var0.field1013) {
             var0.field756 = true;
          }
 

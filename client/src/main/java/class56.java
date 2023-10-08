@@ -308,8 +308,8 @@ public class class56 {
       this.field401.method7691(var1, var2);
       this.field403 = 2;
 
-      for(int var4 = 0; var4 < class116.field1116; ++var4) {
-         class84 var5 = Client.field1527[class116.field1120[var4]];
+      for(int var4 = 0; var4 < class116.localPlayerCount; ++var4) {
+         Player var5 = Client.players[class116.localPlayerIndexes[var4]];
          var5.method1812();
       }
 
@@ -419,8 +419,8 @@ public class class56 {
                Client.serverConnection.method2148(var4);
             }
 
-            for(int var6 = 0; var6 < class116.field1116; ++var6) {
-               class84 var5 = Client.field1527[class116.field1120[var6]];
+            for(int var6 = 0; var6 < class116.localPlayerCount; ++var6) {
+               Player var5 = Client.players[class116.localPlayerIndexes[var6]];
                var5.method1812();
             }
 

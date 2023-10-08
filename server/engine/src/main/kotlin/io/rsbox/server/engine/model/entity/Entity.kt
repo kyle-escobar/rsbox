@@ -19,6 +19,26 @@ abstract class Entity {
     var index: Int = -1
     var invisible = false
 
+    /**
+     * Update State fields
+     */
+
+    internal var teleport = false
+
+    var forceChat = ""
+
+    var faceAngle = 0
+    var faceEntityIndex = -1
+
+    var animation = 0
+    var animationDelay = 0
+
+    var graphic = 0
+    var graphicOffset = 0
+    var graphicDelay = 0
+
+
+
     abstract suspend fun cycle()
 
 }

@@ -1,5 +1,5 @@
-public final class class84 extends class102 {
-   boolean field744;
+public final class Player extends class102 {
+   boolean teleporting;
    boolean field756;
    boolean field760;
    class249 field751;
@@ -22,14 +22,14 @@ public final class class84 extends class102 {
    int field755;
    int field757;
    int field758;
-   int field759;
+   int plane;
    int field761;
    int field763;
    int field765;
    int field766;
    String[] field742 = new String[3];
 
-   class84() {
+   Player() {
       for(int var1 = 0; var1 < 3; ++var1) {
          this.field742[var1] = "";
       }
@@ -44,31 +44,31 @@ public final class class84 extends class102 {
       this.field738 = class426.field4610;
       this.field746 = class426.field4610;
       this.field762 = class426.field4610;
-      this.field744 = false;
+      this.teleporting = false;
    }
 
-   final void method1784(Buffer var1) {
-      var1.offset = 0;
-      int var3 = var1.readUnsignedByte();
+   final void updateAppearance(Buffer buf) {
+      buf.offset = 0;
+      int var3 = buf.readUnsignedByte();
       boolean var4 = true;
-      this.field739 = var1.readByte();
-      this.field752 = var1.readByte();
+      this.field739 = buf.readByte();
+      this.field752 = buf.readByte();
       int var5 = -1;
       this.field757 = 0;
       int[] var6 = new int[12];
 
-      int var8;
+      int i;
       int var9;
       int var10;
       for(int var7 = 0; var7 < 12; ++var7) {
-         var8 = var1.readUnsignedByte();
-         if (var8 == 0) {
+         i = buf.readUnsignedByte();
+         if (i == 0) {
             var6[var7] = 0;
          } else {
-            var9 = var1.readUnsignedByte();
-            var6[var7] = (var8 << 8) + var9;
+            var9 = buf.readUnsignedByte();
+            var6[var7] = (i << 8) + var9;
             if (var7 == 0 && 65535 == var6[0]) {
-               var5 = var1.readUnsignedShort();
+               var5 = buf.readUnsignedShort();
                break;
             }
 
@@ -85,13 +85,13 @@ public final class class84 extends class102 {
       if (Client.revision >= 213) {
          var28 = new int[12];
 
-         for(var8 = 0; var8 < 12; ++var8) {
-            var9 = var1.readUnsignedByte();
+         for(i = 0; i < 12; ++i) {
+            var9 = buf.readUnsignedByte();
             if (var9 == 0) {
-               var28[var8] = 0;
+               var28[i] = 0;
             } else {
-               var10 = var1.readUnsignedByte();
-               var28[var8] = (var9 << 8) + var10;
+               var10 = buf.readUnsignedByte();
+               var28[i] = (var9 << 8) + var10;
             }
          }
       }
@@ -99,7 +99,7 @@ public final class class84 extends class102 {
       int[] var29 = new int[5];
 
       for(var9 = 0; var9 < 5; ++var9) {
-         var10 = var1.readUnsignedByte();
+         var10 = buf.readUnsignedByte();
          if (var10 < 0 || var10 >= class164.field1774[var9].length) {
             var10 = 0;
          }
@@ -107,43 +107,43 @@ public final class class84 extends class102 {
          var29[var9] = var10;
       }
 
-      super.field989 = var1.readUnsignedShort();
+      super.field989 = buf.readUnsignedShort();
       if (super.field989 == 65535) {
          super.field989 = -1;
       }
 
-      super.field995 = var1.readUnsignedShort();
+      super.field995 = buf.readUnsignedShort();
       if (65535 == super.field995) {
          super.field995 = -1;
       }
 
       super.field948 = super.field995;
-      super.field993 = var1.readUnsignedShort();
+      super.field993 = buf.readUnsignedShort();
       if (65535 == super.field993) {
          super.field993 = -1;
       }
 
-      super.field1004 = var1.readUnsignedShort();
+      super.field1004 = buf.readUnsignedShort();
       if (super.field1004 == 65535) {
          super.field1004 = -1;
       }
 
-      super.field1001 = var1.readUnsignedShort();
+      super.field1001 = buf.readUnsignedShort();
       if (super.field1001 == 65535) {
          super.field1001 = -1;
       }
 
-      super.field984 = var1.readUnsignedShort();
+      super.field984 = buf.readUnsignedShort();
       if (65535 == super.field984) {
          super.field984 = -1;
       }
 
-      super.field953 = var1.readUnsignedShort();
+      super.field953 = buf.readUnsignedShort();
       if (65535 == super.field953) {
          super.field953 = -1;
       }
 
-      this.field740 = new class526(var1.readString(), class454.field4743);
+      this.field740 = new class526(buf.readString(), class454.field4743);
       this.method1812();
       this.method1785();
       this.method1805();
@@ -151,16 +151,16 @@ public final class class84 extends class102 {
          class524.field5155 = this.field740.method9155();
       }
 
-      this.field743 = var1.readUnsignedByte();
-      this.field761 = var1.readUnsignedShort();
-      this.field760 = var1.readUnsignedByte() == 1;
+      this.field743 = buf.readUnsignedByte();
+      this.field761 = buf.readUnsignedShort();
+      this.field760 = buf.readUnsignedByte() == 1;
       if (Client.field1434 == 0 && Client.privilege >= 2) {
          this.field760 = false;
       }
 
       class204[] var30 = null;
       boolean var31 = false;
-      int var11 = var1.readUnsignedShort();
+      int var11 = buf.readUnsignedShort();
       var31 = 1 == (var11 >> 15 & 1);
       int var12;
       if (var11 > 0 && var11 != 32768) {
@@ -170,7 +170,7 @@ public final class class84 extends class102 {
             int var13 = var11 >> 12 - var12 & 1;
             if (var13 == 1) {
                int var17 = var6[var12] - 512;
-               int var18 = var1.readUnsignedByte();
+               int var18 = buf.readUnsignedByte();
                boolean var19 = 0 != (var18 & 1);
                boolean var20 = (var18 & 2) != 0;
                class204 var21 = new class204(var17);
@@ -180,13 +180,13 @@ public final class class84 extends class102 {
                int var25;
                short var26;
                if (var19) {
-                  var22 = var1.readUnsignedByte();
+                  var22 = buf.readUnsignedByte();
                   var23 = new int[]{var22 & 15, var22 >> 4 & 15};
                   var24 = var21.field2198 != null && var23.length == var21.field2198.length;
 
                   for(var25 = 0; var25 < 2; ++var25) {
                      if (15 != var23[var25]) {
-                        var26 = (short)var1.readUnsignedShort();
+                        var26 = (short)buf.readUnsignedShort();
                         if (var24) {
                            var21.field2198[var23[var25]] = var26;
                         }
@@ -195,13 +195,13 @@ public final class class84 extends class102 {
                }
 
                if (var20) {
-                  var22 = var1.readUnsignedByte();
+                  var22 = buf.readUnsignedByte();
                   var23 = new int[]{var22 & 15, var22 >> 4 & 15};
                   var24 = null != var21.field2201 && var21.field2201.length == var23.length;
 
                   for(var25 = 0; var25 < 2; ++var25) {
                      if (15 != var23[var25]) {
-                        var26 = (short)var1.readUnsignedShort();
+                        var26 = (short)buf.readUnsignedShort();
                         if (var24) {
                            var21.field2201[var23[var25]] = var26;
                         }
@@ -215,10 +215,10 @@ public final class class84 extends class102 {
       }
 
       for(var12 = 0; var12 < 3; ++var12) {
-         this.field742[var12] = var1.readString();
+         this.field742[var12] = buf.readString();
       }
 
-      int var27 = var1.readUnsignedByte();
+      int var27 = buf.readUnsignedByte();
       if (null == this.field764) {
          this.field764 = new class314();
       }
@@ -361,7 +361,7 @@ public final class class84 extends class102 {
 
       this.method2073();
       if (var1 >= 0 && var1 < 104 && var2 >= 0 && var2 < 104) {
-         if (super.field945[0] >= 0 && super.field945[0] < 104 && super.field1012[0] >= 0 && super.field1012[0] < 104) {
+         if (super.pathX[0] >= 0 && super.pathX[0] < 104 && super.pathY[0] >= 0 && super.pathY[0] < 104) {
             if (var3 == class223.field2450) {
                Client.method1483(this, var1, var2, class223.field2450);
             }
@@ -380,11 +380,11 @@ public final class class84 extends class102 {
       super.field1010 = 0;
       super.field1015 = 0;
       super.field1014 = 0;
-      super.field945[0] = var1;
-      super.field1012[0] = var2;
+      super.pathX[0] = var1;
+      super.pathY[0] = var2;
       int var4 = this.method1788();
-      super.field949 = super.field945[0] * 128 + var4 * 64;
-      super.field963 = super.field1012[0] * 128 + var4 * 64;
+      super.field949 = super.pathX[0] * 128 + var4 * 64;
+      super.field963 = super.pathY[0] * 128 + var4 * 64;
    }
 
    final void method1792(int var1, int var2, class223 var3) {
@@ -393,13 +393,13 @@ public final class class84 extends class102 {
       }
 
       for(int var5 = super.field1010; var5 > 0; --var5) {
-         super.field945[var5] = super.field945[var5 - 1];
-         super.field1012[var5] = super.field1012[var5 - 1];
+         super.pathX[var5] = super.pathX[var5 - 1];
+         super.pathY[var5] = super.pathY[var5 - 1];
          super.field998[var5] = super.field998[var5 - 1];
       }
 
-      super.field945[0] = var1;
-      super.field1012[0] = var2;
+      super.pathX[0] = var1;
+      super.pathY[0] = var2;
       super.field998[0] = var3;
    }
 

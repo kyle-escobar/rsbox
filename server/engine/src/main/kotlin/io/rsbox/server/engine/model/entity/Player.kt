@@ -1,6 +1,7 @@
 package io.rsbox.server.engine.model.entity
 
 import io.rsbox.server.config.ServerConfig
+import io.rsbox.server.engine.model.Appearance
 import io.rsbox.server.engine.model.Tile
 import io.rsbox.server.engine.model.manager.GpiManager
 import io.rsbox.server.engine.model.manager.InterfaceManager
@@ -8,8 +9,8 @@ import io.rsbox.server.engine.model.manager.SceneManager
 import io.rsbox.server.engine.model.ui.DisplayMode
 import io.rsbox.server.engine.net.Session
 import io.rsbox.server.engine.net.login.LoginRequest
+import io.rsbox.server.engine.sync.update.PlayerUpdateFlag
 import org.tinylog.kotlin.Logger
-import java.io.File
 
 class Player internal constructor(val session: Session) : Entity() {
 
@@ -36,6 +37,12 @@ class Player internal constructor(val session: Session) : Entity() {
     var privilege = 3
     var isMember = true
     var displayMode = DisplayMode.RESIZABLE_MODERN
+    var appearance = Appearance.DEFAULT
+    var skullIcon = -1
+    var prayerIcon = -1
+    var transmog = -1
+
+    val updateFlags = sortedSetOf<PlayerUpdateFlag>()
 
     override suspend fun cycle() {
 
@@ -50,19 +57,25 @@ class Player internal constructor(val session: Session) : Entity() {
     fun login() {
         Logger.info("[$username] has connected to the server.")
         this.init()
+        updateFlags.add(PlayerUpdateFlag.APPEARANCE)
     }
 
     fun logout() {
         Logger.info("[$username] has disconnected from the server.")
-        world.players.remove(this)
+        world.removePlayer(this)
         session.ctx.disconnect()
     }
+
+    fun isOnline() = world.players.contains(this)
 
     override fun equals(other: Any?): Boolean {
         return other is Player && other.username == username && other.passwordHash == passwordHash
     }
 
     companion object {
+
+        const val RENDER_DISTANCE = 15
+
         fun create(request: LoginRequest): Player {
             val player = Player(request.session)
             player.username = request.username

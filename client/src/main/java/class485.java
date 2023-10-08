@@ -210,7 +210,7 @@ public class class485 {
                var10 = this.field4933.field3583;
                var11 = this.field4933.field3582;
                class308 var12 = class308.method8607(ClientPacket.field3432, Client.serverConnection.field1046);
-               var12.packet.writeIntME(0);
+               var12.packet.readIntME(0);
                var12.packet.writeShortLEAdd(var13);
                var12.packet.writeByteAdd(var11);
                var12.packet.writeShortAdd(var10);
@@ -227,7 +227,7 @@ public class class485 {
 
                if (var9) {
                   class308 var14 = class308.method8607(ClientPacket.field3409, Client.serverConnection.field1046);
-                  var14.packet.writeIntIME(this.field4933.method6190());
+                  var14.packet.readIntIME(this.field4933.method6190());
                   Client.serverConnection.method2148(var14);
                   this.field4919 = 0L;
                }

@@ -680,7 +680,7 @@ public class Buffer extends class470 {
    }
 
    // 2, 1, 4, 3
-   public void writeIntME(int var1) {
+   public void readIntME(int var1) {
       this.data[++this.offset - 1] = (byte)(var1 >> 8);
       this.data[++this.offset - 1] = (byte)var1;
       this.data[++this.offset - 1] = (byte)(var1 >> 24);
@@ -688,7 +688,7 @@ public class Buffer extends class470 {
    }
 
    // 3, 4, 1, 2
-   public void writeIntIME(int var1) {
+   public void readIntIME(int var1) {
       this.data[++this.offset - 1] = (byte)(var1 >> 16);
       this.data[++this.offset - 1] = (byte)(var1 >> 24);
       this.data[++this.offset - 1] = (byte)var1;
@@ -702,25 +702,25 @@ public class Buffer extends class470 {
    }
 
    // 3, 4, 1, 2
-   public int writeIntME() {
+   public int readIntME() {
       this.offset += 4;
       return (this.data[this.offset - 3] & 255) + ((this.data[this.offset - 4] & 255) << 8) + ((this.data[this.offset - 1] & 255) << 16) + ((this.data[this.offset - 2] & 255) << 24);
    }
 
    // 2, 1, 4, 3
-   public int writeIntIME() {
+   public int readIntIME() {
       this.offset += 4;
       return ((this.data[this.offset - 3] & 255) << 24) + ((this.data[this.offset - 4] & 255) << 16) + ((this.data[this.offset - 1] & 255) << 8) + (this.data[this.offset - 2] & 255);
    }
 
-   public void writeBytesReversed(byte[] var1, int var2, int var3) {
+   public void readBytesReversed(byte[] var1, int var2, int var3) {
       for(int var5 = var2 + var3 - 1; var5 >= var2; --var5) {
          var1[var5] = this.data[++this.offset - 1];
       }
 
    }
 
-   public void writeBytesReversedAdd(byte[] var1, int var2, int var3) {
+   public void readBytesReversedAdd(byte[] var1, int var2, int var3) {
       for(int var5 = var2 + var3 - 1; var5 >= var2; --var5) {
          var1[var5] = (byte)(this.data[++this.offset - 1] - 128);
       }

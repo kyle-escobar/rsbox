@@ -25,7 +25,7 @@ public class class362 extends class476 {
             break;
          }
 
-         int var5 = var1.method8483(var3);
+         int var5 = var1.readBits(var3);
          if (var5 == var4 - 1) {
             break;
          }
@@ -39,43 +39,43 @@ public class class362 extends class476 {
          class86 var7 = Client.field1489[var5];
          Client.field1491[++Client.field1565 - 1] = var5;
          var7.field999 = Client.field1445;
-         var11 = var1.method8483(1);
+         var11 = var1.readBits(1);
          if (var11 == 1) {
             Client.field1503[++Client.field1717 - 1] = var5;
          }
 
-         var8 = var1.method8483(1);
-         boolean var12 = var1.method8483(1) == 1;
+         var8 = var1.readBits(1);
+         boolean var12 = var1.readBits(1) == 1;
          if (var12) {
-            var1.method8483(32);
+            var1.readBits(32);
          }
 
          if (var0) {
-            var10 = var1.method8483(8);
+            var10 = var1.readBits(8);
             if (var10 > 127) {
                var10 -= 256;
             }
          } else {
-            var10 = var1.method8483(5);
+            var10 = var1.readBits(5);
             if (var10 > 15) {
                var10 -= 32;
             }
          }
 
          if (var0) {
-            var9 = var1.method8483(8);
+            var9 = var1.readBits(8);
             if (var9 > 127) {
                var9 -= 256;
             }
          } else {
-            var9 = var1.method8483(5);
+            var9 = var1.readBits(5);
             if (var9 > 15) {
                var9 -= 32;
             }
          }
 
-         var7.field776 = class191.method4208(var1.method8483(14));
-         var13 = Client.field1620[var1.method8483(3)];
+         var7.field776 = class191.method4208(var1.readBits(14));
+         var13 = Client.field1620[var1.readBits(3)];
          if (var6) {
             var7.field1007 = var7.field942 = var13;
          }
@@ -85,10 +85,10 @@ public class class362 extends class476 {
             var7.field942 = 0;
          }
 
-         var7.method1847(class146.field1362.field945[0] + var9, class146.field1362.field1012[0] + var10, var8 == 1);
+         var7.method1847(class146.field1362.pathX[0] + var9, class146.field1362.pathY[0] + var10, var8 == 1);
       }
 
-      var1.method8482();
+      var1.switchByteMode();
 
       for(var3 = 0; var3 < Client.field1717; ++var3) {
          var4 = Client.field1503[var3];
@@ -106,11 +106,11 @@ public class class362 extends class476 {
          }
 
          if (0 != (var16 & 8)) {
-            var15.field975 = var1.readUnsignedShort();
-            var15.field975 += var1.readUnsignedByte() << 16;
+            var15.targetIndex = var1.readUnsignedShort();
+            var15.targetIndex += var1.readUnsignedByte() << 16;
             var17 = 16777215;
-            if (var17 == var15.field975) {
-               var15.field975 = -1;
+            if (var17 == var15.targetIndex) {
+               var15.targetIndex = -1;
             }
          }
 
@@ -271,7 +271,7 @@ public class class362 extends class476 {
          }
 
          if ((var16 & 262144) != 0) {
-            var17 = var1.writeIntME();
+            var17 = var1.readIntME();
             var15.field995 = (var17 & 1) != 0 ? var1.readUnsignedShortLE() : var15.field776.field2050;
             var15.field948 = 0 != (var17 & 2) ? var1.readUnsignedShort() : var15.field776.field2054;
             var15.field993 = (var17 & 4) != 0 ? var1.readUnsignedShort() : var15.field776.field2083;
@@ -295,7 +295,7 @@ public class class362 extends class476 {
             for(var8 = 0; var8 < var17; ++var8) {
                var9 = var1.readUnsignedByteNeg();
                var10 = var1.readUnsignedShort();
-               var11 = var1.writeIntME();
+               var11 = var1.readIntME();
                var15.method2080(var9, var10, var11 >> 16, var11 & '\uffff');
             }
          }
@@ -310,10 +310,10 @@ public class class362 extends class476 {
             var15.field990 = var1.readUnsignedShortAdd();
             var15.field1010 = 1;
             var15.field1015 = 0;
-            var15.field992 += var15.field945[0];
-            var15.field994 += var15.field1012[0];
-            var15.field954 += var15.field945[0];
-            var15.field982 += var15.field1012[0];
+            var15.field992 += var15.pathX[0];
+            var15.field994 += var15.pathY[0];
+            var15.field954 += var15.pathX[0];
+            var15.field982 += var15.pathY[0];
          }
 
          if ((var16 & 2) != 0) {
@@ -324,8 +324,8 @@ public class class362 extends class476 {
                var15.field978 = var17;
                var15.field979 = var8;
             } else {
-               var9 = var15.field949 - (var17 - class342.field3837 - class342.field3837) * 64;
-               var10 = var15.field963 - (var8 - class144.field1352 - class144.field1352) * 64;
+               var9 = var15.field949 - (var17 - class342.baseX - class342.baseX) * 64;
+               var10 = var15.field963 - (var8 - class144.baseY - class144.baseY) * 64;
                if (var9 != 0 || var10 != 0) {
                   var20 = (int)(Math.atan2((double)var9, (double)var10) * 325.94932345220167) & 2047;
                   var15.field977 = var20;

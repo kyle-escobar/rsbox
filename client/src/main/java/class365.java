@@ -51,13 +51,13 @@ public final class class365 {
       int var4;
       int var5;
       int var7;
-      if (var0.field975 != -1) {
+      if (var0.targetIndex != -1) {
          Object var2 = null;
          var3 = 65536;
-         if (var0.field975 < var3) {
-            var2 = Client.field1489[var0.field975];
+         if (var0.targetIndex < var3) {
+            var2 = Client.field1489[var0.targetIndex];
          } else {
-            var2 = Client.field1527[var0.field975 - var3];
+            var2 = Client.players[var0.targetIndex - var3];
          }
 
          if (var2 != null) {
@@ -68,7 +68,7 @@ public final class class365 {
                var0.field1007 = var7;
             }
          } else if (var0.field976) {
-            var0.field975 = -1;
+            var0.targetIndex = -1;
             var0.field976 = false;
          }
       }
@@ -77,8 +77,8 @@ public final class class365 {
       if (0 == var0.field1010 || var0.field1014 > 0) {
          var8 = -1;
          if (-1 != var0.field978 && -1 != var0.field979) {
-            var3 = 64 + (var0.field978 * 128 - class342.field3837 * 128);
-            var4 = 64 + (var0.field979 * 128 - class144.field1352 * 128);
+            var3 = 64 + (var0.field978 * 128 - class342.baseX * 128);
+            var4 = 64 + (var0.field979 * 128 - class144.baseY * 128);
             var5 = var0.field949 - var3;
             int var6 = var0.field963 - var4;
             if (var5 != 0 || var6 != 0) {
@@ -125,7 +125,7 @@ public final class class365 {
          var0.field942 &= 2047;
       } else {
          if (var0.field976) {
-            var0.field975 = -1;
+            var0.targetIndex = -1;
             var0.field976 = false;
          }
 

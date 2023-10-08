@@ -43,13 +43,13 @@ public class class40 {
    }
 
    static void method595(int var0, String var1) {
-      int var3 = class116.field1116;
-      int[] var4 = class116.field1120;
+      int var3 = class116.localPlayerCount;
+      int[] var4 = class116.localPlayerIndexes;
       boolean var5 = false;
       class526 var6 = new class526(var1, class454.field4743);
 
       for(int var7 = 0; var7 < var3; ++var7) {
-         class84 var8 = Client.field1527[var4[var7]];
+         Player var8 = Client.players[var4[var7]];
          if (null != var8 && class146.field1362 != var8 && null != var8.field740 && var8.field740.equals(var6)) {
             class308 var9;
             if (var0 == 1) {

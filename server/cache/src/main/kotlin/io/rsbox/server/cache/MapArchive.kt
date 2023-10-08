@@ -12,22 +12,27 @@ import io.rsbox.server.util.buffer.discard
 import io.rsbox.server.util.buffer.readIncrSmallSmart
 import io.rsbox.server.util.buffer.readUnsignedShortSmart
 import org.openrs2.crypto.SymmetricKey
-import org.tinylog.kotlin.Logger
 
 class MapArchive(private val entryMap: MutableMap<Int, MapRegionEntry> = mutableMapOf()) : Map<Int, MapRegionEntry> by entryMap {
+
+    override operator fun get(key: Int): MapRegionEntry {
+        if(!entryMap.containsKey(key)) {
+            load(key)
+        }
+        return entryMap[key] ?: error("Failed to get map from cahce for region: $key.")
+    }
+
+    fun load(regionId: Int) {
+        if(!entryMap.containsKey(regionId)) {
+            val xtea = XteaConfig.getRegionKey(regionId)
+            val entry = loadMapRegionEntry(regionId, xtea)
+            entryMap[entry.id] = entry
+        }
+    }
 
     companion object {
 
         const val id = 5
-
-        fun load(): MapArchive {
-            val result = MapArchive()
-            XteaConfig.xteas.forEach { (regionId, xteas) ->
-                val entry = loadMapRegionEntry(regionId, xteas)
-                result.entryMap[entry.id] = entry
-            }
-            return result
-        }
 
         private fun loadMapRegionEntry(regionId: Int, xteas: IntArray): MapRegionEntry {
             val entry = MapRegionEntry(regionId)

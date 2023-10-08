@@ -46,7 +46,7 @@ public abstract class class102 extends class228 {
    int field966 = 0;
    int field968 = -1;
    int field969 = -1;
-   int field975 = -1;
+   int targetIndex = -1;
    int field977 = -1;
    int field978 = -1;
    int field979 = -1;
@@ -67,9 +67,9 @@ public abstract class class102 extends class228 {
    int field995 = -1;
    int field997;
    int field999 = 0;
-   int[] field1012 = new int[10];
+   int[] pathY = new int[10];
    int[] field943 = new int[4];
-   int[] field945 = new int[10];
+   int[] pathX = new int[10];
    int[] field947 = null;
    int[] field961 = new int[4];
    int[] field970 = new int[4];

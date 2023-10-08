@@ -26,7 +26,7 @@ public class class265 implements class383 {
 
    }
 
-   static void method5208(class84 var0, int var1, int var2) {
+   static void method5208(Player var0, int var1, int var2) {
       if (var1 == var0.field968 && var1 != -1) {
          int var4 = class215.method2582(var1).field2346;
          if (var4 == 1) {
@@ -55,9 +55,9 @@ public class class265 implements class383 {
          Client.field1708 = Client.field1445;
          class121.field1152.method6823();
 
-         for(int var1 = 0; var1 < Client.field1527.length; ++var1) {
-            if (null != Client.field1527[var1]) {
-               class121.field1152.method6822((Client.field1527[var1].field949 >> 7) + class342.field3837, (Client.field1527[var1].field963 >> 7) + class144.field1352);
+         for(int var1 = 0; var1 < Client.players.length; ++var1) {
+            if (null != Client.players[var1]) {
+               class121.field1152.method6822((Client.players[var1].field949 >> 7) + class342.baseX, (Client.players[var1].field963 >> 7) + class144.baseY);
             }
          }
       }
