@@ -8,6 +8,7 @@ import io.rsbox.server.engine.model.coord.Tile
 import io.rsbox.server.engine.model.World
 import io.rsbox.server.engine.model.MovementType
 import io.rsbox.server.engine.sync.update.UpdateFlag
+import org.rsmod.pathfinder.PathFinder
 import java.util.SortedSet
 
 abstract class Entity {
@@ -20,6 +21,8 @@ abstract class Entity {
 
     abstract var tile: Tile
     abstract var prevTile: Tile
+
+    abstract var pathfinder: PathFinder
 
     var index: Int = -1
     var invisible = false

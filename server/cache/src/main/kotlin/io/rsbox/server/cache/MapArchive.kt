@@ -3,23 +3,25 @@
 package io.rsbox.server.cache
 
 import io.netty.buffer.ByteBuf
-import io.netty.buffer.Unpooled
 import io.rsbox.server.cache.map.MapRegionEntry
 import io.rsbox.server.cache.map.MapRegionLocation
 import io.rsbox.server.cache.map.MapRegionTerrain
 import io.rsbox.server.config.XteaConfig
-import io.rsbox.server.util.buffer.discard
-import io.rsbox.server.util.buffer.readIncrSmallSmart
+import io.rsbox.server.util.buffer.readIncrShortSmart
 import io.rsbox.server.util.buffer.readUnsignedShortSmart
 import org.openrs2.crypto.SymmetricKey
-import java.util.ArrayDeque
-import java.util.concurrent.Executors
+import org.tinylog.kotlin.Logger
 
 class MapArchive(private val entryMap: MutableMap<Int, MapRegionEntry> = mutableMapOf()) : Map<Int, MapRegionEntry> by entryMap {
 
     override operator fun get(key: Int): MapRegionEntry {
-        return entryMap[key] ?: error("Failed to get map from cahce for region: $key.")
+        if(!entryMap.containsKey(key)) {
+            entryMap[key] = loadMapRegionEntry(key, XteaConfig.getRegionKey(key))
+        }
+        return entryMap[key]!!
     }
+
+
 
     companion object {
 
@@ -33,35 +35,39 @@ class MapArchive(private val entryMap: MutableMap<Int, MapRegionEntry> = mutable
             val entry = MapRegionEntry(regionId)
 
             if(xteas.isEmpty()) {
+                Logger.warn("The XTEA keys for region: $regionId are missing.")
                 return entry
             }
 
             /*
              * Load region map terrain
              */
-            val cacheData = GameCache.cache.read(id, "m${entry.regionX}_${entry.regionY}", 0)
-            for(level in 0 until 4) {
-                for(x in 0 until 64) {
-                    for(y in 0 until 64) {
-                        entry.terrain[entry.pack(x, y, level)] = cacheData.loadTerrain()
-                        cacheData.release()
+            val mapData = GameCache.cache.read(id, "m${entry.regionX}_${entry.regionY}", 0)
+            try {
+                for(level in 0 until 4) {
+                    for(x in 0 until 64) {
+                        for(y in 0 until 64) {
+                            entry.terrain[entry.pack(x, y, level)] = mapData.loadTerrain()
+                        }
                     }
                 }
+            } catch (e: Exception) {
+                Logger.warn(e) { "Failed to load map archive terrain. [region=$regionId, group=m${entry.regionX}_${entry.regionY}]" }
+            } finally {
+                mapData.release()
             }
+
 
             /*
              * Load region map locations (objects)
              */
-
-            var data: ByteBuf = Unpooled.buffer()
+            val locData = GameCache.cache.read(id, "l${entry.regionX}_${entry.regionY}", 0, xteas.toXteaKey())
             try {
-                data = GameCache.cache.read(id, "l${entry.regionX}_${entry.regionY}", 0, xteas.toXteaKey())
-            } catch(e: Exception) {
-                /*
-                 * Do nothing.
-                 */
+                locData.loadLocation(entry)
+            } catch (e: Exception) {
+                Logger.warn(e) { "Failed to load map archive locations. [region=$regionId, group=l${entry.regionX}_${entry.regionY}, keys=(${xteas.joinToString(", ") { it.toString() }}]" }
             } finally {
-                data.release()
+                locData.release()
             }
 
             return entry
@@ -75,11 +81,10 @@ class MapArchive(private val entryMap: MutableMap<Int, MapRegionEntry> = mutable
             collision: Int = 0,
             underlayId: Int = 0
         ): MapRegionTerrain {
-            this.retain()
             return when(val opcode = readUnsignedShort()) {
                 0 -> MapRegionTerrain(collision)
                 1 -> {
-                    discard(1)
+                    readUnsignedByte()
                     MapRegionTerrain(collision)
                 }
                 else -> loadTerrain(
@@ -93,43 +98,36 @@ class MapArchive(private val entryMap: MutableMap<Int, MapRegionEntry> = mutable
             }
         }
 
-        private tailrec fun ByteBuf.loadLocs(entry: MapRegionEntry, locId: Int = -1) {
-            this.retain()
-            val offset = readIncrSmallSmart()
+        private tailrec fun ByteBuf.loadLocation(entry: MapRegionEntry, locId: Int = -1) {
+            val offset = readIncrShortSmart()
             if(offset == 0) return
             loadLocationCollision(entry, locId + offset, 0)
-            return loadLocs(entry, locId + offset)
+            return loadLocation(entry, locId + offset)
         }
 
-        private tailrec fun ByteBuf.loadLocationCollision(entry: MapRegionEntry, locId: Int, packedLocation: Int) {
-            this.retain()
-            val offset = readUnsignedShortSmart()
-            if(offset == 0) return
-            val attributes = readUnsignedByte().toInt()
-            val shape = attributes shr 2
-            val rotation = attributes and 0x3
-
-            val packed = packedLocation + offset - 1
-            val x = packed shr 6 and 0x3F
-            val y = packed and 0x3F
-            val level = (packed shr 12).let {
-                if(entry.terrain[entry.pack(x, y, 1)]!!.collision and 0x2 == 2) it - 1 else it
-            }
-
-            val adjusted = entry.pack(x, y, level)
-
-            if(level >= 0) {
-                entry.locations[adjusted] = when(val size = entry.locations[adjusted]?.size ?: 0) {
+        private tailrec fun ByteBuf.loadLocationCollision(entry: MapRegionEntry, locId: Int, position: Int) {
+            var positionOffset = readUnsignedShortSmart().toInt()
+            if(positionOffset == 0) return
+            val packedTile = position + positionOffset - 1
+            val y = packedTile and 0x3F
+            val x = (packedTile shr 6) and 0x3F
+            var level = (packedTile shr 12) and 0x3
+            if(entry.terrain[entry.pack(x, y, level)]!!.collision and 0x2 == 0x2) { level-- }
+            if(level < 0) {
+                readUnsignedByte()
+            } else {
+                val attributes = readUnsignedByte().toInt()
+                val shape = attributes shr 2
+                val rotation = attributes and 0x3
+                entry.locations[entry.pack(x, y, level)] = when(val size = entry.locations[entry.pack(x, y, level)]?.size ?: 0) {
                     0 -> Array(1) { MapRegionLocation(locId, x, y, level, shape, rotation) }
-                    in 1 until 5 -> {
-                        entry.locations[adjusted]!!.copyOf(size + 1).also {
-                            it[size] = MapRegionLocation(locId, x, y, level, shape, rotation)
-                        }
+                    in 1..4 -> entry.locations[entry.pack(x, y, level)]!!.copyOf(size + 1).also {
+                        it[size] = MapRegionLocation(locId, x, y, level, shape, rotation)
                     }
-                    else -> throw IllegalStateException("Size is too large. Max capacity of 5.")
+                    else -> error("Too many objects within a single tile. Only max of 5 are allowed.")
                 }
             }
-            return loadLocationCollision(entry, locId, packedLocation)
+            return loadLocationCollision(entry, locId, packedTile)
         }
 
         private fun IntArray.toXteaKey() = SymmetricKey(this[0], this[1], this[2], this[3])

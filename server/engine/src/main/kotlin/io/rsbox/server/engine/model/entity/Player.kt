@@ -10,6 +10,7 @@ import io.rsbox.server.engine.model.ui.DisplayMode
 import io.rsbox.server.engine.net.Session
 import io.rsbox.server.engine.net.login.LoginRequest
 import io.rsbox.server.engine.sync.update.PlayerUpdateFlag
+import org.rsmod.pathfinder.PathFinder
 import org.rsmod.pathfinder.SmartPathFinder
 import org.rsmod.pathfinder.ZoneFlags
 import org.rsmod.pathfinder.collision.CollisionStrategies
@@ -34,6 +35,8 @@ class Player internal constructor(val session: Session) : Entity() {
 
     override var tile = Tile(ServerConfig.SPAWN_TILE.X, ServerConfig.SPAWN_TILE.Y, ServerConfig.SPAWN_TILE.LEVEL)
     override var prevTile = tile
+
+    override var pathfinder: PathFinder = SmartPathFinder(flags = world.collisionMap.flags(), defaultFlag = 0x0)
 
     var username: String = ""
     var displayName: String = ""
@@ -73,8 +76,7 @@ class Player internal constructor(val session: Session) : Entity() {
     fun isOnline() = world.players.contains(this)
 
     fun moveTo(tile: Tile) {
-        val pathfinder = SmartPathFinder(flags = ZoneFlags().flags, defaultFlag = CollisionFlag.FLOOR)
-        val route = pathfinder.findPath(this.tile.x, this.tile.y, tile.x, tile.y, tile.level, collision = CollisionStrategies.Fly)
+        val route = pathfinder.findPath(this.tile.x, this.tile.y, tile.x, tile.y, tile.level, collision = CollisionStrategies.Normal)
         movementQueue.addRoute(route)
     }
 

@@ -49,37 +49,22 @@ fun ByteBuf.writeJagString(value: String, charset: Charset = Charsets.CP_1252): 
     return this
 }
 
-tailrec fun ByteBuf.readIncrSmallSmart(increment: Int = readUnsignedShortSmart(), offset: Int = 0): Int {
-    if(increment != Short.MAX_VALUE.toInt()) return offset + increment
-    return readIncrSmallSmart(offset = offset + Short.MAX_VALUE)
-}
-
-fun ByteBuf.readIncrUnsignedShortSmart(): Int {
-    var value = 0
-    var curr = readUnsignedShortSmart()
-    while (curr == 0x7FFF) {
-        value += curr
-        curr = readUnsignedShortSmart()
+fun ByteBuf.readIncrShortSmart(): Int {
+    var total = 0
+    var cur = readUnsignedShortSmart()
+    while (cur == Short.MAX_VALUE) {
+        total += Short.MAX_VALUE.toInt()
+        cur = readUnsignedShortSmart()
     }
-    value += curr
-    return value
+    total += cur
+    return total
 }
 
-fun ByteBuf.readUnsignedShortSmart(): Int {
-    val peek = getUnsignedByte(readerIndex()).toInt()
-    return if ((peek and 0x80) == 0) {
-        readUnsignedByte().toInt()
+fun ByteBuf.readUnsignedShortSmart(): Short {
+    val peek = getByte(readerIndex()).toInt()
+    return if (peek >= 0) {
+        readUnsignedByte()
     } else {
-        readUnsignedShort() and 0x7FFF
+        (readUnsignedShort() and Short.MAX_VALUE.toInt()).toShort()
     }
-}
-
-fun ByteBuf.writeUnsignedShortSmart(v: Int): ByteBuf {
-    when (v) {
-        in 0..0x7F -> writeByte(v)
-        in 0..0x7FFF -> writeShort(0x8000 or v)
-        else -> throw IllegalArgumentException()
-    }
-
-    return this
 }
