@@ -1,4 +1,4 @@
-package io.rsbox.server.engine.model.movement
+package io.rsbox.server.engine.model
 
 enum class MovementType(val id: Int) {
     NONE(-1),

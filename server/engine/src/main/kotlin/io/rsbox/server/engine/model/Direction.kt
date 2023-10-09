@@ -65,7 +65,7 @@ enum class Direction(val value: Int, val playerValue: Int) {
                     -1 -> return WEST
                 }
             }
-            throw IllegalArgumentException("Invalid distance between tiles for a single direction.")
+            return NONE
         }
     }
 }

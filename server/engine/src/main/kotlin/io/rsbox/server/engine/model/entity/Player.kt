@@ -10,6 +10,10 @@ import io.rsbox.server.engine.model.ui.DisplayMode
 import io.rsbox.server.engine.net.Session
 import io.rsbox.server.engine.net.login.LoginRequest
 import io.rsbox.server.engine.sync.update.PlayerUpdateFlag
+import org.rsmod.pathfinder.SmartPathFinder
+import org.rsmod.pathfinder.ZoneFlags
+import org.rsmod.pathfinder.collision.CollisionStrategies
+import org.rsmod.pathfinder.flag.CollisionFlag
 import org.tinylog.kotlin.Logger
 
 class Player internal constructor(val session: Session) : Entity() {
@@ -67,6 +71,12 @@ class Player internal constructor(val session: Session) : Entity() {
     }
 
     fun isOnline() = world.players.contains(this)
+
+    fun moveTo(tile: Tile) {
+        val pathfinder = SmartPathFinder(flags = ZoneFlags().flags, defaultFlag = CollisionFlag.FLOOR)
+        val route = pathfinder.findPath(this.tile.x, this.tile.y, tile.x, tile.y, tile.level, collision = CollisionStrategies.Fly)
+        movementQueue.addRoute(route)
+    }
 
     override fun equals(other: Any?): Boolean {
         return other is Player && other.username == username && other.passwordHash == passwordHash

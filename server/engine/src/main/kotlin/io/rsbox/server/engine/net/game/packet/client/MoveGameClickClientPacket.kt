@@ -16,7 +16,7 @@ class MoveGameClickClientPacket(val tile: Tile, val clickType: Int) : Packet {
 
     override fun handle(session: Session) {
         val player = session.player
-        player.teleportTile = tile
+        player.moveTo(tile)
     }
 
     companion object : Codec<MoveGameClickClientPacket> {

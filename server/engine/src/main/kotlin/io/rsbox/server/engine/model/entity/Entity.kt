@@ -2,10 +2,11 @@ package io.rsbox.server.engine.model.entity
 
 import io.rsbox.server.common.inject
 import io.rsbox.server.engine.Engine
+import io.rsbox.server.engine.model.Direction
+import io.rsbox.server.engine.model.MovementQueue
 import io.rsbox.server.engine.model.coord.Tile
 import io.rsbox.server.engine.model.World
-import io.rsbox.server.engine.model.movement.MovementDirection
-import io.rsbox.server.engine.model.movement.MovementType
+import io.rsbox.server.engine.model.MovementType
 import io.rsbox.server.engine.sync.update.UpdateFlag
 import java.util.SortedSet
 
@@ -25,8 +26,12 @@ abstract class Entity {
 
     abstract val updateFlags: SortedSet<out UpdateFlag>
 
-    var teleportTile: Tile? = null
+    var running = true
+    var direction: Direction = Direction.EAST
+
     var movementType = MovementType.NONE
+    var teleportTile: Tile? = null
+    val movementQueue = MovementQueue(this)
 
     abstract suspend fun cycle()
 

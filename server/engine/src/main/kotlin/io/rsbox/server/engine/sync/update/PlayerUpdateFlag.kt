@@ -1,7 +1,6 @@
 package io.rsbox.server.engine.sync.update
 
 import io.rsbox.server.engine.model.entity.Player
-import io.rsbox.server.engine.model.movement.MovementType
 import io.rsbox.server.util.buffer.JagByteBuf
 import io.rsbox.server.util.buffer.SUB
 import io.rsbox.server.util.buffer.toJagBuf

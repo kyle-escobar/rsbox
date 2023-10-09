@@ -6,8 +6,7 @@ import io.rsbox.server.engine.model.World
 import io.rsbox.server.engine.model.coord.Scene
 import io.rsbox.server.engine.model.coord.Tile
 import io.rsbox.server.engine.model.entity.Player
-import io.rsbox.server.engine.model.movement.MovementDirection
-import io.rsbox.server.engine.model.movement.MovementType
+import io.rsbox.server.engine.model.MovementType
 import io.rsbox.server.engine.net.game.packet.server.PlayerInfoServerPacket
 import io.rsbox.server.engine.sync.SyncTask
 import io.rsbox.server.engine.sync.update.PlayerUpdateFlag
@@ -57,6 +56,7 @@ class PlayerSyncTask : SyncTask {
         maskBuf.release()
 
         buf.writeBytes(mainBuf.toByteBuf())
+        mainBuf.release()
         return buf
     }
 
@@ -115,7 +115,7 @@ class PlayerSyncTask : SyncTask {
                         false -> (gpi.skipFlags[nextIndex] and 0x1) == 0
                     }
                     if(skipNext) continue
-                    if(nextPlayer == null || nextPlayer.updateFlags.isNotEmpty() || nextPlayer.movementType != MovementType.NONE || nextPlayer != this && this.shouldRemove(nextPlayer)) {
+                    if(nextPlayer == null || nextPlayer.updateFlags.isNotEmpty() || nextPlayer.movementType != MovementType.NONE ||nextPlayer != this && this.shouldRemove(nextPlayer)) {
                         break
                     }
                     skipCount++
