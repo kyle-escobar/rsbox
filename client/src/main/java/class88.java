@@ -252,7 +252,7 @@ public final class class88 {
 
    }
 
-   static final void method266(byte[] var0, int var1, int var2, class234 var3, class218[] var4) {
+   static final void method266(byte[] var0, int var1, int var2, Scene var3, class218[] var4) {
       Buffer var6 = new Buffer(var0);
       int var7 = -1;
 
@@ -297,7 +297,7 @@ public final class class88 {
       }
    }
 
-   static final void method1906(byte[] var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7, class234 var8, class218[] var9) {
+   static final void method1906(byte[] var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7, Scene var8, class218[] var9) {
       Buffer var10 = new Buffer(var0);
       int var11 = -1;
 
@@ -345,7 +345,7 @@ public final class class88 {
       }
    }
 
-   static final void method2118(int var0, int var1, int var2, int var3, int var4, int var5, class234 var6, class218 var7) {
+   static final void method2118(int var0, int var1, int var2, int var3, int var4, int var5, Scene var6, class218 var7) {
       if (!Client.isLowDetail || 0 != (field804[0][var1][var2] & 2) || (field804[var0][var1][var2] & 16) == 0) {
          if (var0 < field798) {
             field798 = var0;
@@ -704,7 +704,7 @@ public final class class88 {
       }
    }
 
-   static final void method7825(class234 var0, class218[] var1) {
+   static final void method7825(Scene var0, class218[] var1) {
       int var3;
       int var4;
       int var5;
@@ -1095,7 +1095,7 @@ public final class class88 {
                         var53 = 240;
                         var16 = field797[var13][var51][var10] - var53;
                         var17 = field797[var12][var51][var10];
-                        class234.method4408(var6, 1, var51 * 128, var51 * 128, var10 * 128, var11 * 128 + 128, var16, var17);
+                        Scene.method4408(var6, 1, var51 * 128, var51 * 128, var10 * 128, var11 * 128 + 128, var16, var17);
 
                         for(var18 = var12; var18 <= var13; ++var18) {
                            for(var19 = var10; var19 <= var11; ++var19) {
@@ -1145,7 +1145,7 @@ public final class class88 {
                         var53 = 240;
                         var16 = field797[var13][var10][var50] - var53;
                         var17 = field797[var12][var10][var50];
-                        class234.method4408(var6, 2, var10 * 128, 128 + var11 * 128, var50 * 128, var50 * 128, var16, var17);
+                        Scene.method4408(var6, 2, var10 * 128, 128 + var11 * 128, var50 * 128, var50 * 128, var16, var17);
 
                         for(var18 = var12; var18 <= var13; ++var18) {
                            for(var19 = var10; var19 <= var11; ++var19) {
@@ -1192,7 +1192,7 @@ public final class class88 {
 
                      if ((var11 - var10 + 1) * (var13 - var12 + 1) >= 4) {
                         var14 = field797[var49][var10][var12];
-                        class234.method4408(var6, 4, var10 * 128, 128 + var11 * 128, var12 * 128, var13 * 128 + 128, var14, var14);
+                        Scene.method4408(var6, 4, var10 * 128, 128 + var11 * 128, var12 * 128, var13 * 128 + 128, var14, var14);
 
                         for(var15 = var10; var15 <= var11; ++var15) {
                            for(var16 = var12; var16 <= var13; ++var16) {

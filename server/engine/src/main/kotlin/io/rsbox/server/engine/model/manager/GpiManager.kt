@@ -25,7 +25,7 @@ class GpiManager(private val player: Player) {
         for(index in 1 until World.MAX_PLAYERS) {
             if(index == player.index) continue
             externalPlayerIndexes[externalPlayerCount++] = index
-            tileUpdates[index] = world.players[index]?.tile?.packed18Bit ?: 0
+            tileUpdates[index] = world.players[index]?.tile?.to18BitInteger() ?: 0
         }
     }
 }

@@ -1,6 +1,5 @@
 package io.rsbox.server.engine.net.game.packet.server
 
-import io.rsbox.server.config.XteaConfig
 import io.rsbox.server.engine.model.World
 import io.rsbox.server.engine.model.entity.Player
 import io.rsbox.server.engine.net.Session
@@ -21,7 +20,7 @@ data class RebuildNormalServerPacket(
         override fun encode(session: Session, packet: RebuildNormalServerPacket, out: JagByteBuf) {
             if(packet.gpi) {
                 out.switchWriteAccess(BIT_MODE)
-                out.writeBits(packet.player.tile.packed30Bit, 30)
+                out.writeBits(packet.player.tile.to30BitInteger(), 30)
                 for(i in 1 until World.MAX_PLAYERS) {
                     if(i == packet.player.index) continue
                     out.writeBits(packet.player.gpi.tileUpdates[i], 18)
@@ -29,15 +28,15 @@ data class RebuildNormalServerPacket(
                 out.switchWriteAccess(BYTE_MODE)
             }
 
-            val baseTile = packet.player.scene.baseTile
-            val loadedRegions = packet.player.scene.regionIds
+            val baseChunk = packet.player.scene.baseTile.toChunk()
+            val regions = packet.player.scene.regions
 
-            out.writeShort(baseTile.chunkX)
-            out.writeShort(baseTile.chunkY)
-            out.writeShort(loadedRegions.size)
+            out.writeShort(baseChunk.y)
+            out.writeShort(baseChunk.x)
+            out.writeShort(regions.size)
 
-            loadedRegions.forEach { regionId ->
-                XteaConfig.getRegionKey(regionId).forEach { out.writeInt(it) }
+            regions.forEach { region ->
+                region.xteaKeys.forEach { out.writeInt(it) }
             }
         }
     }

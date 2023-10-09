@@ -36,20 +36,20 @@ public class class106 {
                break;
             }
 
-            this.field1045.writeBytes(var2.packet.data, 0, var2.field3353);
+            this.field1045.writeBytes(var2.buffer.data, 0, var2.field3353);
             this.field1053 -= var2.field3353;
             var2.method8116();
-            var2.packet.release();
+            var2.buffer.release();
             var2.method5744();
          }
       }
 
    }
 
-   public final void method2148(class308 var1) {
+   public final void write(class308 var1) {
       this.field1043.method6874(var1);
-      var1.field3353 = var1.packet.offset;
-      var1.packet.offset = 0;
+      var1.field3353 = var1.buffer.offset;
+      var1.buffer.offset = 0;
       this.field1053 += var1.field3353;
    }
 

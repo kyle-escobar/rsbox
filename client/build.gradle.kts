@@ -11,7 +11,7 @@ dependencies {
 
 tasks {
     register<JavaExec>("run client") {
-        dependsOn(build)
+        dependsOn(compileJava.get())
         group = "rsbox"
         mainClass.set("ClientLauncher")
         workingDir = rootProject.projectDir

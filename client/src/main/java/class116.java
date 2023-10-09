@@ -1,6 +1,6 @@
 public class class116 {
    static byte[] skipFlags = new byte[2048];
-   static class223[] field1114 = new class223[2048];
+   static MovementType[] movementTypeCache = new MovementType[2048];
    static Buffer field1125 = new Buffer(new byte[5000]);
    static Buffer[] playerAppearances = new Buffer[2048];
    static int localPlayerCount = 0;
@@ -229,7 +229,7 @@ public class class116 {
             var9 = var8 >> 28;
             var10 = var8 >> 14 & 255;
             var11 = var8 & 255;
-            var13.field998[0] = field1114[var1];
+            var13.field998[0] = movementTypeCache[var1];
             var13.plane = (byte)var9;
             var13.method1795((var10 << 13) + var4 - class342.baseX, var5 + (var11 << 13) - class144.baseY);
             var13.teleporting = false;
@@ -309,7 +309,7 @@ public class class116 {
          int index = pendingPlayerUpdateIndexes[i];
          Player player = Client.players[index];
          int mask = maskBuf.readUnsignedByte();
-         if ((mask & 4) != 0) {
+         if ((mask & 0x4) != 0) {
             mask += maskBuf.readUnsignedByte() << 8;
          }
 
@@ -319,11 +319,11 @@ public class class116 {
          }
 
          // : 2
-         byte var6 = class223.field2454.field2452;
+         byte movementType = MovementType.NONE.id;
          if (0 != (mask & 512)) {
-            class223[] var7 = field1114;
-            class223[] var9 = new class223[]{class223.field2454, class223.field2457, class223.field2451, class223.field2450};
-            var7[index] = (class223)class373.method1724(var9, maskBuf.readByteAdd());
+            MovementType[] var7 = movementTypeCache;
+            MovementType[] var9 = new MovementType[]{MovementType.NONE, MovementType.field2457, MovementType.field2451, MovementType.field2450};
+            var7[index] = (MovementType)class373.method1724(var9, maskBuf.readByteAdd());
          }
 
          // 3
@@ -445,7 +445,7 @@ public class class116 {
 
          // : 9
          if ((mask & 0x8000) != 0) {
-            var6 = maskBuf.readByteSub();
+            movementType = maskBuf.readByteSub();
          }
 
          // : 9
@@ -589,15 +589,15 @@ public class class116 {
          }
 
          if (player.teleporting) {
-            if (var6 == 127) {
+            if (movementType == 127) {
                player.method1795(player.field758, player.field766);
             } else {
-               class223 var24;
-               if (var6 != class223.field2454.field2452) {
-                  class223[] var25 = new class223[]{class223.field2454, class223.field2457, class223.field2451, class223.field2450};
-                  var24 = (class223)class373.method1724(var25, var6);
+               MovementType var24;
+               if (movementType != MovementType.NONE.id) {
+                  MovementType[] var25 = new MovementType[]{MovementType.NONE, MovementType.field2457, MovementType.field2451, MovementType.field2450};
+                  var24 = (MovementType)class373.method1724(var25, movementType);
                } else {
-                  var24 = field1114[index];
+                  var24 = movementTypeCache[index];
                }
 
                player.method1786(player.field758, player.field766, var24);
@@ -612,7 +612,7 @@ public class class116 {
 
       for(int var1 = 0; var1 < 2048; ++var1) {
          playerAppearances[var1] = null;
-         field1114[var1] = class223.field2457;
+         movementTypeCache[var1] = MovementType.field2457;
       }
 
    }

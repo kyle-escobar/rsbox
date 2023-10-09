@@ -1,6 +1,7 @@
 package io.rsbox.server.engine.sync.update
 
 import io.rsbox.server.engine.model.entity.Player
+import io.rsbox.server.engine.model.movement.MovementType
 import io.rsbox.server.util.buffer.JagByteBuf
 import io.rsbox.server.util.buffer.SUB
 import io.rsbox.server.util.buffer.toJagBuf
@@ -56,7 +57,7 @@ class PlayerUpdateFlag(mask: Int, order: Int, val encode: JagByteBuf.(Player) ->
         }
 
         val MOVEMENT = PlayerUpdateFlag(mask = 0x8000, order = 9) { player ->
-            writeByte(1, transform = SUB)
+            writeByte(player.movementType.id, transform = SUB)
         }
     }
 }

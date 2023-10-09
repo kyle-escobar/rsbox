@@ -43,7 +43,7 @@ public final class class86 extends class102 {
       }
    }
 
-   final void method1846(int var1, class223 var2) {
+   final void method1846(int var1, MovementType var2) {
       int var4 = super.pathX[0];
       int var5 = super.pathY[0];
       if (var1 == 0) {
@@ -122,7 +122,7 @@ public final class class86 extends class102 {
 
             super.pathX[0] = var1;
             super.pathY[0] = var2;
-            super.field998[0] = class223.field2457;
+            super.field998[0] = MovementType.field2457;
             return;
          }
       }

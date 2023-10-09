@@ -77,7 +77,7 @@ final class class348 implements Comparator {
                   player.field766 = var8;
                } else {
                   player.teleporting = false;
-                  player.method1786(var7, var8, class116.field1114[index]);
+                  player.method1786(var7, var8, class116.movementTypeCache[index]);
                }
             } else {
                player.method1795(var7, var8);
@@ -141,7 +141,7 @@ final class class348 implements Comparator {
                   player.field766 = var8;
                } else {
                   player.teleporting = false;
-                  player.method1786(var7, var8, class116.field1114[index]);
+                  player.method1786(var7, var8, class116.movementTypeCache[index]);
                }
             } else {
                player.method1795(var7, var8);
@@ -176,7 +176,7 @@ final class class348 implements Comparator {
                      player.field766 = var12;
                   } else {
                      player.teleporting = false;
-                     player.method1786(var11, var12, class116.field1114[index]);
+                     player.method1786(var11, var12, class116.movementTypeCache[index]);
                   }
                } else {
                   player.method1795(var11, var12);
@@ -202,7 +202,7 @@ final class class348 implements Comparator {
                      player.field766 = var12;
                   } else {
                      player.teleporting = false;
-                     player.method1786(var11, var12, class116.field1114[index]);
+                     player.method1786(var11, var12, class116.movementTypeCache[index]);
                   }
                } else {
                   player.method1795(var11, var12);

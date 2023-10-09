@@ -1,24 +1,24 @@
 package io.rsbox.server.engine.model.manager
 
-import io.rsbox.server.engine.model.Tile
+import io.rsbox.server.engine.model.coord.Chunk
+import io.rsbox.server.engine.model.coord.Region
+import io.rsbox.server.engine.model.coord.Tile
 import io.rsbox.server.engine.model.entity.Player
 import io.rsbox.server.engine.net.game.packet.server.RebuildNormalServerPacket
+import kotlin.math.abs
 
 class SceneManager(private val player: Player) {
 
     var baseTile: Tile = player.tile
 
-    val regionIds: List<Int> get() {
-        val list = mutableListOf<Int>()
+    val regions: List<Region> get() {
+        val list = mutableListOf<Region>()
+        val baseChunk = baseTile.toChunk()
 
-        val lx = (baseTile.chunkX - 6) / 8
-        val ly = (baseTile.chunkY - 6) / 8
-        val rx = (baseTile.chunkX + 6) / 8
-        val ry = (baseTile.chunkY + 6) / 8
-
-        for(chunkX in lx..rx) {
-            for(chunkY in ly .. ry) {
-                list.add((chunkX shl 8) + chunkY)
+        for(rx in baseChunk.x.sceneMin..baseChunk.x.sceneMax) {
+            for(ry in baseChunk.y.sceneMin .. baseChunk.y.sceneMax) {
+                val region = Region(rx, ry)
+                list.add(region)
             }
         }
 
@@ -28,5 +28,25 @@ class SceneManager(private val player: Player) {
     fun init() {
         baseTile = player.tile
         player.session.write(RebuildNormalServerPacket(player, gpi = true))
+    }
+
+    fun cycle() {
+        if(shouldRebuild()) {
+            baseTile = player.tile
+            player.session.write(RebuildNormalServerPacket(player, gpi = false))
+        }
+    }
+
+    private fun shouldRebuild(): Boolean {
+        val baseChunk = baseTile.toChunk()
+        val chunk = player.tile.toChunk()
+        val limit = ((104 shr 3) / 2) - 1
+        return abs(baseChunk.x - chunk.x) >= limit || abs(baseChunk.y - chunk.y) >= limit
+    }
+
+    companion object {
+
+        private val Int.sceneMin get() = (this - 6) / Chunk.SIZE
+        private val Int.sceneMax get() = (this + 6) / Chunk.SIZE
     }
 }

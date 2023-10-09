@@ -9,7 +9,7 @@ public abstract class class102 extends class228 {
    byte field1006;
    byte field967 = 0;
    byte field996;
-   class223[] field998 = new class223[10];
+   MovementType[] field998 = new MovementType[10];
    class382 field946 = new class382();
    class469 field944 = new class469(4);
    int field1000 = 200;

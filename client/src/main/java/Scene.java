@@ -1,7 +1,7 @@
-public class class234 {
+public class Scene {
    public static boolean field2595 = true;
-   public static int field2583 = -1;
-   public static int field2610 = -1;
+   public static int selectedY = -1;
+   public static int selectedX = -1;
    static boolean field2578 = false;
    static boolean field2584 = false;
    static boolean[][] field2587;
@@ -73,7 +73,7 @@ public class class234 {
       field2606 = new boolean[8][32][51][51];
    }
 
-   public class234(int var1, int var2, int var3, int[][][] var4) {
+   public Scene(int var1, int var2, int var3, int[][][] var4) {
       this.field2548 = var1;
       this.field2549 = var2;
       this.field2596 = var3;
@@ -195,12 +195,12 @@ public class class234 {
       }
    }
 
-   public static boolean method4476() {
-      return field2584 && field2610 != -1;
+   public static boolean shouldSendWalk() {
+      return field2584 && selectedX != -1;
    }
 
    public static void method4447() {
-      field2610 = -1;
+      selectedX = -1;
       field2584 = false;
    }
 
@@ -939,14 +939,14 @@ public class class234 {
    }
 
    public void method4529(int var1, int var2, int var3, boolean var4) {
-      if (!method4476() || var4) {
+      if (!shouldSendWalk() || var4) {
          field2578 = true;
          field2584 = var4;
          field2579 = var1;
          field2555 = var2;
          field2590 = var3;
-         field2610 = -1;
-         field2583 = -1;
+         selectedX = -1;
+         selectedY = -1;
       }
    }
 
@@ -1737,8 +1737,8 @@ public class class234 {
                      }
 
                      if (field2578 && method4457(field2555, field2590, var27, var29, var25, var26, var28, var24)) {
-                        field2610 = var7;
-                        field2583 = var8;
+                        selectedX = var7;
+                        selectedY = var8;
                      }
 
                      if (var1.field2708 == -1) {
@@ -1765,8 +1765,8 @@ public class class234 {
                      }
 
                      if (field2578 && method4457(field2555, field2590, var23, var25, var29, var22, var24, var28)) {
-                        field2610 = var7;
-                        field2583 = var8;
+                        selectedX = var7;
+                        selectedY = var8;
                      }
 
                      if (var1.field2708 == -1) {
@@ -1843,8 +1843,8 @@ public class class234 {
             }
 
             if (field2578 && method4457(field2555, field2590, var16, var17, var18, var13, var14, var15)) {
-               field2610 = var6;
-               field2583 = var7;
+               selectedX = var6;
+               selectedY = var7;
             }
 
             if (var1.field2879 != null && var1.field2879[var9] != -1) {

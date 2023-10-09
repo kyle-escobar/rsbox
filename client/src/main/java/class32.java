@@ -80,12 +80,12 @@ public class class32 {
          var13 = class146.field1362.plane;
          var14 = class342.baseX + (class468.field4805 >> 7);
          var15 = (class44.field302 >> 7) + class144.baseY;
-         class308 var16 = class308.method8607(ClientPacket.field3432, Client.serverConnection.field1046);
-         var16.packet.readIntME(Client.field1540);
-         var16.packet.writeShortLEAdd(var14);
-         var16.packet.writeByteAdd(var13);
-         var16.packet.writeShortAdd(var15);
-         Client.serverConnection.method2148(var16);
+         class308 var16 = class308.createPacket(ClientPacket.field3432, Client.serverConnection.field1046);
+         var16.buffer.readIntME(Client.field1540);
+         var16.buffer.writeShortLEAdd(var14);
+         var16.buffer.writeByteAdd(var13);
+         var16.buffer.writeShortAdd(var15);
+         Client.serverConnection.write(var16);
       }
 
    }

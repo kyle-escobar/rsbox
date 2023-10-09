@@ -2,7 +2,7 @@ package io.rsbox.server.engine.model.entity
 
 import io.rsbox.server.config.ServerConfig
 import io.rsbox.server.engine.model.Appearance
-import io.rsbox.server.engine.model.Tile
+import io.rsbox.server.engine.model.coord.Tile
 import io.rsbox.server.engine.model.manager.GpiManager
 import io.rsbox.server.engine.model.manager.InterfaceManager
 import io.rsbox.server.engine.model.manager.SceneManager
@@ -42,7 +42,7 @@ class Player internal constructor(val session: Session) : Entity() {
     var prayerIcon = -1
     var transmog = -1
 
-    val updateFlags = sortedSetOf<PlayerUpdateFlag>()
+    override val updateFlags = sortedSetOf<PlayerUpdateFlag>()
 
     override suspend fun cycle() {
 

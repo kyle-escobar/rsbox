@@ -82,7 +82,7 @@ public class class216 implements class27 {
       return var1 >= 0 && var1 < 112 ? this.field2368[var1] : false;
    }
 
-   public boolean method4103(int var1) {
+   public boolean isKeyDown(int var1) {
       return var1 >= 0 && var1 < 112 ? this.field2367[var1] : false;
    }
 

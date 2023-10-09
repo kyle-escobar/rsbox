@@ -2,8 +2,12 @@ package io.rsbox.server.engine.model.entity
 
 import io.rsbox.server.common.inject
 import io.rsbox.server.engine.Engine
-import io.rsbox.server.engine.model.Tile
+import io.rsbox.server.engine.model.coord.Tile
 import io.rsbox.server.engine.model.World
+import io.rsbox.server.engine.model.movement.MovementDirection
+import io.rsbox.server.engine.model.movement.MovementType
+import io.rsbox.server.engine.sync.update.UpdateFlag
+import java.util.SortedSet
 
 abstract class Entity {
 
@@ -19,25 +23,10 @@ abstract class Entity {
     var index: Int = -1
     var invisible = false
 
-    /**
-     * Update State fields
-     */
+    abstract val updateFlags: SortedSet<out UpdateFlag>
 
-    internal var teleport = false
-
-    var forceChat = ""
-
-    var faceAngle = 0
-    var faceEntityIndex = -1
-
-    var animation = 0
-    var animationDelay = 0
-
-    var graphic = 0
-    var graphicOffset = 0
-    var graphicDelay = 0
-
-
+    var teleportTile: Tile? = null
+    var movementType = MovementType.NONE
 
     abstract suspend fun cycle()
 

@@ -150,7 +150,7 @@ public class Login {
          class131.field1229 = null;
          class307.field3350 = null;
          class32.field158 = null;
-         class223.field2455 = null;
+         MovementType.field2455 = null;
          class467.field4793 = null;
          class169.field1805.method2034();
          class303.method4211(0, 100);
@@ -466,7 +466,7 @@ public class Login {
                                     }
                                  }
 
-                                 if ((var29.method4103(82) || var29.method4103(87)) && var29.field2371 == 67) {
+                                 if ((var29.isKeyDown(82) || var29.isKeyDown(87)) && var29.field2371 == 67) {
                                     Clipboard var40 = Toolkit.getDefaultToolkit().getSystemClipboard();
                                     var41 = var40.getContents(class124.field1180);
                                     var15 = 20 - loginPassword.length();
@@ -1801,8 +1801,8 @@ public class Login {
          class32.field158 = class538.method8431(class379.field4382, "sl_arrows", "");
       }
 
-      if (null == class223.field2455) {
-         class223.field2455 = class538.method8431(class379.field4382, "sl_stars", "");
+      if (null == MovementType.field2455) {
+         MovementType.field2455 = class538.method8431(class379.field4382, "sl_stars", "");
       }
 
       if (class38.field207 == null) {
@@ -1817,10 +1817,10 @@ public class Login {
       class535.method9225(field447, 0, 125, 23, 12425273, 9135624);
       class535.method9225(125 + field447, 0, 640, 23, 5197647, 2697513);
       var0.method7166(class364.field4225, 62 + field447, 15, 0, -1);
-      if (null != class223.field2455) {
-         class223.field2455[1].method9316(field447 + 140, 1);
+      if (null != MovementType.field2455) {
+         MovementType.field2455[1].method9316(field447 + 140, 1);
          var1.method7163(class364.field4176, 152 + field447, 10, 16777215, -1);
-         class223.field2455[0].method9316(field447 + 140, 12);
+         MovementType.field2455[0].method9316(field447 + 140, 12);
          var1.method7163(class364.field4320, 152 + field447, 21, 16777215, -1);
       }
 

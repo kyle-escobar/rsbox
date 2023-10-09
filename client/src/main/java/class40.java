@@ -53,25 +53,25 @@ public class class40 {
          if (null != var8 && class146.field1362 != var8 && null != var8.field740 && var8.field740.equals(var6)) {
             class308 var9;
             if (var0 == 1) {
-               var9 = class308.method8607(ClientPacket.field3441, Client.serverConnection.field1046);
-               var9.packet.writeShortLEAdd(var4[var7]);
-               var9.packet.writeByteSub(0);
-               Client.serverConnection.method2148(var9);
+               var9 = class308.createPacket(ClientPacket.field3441, Client.serverConnection.field1046);
+               var9.buffer.writeShortLEAdd(var4[var7]);
+               var9.buffer.writeByteSub(0);
+               Client.serverConnection.write(var9);
             } else if (var0 == 4) {
-               var9 = class308.method8607(ClientPacket.field3417, Client.serverConnection.field1046);
-               var9.packet.writeShortAdd(var4[var7]);
-               var9.packet.writeByte(0);
-               Client.serverConnection.method2148(var9);
+               var9 = class308.createPacket(ClientPacket.field3417, Client.serverConnection.field1046);
+               var9.buffer.writeShortAdd(var4[var7]);
+               var9.buffer.writeByte(0);
+               Client.serverConnection.write(var9);
             } else if (var0 == 6) {
-               var9 = class308.method8607(ClientPacket.field3407, Client.serverConnection.field1046);
-               var9.packet.writeShortLEAdd(var4[var7]);
-               var9.packet.writeByteSub(0);
-               Client.serverConnection.method2148(var9);
+               var9 = class308.createPacket(ClientPacket.field3407, Client.serverConnection.field1046);
+               var9.buffer.writeShortLEAdd(var4[var7]);
+               var9.buffer.writeByteSub(0);
+               Client.serverConnection.write(var9);
             } else if (var0 == 7) {
-               var9 = class308.method8607(ClientPacket.field3456, Client.serverConnection.field1046);
-               var9.packet.writeShort(var4[var7]);
-               var9.packet.writeByteNeg(0);
-               Client.serverConnection.method2148(var9);
+               var9 = class308.createPacket(ClientPacket.field3456, Client.serverConnection.field1046);
+               var9.buffer.writeShort(var4[var7]);
+               var9.buffer.writeByteNeg(0);
+               Client.serverConnection.write(var9);
             }
 
             var5 = true;

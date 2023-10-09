@@ -1946,25 +1946,25 @@ public class class63 {
                var11 = class380.method5731(var12);
             }
 
-            class308 var15 = class308.method8607(ClientPacket.field3412, Client.serverConnection.field1046);
-            var15.packet.writeInt(var11);
-            Client.serverConnection.method2148(var15);
+            class308 var15 = class308.createPacket(ClientPacket.field3412, Client.serverConnection.field1046);
+            var15.buffer.writeInt(var11);
+            Client.serverConnection.write(var15);
             return 1;
          } else {
             class308 var9;
             if (var0 == 3105) {
                var12 = field484[--field486];
-               var9 = class308.method8607(ClientPacket.field3391, Client.serverConnection.field1046);
-               var9.packet.writeByte(var12.length() + 1);
-               var9.packet.writeString(var12);
-               Client.serverConnection.method2148(var9);
+               var9 = class308.createPacket(ClientPacket.field3391, Client.serverConnection.field1046);
+               var9.buffer.writeByte(var12.length() + 1);
+               var9.buffer.writeString(var12);
+               Client.serverConnection.write(var9);
                return 1;
             } else if (var0 == 3106) {
                var12 = field484[--field486];
-               var9 = class308.method8607(ClientPacket.field3414, Client.serverConnection.field1046);
-               var9.packet.writeByte(var12.length() + 1);
-               var9.packet.writeString(var12);
-               Client.serverConnection.method2148(var9);
+               var9 = class308.createPacket(ClientPacket.field3414, Client.serverConnection.field1046);
+               var9.buffer.writeByte(var12.length() + 1);
+               var9.buffer.writeString(var12);
+               Client.serverConnection.write(var9);
                return 1;
             } else {
                int var4;
@@ -2005,9 +2005,9 @@ public class class63 {
                   return 1;
                } else if (var0 == 3115) {
                   var4 = field483[--field479];
-                  var9 = class308.method8607(ClientPacket.field3403, Client.serverConnection.field1046);
-                  var9.packet.writeShort(var4);
-                  Client.serverConnection.method2148(var9);
+                  var9 = class308.createPacket(ClientPacket.field3403, Client.serverConnection.field1046);
+                  var9.buffer.writeShort(var4);
+                  Client.serverConnection.write(var9);
                   return 1;
                } else if (var0 == 3116) {
                   var4 = field483[--field479];
@@ -2019,12 +2019,12 @@ public class class63 {
                   } else if (var6.length() > 500) {
                      return 1;
                   } else {
-                     class308 var7 = class308.method8607(ClientPacket.field3454, Client.serverConnection.field1046);
-                     var7.packet.writeShort(1 + Buffer.getJagStringSize(var5) + Buffer.getJagStringSize(var6));
-                     var7.packet.writeString(var6);
-                     var7.packet.writeString(var5);
-                     var7.packet.writeByteNeg(var4);
-                     Client.serverConnection.method2148(var7);
+                     class308 var7 = class308.createPacket(ClientPacket.field3454, Client.serverConnection.field1046);
+                     var7.buffer.writeShort(1 + Buffer.getJagStringSize(var5) + Buffer.getJagStringSize(var6));
+                     var7.buffer.writeString(var6);
+                     var7.buffer.writeString(var5);
+                     var7.buffer.writeByteNeg(var4);
+                     Client.serverConnection.write(var7);
                      return 1;
                   }
                } else if (var0 == 3117) {
@@ -2835,15 +2835,15 @@ public class class63 {
       int var4;
       if (var0 == 3500) {
          var4 = field483[--field479];
-         field483[++field479 - 1] = Client.field1666.method4103(var4) ? 1 : 0;
+         field483[++field479 - 1] = Client.keyHandler.isKeyDown(var4) ? 1 : 0;
          return 1;
       } else if (var0 == 3501) {
          var4 = field483[--field479];
-         field483[++field479 - 1] = Client.field1666.method4102(var4) ? 1 : 0;
+         field483[++field479 - 1] = Client.keyHandler.method4102(var4) ? 1 : 0;
          return 1;
       } else if (var0 == 3502) {
          var4 = field483[--field479];
-         field483[++field479 - 1] = Client.field1666.method4104(var4) ? 1 : 0;
+         field483[++field479 - 1] = Client.keyHandler.method4104(var4) ? 1 : 0;
          return 1;
       } else {
          return 2;
@@ -3547,11 +3547,11 @@ public class class63 {
          }
 
          Client.field1662 = field483[2 + field479];
-         class308 var14 = class308.method8607(ClientPacket.field3448, Client.serverConnection.field1046);
-         var14.packet.writeByte(Client.field1661);
-         var14.packet.writeByte(class1.field7.field5213);
-         var14.packet.writeByte(Client.field1662);
-         Client.serverConnection.method2148(var14);
+         class308 var14 = class308.createPacket(ClientPacket.field3448, Client.serverConnection.field1046);
+         var14.buffer.writeByte(Client.field1661);
+         var14.buffer.writeByte(class1.field7.field5213);
+         var14.buffer.writeByte(Client.field1662);
+         Client.serverConnection.write(var14);
          return 1;
       } else {
          String var4;
@@ -3563,12 +3563,12 @@ public class class63 {
             field479 -= 2;
             var9 = field483[field479];
             var11 = field483[1 + field479];
-            var7 = class308.method8607(ClientPacket.field3385, Client.serverConnection.field1046);
-            var7.packet.writeByte(Buffer.getJagStringSize(var4) + 2);
-            var7.packet.writeString(var4);
-            var7.packet.writeByte(var9 - 1);
-            var7.packet.writeByte(var11);
-            Client.serverConnection.method2148(var7);
+            var7 = class308.createPacket(ClientPacket.field3385, Client.serverConnection.field1046);
+            var7.buffer.writeByte(Buffer.getJagStringSize(var4) + 2);
+            var7.buffer.writeString(var4);
+            var7.buffer.writeByte(var9 - 1);
+            var7.buffer.writeByte(var11);
+            Client.serverConnection.write(var7);
             return 1;
          } else {
             class76 var6;
@@ -3631,19 +3631,19 @@ public class class63 {
                      var4 = field484[--field486];
                      var9 = field483[--field479];
                      var12 = class533.method7051(var9, var4, field496, -1);
-                     Client.serverConnection.method2148(var12);
+                     Client.serverConnection.write(var12);
                      return 1;
                   } else if (var0 == 5009) {
                      field486 -= 2;
                      var4 = field484[field486];
                      String var10 = field484[1 + field486];
-                     var12 = class308.method8607(ClientPacket.field3416, Client.serverConnection.field1046);
-                     var12.packet.writeShort(0);
-                     int var13 = var12.packet.offset;
-                     var12.packet.writeString(var4);
-                     class324.method86(var12.packet, var10);
-                     var12.packet.writeLengthShort(var12.packet.offset - var13);
-                     Client.serverConnection.method2148(var12);
+                     var12 = class308.createPacket(ClientPacket.field3416, Client.serverConnection.field1046);
+                     var12.buffer.writeShort(0);
+                     int var13 = var12.buffer.offset;
+                     var12.buffer.writeString(var4);
+                     class324.method86(var12.buffer, var10);
+                     var12.buffer.writeLengthShort(var12.buffer.offset - var13);
+                     Client.serverConnection.write(var12);
                      return 1;
                   } else if (var0 == 5010) {
                      var4 = field484[--field486];
@@ -3651,7 +3651,7 @@ public class class63 {
                      var9 = field483[field479];
                      var11 = field483[1 + field479];
                      var7 = class533.method7051(var9, var4, field496, var11);
-                     Client.serverConnection.method2148(var7);
+                     Client.serverConnection.write(var7);
                      return 1;
                   } else if (var0 != 5015) {
                      if (var0 == 5016) {

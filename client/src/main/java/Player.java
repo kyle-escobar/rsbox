@@ -354,7 +354,7 @@ public final class Player extends class102 {
       }
    }
 
-   final void method1786(int var1, int var2, class223 var3) {
+   final void method1786(int var1, int var2, MovementType var3) {
       if (-1 != super.field968 && class215.method2582(super.field968).field2356 == 1) {
          super.field968 = -1;
       }
@@ -362,8 +362,8 @@ public final class Player extends class102 {
       this.method2073();
       if (var1 >= 0 && var1 < 104 && var2 >= 0 && var2 < 104) {
          if (super.pathX[0] >= 0 && super.pathX[0] < 104 && super.pathY[0] >= 0 && super.pathY[0] < 104) {
-            if (var3 == class223.field2450) {
-               Client.method1483(this, var1, var2, class223.field2450);
+            if (var3 == MovementType.field2450) {
+               Client.method1483(this, var1, var2, MovementType.field2450);
             }
 
             this.method1792(var1, var2, var3);
@@ -387,7 +387,7 @@ public final class Player extends class102 {
       super.field963 = super.pathY[0] * 128 + var4 * 64;
    }
 
-   final void method1792(int var1, int var2, class223 var3) {
+   final void method1792(int var1, int var2, MovementType var3) {
       if (super.field1010 < 9) {
          ++super.field1010;
       }

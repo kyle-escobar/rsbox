@@ -6,10 +6,10 @@ public class class533 {
    }
 
    public static class308 method7051(int var0, String var1, class384 var2, int var3) {
-      class308 var5 = class308.method8607(ClientPacket.field3380, Client.serverConnection.field1046);
-      var5.packet.writeByte(0);
-      int var6 = var5.packet.offset;
-      var5.packet.writeByte(var0);
+      class308 var5 = class308.createPacket(ClientPacket.field3380, Client.serverConnection.field1046);
+      var5.buffer.writeByte(0);
+      int var6 = var5.buffer.offset;
+      var5.buffer.writeByte(var0);
       String var7 = var1.toLowerCase();
       int var8 = 0;
       byte[] var9 = null;
@@ -124,20 +124,20 @@ public class class533 {
          var1 = var1.substring(class364.field4118.length());
       }
 
-      var5.packet.writeByte(var8);
-      var5.packet.writeByte(var19);
+      var5.buffer.writeByte(var8);
+      var5.buffer.writeByte(var19);
       if (null != var9 && Client.revision >= 214) {
          for(int var18 = 0; var18 < var9.length; ++var18) {
-            var5.packet.writeByte(var9[var18]);
+            var5.buffer.writeByte(var9[var18]);
          }
       }
 
-      class324.method86(var5.packet, var1);
+      class324.method86(var5.buffer, var1);
       if (var0 == class340.field3810.serialId()) {
-         var5.packet.writeByte(var3);
+         var5.buffer.writeByte(var3);
       }
 
-      var5.packet.writeLengthByte(var5.packet.offset - var6);
+      var5.buffer.writeLengthByte(var5.buffer.offset - var6);
       return var5;
    }
 

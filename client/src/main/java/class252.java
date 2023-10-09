@@ -52,10 +52,10 @@ public class class252 {
 
    static final void method308() {
       if (!field2835) {
-         int var1 = class234.field2573;
-         int var2 = class234.field2574;
-         int var3 = class234.field2575;
-         int var4 = class234.field2609;
+         int var1 = Scene.field2573;
+         int var2 = Scene.field2574;
+         int var3 = Scene.field2575;
+         int var4 = Scene.field2609;
          byte var5 = 50;
          short var6 = 3500;
          int var7 = (field2836 - class229.method4282()) * var5 / class229.method4288();

@@ -86,7 +86,7 @@ public class ClientPacket implements class294 {
    public static final ClientPacket field3452 = new ClientPacket(90, 11);
    public static final ClientPacket field3453 = new ClientPacket(74, 22);
    public static final ClientPacket field3454 = new ClientPacket(46, -2);
-   public static final ClientPacket field3455 = new ClientPacket(93, -1);
+   public static final ClientPacket MOVE_GAMECLICK = new ClientPacket(93, -1);
    public static final ClientPacket field3456 = new ClientPacket(77, 3);
    public static final ClientPacket field3457 = new ClientPacket(95, 2);
    public static final ClientPacket field3458 = new ClientPacket(5, 4);

@@ -1,5 +1,5 @@
 public class class109 extends class442 {
-   static class234 field1065;
+   static Scene field1065;
    static class424 field1069;
    static int field1067;
    final boolean field1066;
