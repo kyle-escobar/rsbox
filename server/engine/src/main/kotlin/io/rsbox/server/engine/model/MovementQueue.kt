@@ -22,7 +22,7 @@ class MovementQueue(val entity: Entity, private val steps: Deque<Tile> = LinkedL
         val walkDir = Direction.between(entity.tile, step)
         var runDir: Direction? = null
 
-        if(walkDir == Direction.NONE) return
+        if(walkDir == Direction.NONE || !entity.canTravel(entity.tile, walkDir)) return
 
         var tile = step
         if(entity.running) {
@@ -33,7 +33,7 @@ class MovementQueue(val entity: Entity, private val steps: Deque<Tile> = LinkedL
             }
 
             runDir = Direction.between(tile, step)
-            if(false) {
+            if(!entity.canTravel(tile, runDir)) {
                 clear()
                 runDir = null
             } else {

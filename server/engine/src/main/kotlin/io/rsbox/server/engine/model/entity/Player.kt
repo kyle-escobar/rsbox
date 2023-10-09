@@ -1,7 +1,9 @@
 package io.rsbox.server.engine.model.entity
 
+import io.rsbox.server.common.inject
 import io.rsbox.server.config.ServerConfig
 import io.rsbox.server.engine.model.Appearance
+import io.rsbox.server.engine.model.World
 import io.rsbox.server.engine.model.coord.Tile
 import io.rsbox.server.engine.model.manager.GpiManager
 import io.rsbox.server.engine.model.manager.InterfaceManager
@@ -35,8 +37,6 @@ class Player internal constructor(val session: Session) : Entity() {
 
     override var tile = Tile(ServerConfig.SPAWN_TILE.X, ServerConfig.SPAWN_TILE.Y, ServerConfig.SPAWN_TILE.LEVEL)
     override var prevTile = tile
-
-    override var pathfinder: PathFinder = SmartPathFinder(flags = world.collisionMap.flags(), defaultFlag = 0x0)
 
     var username: String = ""
     var displayName: String = ""
@@ -76,7 +76,7 @@ class Player internal constructor(val session: Session) : Entity() {
     fun isOnline() = world.players.contains(this)
 
     fun moveTo(tile: Tile) {
-        val route = pathfinder.findPath(this.tile.x, this.tile.y, tile.x, tile.y, tile.level, collision = CollisionStrategies.Normal)
+        val route = pathFinder.findPath(this.tile.x, this.tile.y, tile.x, tile.y, tile.level, collision = CollisionStrategies.Normal)
         movementQueue.addRoute(route)
     }
 
@@ -86,7 +86,9 @@ class Player internal constructor(val session: Session) : Entity() {
 
     companion object {
 
-        const val RENDER_DISTANCE = 15
+        private val world: World by inject()
+
+        private val pathFinder = SmartPathFinder(flags = world.collisionMap.flags(), defaultFlag = 0x0, useRouteBlockerFlags = false)
 
         fun create(request: LoginRequest): Player {
             val player = Player(request.session)

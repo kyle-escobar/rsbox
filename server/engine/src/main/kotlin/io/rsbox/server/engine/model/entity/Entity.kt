@@ -22,8 +22,6 @@ abstract class Entity {
     abstract var tile: Tile
     abstract var prevTile: Tile
 
-    abstract var pathfinder: PathFinder
-
     var index: Int = -1
     var invisible = false
 
@@ -37,5 +35,7 @@ abstract class Entity {
     val movementQueue = MovementQueue(this)
 
     abstract suspend fun cycle()
+
+    fun canTravel(tile: Tile, direction: Direction) = world.collisionMap.canTravel(tile, direction)
 
 }

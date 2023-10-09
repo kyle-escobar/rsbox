@@ -5,15 +5,15 @@ import io.rsbox.server.util.buffer.readString
 
 data class ObjectConfig(override val id: Int) : Config(id) {
     var name: String = "null"
-    var width: Short = 1
-    var length: Short = 1
+    var width: Int = 1
+    var length: Int = 1
     var mapIconId: Int? = null
     val options: Array<String?> = arrayOfNulls(5)
-    var clipType: Int = 2
+    var interactType: Int = 2
     var isClipped: Boolean = true
     var modelClipped: Boolean = false
-    var isHollow: Boolean = false
-    var impenetrable: Boolean = true
+    var breakRouteFinding: Boolean = false
+    var blockProjectile: Boolean = true
     var accessBlock: Short = 0
     var objectModels: IntArray? = null
     var objectTypes: ShortArray? = null
@@ -78,13 +78,13 @@ data class ObjectConfig(override val id: Int) : Config(id) {
                             objectConfig.objectModels = IntArray(size) { data.readUnsignedShort() }
                         }
                     }
-                    14 -> objectConfig.width = data.readUnsignedByte()
-                    15 -> objectConfig.length = data.readUnsignedByte()
+                    14 -> objectConfig.width = data.readUnsignedByte().toInt()
+                    15 -> objectConfig.length = data.readUnsignedByte().toInt()
                     17 -> {
-                        objectConfig.clipType = 0
-                        objectConfig.impenetrable = false
+                        objectConfig.interactType = 0
+                        objectConfig.blockProjectile = false
                     }
-                    18 -> objectConfig.impenetrable = false
+                    18 -> objectConfig.blockProjectile = false
                     19 -> objectConfig.anInt2088 = data.readUnsignedByte()
                     21 -> objectConfig.contouredGround = 0
                     22 -> objectConfig.nonFlatShading = true
@@ -95,7 +95,7 @@ data class ObjectConfig(override val id: Int) : Config(id) {
                             objectConfig.animationId = null
                         }
                     }
-                    27 -> objectConfig.clipType = 1
+                    27 -> objectConfig.interactType = 1
                     28 -> objectConfig.decorDisplacement = data.readUnsignedByte()
                     29 -> objectConfig.ambient = data.readByte()
                     39 -> objectConfig.contrast = data.readByte().toInt() * 25
@@ -134,7 +134,7 @@ data class ObjectConfig(override val id: Int) : Config(id) {
                     71 -> objectConfig.offsetHeight = data.readShort()
                     72 -> objectConfig.offsetY = data.readShort()
                     73 -> objectConfig.obstructsGround = true
-                    74 -> objectConfig.isHollow = true
+                    74 -> objectConfig.breakRouteFinding = true
                     75 -> objectConfig.supportItems = data.readUnsignedByte()
                     77, 92 -> {
                         val transformVarbit = data.readUnsignedShort()
@@ -186,11 +186,11 @@ data class ObjectConfig(override val id: Int) : Config(id) {
                 }
             }
             if (objectConfig.supportItems == null) {
-                objectConfig.supportItems = if (objectConfig.clipType != 0) 1 else 0
+                objectConfig.supportItems = if (objectConfig.interactType != 0) 1 else 0
             }
-            if (objectConfig.isHollow) {
-                objectConfig.clipType = 0
-                objectConfig.impenetrable = false
+            if (objectConfig.breakRouteFinding) {
+                objectConfig.interactType = 0
+                objectConfig.blockProjectile = false
             }
             return objectConfig
         }
