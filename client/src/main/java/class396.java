@@ -1,41 +1,32 @@
-import java.util.ArrayList;
+public class class396 extends class415 {
+	static int field2684;
+	static String[] field2682;
+	int field2681;
+	String field2680;
+	long field2683;
+	// $FF: synthetic field
+	final class14 this$0;
 
-public class class396 extends class406 {
-   ArrayList field4461;
+	class396(class14 var1) {
+		this.this$0 = var1;
+		this.field2683 = -1L;
+		this.field2680 = null;
+		this.field2681 = 0;
+	}
 
-   public class396(class406 var1, ArrayList var2) {
-      super(var1);
-      this.field4461 = var2;
-      super.field4513 = "ConcurrentMidiTask";
-   }
+	@Override
+	void method1905(Buffer var1) {
+		if (var1.readUnsignedByte() != 255) {
+			--var1.offset;
+			this.field2683 = var1.readLong();
+		}
 
-   public boolean method7131(int var1) {
-      for(int var3 = 0; var3 < this.field4461.size(); ++var3) {
-         class406 var4 = (class406)this.field4461.get(var3);
-         if (null == var4) {
-            this.field4461.remove(var3);
-            --var3;
-         } else if (var4.method7131(var1)) {
-            if (var4.method7150()) {
-               this.method7135(var4.method7133());
-               this.field4461.clear();
-               return true;
-            }
+		this.field2680 = var1.readString();
+		this.field2681 = var1.readUnsignedShort();
+	}
 
-            if (var4.method7134() != null) {
-               this.field4461.add(var4.method7134());
-            }
-
-            super.field4511 = var4.field4511;
-            this.field4461.remove(var3);
-            --var3;
-         }
-      }
-
-      if (this.field4461.isEmpty()) {
-         return true;
-      } else {
-         return false;
-      }
-   }
+	@Override
+	void method1906(class511 var1) {
+		var1.method2415(this.field2683, this.field2680, this.field2681);
+	}
 }

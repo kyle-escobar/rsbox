@@ -1,9 +1,13 @@
-public class class281 {
-   static final class281 field3039 = new class281(1);
-   static final class281 field3041 = new class281(0);
-   final int field3040;
+public interface class281 {
+	boolean method1476(int var1, int var2, int var3);
 
-   class281(int var1) {
-      this.field3040 = var1;
-   }
+	boolean method1477(int var1, int var2);
+
+	class370 method1480(int var1, int var2);
+
+	int[] method1478(int var1, int var2, int var3);
+
+	void method1479(Buffer var1);
+
+	void method1481(class353 var1);
 }

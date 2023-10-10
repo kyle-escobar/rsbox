@@ -1,73 +1,43 @@
-public class class170 extends class188 {
-   int field1811 = 0;
-   int field1813 = 1;
-   int field1815 = 256;
-   int field1816;
-   long field1814 = class302.safeTime();
-   long[] field1812 = new long[10];
+public class class170 {
+	static final char[] field1199;
+	static final char[] field1200;
 
-   public class170() {
-      for(int var1 = 0; var1 < 10; ++var1) {
-         this.field1812[var1] = this.field1814;
-      }
+	static {
+		field1199 = new char[]{' ', '\u00a0', '_', '-', '\u00e0', '\u00e1', '\u00e2', '\u00e4', '\u00e3', '\u00c0', '\u00c1', '\u00c2', '\u00c4', '\u00c3', '\u00e8', '\u00e9', '\u00ea', '\u00eb', '\u00c8', '\u00c9', '\u00ca', '\u00cb', '\u00ed', '\u00ee', '\u00ef', '\u00cd', '\u00ce', '\u00cf', '\u00f2', '\u00f3', '\u00f4', '\u00f6', '\u00f5', '\u00d2', '\u00d3', '\u00d4', '\u00d6', '\u00d5', '\u00f9', '\u00fa', '\u00fb', '\u00fc', '\u00d9', '\u00da', '\u00db', '\u00dc', '\u00e7', '\u00c7', '\u00ff', '\u0178', '\u00f1', '\u00d1', '\u00df'};
+		field1200 = new char[]{'[', ']', '#'};
+	}
 
-   }
+	static final boolean method896(char var0) {
+		if (Character.isISOControl(var0)) {
+			return false;
+		} else if (class385.method1808(var0)) {
+			return true;
+		} else {
+			char[] var2 = field1199;
 
-   public void method3588() {
-      for(int var2 = 0; var2 < 10; ++var2) {
-         this.field1812[var2] = 0L;
-      }
+			int var3;
+			char var4;
+			for (var3 = 0; var3 < var2.length; ++var3) {
+				var4 = var2[var3];
+				if (var4 == var0) {
+					return true;
+				}
+			}
 
-   }
+			var2 = field1200;
 
-   public int method3590(int var1, int var2) {
-      int var4 = this.field1815;
-      int var5 = this.field1813;
-      this.field1815 = 300;
-      this.field1813 = 1;
-      this.field1814 = class302.safeTime();
-      if (0L == this.field1812[this.field1816]) {
-         this.field1815 = var4;
-         this.field1813 = var5;
-      } else if (this.field1814 > this.field1812[this.field1816]) {
-         this.field1815 = (int)((long)(var1 * 2560) / (this.field1814 - this.field1812[this.field1816]));
-      }
+			for (var3 = 0; var3 < var2.length; ++var3) {
+				var4 = var2[var3];
+				if (var4 == var0) {
+					return true;
+				}
+			}
 
-      if (this.field1815 < 25) {
-         this.field1815 = 25;
-      }
+			return false;
+		}
+	}
 
-      if (this.field1815 > 256) {
-         this.field1815 = 256;
-         this.field1813 = (int)((long)var1 - (this.field1814 - this.field1812[this.field1816]) / 10L);
-      }
-
-      if (this.field1813 > var1) {
-         this.field1813 = var1;
-      }
-
-      this.field1812[this.field1816] = this.field1814;
-      this.field1816 = (this.field1816 + 1) % 10;
-      int var6;
-      if (this.field1813 > 1) {
-         for(var6 = 0; var6 < 10; ++var6) {
-            if (this.field1812[var6] != 0L) {
-               this.field1812[var6] += (long)this.field1813;
-            }
-         }
-      }
-
-      if (this.field1813 < var2) {
-         this.field1813 = var2;
-      }
-
-      class292.method354((long)this.field1813);
-
-      for(var6 = 0; this.field1811 < 256; this.field1811 += this.field1815) {
-         ++var6;
-      }
-
-      this.field1811 &= 255;
-      return var6;
-   }
+	static final boolean method895(char var0) {
+		return var0 == 160 || var0 == ' ' || var0 == '_' || var0 == '-';
+	}
 }

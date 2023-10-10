@@ -1,100 +1,124 @@
-import java.applet.Applet;
-import java.awt.Desktop;
-import java.awt.Desktop.Action;
-import java.net.URI;
-import java.net.URL;
-import netscape.javascript.JSObject;
+public final class class45 {
+	class301 field220;
+	class505 field224;
+	class530 field223;
+	int field221;
+	int field222;
 
-@SuppressWarnings("ALL")
-public class class45 {
-   static Applet field311 = null;
-   static String field308 = "";
+	public class45(int var1) {
+		this(var1, var1);
+	}
 
-   class45() throws Throwable {
-   }
+	public class45(int var1, int var2) {
+		this.field223 = new class530();
+		this.field221 = var1;
+		this.field222 = var1;
 
-   public static void method5201(Applet var0, String var1) {
-      field311 = var0;
-      if (null != var1) {
-         field308 = var1;
-      }
+		int var3;
+		for (var3 = 1; var3 + var3 < var1 && var3 < var2; var3 += var3) {
+		}
 
-   }
+		this.field220 = new class301(var3);
+	}
 
-   public static void method1843(String var0, boolean var1, boolean var2) {
-      if (var1) {
-         if (!var2 && Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Action.BROWSE)) {
-            try {
-               Desktop.getDesktop().browse(new URI(var0));
-               return;
-            } catch (Exception var5) {
-            }
-         }
+	public Object method186(long var1) {
+		class297 var3 = (class297)this.field220.method1533(var1);
+		if (var3 == null) {
+			return null;
+		} else {
+			Object var4 = var3.method1529();
+			if (var4 == null) {
+				var3.method1719();
+				var3.method1517();
+				this.field222 += var3.field2191;
+				return null;
+			} else {
+				if (var3.method1530()) {
+					class260 var5 = new class260(var4, var3.field2191);
+					this.field220.method1534(var5, var3.field2472);
+					this.field223.method2542(var5);
+					var5.field2177 = 0L;
+					var3.method1719();
+					var3.method1517();
+				} else {
+					this.field223.method2542(var3);
+					var3.field2177 = 0L;
+				}
 
-         if (field308.startsWith("win") && !var2) {
-            method6579(var0, 0, "openjs");
-         } else if (field308.startsWith("mac")) {
-            method6579(var0, 1, "openjs");
-         } else {
-            method6579(var0, 2, "openjs");
-         }
-      } else {
-         method6579(var0, 3, "openjs");
-      }
+				return var4;
+			}
+		}
+	}
 
-   }
+	void method187(long var1) {
+		class297 var3 = (class297)this.field220.method1533(var1);
+		this.method188(var3);
+	}
 
-   static boolean method6579(String var0, int var1, String var2) {
-      if (var1 == 0) {
-         try {
-            if (!field308.startsWith("win")) {
-               throw new Exception();
-            } else if (!var0.startsWith("http://") && !var0.startsWith("https://")) {
-               throw new Exception();
-            } else {
-               String var12 = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789?&=,.%+-_#:/*";
+	void method188(class297 var1) {
+		if (var1 != null) {
+			var1.method1719();
+			var1.method1517();
+			this.field222 += var1.field2191;
+		}
 
-               for(int var5 = 0; var5 < var0.length(); ++var5) {
-                  if (var12.indexOf(var0.charAt(var5)) == -1) {
-                     throw new Exception();
-                  }
-               }
+	}
 
-               Runtime.getRuntime().exec("cmd /c start \"j\" \"" + var0 + "\"");
-               return true;
-            }
-         } catch (Throwable var6) {
-            return false;
-         }
-      } else if (var1 == 1) {
-         try {
-            Object var11 = class30.method443(field311, var2, new Object[]{(new URL(field311.getCodeBase(), var0)).toString()});
-            return var11 != null;
-         } catch (Throwable var7) {
-            return false;
-         }
-      } else if (var1 == 2) {
-         try {
-            field311.getAppletContext().showDocument(new URL(field311.getCodeBase(), var0), "_blank");
-            return true;
-         } catch (Exception var8) {
-            return false;
-         }
-      } else if (var1 == 3) {
-         try {
-            Applet var4 = field311;
-            JSObject.getWindow(var4).call("loggedout", (Object[])null);
-         } catch (Throwable var10) {
-         }
+	public void method191(Object var1, long var2) {
+		this.method185(var1, var2, 1);
+	}
 
-         try {
-            field311.getAppletContext().showDocument(new URL(field311.getCodeBase(), var0), "_top");
-            return true;
-         } catch (Exception var9) {
-            return false;
-         }
-      } else {
-         throw new IllegalArgumentException();
-      }
-   }
+	public void method185(Object var1, long var2, int var4) {
+		if (var4 > this.field221) {
+			throw new IllegalStateException();
+		} else {
+			this.method187(var2);
+			this.field222 -= var4;
+
+			while (this.field222 < 0) {
+				class297 var5 = (class297)this.field223.method2543();
+				if (var5 == null) {
+					throw new RuntimeException("");
+				}
+
+				if (!var5.method1530()) {
+				}
+
+				this.method188(var5);
+				if (this.field224 != null) {
+					this.field224.method2387(var5.method1529());
+				}
+			}
+
+			class260 var6 = new class260(var1, var4);
+			this.field220.method1534(var6, var2);
+			this.field223.method2542(var6);
+			var6.field2177 = 0L;
+		}
+	}
+
+	public void method189(int var1) {
+		for (class297 var2 = (class297)this.field223.method2544(); var2 != null; var2 = (class297)this.field223.method2546()) {
+			if (var2.method1530()) {
+				if (var2.method1529() == null) {
+					var2.method1719();
+					var2.method1517();
+					this.field222 += var2.field2191;
+				}
+			} else if (++var2.field2177 > (long)5) {
+				class243 var3 = new class243(var2.method1529(), var2.field2191);
+				this.field220.method1534(var3, var2.field2472);
+				class530.method2547(var3, var2);
+				var2.method1719();
+				var2.method1517();
+			}
+		}
+
+	}
+
+	public void method190() {
+		this.field223.method2545();
+		this.field220.method1535();
+		this.field222 = this.field221;
+	}
 }

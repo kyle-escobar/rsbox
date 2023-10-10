@@ -45,6 +45,8 @@ enum class Direction(val value: Int, val playerValue: Int) {
         val DELTA_X = intArrayOf(-1, 0, 1, -1, 1, -1, 0, 1)
         val DELTA_Y = intArrayOf(-1, -1, -1, 0, 0, 1, 1, 1)
 
+        fun fromValue(value: Int) = entries.firstOrNull { it.value == value }
+
         fun between(from: Tile, to: Tile): Direction {
             val dx = to.x - from.x
             val dy = to.y - from.y

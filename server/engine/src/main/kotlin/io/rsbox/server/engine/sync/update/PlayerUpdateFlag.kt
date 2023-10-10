@@ -2,6 +2,7 @@ package io.rsbox.server.engine.sync.update
 
 import io.rsbox.server.engine.model.entity.Player
 import io.rsbox.server.util.buffer.JagByteBuf
+import io.rsbox.server.util.buffer.NEG
 import io.rsbox.server.util.buffer.SUB
 import io.rsbox.server.util.buffer.toJagBuf
 import kotlin.math.max
@@ -11,7 +12,7 @@ class PlayerUpdateFlag(mask: Int, order: Int, val encode: JagByteBuf.(Player) ->
         /**
          * === APPEARANCE ===
          */
-        val APPEARANCE = PlayerUpdateFlag(mask = 0x1, order = 14) { player ->
+        val APPEARANCE = PlayerUpdateFlag(mask = 0x40, order = 13) { player ->
             val buf = player.session.channel.alloc().buffer().toJagBuf()
 
             buf.writeByte(player.appearance.gender.id)
@@ -50,12 +51,12 @@ class PlayerUpdateFlag(mask: Int, order: Int, val encode: JagByteBuf.(Player) ->
             repeat(3) { buf.writeString("") }
             buf.writeByte(player.appearance.gender.id)
 
-            writeByte(buf.writerIndex())
+            writeByte(buf.writerIndex() and 0xFF, transform = NEG)
             writeBytesReversed(buf.toByteBuf())
             buf.release()
         }
 
-        val MOVEMENT = PlayerUpdateFlag(mask = 0x8000, order = 9) { player ->
+        val MOVEMENT = PlayerUpdateFlag(mask = 0x2000, order = 14) { player ->
             writeByte(player.movementType.id, transform = SUB)
         }
     }

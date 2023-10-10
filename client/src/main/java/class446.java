@@ -1,17 +1,27 @@
-public class class446 {
-   static final int[] field4701 = new int[2048];
-   static final int[] field4702 = new int[2048];
+public class class446 extends class551 {
+	static int field2981;
+	int field2980;
+	// $FF: synthetic field
+	final class328 this$0;
 
-   static {
-      double var0 = 0.0030679615757712823;
+	class446(class328 var1) {
+		this.this$0 = var1;
+		this.field2980 = -1;
+	}
 
-      for(int var2 = 0; var2 < 2048; ++var2) {
-         field4701[var2] = (int)(65536.0 * Math.sin(var0 * (double)var2));
-         field4702[var2] = (int)(65536.0 * Math.cos(var0 * (double)var2));
-      }
+	@Override
+	void method2632(Buffer var1) {
+		this.field2980 = var1.readUnsignedShort();
+		var1.readUnsignedByte();
+		if (var1.readUnsignedByte() != 255) {
+			--var1.offset;
+			var1.readLong();
+		}
 
-   }
+	}
 
-   class446() throws Throwable {
-   }
+	@Override
+	void method2633(class398 var1) {
+		var1.method1853(this.field2980);
+	}
 }

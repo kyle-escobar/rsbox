@@ -1,23 +1,20 @@
-import java.security.SecureRandom;
+public final class class204 {
+	boolean field1368;
+	int field1365;
+	int field1366;
+	int field1367;
+	int field1369;
+	int field1370;
+	int field1371;
 
-public class class204 {
-   public static int field2196;
-   static int field2200;
-   static SecureRandom secureRandom;
-   public short[] field2198;
-   public short[] field2201;
-
-   public class204(int var1) {
-      class185 var2 = class185.method2355(var1);
-      if (var2.method3518()) {
-         this.field2198 = new short[var2.field1966.length];
-         System.arraycopy(var2.field1966, 0, this.field2198, 0, this.field2198.length);
-      }
-
-      if (var2.method3511()) {
-         this.field2201 = new short[var2.field1968.length];
-         System.arraycopy(var2.field1968, 0, this.field2201, 0, this.field2201.length);
-      }
-
-   }
+	class204(int var1, int var2, int var3, int var4, int var5, int var6, boolean var7) {
+		this.field1368 = true;
+		this.field1369 = var1;
+		this.field1365 = var2;
+		this.field1370 = var3;
+		this.field1367 = var4;
+		this.field1366 = var5;
+		this.field1371 = var6;
+		this.field1368 = var7;
+	}
 }

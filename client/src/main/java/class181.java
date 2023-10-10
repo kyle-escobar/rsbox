@@ -1,29 +1,20 @@
-public class class181 extends class188 {
-   long field1881 = System.nanoTime();
+public class class181 extends class284 {
+	int field1271;
 
-   public void method3588() {
-      this.field1881 = System.nanoTime();
-   }
+	class181() {
+	}
 
-   public int method3590(int var1, int var2) {
-      long var4 = 1000000L * (long)var2;
-      long var6 = this.field1881 - System.nanoTime();
-      if (var6 < var4) {
-         var6 = var4;
-      }
+	int method928(class181 var1) {
+		return this.field1271 - var1.field1271;
+	}
 
-      class292.method354(var6 / 1000000L);
-      long var8 = System.nanoTime();
+	@Override
+	public int method1492(class284 var1) {
+		return this.method928((class181)var1);
+	}
 
-      int var10;
-      for(var10 = 0; var10 < 10 && (var10 < 1 || this.field1881 < var8); this.field1881 += 1000000L * (long)var1) {
-         ++var10;
-      }
-
-      if (this.field1881 < var8) {
-         this.field1881 = var8;
-      }
-
-      return var10;
-   }
+	@Override
+	public int compareTo(Object var1) {
+		return this.method928((class181)var1);
+	}
 }

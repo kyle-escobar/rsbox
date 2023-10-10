@@ -1,19 +1,42 @@
-public abstract class class228 extends class476 {
-   public int field2507 = 1000;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.security.cert.CertificateException;
+import java.security.cert.CertificateFactory;
+import java.util.LinkedList;
+import org.bouncycastle.crypto.tls.Certificate;
+import org.bouncycastle.crypto.tls.CertificateRequest;
+import org.bouncycastle.crypto.tls.TlsAuthentication;
+import org.bouncycastle.crypto.tls.TlsCredentials;
 
-   protected class228() {
-   }
+class class228 implements TlsAuthentication {
+	static class86 field1475;
+	// $FF: synthetic field
+	final class318 this$2;
 
-   void method4275(int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, long var9) {
-      class249 var11 = this.method4273();
-      if (var11 != null) {
-         this.field2507 = var11.field2507;
-         var11.method4275(var1, var2, var3, var4, var5, var6, var7, var8, var9);
-      }
+	class228(class318 var1) {
+		this.this$2 = var1;
+	}
 
-   }
+	@Override
+	public void notifyServerCertificate(Certificate var1) throws IOException {
+		try {
+			CertificateFactory var2 = CertificateFactory.getInstance("X.509");
+			LinkedList var3 = new LinkedList();
+			org.bouncycastle.asn1.x509.Certificate[] var4 = var1.getCertificateList();
 
-   protected class249 method4273() {
-      return null;
-   }
+			for (int var5 = 0; var5 < var4.length; ++var5) {
+				org.bouncycastle.asn1.x509.Certificate var6 = var4[var5];
+				var3.add(var2.generateCertificate(new ByteArrayInputStream(var6.getEncoded())));
+			}
+
+			this.this$2.this$1.field551 = (java.security.cert.Certificate[])((java.security.cert.Certificate[])var3.toArray(new java.security.cert.Certificate[0]));
+		} catch (CertificateException var7) {
+			throw new IOException(var7);
+		}
+	}
+
+	@Override
+	public TlsCredentials getClientCredentials(CertificateRequest var1) throws IOException {
+		return null;
+	}
 }

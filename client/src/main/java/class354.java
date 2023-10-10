@@ -1,20 +1,36 @@
-import java.nio.ByteBuffer;
+import java.security.SecureRandom;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
-public class class354 extends class317 {
-   static class537 field3917;
-   static int field3921;
-   ByteBuffer field3918;
+public class class354 {
+	static byte[][][] field2451;
+	static int[] field2454;
+	static int[] field2455;
+	ExecutorService field2453;
+	Future field2452;
 
-   byte[] method5849() {
-      byte[] var2 = new byte[this.field3918.capacity()];
-      this.field3918.position(0);
-      this.field3918.get(var2);
-      return var2;
-   }
+	class354() {
+		this.field2453 = Executors.newSingleThreadExecutor();
+		this.field2452 = this.field2453.submit(new class250());
+	}
 
-   public void method5839(byte[] var1) {
-      this.field3918 = ByteBuffer.allocateDirect(var1.length);
-      this.field3918.position(0);
-      this.field3918.put(var1);
-   }
+	void method1703() {
+		this.field2453.shutdown();
+		this.field2453 = null;
+	}
+
+	boolean method1704() {
+		return this.field2452.isDone();
+	}
+
+	SecureRandom method1705() {
+		try {
+			return (SecureRandom)this.field2452.get();
+		} catch (Exception var5) {
+			SecureRandom var4 = new SecureRandom();
+			var4.nextInt();
+			return var4;
+		}
+	}
 }

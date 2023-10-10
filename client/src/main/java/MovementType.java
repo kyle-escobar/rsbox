@@ -1,16 +1,23 @@
-public class MovementType implements class383 {
-   public static final MovementType field2450 = new MovementType((byte)2);
-   public static final MovementType field2451 = new MovementType((byte)0);
-   public static final MovementType NONE = new MovementType((byte)-1);
-   public static final MovementType field2457 = new MovementType((byte)1);
-   static class537[] field2455;
-   public byte id;
+public class MovementType implements class501 {
+	public static final MovementType CRAWL;
+	public static final MovementType run;
+	public static final MovementType WALK;
+	public static final MovementType NONE;
+	public byte id;
 
-   MovementType(byte var1) {
-      this.id = var1;
-   }
+	static {
+		NONE = new MovementType((byte)-1);
+		CRAWL = new MovementType((byte)0);
+		WALK = new MovementType((byte)1);
+		run = new MovementType((byte)2);
+	}
 
-   public int serialId() {
-      return this.id;
-   }
+	MovementType(byte id) {
+		this.id = id;
+	}
+
+	@Override
+	public int getId() {
+		return this.id;
+	}
 }

@@ -1,63 +1,14 @@
-public class class58 extends class470 {
-   public static class342 field413;
-   class38 field411;
+public class class58 {
+	static final class58 field274;
+	static final class58 field275;
+	final int field273;
 
-   public class58() {
-      this.field411 = null;
-   }
+	static {
+		field275 = new class58(0);
+		field274 = new class58(1);
+	}
 
-   class58(class78 var1) {
-      if (null != var1) {
-         this.field411 = new class38(var1, (class35)null);
-      }
-   }
-
-   public class58(class35 var1) {
-      this.field411 = new class38((class78)null, var1);
-   }
-
-   public boolean method1177() {
-      return this.field411 == null;
-   }
-
-   public class35 method1175() {
-      if (this.field411 != null && this.field411.field205.tryLock()) {
-         class35 var2;
-         try {
-            var2 = this.method1180();
-         } finally {
-            this.field411.field205.unlock();
-         }
-
-         return var2;
-      } else {
-         return null;
-      }
-   }
-
-   public class35 method1183() {
-      if (this.field411 != null) {
-         this.field411.field205.lock();
-
-         class35 var2;
-         try {
-            var2 = this.method1180();
-         } finally {
-            this.field411.field205.unlock();
-         }
-
-         return var2;
-      } else {
-         return null;
-      }
-   }
-
-   class35 method1180() {
-      if (null == this.field411.field204) {
-         this.field411.field204 = this.field411.field208.method1602((int[])null);
-         this.field411.field208 = null;
-      }
-
-      return this.field411.field204;
-   }
+	class58(int var1) {
+		this.field273 = var1;
+	}
 }

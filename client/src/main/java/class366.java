@@ -1,35 +1,51 @@
-public final class class366 {
-   class476 field4335 = new class476();
+public class class366 extends class283 {
+	static int field2540;
+	class40 field2538;
+	int field2535;
+	int field2537;
+	int field2539;
+	final class438 field2536;
+	final int field2541;
 
-   public class366() {
-      this.field4335.field4849 = this.field4335;
-      this.field4335.field4848 = this.field4335;
-   }
+	class366(class370 var1, class370 var2, int var3, class438 var4) {
+		super(var1, var2);
+		this.field2541 = var3;
+		this.field2536 = var4;
+		this.method1731();
+	}
 
-   public void method6642(class476 var1) {
-      if (var1.field4848 != null) {
-         var1.method8161();
-      }
+	void method1731() {
+		this.field2537 = class109.method504(this.field2541).method1845().field2714;
+		this.field2538 = this.field2536.method2015(class63.method269(this.field2537));
+		class63 var2 = class63.method269(this.method1483());
+		class42 var3 = var2.method264(false);
+		if (null != var3) {
+			this.field2539 = var3.field207;
+			this.field2535 = var3.field209;
+		} else {
+			this.field2539 = 0;
+			this.field2535 = 0;
+		}
 
-      var1.field4848 = this.field4335.field4848;
-      var1.field4849 = this.field4335;
-      var1.field4848.field4849 = var1;
-      var1.field4849.field4848 = var1;
-   }
+	}
 
-   public void method6643(class476 var1) {
-      if (var1.field4848 != null) {
-         var1.method8161();
-      }
+	@Override
+	public int method1483() {
+		return this.field2537;
+	}
 
-      var1.field4848 = this.field4335;
-      var1.field4849 = this.field4335.field4849;
-      var1.field4848.field4849 = var1;
-      var1.field4849.field4848 = var1;
-   }
+	@Override
+	class40 method1484() {
+		return this.field2538;
+	}
 
-   public class476 method6641() {
-      class476 var1 = this.field4335.field4849;
-      return var1 == this.field4335 ? null : var1;
-   }
+	@Override
+	int method1485() {
+		return this.field2539;
+	}
+
+	@Override
+	int method1486() {
+		return this.field2535;
+	}
 }

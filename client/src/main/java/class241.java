@@ -1,47 +1,57 @@
-public class class241 extends class282 {
-   static int field2683;
-   class261 field2680;
-   int field2677;
-   int field2679;
-   int field2681;
-   final class256 field2682;
-   final int field2684;
+public class class241 extends class292 {
+	static class230 field1619;
+	static class352 field1615;
+	static class5 field1618;
+	static int field1617;
+	public boolean field1616;
 
-   class241(class330 var1, class330 var2, int var3, class256 var4) {
-      super(var1, var2);
-      this.field2684 = var3;
-      this.field2682 = var4;
-      this.method4655();
-   }
+	static {
+		field1615 = new class352(64);
+	}
 
-   void method4655() {
-      this.field2679 = class98.method2042(this.field2684).method3456().field1933;
-      this.field2680 = this.field2682.method5075(class197.method4100(this.field2679));
-      class197 var2 = class197.method4100(this.method5405());
-      class523 var3 = var2.method3771(false);
-      if (null != var3) {
-         this.field2681 = var3.field5148;
-         this.field2677 = var3.field5153;
-      } else {
-         this.field2681 = 0;
-         this.field2677 = 0;
-      }
+	class241() {
+		this.field1616 = false;
+	}
 
-   }
+	void method1117(Buffer var1) {
+		while (true) {
+			int var3 = var1.readUnsignedByte();
+			if (var3 == 0) {
+				return;
+			}
 
-   public int method5405() {
-      return this.field2679;
-   }
+			this.method1118(var1, var3);
+		}
+	}
 
-   class261 method5381() {
-      return this.field2680;
-   }
+	void method1118(Buffer var1, int var2) {
+		if (var2 == 2) {
+			this.field1616 = true;
+		}
 
-   int method5385() {
-      return this.field2681;
-   }
+	}
 
-   int method5386() {
-      return this.field2677;
-   }
+	public static void method1120(class5 var0) {
+		field1618 = var0;
+	}
+
+	public static class241 method1119(int var0) {
+		class241 var2 = (class241)field1615.method1678((long)var0);
+		if (null != var2) {
+			return var2;
+		} else {
+			byte[] var3 = field1618.method39(19, var0);
+			var2 = new class241();
+			if (null != var3) {
+				var2.method1117(new Buffer(var3));
+			}
+
+			field1615.method1680(var2, (long)var0);
+			return var2;
+		}
+	}
+
+	public static void method1121() {
+		field1615.method1679();
+	}
 }

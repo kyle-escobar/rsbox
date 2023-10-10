@@ -8,7 +8,7 @@ import io.rsbox.server.engine.net.game.PacketType
 import io.rsbox.server.engine.net.game.ServerPacket
 import io.rsbox.server.util.buffer.JagByteBuf
 
-@ServerPacket(opcode = 79, type = PacketType.VARIABLE_SHORT)
+@ServerPacket(opcode = 112, type = PacketType.VARIABLE_SHORT)
 class PlayerInfoServerPacket(val buf: ByteBuf) : Packet {
     companion object : Codec<PlayerInfoServerPacket> {
         override fun encode(session: Session, packet: PlayerInfoServerPacket, out: JagByteBuf) {

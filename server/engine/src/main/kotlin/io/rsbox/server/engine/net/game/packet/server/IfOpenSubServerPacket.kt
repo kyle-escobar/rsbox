@@ -8,8 +8,9 @@ import io.rsbox.server.engine.net.game.ServerPacket
 import io.rsbox.server.util.buffer.ADD
 import io.rsbox.server.util.buffer.JagByteBuf
 import io.rsbox.server.util.buffer.LITTLE
+import io.rsbox.server.util.buffer.NEG
 
-@ServerPacket(opcode = 59, type = PacketType.FIXED)
+@ServerPacket(opcode = 94, type = PacketType.FIXED)
 data class IfOpenSubServerPacket(
     val component: Int,
     val interfaceId: Int,
@@ -17,9 +18,9 @@ data class IfOpenSubServerPacket(
 ) : Packet {
     companion object : Codec<IfOpenSubServerPacket> {
         override fun encode(session: Session, packet: IfOpenSubServerPacket, out: JagByteBuf) {
-            out.writeInt(packet.component)
-            out.writeByte(packet.type)
-            out.writeShort(packet.interfaceId, endian = LITTLE, transform = ADD)
+            out.writeShort(packet.interfaceId, transform = ADD)
+            out.writeByte(packet.type, transform = NEG)
+            out.writeInt(packet.component, endian = LITTLE)
         }
     }
 }

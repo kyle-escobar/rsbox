@@ -8,8 +8,9 @@ import io.rsbox.server.engine.net.game.ServerPacket
 import io.rsbox.server.util.buffer.INVERSE_MIDDLE
 import io.rsbox.server.util.buffer.JagByteBuf
 import io.rsbox.server.util.buffer.LITTLE
+import io.rsbox.server.util.buffer.MIDDLE
 
-@ServerPacket(opcode = 11, type = PacketType.FIXED)
+@ServerPacket(opcode = 118, type = PacketType.FIXED)
 data class IfMoveSubServerPacket(
     val fromParent: Int,
     val fromChild: Int,
@@ -20,8 +21,8 @@ data class IfMoveSubServerPacket(
         override fun encode(session: Session, packet: IfMoveSubServerPacket, out: JagByteBuf) {
             val fromComponent = (packet.fromParent shl 16) or packet.fromChild
             val toComponent = (packet.toParent shl 16) or packet.toChild
-            out.writeInt(toComponent, endian = INVERSE_MIDDLE)
-            out.writeInt(fromComponent, endian = LITTLE)
+            out.writeInt(fromComponent)
+            out.writeInt(toComponent, endian = MIDDLE)
         }
     }
 }

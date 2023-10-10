@@ -1,214 +1,131 @@
+import java.util.HashMap;
+import java.util.Map;
+
 public class class72 {
-   float[][] field584;
-   int field581;
-   int field582;
-   int[] field583;
-   int[] field585;
-   int[] field586;
+	class157 field464;
+	class157 field476;
+	class352 field470;
+	class352 field471;
+	class352 field472;
+	class352 field475;
+	class5 field465;
+	class5 field466;
+	class5 field467;
+	class5 field468;
+	class5 field469;
+	Map field474;
+	public class496[][] components;
 
-   class72() {
-      class57 var1 = class78.field674;
-      var1.method1163(24);
-      this.field581 = var1.method1163(16);
-      this.field582 = var1.method1163(24);
-      this.field583 = new int[this.field582];
-      boolean var2 = var1.method1164() != 0;
-      int var3;
-      int var4;
-      int var6;
-      if (var2) {
-         var3 = 0;
+	public class72(class5 var1, class5 var2, class5 var3, class5 var4, class5 var5) {
+		this.field474 = new HashMap();
+		this.field471 = new class352(200);
+		this.field475 = new class352(50);
+		this.field472 = new class352(20);
+		this.field470 = new class352(8);
+		this.field464 = new class157(10, class481.field3379);
+		this.field476 = new class157(10, class481.field3379);
+		int var6 = 0;
+		if (var1 != null) {
+			this.field469 = var1;
+			this.field466 = var2;
+			this.field467 = var3;
+			this.field468 = var4;
+			this.field465 = var5;
+			var6 = this.field469.method24();
+		}
 
-         for(var4 = var1.method1163(5) + 1; var3 < this.field582; ++var4) {
-            int var5 = var1.method1163(class311.method5127(this.field582 - var3));
+		this.components = new class496[var6][];
+		class147.field1024 = new boolean[var6];
+	}
 
-            for(var6 = 0; var6 < var5; ++var6) {
-               this.field583[var3++] = var4;
-            }
-         }
-      } else {
-         boolean var15 = var1.method1164() != 0;
+	public class496 method345(int var1) {
+		int var3 = var1 >> 16;
+		int var4 = var1 & 65535;
+		if (this.components[var3] == null || null == this.components[var3][var4]) {
+			boolean var5 = this.method347(var3);
+			if (!var5) {
+				return null;
+			}
+		}
 
-         for(var4 = 0; var4 < this.field582; ++var4) {
-            if (var15 && var1.method1164() == 0) {
-               this.field583[var4] = 0;
-            } else {
-               this.field583[var4] = var1.method1163(5) + 1;
-            }
-         }
-      }
+		return this.components[var3][var4];
+	}
 
-      this.method1493();
-      var3 = var1.method1163(4);
-      if (var3 > 0) {
-         float var16 = class78.method1589(var1.method1163(32));
-         float var17 = class78.method1589(var1.method1163(32));
-         var6 = var1.method1163(4) + 1;
-         boolean var7 = var1.method1164() != 0;
-         int var8;
-         if (var3 == 1) {
-            var8 = method1502(this.field582, this.field581);
-         } else {
-            var8 = this.field582 * this.field581;
-         }
+	public class496 method346(int var1, int var2) {
+		class496 var4 = this.method345(var1);
+		if (var2 == -1) {
+			return var4;
+		} else {
+			return var4 != null && null != var4.field3659 && var2 < var4.field3659.length ? var4.field3659[var2] : null;
+		}
+	}
 
-         this.field585 = new int[var8];
+	public boolean method347(int var1) {
+		if (class147.field1024[var1]) {
+			return true;
+		} else if (!this.field469.method40(var1)) {
+			return false;
+		} else {
+			int var3 = this.field469.method23(var1);
+			if (var3 == 0) {
+				class147.field1024[var1] = true;
+				return true;
+			} else {
+				if (null == this.components[var1]) {
+					this.components[var1] = new class496[var3];
+				}
 
-         int var9;
-         for(var9 = 0; var9 < var8; ++var9) {
-            this.field585[var9] = var1.method1163(var6);
-         }
+				for (int var4 = 0; var4 < var3; ++var4) {
+					if (null == this.components[var1][var4]) {
+						byte[] var5 = this.field469.method39(var1, var4);
+						if (var5 != null) {
+							this.components[var1][var4] = new class496();
+							this.components[var1][var4].interfaceId = (var1 << 16) + var4;
+							if (var5[0] == -1) {
+								this.components[var1][var4].method2303(new Buffer(var5));
+							} else {
+								this.components[var1][var4].method2302(new Buffer(var5));
+							}
 
-         this.field584 = new float[this.field582][this.field581];
-         float var10;
-         int var11;
-         int var12;
-         if (var3 == 1) {
-            for(var9 = 0; var9 < this.field582; ++var9) {
-               var10 = 0.0F;
-               var11 = 1;
+							if (null != this.field465) {
+								byte[] var6 = this.field465.method39(var1, var4);
+								if (var6 != null && var6.length > 0) {
+									this.components[var1][var4].method2333(new Buffer(var6));
+									this.field474.put(this.components[var1][var4].field3526, var1);
+								}
+							}
+						}
+					}
+				}
 
-               for(var12 = 0; var12 < this.field581; ++var12) {
-                  int var13 = var9 / var11 % var8;
-                  float var14 = (float)this.field585[var13] * var17 + var16 + var10;
-                  this.field584[var9][var12] = var14;
-                  if (var7) {
-                     var10 = var14;
-                  }
+				class147.field1024[var1] = true;
+				return true;
+			}
+		}
+	}
 
-                  var11 *= var8;
-               }
-            }
-         } else {
-            for(var9 = 0; var9 < this.field582; ++var9) {
-               var10 = 0.0F;
-               var11 = var9 * this.field581;
+	public void method348(int var1) {
+		if (var1 != -1) {
+			if (class147.field1024[var1]) {
+				this.field469.method25(var1);
+				if (null != this.components[var1]) {
+					for (int var3 = 0; var3 < this.components[var1].length; ++var3) {
+						if (this.components[var1][var3] != null) {
+							this.components[var1][var3] = null;
+						}
+					}
 
-               for(var12 = 0; var12 < this.field581; ++var12) {
-                  float var18 = (float)this.field585[var11] * var17 + var16 + var10;
-                  this.field584[var9][var12] = var18;
-                  if (var7) {
-                     var10 = var18;
-                  }
+					this.components[var1] = null;
+					class147.field1024[var1] = false;
+				}
+			}
+		}
+	}
 
-                  ++var11;
-               }
-            }
-         }
-      }
-
-   }
-
-   static int method1502(int var0, int var1) {
-      int var2;
-      for(var2 = (int)Math.pow((double)var0, 1.0 / (double)var1) + 1; class311.method4195(var2, var1) > var0; --var2) {
-      }
-
-      return var2;
-   }
-
-   void method1493() {
-      int[] var1 = new int[this.field582];
-      int[] var2 = new int[33];
-
-      int var3;
-      int var4;
-      int var5;
-      int var6;
-      int var7;
-      int var8;
-      int var10;
-      for(var3 = 0; var3 < this.field582; ++var3) {
-         var4 = this.field583[var3];
-         if (var4 != 0) {
-            var5 = 1 << 32 - var4;
-            var6 = var2[var4];
-            var1[var3] = var6;
-            int var9;
-            if ((var6 & var5) != 0) {
-               var7 = var2[var4 - 1];
-            } else {
-               var7 = var6 | var5;
-
-               for(var8 = var4 - 1; var8 >= 1; --var8) {
-                  var9 = var2[var8];
-                  if (var9 != var6) {
-                     break;
-                  }
-
-                  var10 = 1 << 32 - var8;
-                  if ((var9 & var10) != 0) {
-                     var2[var8] = var2[var8 - 1];
-                     break;
-                  }
-
-                  var2[var8] = var9 | var10;
-               }
-            }
-
-            var2[var4] = var7;
-
-            for(var8 = var4 + 1; var8 <= 32; ++var8) {
-               var9 = var2[var8];
-               if (var9 == var6) {
-                  var2[var8] = var7;
-               }
-            }
-         }
-      }
-
-      this.field586 = new int[8];
-      int var11 = 0;
-
-      for(var3 = 0; var3 < this.field582; ++var3) {
-         var4 = this.field583[var3];
-         if (var4 != 0) {
-            var5 = var1[var3];
-            var6 = 0;
-
-            for(var7 = 0; var7 < var4; ++var7) {
-               var8 = Integer.MIN_VALUE >>> var7;
-               if ((var5 & var8) != 0) {
-                  if (this.field586[var6] == 0) {
-                     this.field586[var6] = var11;
-                  }
-
-                  var6 = this.field586[var6];
-               } else {
-                  ++var6;
-               }
-
-               if (var6 >= this.field586.length) {
-                  int[] var12 = new int[this.field586.length * 2];
-
-                  for(var10 = 0; var10 < this.field586.length; ++var10) {
-                     var12[var10] = this.field586[var10];
-                  }
-
-                  this.field586 = var12;
-               }
-
-               var8 >>>= 1;
-            }
-
-            this.field586[var6] = ~var3;
-            if (var6 >= var11) {
-               var11 = var6 + 1;
-            }
-         }
-      }
-
-   }
-
-   int method1498(class57 var1) {
-      int var2;
-      for(var2 = 0; this.field586[var2] >= 0; var2 = var1.method1164() != 0 ? this.field586[var2] : var2 + 1) {
-      }
-
-      return ~this.field586[var2];
-   }
-
-   float[] method1496(class57 var1) {
-      return this.field584[this.method1498(var1)];
-   }
+	public void method349() {
+		this.field471.method1679();
+		this.field475.method1679();
+		this.field472.method1679();
+		this.field470.method1679();
+	}
 }

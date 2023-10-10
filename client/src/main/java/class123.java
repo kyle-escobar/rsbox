@@ -1,23 +1,29 @@
-public class class123 extends class442 {
-   final boolean field1173;
+public class class123 implements class501 {
+	static final class123 field795;
+	static final class123 field796;
+	static final class123 field797;
+	static final class123 field800;
+	final int field798;
+	final int field799;
 
-   public class123(boolean var1) {
-      this.field1173 = var1;
-   }
+	static {
+		field797 = new class123(0, 1);
+		field796 = new class123(2, 2);
+		field800 = new class123(3, 3);
+		field795 = new class123(1, 10);
+	}
 
-   int method2334(class417 var1, class417 var2) {
-      if (Client.field1432 == var1.field4575) {
-         if (var2.field4575 != Client.field1432) {
-            return this.field1173 ? -1 : 1;
-         }
-      } else if (var2.field4575 == Client.field1432) {
-         return this.field1173 ? 1 : -1;
-      }
+	class123(int var1, int var2) {
+		this.field798 = var1;
+		this.field799 = var2;
+	}
 
-      return this.method7818(var1, var2);
-   }
+	@Override
+	public int getId() {
+		return this.field799;
+	}
 
-   public int compare(Object var1, Object var2) {
-      return this.method2334((class417)var1, (class417)var2);
-   }
+	static class123[] method583() {
+		return new class123[]{field795, field800, field796, field797};
+	}
 }

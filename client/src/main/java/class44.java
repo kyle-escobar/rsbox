@@ -1,253 +1,380 @@
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InvalidClassException;
-import java.io.ObjectInputStream;
-import java.io.OptionalDataException;
-import java.io.StreamCorruptedException;
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
+public class class44 extends class359 {
+	byte[] field218;
+	class375 field219;
 
-public class class44 {
-   static Component field301;
-   static class382 field304 = new class382();
-   static int field302;
-   static int field306;
-   static String field305;
+	class44(Buffer var1) {
+		this.field219 = new class375(16);
+		var1.offset = var1.data.length - 3;
+		int var2 = var1.readUnsignedByte();
+		int var3 = var1.readUnsignedShort();
+		int var4 = 14 + var2 * 10;
+		var1.offset = 0;
+		int var5 = 0;
+		int var6 = 0;
+		int var7 = 0;
+		int var8 = 0;
+		int var9 = 0;
+		int var10 = 0;
+		int var11 = 0;
+		int var12 = 0;
+		int var13 = 0;
 
-   class44() throws Throwable {
-   }
+		int var14;
+		int var15;
+		label286:
+		while (var13 < var2) {
+			var14 = -1;
 
-   public static void method264() {
-      field304 = new class382();
-   }
+			while (true) {
+				var15 = var1.readUnsignedByte();
+				if (var15 != var14) {
+					++var4;
+				}
 
-   public static boolean method1389() {
-      class49 var1 = (class49)field304.method6847();
-      return var1 != null;
-   }
+				var14 = var15 & 15;
+				if (var15 == 7) {
+					++var13;
+					break;
+				}
 
-   public static void method6521(PacketBuffer var0) {
-      class49 var2 = (class49)field304.method6847();
-      if (null != var2) {
-         int var3 = var0.offset;
-         var0.writeInt(var2.field360);
+				if (var15 == 23) {
+					++var5;
+				} else if (var14 == 0) {
+					++var7;
+				} else if (var14 == 1) {
+					++var8;
+				} else if (var14 == 2) {
+					++var6;
+				} else if (var14 == 3) {
+					++var9;
+				} else if (var14 == 4) {
+					++var10;
+				} else if (var14 == 5) {
+					++var11;
+				} else {
+					if (var14 != 6) {
+						break label286;
+					}
 
-         for(int var4 = 0; var4 < var2.field359; ++var4) {
-            if (var2.field354[var4] != 0) {
-               var0.writeByte(var2.field354[var4]);
-            } else {
-               try {
-                  int var5 = var2.field355[var4];
-                  Field var6;
-                  int var7;
-                  if (var5 == 0) {
-                     var6 = var2.field357[var4];
-                     var7 = var6.getInt((Object)null);
-                     var0.writeByte(0);
-                     var0.writeInt(var7);
-                  } else if (var5 == 1) {
-                     var6 = var2.field357[var4];
-                     var6.setInt((Object)null, var2.field358[var4]);
-                     var0.writeByte(0);
-                  } else if (var5 == 2) {
-                     var6 = var2.field357[var4];
-                     var7 = var6.getModifiers();
-                     var0.writeByte(0);
-                     var0.writeInt(var7);
-                  }
+					++var12;
+				}
+			}
+		}
 
-                  Method var23;
-                  if (var5 != 3) {
-                     if (var5 == 4) {
-                        var23 = var2.field356[var4];
-                        var7 = var23.getModifiers();
-                        var0.writeByte(0);
-                        var0.writeInt(var7);
-                     }
-                  } else {
-                     var23 = var2.field356[var4];
-                     byte[][] var24 = var2.field353[var4];
-                     Object[] var8 = new Object[var24.length];
+		var4 += var5 * 5;
+		var4 += 2 * (var7 + var8 + var6 + var9 + var11);
+		var4 += var10 + var12;
+		var13 = var1.offset;
+		var14 = var2 + var5 + var6 + var7 + var8 + var9 + var10 + var11 + var12;
 
-                     for(int var9 = 0; var9 < var24.length; ++var9) {
-                        ObjectInputStream var10 = new ObjectInputStream(new ByteArrayInputStream(var24[var9]));
-                        var8[var9] = var10.readObject();
-                     }
+		for (var15 = 0; var15 < var14; ++var15) {
+			var1.method2521();
+		}
 
-                     Object var25 = var23.invoke((Object)null, var8);
-                     if (null == var25) {
-                        var0.writeByte(0);
-                     } else if (var25 instanceof Number) {
-                        var0.writeByte(1);
-                        var0.writeLong(((Number)var25).longValue());
-                     } else if (var25 instanceof String) {
-                        var0.writeByte(2);
-                        var0.writeString((String)var25);
-                     } else {
-                        var0.writeByte(4);
-                     }
-                  }
-               } catch (ClassNotFoundException var11) {
-                  var0.writeByte(-10);
-               } catch (InvalidClassException var12) {
-                  var0.writeByte(-11);
-               } catch (StreamCorruptedException var13) {
-                  var0.writeByte(-12);
-               } catch (OptionalDataException var14) {
-                  var0.writeByte(-13);
-               } catch (IllegalAccessException var15) {
-                  var0.writeByte(-14);
-               } catch (IllegalArgumentException var16) {
-                  var0.writeByte(-15);
-               } catch (InvocationTargetException var17) {
-                  var0.writeByte(-16);
-               } catch (SecurityException var18) {
-                  var0.writeByte(-17);
-               } catch (IOException var19) {
-                  var0.writeByte(-18);
-               } catch (NullPointerException var20) {
-                  var0.writeByte(-19);
-               } catch (Exception var21) {
-                  var0.writeByte(-20);
-               } catch (Throwable var22) {
-                  var0.writeByte(-21);
-               }
-            }
-         }
+		var4 += var1.offset - var13;
+		var15 = var1.offset;
+		int var16 = 0;
+		int var17 = 0;
+		int var18 = 0;
+		int var19 = 0;
+		int var20 = 0;
+		int var21 = 0;
+		int var22 = 0;
+		int var23 = 0;
+		int var24 = 0;
+		int var25 = 0;
+		int var26 = 0;
+		int var27 = 0;
+		int var28 = 0;
 
-         var0.writeCrc(var3);
-         var2.method8116();
-      }
-   }
+		int var29;
+		for (var29 = 0; var29 < var6; ++var29) {
+			var28 = var28 + var1.readUnsignedByte() & 127;
+			if (var28 != 0 && var28 != 32) {
+				if (var28 == 1) {
+					++var16;
+				} else if (var28 == 33) {
+					++var17;
+				} else if (var28 == 7) {
+					++var18;
+				} else if (var28 == 39) {
+					++var19;
+				} else if (var28 == 10) {
+					++var20;
+				} else if (var28 == 42) {
+					++var21;
+				} else if (var28 == 99) {
+					++var22;
+				} else if (var28 == 98) {
+					++var23;
+				} else if (var28 == 101) {
+					++var24;
+				} else if (var28 == 100) {
+					++var25;
+				} else if (var28 != 64 && var28 != 65 && var28 != 120 && var28 != 121 && var28 != 123) {
+					++var27;
+				} else {
+					++var26;
+				}
+			} else {
+				++var12;
+			}
+		}
 
-   public static void method4045(Buffer var0, int var1) {
-      class49 var3 = new class49();
-      var3.field359 = var0.readUnsignedByte();
-      var3.field360 = var0.readInt();
-      var3.field355 = new int[var3.field359];
-      var3.field354 = new int[var3.field359];
-      var3.field357 = new Field[var3.field359];
-      var3.field358 = new int[var3.field359];
-      var3.field356 = new Method[var3.field359];
-      var3.field353 = new byte[var3.field359][][];
+		var29 = 0;
+		int var30 = var1.offset;
+		var1.offset += var26;
+		int var31 = var1.offset;
+		var1.offset += var11;
+		int var32 = var1.offset;
+		var1.offset += var10;
+		int var33 = var1.offset;
+		var1.offset += var9;
+		int var34 = var1.offset;
+		var1.offset += var16;
+		int var35 = var1.offset;
+		var1.offset += var18;
+		int var36 = var1.offset;
+		var1.offset += var20;
+		int var37 = var1.offset;
+		var1.offset += var7 + var8 + var11;
+		int var38 = var1.offset;
+		var1.offset += var7;
+		int var39 = var1.offset;
+		var1.offset += var27;
+		int var40 = var1.offset;
+		var1.offset += var8;
+		int var41 = var1.offset;
+		var1.offset += var17;
+		int var42 = var1.offset;
+		var1.offset += var19;
+		int var43 = var1.offset;
+		var1.offset += var21;
+		int var44 = var1.offset;
+		var1.offset += var12;
+		int var45 = var1.offset;
+		var1.offset += var9;
+		int var46 = var1.offset;
+		var1.offset += var22;
+		int var47 = var1.offset;
+		var1.offset += var23;
+		int var48 = var1.offset;
+		var1.offset += var24;
+		int var49 = var1.offset;
+		var1.offset += var25;
+		int var50 = var1.offset;
+		var1.offset += var5 * 3;
+		this.field218 = new byte[var4];
+		Buffer var51 = new Buffer(this.field218);
+		var51.writeInt(1297377380);
+		var51.writeInt(6);
+		var51.writeShort(var2 > 1 ? 1 : 0);
+		var51.writeShort(var2);
+		var51.writeShort(var3);
+		var1.offset = var13;
+		int var52 = 0;
+		int var53 = 0;
+		int var54 = 0;
+		int var55 = 0;
+		int var56 = 0;
+		int var57 = 0;
+		int var58 = 0;
+		int[] var59 = new int[128];
+		var28 = 0;
+		int[] var60 = new int[16];
+		int[] var61 = new int[16];
+		var61[9] = 128;
+		var60[9] = 128;
 
-      for(int var4 = 0; var4 < var3.field359; ++var4) {
-         try {
-            int var5 = var0.readUnsignedByte();
-            String var6;
-            String var7;
-            int var8;
-            if (var5 != 0 && var5 != 1 && var5 != 2) {
-               if (var5 == 3 || var5 == 4) {
-                  var6 = var0.readString();
-                  var7 = var0.readString();
-                  var8 = var0.readUnsignedByte();
-                  String[] var9 = new String[var8];
+		label226:
+		for (int var63 = 0; var63 < var2; ++var63) {
+			var51.writeInt(1297379947);
+			var51.offset += 4;
+			int var64 = var51.offset;
+			int var65 = var64;
+			int var66 = -1;
 
-                  for(int var10 = 0; var10 < var8; ++var10) {
-                     var9[var10] = var0.readString();
-                  }
+			while (true) {
+				while (true) {
+					int var67 = var1.method2521();
+					var51.method2471(var67);
+					var65 += var67;
+					int var68 = var1.data[var29++] & 255;
+					boolean var10000 = var68 != var66;
 
-                  String var26 = var0.readString();
-                  byte[][] var11 = new byte[var8][];
-                  int var13;
-                  if (var5 == 3) {
-                     for(int var12 = 0; var12 < var8; ++var12) {
-                        var13 = var0.readInt();
-                        var11[var12] = new byte[var13];
-                        var0.readBytes(var11[var12], 0, var13);
-                     }
-                  }
+					while (true) {
+						boolean var69 = var10000;
+						var66 = var68 & 15;
+						if (var68 == 7) {
+							if (var69) {
+								var51.writeByte(255);
+							}
 
-                  var3.field355[var4] = var5;
-                  Class[] var27 = new Class[var8];
+							var51.writeByte(47);
+							var51.writeByte(0);
+							var51.writeLengthInt(var51.offset - var64);
+							continue label226;
+						}
 
-                  for(var13 = 0; var13 < var8; ++var13) {
-                     var27[var13] = method5297(var9[var13]);
-                  }
+						if (var68 == 23) {
+							if (var69) {
+								var51.writeByte(255);
+							}
 
-                  Class var28 = method5297(var26);
-                  if (method5297(var6).getClassLoader() == null) {
-                     throw new SecurityException();
-                  }
+							var51.writeByte(81);
+							var51.writeByte(3);
+							var51.writeByte(var1.data[var50++]);
+							var51.writeByte(var1.data[var50++]);
+							var51.writeByte(var1.data[var50++]);
+							break;
+						}
 
-                  Method[] var14 = method5297(var6).getDeclaredMethods();
+						var52 ^= var68 >> 4;
+						int var71;
+						int var74;
+						if (var66 == 0) {
+							if (var69) {
+								var51.writeByte(var52 + 144);
+							}
 
-                  for(int var16 = 0; var16 < var14.length; ++var16) {
-                     Method var17 = var14[var16];
-                     if (var17.getName().equals(var7)) {
-                        Class[] var18 = var17.getParameterTypes();
-                        if (var27.length == var18.length) {
-                           boolean var19 = true;
+							var53 += var1.data[var37++];
+							var54 += var1.data[var38++];
+							var74 = var53 & 127;
+							var71 = var54 & 127;
+							var51.writeByte(var74);
+							var51.writeByte(var71);
+							if (var71 > 0) {
+								int var72 = var61[var52];
+								class377 var73 = (class377)this.field219.get((long)var72);
+								if (var73 == null) {
+									var73 = new class377(var65);
+									this.field219.put(var73, (long)var72);
+								}
 
-                           for(int var20 = 0; var20 < var27.length; ++var20) {
-                              if (var18[var20] != var27[var20]) {
-                                 var19 = false;
-                                 break;
-                              }
-                           }
+								var73.field2596.set(var74);
+							}
+							break;
+						}
 
-                           if (var19 && var28 == var17.getReturnType()) {
-                              var3.field356[var4] = var17;
-                           }
-                        }
-                     }
-                  }
+						if (var66 == 1) {
+							if (var69) {
+								var51.writeByte(var52 + 128);
+							}
 
-                  var3.field353[var4] = var11;
-               }
-            } else {
-               var6 = var0.readString();
-               var7 = var0.readString();
-               var8 = 0;
-               if (var5 == 1) {
-                  var8 = var0.readInt();
-               }
+							var53 += var1.data[var37++];
+							var55 += var1.data[var40++];
+							var51.writeByte(var53 & 127);
+							var51.writeByte(var55 & 127);
+							break;
+						}
 
-               var3.field355[var4] = var5;
-               var3.field358[var4] = var8;
-               if (method5297(var6).getClassLoader() == null) {
-                  throw new SecurityException();
-               }
+						byte var70;
+						if (var66 == 2) {
+							if (var69) {
+								var51.writeByte(var52 + 176);
+							}
 
-               var3.field357[var4] = method5297(var6).getDeclaredField(var7);
-            }
-         } catch (ClassNotFoundException var21) {
-            var3.field354[var4] = -1;
-         } catch (SecurityException var22) {
-            var3.field354[var4] = -2;
-         } catch (NullPointerException var23) {
-            var3.field354[var4] = -3;
-         } catch (Exception var24) {
-            var3.field354[var4] = -4;
-         } catch (Throwable var25) {
-            var3.field354[var4] = -5;
-         }
-      }
+							var28 = var28 + var1.data[var15++] & 127;
+							var51.writeByte(var28);
+							if (var28 != 0 && var28 != 32) {
+								if (var28 == 1) {
+									var70 = var1.data[var34++];
+								} else if (var28 == 33) {
+									var70 = var1.data[var41++];
+								} else if (var28 == 7) {
+									var70 = var1.data[var35++];
+								} else if (var28 == 39) {
+									var70 = var1.data[var42++];
+								} else if (var28 == 10) {
+									var70 = var1.data[var36++];
+								} else if (var28 == 42) {
+									var70 = var1.data[var43++];
+								} else if (var28 == 99) {
+									var70 = var1.data[var46++];
+								} else if (var28 == 98) {
+									var70 = var1.data[var47++];
+								} else if (var28 == 101) {
+									var70 = var1.data[var48++];
+								} else if (var28 == 100) {
+									var70 = var1.data[var49++];
+								} else if (var28 != 64 && var28 != 65 && var28 != 120 && var28 != 121 && var28 != 123) {
+									var70 = var1.data[var39++];
+								} else {
+									var70 = var1.data[var30++];
+								}
+							} else {
+								var70 = var1.data[var44++];
+							}
 
-      field304.method6874(var3);
-   }
+							var74 = var70 + var59[var28];
+							var59[var28] = var74;
+							var71 = var74 & 127;
+							var51.writeByte(var71);
+							if (var28 == 0) {
+								var60[var52] = (var60[var52] & -2080769) + (var71 << 14);
+							}
 
-   static Class method5297(String var0) throws ClassNotFoundException {
-      if (var0.equals("B")) {
-         return Byte.TYPE;
-      } else if (var0.equals("I")) {
-         return Integer.TYPE;
-      } else if (var0.equals("S")) {
-         return Short.TYPE;
-      } else if (var0.equals("J")) {
-         return Long.TYPE;
-      } else if (var0.equals("Z")) {
-         return Boolean.TYPE;
-      } else if (var0.equals("F")) {
-         return Float.TYPE;
-      } else if (var0.equals("D")) {
-         return Double.TYPE;
-      } else if (var0.equals("C")) {
-         return Character.TYPE;
-      } else {
-         return var0.equals("void") ? Void.TYPE : Class.forName(var0);
-      }
-   }
+							if (var28 == 32) {
+								var60[var52] = (var60[var52] & -16257) + (var71 << 7);
+							}
+							break;
+						}
+
+						if (var66 == 3) {
+							if (var69) {
+								var51.writeByte(var52 + 224);
+							}
+
+							var56 += var1.data[var45++];
+							var56 += var1.data[var33++] << 7;
+							var51.writeByte(var56 & 127);
+							var51.writeByte(var56 >> 7 & 127);
+							break;
+						}
+
+						if (var66 == 4) {
+							if (var69) {
+								var51.writeByte(var52 + 208);
+							}
+
+							var57 += var1.data[var32++];
+							var51.writeByte(var57 & 127);
+							break;
+						}
+
+						if (var66 == 5) {
+							if (var69) {
+								var51.writeByte(var52 + 160);
+							}
+
+							var53 += var1.data[var37++];
+							var58 += var1.data[var31++];
+							var51.writeByte(var53 & 127);
+							var51.writeByte(var58 & 127);
+							break;
+						}
+
+						if (var66 == 6) {
+							if (var69) {
+								var51.writeByte(var52 + 192);
+							}
+
+							var70 = var1.data[var44++];
+							var61[var52] = var60[var52] + var70;
+							var51.writeByte(var70);
+							break;
+						}
+
+						var10000 = false;
+					}
+				}
+			}
+		}
+
+	}
+
+	public static class44 method184(class5 var0, int var1, int var2) {
+		byte[] var3 = var0.method39(var1, var2);
+		return var3 == null ? null : new class44(new Buffer(var3));
+	}
 }

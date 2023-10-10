@@ -1,120 +1,135 @@
-public class class138 extends class133 {
-   int field1284;
-   // $FF: synthetic field
-   final class148 this$0;
+import java.io.DataInputStream;
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.LinkedList;
+import java.util.Queue;
 
-   class138(class148 var1) {
-      this.this$0 = var1;
-      this.field1284 = -1;
-   }
+public abstract class class138 implements Runnable {
+	static class456 field900;
+	static int field902;
+	int field901;
+	Queue field899;
+	final Thread field904;
+	volatile boolean field903;
 
-   static int method2495(int var0, class81 var1, boolean var2) {
-      if (var0 < 1000) {
-         return class63.method5740(var0, var1, var2);
-      } else if (var0 < 1100) {
-         return class63.method2166(var0, var1, var2);
-      } else if (var0 < 1200) {
-         return class63.method1083(var0, var1, var2);
-      } else if (var0 < 1300) {
-         return class63.method1174(var0, var1, var2);
-      } else if (var0 < 1400) {
-         return class63.method282(var0, var1, var2);
-      } else if (var0 < 1500) {
-         return class63.method69(var0, var1, var2);
-      } else if (var0 < 1600) {
-         return class63.method283(var0, var1, var2);
-      } else if (var0 < 1700) {
-         return class63.method7679(var0, var1, var2);
-      } else if (var0 < 1800) {
-         return class63.method1825(var0, var1, var2);
-      } else if (var0 < 1900) {
-         return class63.method4662(var0, var1, var2);
-      } else if (var0 < 2000) {
-         return class63.method6367(var0, var1, var2);
-      } else if (var0 < 2100) {
-         return class63.method2166(var0, var1, var2);
-      } else if (var0 < 2200) {
-         return class63.method1083(var0, var1, var2);
-      } else if (var0 < 2300) {
-         return class63.method1174(var0, var1, var2);
-      } else if (var0 < 2400) {
-         return class63.method282(var0, var1, var2);
-      } else if (var0 < 2500) {
-         return class63.method69(var0, var1, var2);
-      } else if (var0 < 2600) {
-         return class63.method3586(var0, var1, var2);
-      } else if (var0 < 2700) {
-         return class63.method587(var0, var1, var2);
-      } else if (var0 < 2800) {
-         return class63.method3277(var0, var1, var2);
-      } else if (var0 < 2900) {
-         return class63.method1989(var0, var1, var2);
-      } else if (var0 < 3000) {
-         return class63.method6367(var0, var1, var2);
-      } else if (var0 < 3200) {
-         return class63.method276(var0, var1, var2);
-      } else if (var0 < 3300) {
-         return class63.method4899(var0, var1, var2);
-      } else if (var0 < 3400) {
-         return class63.method1417(var0, var1, var2);
-      } else if (var0 < 3500) {
-         return class63.method4220(var0, var1, var2);
-      } else if (var0 < 3600) {
-         return class63.method8093(var0, var1, var2);
-      } else if (var0 < 3700) {
-         return class91.method1970(var0, var1, var2);
-      } else if (var0 < 3800) {
-         return class63.method1381(var0, var1, var2);
-      } else if (var0 < 3900) {
-         return class63.method6575(var0, var1, var2);
-      } else if (var0 < 4000) {
-         return class63.method4883(var0, var1, var2);
-      } else if (var0 < 4100) {
-         return class63.method1775(var0, var1, var2);
-      } else if (var0 < 4200) {
-         return class56.method1160(var0, var1, var2);
-      } else if (var0 < 4300) {
-         return class63.method6481(var0, var1, var2);
-      } else if (var0 < 5100) {
-         return class63.method5883(var0, var1, var2);
-      } else if (var0 < 5400) {
-         return class63.method2195(var0, var1, var2);
-      } else if (var0 < 5600) {
-         return class63.method5341(var0, var1, var2);
-      } else if (var0 < 5700) {
-         return class63.method4214(var0, var1, var2);
-      } else if (var0 < 6300) {
-         return class63.method1418(var0, var1, var2);
-      } else if (var0 < 6600) {
-         return class63.method3382(var0, var1, var2);
-      } else if (var0 < 6700) {
-         return class63.method5340(var0, var1, var2);
-      } else if (var0 < 6800) {
-         return class63.method1506(var0, var1, var2);
-      } else if (var0 < 6900) {
-         return class8.method163(var0, var1, var2);
-      } else if (var0 < 7000) {
-         return class63.method1773(var0, var1, var2);
-      } else if (var0 < 7100) {
-         return class63.method3247(var0, var1, var2);
-      } else if (var0 < 7200) {
-         return class63.method3934(var0, var1, var2);
-      } else if (var0 < 7300) {
-         return class63.method498(var0, var1, var2);
-      } else if (var0 < 7500) {
-         return class4.method85(var0, var1, var2);
-      } else if (var0 < 7600) {
-         return class63.method5290(var0, var1, var2);
-      } else {
-         return var0 < 7700 ? class63.method1196(var0, var1, var2) : 2;
-      }
-   }
+	class138(int var1) {
+		this.field899 = new LinkedList();
+		this.field904 = new Thread(this);
+		this.field904.setPriority(1);
+		this.field904.start();
+		this.field901 = var1;
+	}
 
-   void method2457(Buffer var1) {
-      this.field1284 = var1.readUnsignedShort();
-   }
+	abstract void method708(class394 var1) throws IOException;
 
-   void method2458(class154 var1) {
-      var1.method2637(this.field1284);
-   }
+	@Override
+	public void run() {
+		while (!this.field903) {
+			try {
+				class394 var1;
+				synchronized(this) {
+					var1 = (class394)this.field899.poll();
+					if (null == var1) {
+						try {
+							this.wait();
+						} catch (InterruptedException var5) {
+						}
+						continue;
+					}
+				}
+
+				this.method708(var1);
+			} catch (Exception var7) {
+				class2.method1((String)null, var7);
+			}
+		}
+
+	}
+
+	int method711(URLConnection var1) {
+		int var3 = class394.field2677;
+		if (null != var1) {
+			try {
+				if (var1 instanceof HttpURLConnection) {
+					var3 = ((HttpURLConnection)var1).getResponseCode();
+				}
+			} catch (IOException var5) {
+			}
+		}
+
+		return var3;
+	}
+
+	void method713(URLConnection var1) {
+		var1.setConnectTimeout(5000);
+		var1.setReadTimeout(5000);
+		var1.setUseCaches(false);
+		var1.setRequestProperty("Connection", "close");
+		var1.setRequestProperty("User-Agent", "OldSchoolRuneScape/" + this.field901);
+	}
+
+	void method710(URLConnection var1, class394 var2) {
+		DataInputStream var4 = null;
+
+		try {
+			int var6 = var1.getContentLength();
+			var4 = new DataInputStream(var1.getInputStream());
+			byte[] var5;
+			if (var6 >= 0) {
+				var5 = new byte[var6];
+				var4.readFully(var5);
+			} else {
+				var5 = new byte[0];
+				byte[] var7 = class150.alloc(5000);
+
+				for (int var8 = var4.read(var7); var8 > -1; var8 = var4.read(var7)) {
+					byte[] var9 = new byte[var8 + var5.length];
+					System.arraycopy(var5, 0, var9, 0, var5.length);
+					System.arraycopy(var7, 0, var9, var5.length, var8);
+					var5 = var9;
+				}
+
+				class150.method799(var7);
+			}
+
+			var2.field2673 = var5;
+		} catch (IOException var15) {
+			var2.field2673 = null;
+		} finally {
+			var2.field2676 = this.method711(var1);
+		}
+
+		if (var4 != null) {
+			try {
+				var4.close();
+			} catch (IOException var14) {
+			}
+		}
+
+	}
+
+	public class394 method709(URL var1) {
+		class394 var3 = new class394(var1);
+		synchronized(this) {
+			this.field899.add(var3);
+			this.notify();
+			return var3;
+		}
+	}
+
+	public void method712() {
+		this.field903 = true;
+
+		try {
+			synchronized(this) {
+				this.notify();
+			}
+
+			this.field904.join();
+		} catch (InterruptedException var5) {
+		}
+
+	}
 }

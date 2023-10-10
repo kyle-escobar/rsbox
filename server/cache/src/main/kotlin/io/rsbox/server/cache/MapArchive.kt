@@ -52,7 +52,7 @@ class MapArchive(private val entryMap: MutableMap<Int, MapRegionEntry> = mutable
                     }
                 }
             } catch (e: Exception) {
-                Logger.warn(e) { "Failed to load map archive terrain. [region=$regionId, group=m${entry.regionX}_${entry.regionY}]" }
+                Logger.warn { "Failed to load map archive terrain. [region=$regionId, group=m${entry.regionX}_${entry.regionY}]" }
             } finally {
                 mapData.release()
             }
@@ -61,13 +61,14 @@ class MapArchive(private val entryMap: MutableMap<Int, MapRegionEntry> = mutable
             /*
              * Load region map locations (objects)
              */
-            val locData = GameCache.cache.read(id, "l${entry.regionX}_${entry.regionY}", 0, xteas.toXteaKey())
+            var locData: ByteBuf? = null
             try {
+                locData = GameCache.cache.read(id, "l${entry.regionX}_${entry.regionY}", 0, xteas.toXteaKey())
                 locData.loadLocation(entry)
             } catch (e: Exception) {
-                Logger.warn(e) { "Failed to load map archive locations. [region=$regionId, group=l${entry.regionX}_${entry.regionY}, keys=(${xteas.joinToString(", ") { it.toString() }}]" }
+                Logger.warn { "Failed to load map archive locations. [region=$regionId, group=l${entry.regionX}_${entry.regionY}, keys=(${xteas.joinToString(", ") { it.toString() }}]" }
             } finally {
-                locData.release()
+                locData?.release()
             }
 
             return entry

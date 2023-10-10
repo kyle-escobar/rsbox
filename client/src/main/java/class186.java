@@ -1,24 +1,22 @@
-public class class186 {
-   static class363 field2015;
-   static long field2023;
-   static final class186 field2016;
-   static final class186 field2017;
-   static final class186 field2018;
-   static final class186 field2019;
-   static final class186 field2020;
-   static final class186 field2021;
-   static final class186 field2022;
+import java.util.concurrent.ThreadFactory;
 
-   static {
-      field2022 = new class186(0, class227.field2498);
-      field2016 = new class186(1, class227.field2501);
-      field2017 = new class186(2, class227.field2494);
-      field2018 = new class186(3, class227.field2505);
-      field2021 = new class186(4, class227.field2504);
-      field2020 = new class186(5, class227.field2497);
-      field2019 = new class186(6, class227.field2500);
-   }
+final class class186 implements ThreadFactory {
+	@Override
+	public Thread newThread(Runnable var1) {
+		return new Thread(var1, "OSRS Maya Anim Load");
+	}
 
-   class186(int var1, class227 var2) {
-   }
+	static char method935(char var0, byte var1) {
+		if (var0 == 198) {
+			return 'E';
+		} else if (var0 == 230) {
+			return 'e';
+		} else if (var0 == 223) {
+			return 's';
+		} else if (var0 == 338) {
+			return 'E';
+		} else {
+			return (char)(var0 == 339 ? 'e' : '\u0000');
+		}
+	}
 }

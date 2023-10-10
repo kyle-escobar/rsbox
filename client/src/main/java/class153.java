@@ -1,7 +1,7 @@
-public class class153 {
-   static class462 field1393;
-   static int[][] field1394;
+public class class153 extends RuntimeException {
+	static class42 field1057;
 
-   class153() throws Throwable {
-   }
+	public class153(String var1, Object[] var2) {
+		super(String.format(var1, var2));
+	}
 }

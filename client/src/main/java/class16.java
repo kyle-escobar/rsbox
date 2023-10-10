@@ -1,34 +1,33 @@
-public class class16 implements class383 {
-   public static final class16 field78 = new class16(1, "GET", true, false);
-   public static final class16 field84 = new class16(0, "POST", true, true);
-   static final class16 field77 = new class16(4, "DELETE", false, true);
-   static final class16 field80 = new class16(3, "PATCH", false, true);
-   static final class16 field81 = new class16(2, "PUT", false, true);
-   boolean field79;
-   boolean field85;
-   int field82;
-   String field83;
+import java.util.concurrent.Callable;
 
-   class16(int var1, String var2, boolean var3, boolean var4) {
-      this.field82 = var1;
-      this.field83 = var2;
-      this.field85 = var3;
-      this.field79 = var4;
-   }
+public class class16 implements Callable {
+	static int field86;
+	final class10 field84;
+	// $FF: synthetic field
+	final class19 this$0;
+	final class23 field83;
+	final class234 field85;
+	final int field87;
 
-   boolean method268() {
-      return this.field85;
-   }
+	class16(class19 var1, class234 var2, class10 var3, class23 var4, int var5) {
+		this.this$0 = var1;
+		this.field85 = var2;
+		this.field84 = var3;
+		this.field83 = var4;
+		this.field87 = var5;
+	}
 
-   public String method272() {
-      return this.field83;
-   }
+	@Override
+	public Object call() {
+		this.field85.method1080();
+		class234[][] var1;
+		if (class10.field50 == this.field84) {
+			var1 = this.this$0.field99;
+		} else {
+			var1 = this.this$0.field92;
+		}
 
-   boolean method270() {
-      return this.field79;
-   }
-
-   public int serialId() {
-      return this.field82;
-   }
+		var1[this.field87][this.field83.method84()] = this.field85;
+		return null;
+	}
 }

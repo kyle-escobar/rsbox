@@ -1,55 +1,14 @@
-public abstract class class445 implements class279 {
-   static boolean field4699;
-   class507 field4696;
+public class class445 {
+	public static final short[] field2977;
+	public static final short[] field2979;
+	public static final short[][] field2976;
+	public static final short[][] field2978;
+	static byte[][] field2975;
 
-   class445(int var1) {
-   }
-
-   abstract void method7831(Buffer var1, int var2);
-
-   public void method7840(Buffer var1) {
-      while(true) {
-         int var3 = var1.readUnsignedByte();
-         if (var3 == 0) {
-            return;
-         }
-
-         class460 var4 = (class460)class373.method1724(class460.method2231(), var3);
-         if (null != var4) {
-            switch (var4.field4760) {
-               case 0:
-                  class373.method1724(class356.method1961(), var1.readUnsignedByte());
-                  break;
-               case 1:
-               default:
-                  throw new IllegalStateException("Unrecognised VarTypeEncodingKey - " + var4);
-               case 2:
-                  var1.readJagString();
-                  break;
-               case 3:
-                  int var5 = var1.readUnsignedByte();
-                  this.field4696 = class516.method7421(var5);
-                  if (this.field4696 == null) {
-                     throw new IllegalStateException("Unknown ScriptVarType ID in VarType.decode: " + var5);
-                  }
-            }
-         } else {
-            this.method7831(var1, var3);
-         }
-      }
-   }
-
-   boolean method7832() {
-      return this.field4696 != null;
-   }
-
-   Object method7833() {
-      if (this.field4696 == class507.field5074) {
-         return 0;
-      } else if (this.field4696 == class507.field5071) {
-         return -1L;
-      } else {
-         return this.field4696 == class507.field5072 ? "" : null;
-      }
-   }
+	static {
+		field2979 = new short[]{6798, 8741, 25238, 4626, 4550};
+		field2976 = new short[][]{{6798, 107, 10283, 16, 4797, 7744, 5799, 4634, -31839, 22433, 2983, -11343, 8, 5281, 10438, 3650, -27322, -21845, 200, 571, 908, 21830, 28946, -15701, -14010, -22122, 937, 8130, -13422, 30385}, {8741, 12, -1506, -22374, 7735, 8404, 1701, -27106, 24094, 10153, -8915, 4783, 1341, 16578, -30533, 25239, 8, 5281, 10438, 3650, -27322, -21845, 200, 571, 908, 21830, 28946, -15701, -14010}, {25238, 8742, 12, -1506, -22374, 7735, 8404, 1701, -27106, 24094, 10153, -8915, 4783, 1341, 16578, -30533, 8, 5281, 10438, 3650, -27322, -21845, 200, 571, 908, 21830, 28946, -15701, -14010}, {4626, 11146, 6439, 12, 4758, 10270}, {4550, 4537, 5681, 5673, 5790, 6806, 8076, 4574, 17050, 0, 127, -31821, -17991}};
+		field2977 = new short[]{-10304, 9104, -1, -1, -1};
+		field2978 = new short[][]{{6554, 115, 10304, 28, 5702, 7756, 5681, 4510, -31835, 22437, 2859, -11339, 16, 5157, 10446, 3658, -27314, -21965, 472, 580, 784, 21966, 28950, -15697, -14002, -22116, 945, 8144, -13414, 30389}, {9104, 10275, 7595, 3610, 7975, 8526, 918, -26734, 24466, 10145, -6882, 5027, 1457, 16565, -30545, 25486, 24, 5392, 10429, 3673, -27335, -21957, 192, 687, 412, 21821, 28835, -15460, -14019}, new short[0], new short[0], new short[0]};
+	}
 }

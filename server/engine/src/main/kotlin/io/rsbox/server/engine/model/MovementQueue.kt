@@ -1,3 +1,5 @@
+@file:Suppress("KotlinConstantConditions")
+
 package io.rsbox.server.engine.model
 
 import io.rsbox.server.engine.model.coord.Tile
@@ -10,62 +12,76 @@ import java.util.Deque
 import java.util.LinkedList
 import kotlin.math.sign
 
-class MovementQueue(val entity: Entity, private val steps: Deque<Tile> = LinkedList()) : Deque<Tile> by steps {
+class MovementQueue(val entity: Entity, private val steps: LinkedList<Tile> = LinkedList()) : Deque<Tile> by steps {
 
     private val routeSteps = LinkedList<RouteCoordinates>()
 
     fun cycle() {
-        calculateRouteStep()
+        processRouteSteps()
 
-        var step = poll() ?: return
-
-        val walkDir = Direction.between(entity.tile, step)
-        var runDir: Direction? = null
-
-        if(walkDir == Direction.NONE || !entity.canTravel(entity.tile, walkDir)) return
-
-        var tile = step
-        if(entity.running) {
-            calculateRouteStep(tile)
-
-            step = poll() ?: return run {
-                entity.move(tile, walkDir, MovementType.WALK)
+        when {
+            entity.teleportTile != null -> {
+                cancelRoute()
+                entity.movementType = MovementType.TELEPORT
+                entity.let { it as? Player }?.updateFlags?.add(PlayerUpdateFlag.MOVEMENT)
+                entity.tile = entity.teleportTile!!
+                return
             }
 
-            runDir = Direction.between(tile, step)
-            if(!entity.canTravel(tile, runDir)) {
-                clear()
-                runDir = null
-            } else {
-                tile = step
-            }
-        }
+            steps.isNotEmpty() -> {
+                when {
+                    entity.running -> when {
+                        steps.size == 1 -> {
+                            entity.movementType = MovementType.WALK
+                            entity.let { it as? Player }?.updateFlags?.add(PlayerUpdateFlag.MOVEMENT)
+                            entity.tile = steps.poll()
+                            entity.direction = Direction.between(entity.prevTile, entity.tile)
+                        }
+                        steps.size  > 1 && entity.tile.isWithinRadius(steps[1], 1) -> {
+                            entity.movementType = MovementType.WALK
+                            entity.let { it as? Player }?.updateFlags?.add(PlayerUpdateFlag.MOVEMENT)
+                            entity.direction = Direction.between(entity.prevTile, entity.tile)
+                            entity.tile = entity.movementQueue.poll()
+                        }
+                        else -> {
+                            entity.movementType = MovementType.RUN
+                            entity.let { it as? Player }?.updateFlags?.add(PlayerUpdateFlag.MOVEMENT)
+                            entity.direction = Direction.between(entity.tile, steps.poll())
+                            entity.tile = entity.movementQueue.poll()
+                        }
+                    } else -> {
+                        entity.movementType = MovementType.WALK
+                        entity.let { it as? Player }?.updateFlags?.add(PlayerUpdateFlag.MOVEMENT)
+                        entity.direction = Direction.between(entity.prevTile, entity.tile)
+                        entity.tile = entity.movementQueue.poll()
+                    }
+                }
 
-        if(runDir != null) {
-            entity.move(tile, runDir, MovementType.RUN)
-        } else {
-            entity.move(tile, walkDir, null)
+                entity.direction = Direction.between(entity.prevTile, entity.tile)
+            }
         }
     }
 
-    private fun calculateRouteStep(tile: Tile = entity.tile) {
+    private fun processRouteSteps(tile: Tile = entity.tile) {
         if(isNotEmpty()|| routeSteps.isEmpty()) return
         clear()
 
-        val step = routeSteps.poll()
-
+        var turnCount = 0
         var curX = tile.x
         var curY = tile.y
 
-        val destX = step.x
-        val destY = step.y
-
-        val dx = (destX - curX).sign
-        val dy = (destY - curY).sign
-        while(curX != destX || curY != destY) {
-            curX += dx
-            curY += dy
-            add(Tile(curX, curY, tile.level))
+        while(routeSteps.isNotEmpty()) {
+            val step = routeSteps.poll()
+            val destX = step.x
+            val destY = step.y
+            val dx = (destX - curX).sign
+            val dy = (destY - curY).sign
+            while(curX != destX || curY != destY) {
+                curX += dx
+                curY += dy
+                add(Tile(curX, curY, tile.level))
+            }
+            if(++turnCount > if(entity is Player) 420 else 420 shr 1) break
         }
     }
 
@@ -73,6 +89,11 @@ class MovementQueue(val entity: Entity, private val steps: Deque<Tile> = LinkedL
         routeSteps.clear()
         clear()
         routeSteps.addAll(route)
+    }
+
+    fun cancelRoute() {
+        routeSteps.clear()
+        steps.clear()
     }
 
     private fun Entity.move(tile: Tile, direction: Direction, type: MovementType?) {

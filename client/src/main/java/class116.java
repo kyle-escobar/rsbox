@@ -1,619 +1,580 @@
-public class class116 {
-   static byte[] skipFlags = new byte[2048];
-   static MovementType[] movementTypeCache = new MovementType[2048];
-   static Buffer field1125 = new Buffer(new byte[5000]);
-   static Buffer[] playerAppearances = new Buffer[2048];
-   static int localPlayerCount = 0;
-   static int field1118 = 0;
-   static int pendingUpdateCount = 0;
-   static int[] playerRegions = new int[2048];
-   static int[] field1119 = new int[2048];
-   static int[] localPlayerIndexes = new int[2048];
-   static int[] field1122 = new int[2048];
-   static int[] targetIndexes = new int[2048];
-   static int[] pendingPlayerUpdateIndexes = new int[2048];
-
-   class116() throws Throwable {
-   }
-
-   static final void method3290(PacketBuffer var0) {
-      var0.switchBitMode();
-      int var2 = Client.localPlayerIndex;
-      Player var3 = class146.field1362 = Client.players[var2] = new Player();
-      var3.field755 = var2;
-      int var4 = var0.readBits(30);
-      byte var5 = (byte)(var4 >> 28);
-      int var6 = var4 >> 14 & 16383;
-      int var7 = var4 & 16383;
-      var3.pathX[0] = var6 - class342.baseX;
-      var3.field949 = (var3.pathX[0] << 7) + (var3.method1788() << 6);
-      var3.pathY[0] = var7 - class144.baseY;
-      var3.field963 = (var3.pathY[0] << 7) + (var3.method1788() << 6);
-      class44.field306 = var3.plane = var5;
-      if (playerAppearances[var2] != null) {
-         var3.updateAppearance(playerAppearances[var2]);
-      }
-
-      localPlayerCount = 0;
-      localPlayerIndexes[++localPlayerCount - 1] = var2;
-      skipFlags[var2] = 0;
-      field1118 = 0;
-
-      for(int var8 = 1; var8 < 2048; ++var8) {
-         if (var8 != var2) {
-            int var9 = var0.readBits(18);
-            int var10 = var9 >> 16;
-            int var11 = var9 >> 8 & 597;
-            int var12 = var9 & 597;
-            playerRegions[var8] = var12 + (var10 << 28) + (var11 << 14);
-            field1122[var8] = 0;
-            targetIndexes[var8] = -1;
-            field1119[++field1118 - 1] = var8;
-            skipFlags[var8] = 0;
-         }
-      }
-
-      var0.switchByteMode();
-   }
-
-   static final void readPlayerUpdates(PacketBuffer buf, int var1) {
-      int var3 = buf.offset;
-      pendingUpdateCount = 0;
-      int skipCount = 0;
-      buf.switchBitMode();
-
-      byte[] _skipFlags;
-      int i;
-      int playerIndex;
-      int var7;
-      for(i = 0; i < localPlayerCount; ++i) {
-         playerIndex = localPlayerIndexes[i];
-         if ((skipFlags[playerIndex] & 1) == 0) {
-            if (skipCount > 0) {
-               --skipCount;
-               _skipFlags = skipFlags;
-               _skipFlags[playerIndex] = (byte)(_skipFlags[playerIndex] | 2);
-            } else {
-               var7 = buf.readBits(1);
-               if (var7 == 0) {
-                  skipCount = class134.method2468(buf);
-                  _skipFlags = skipFlags;
-                  _skipFlags[playerIndex] = (byte)(_skipFlags[playerIndex] | 2);
-               } else {
-                  class348.readPlayerUpdate(buf, playerIndex);
-               }
-            }
-         }
-      }
-
-      buf.switchByteMode();
-      if (skipCount != 0) {
-         throw new RuntimeException();
-      } else {
-         buf.switchBitMode();
-
-         for(i = 0; i < localPlayerCount; ++i) {
-            playerIndex = localPlayerIndexes[i];
-            if (0 != (skipFlags[playerIndex] & 1)) {
-               if (skipCount > 0) {
-                  --skipCount;
-                  _skipFlags = skipFlags;
-                  _skipFlags[playerIndex] = (byte)(_skipFlags[playerIndex] | 2);
-               } else {
-                  var7 = buf.readBits(1);
-                  if (var7 == 0) {
-                     skipCount = class134.method2468(buf);
-                     _skipFlags = skipFlags;
-                     _skipFlags[playerIndex] = (byte)(_skipFlags[playerIndex] | 2);
-                  } else {
-                     class348.readPlayerUpdate(buf, playerIndex);
-                  }
-               }
-            }
-         }
-
-         buf.switchByteMode();
-         if (skipCount != 0) {
-            throw new RuntimeException();
-         } else {
-            buf.switchBitMode();
-
-            for(i = 0; i < field1118; ++i) {
-               playerIndex = field1119[i];
-               if ((skipFlags[playerIndex] & 1) != 0) {
-                  if (skipCount > 0) {
-                     --skipCount;
-                     _skipFlags = skipFlags;
-                     _skipFlags[playerIndex] = (byte)(_skipFlags[playerIndex] | 2);
-                  } else {
-                     var7 = buf.readBits(1);
-                     if (var7 == 0) {
-                        skipCount = class134.method2468(buf);
-                        _skipFlags = skipFlags;
-                        _skipFlags[playerIndex] = (byte)(_skipFlags[playerIndex] | 2);
-                     } else if (readExternalPlayerUpdate(buf, playerIndex)) {
-                        _skipFlags = skipFlags;
-                        _skipFlags[playerIndex] = (byte)(_skipFlags[playerIndex] | 2);
-                     }
-                  }
-               }
-            }
-
-            buf.switchByteMode();
-            if (skipCount != 0) {
-               throw new RuntimeException();
-            } else {
-               buf.switchBitMode();
-
-               for(i = 0; i < field1118; ++i) {
-                  playerIndex = field1119[i];
-                  if (0 == (skipFlags[playerIndex] & 1)) {
-                     if (skipCount > 0) {
-                        --skipCount;
-                        _skipFlags = skipFlags;
-                        _skipFlags[playerIndex] = (byte)(_skipFlags[playerIndex] | 2);
-                     } else {
-                        var7 = buf.readBits(1);
-                        if (var7 == 0) {
-                           skipCount = class134.method2468(buf);
-                           _skipFlags = skipFlags;
-                           _skipFlags[playerIndex] = (byte)(_skipFlags[playerIndex] | 2);
-                        } else if (readExternalPlayerUpdate(buf, playerIndex)) {
-                           _skipFlags = skipFlags;
-                           _skipFlags[playerIndex] = (byte)(_skipFlags[playerIndex] | 2);
-                        }
-                     }
-                  }
-               }
-
-               buf.switchByteMode();
-               if (skipCount != 0) {
-                  throw new RuntimeException();
-               } else {
-                  localPlayerCount = 0;
-                  field1118 = 0;
-
-                  for(i = 1; i < 2048; ++i) {
-                     _skipFlags = skipFlags;
-                     _skipFlags[i] = (byte)(_skipFlags[i] >> 1);
-                     Player var8 = Client.players[i];
-                     if (null != var8) {
-                        localPlayerIndexes[++localPlayerCount - 1] = i;
-                     } else {
-                        field1119[++field1118 - 1] = i;
-                     }
-                  }
-
-                  readUpdateFlags(buf);
-                  if (buf.offset - var3 != var1) {
-                     throw new RuntimeException(buf.offset - var3 + " " + var1);
-                  }
-               }
-            }
-         }
-      }
-   }
-
-   static boolean readExternalPlayerUpdate(PacketBuffer var0, int var1) {
-      int var3 = var0.readBits(2);
-      int var4;
-      int var5;
-      int var8;
-      int var9;
-      int var10;
-      int var11;
-      if (var3 == 0) {
-         if (var0.readBits(1) != 0) {
-            readExternalPlayerUpdate(var0, var1);
-         }
-
-         var4 = var0.readBits(13);
-         var5 = var0.readBits(13);
-         boolean var12 = var0.readBits(1) == 1;
-         if (var12) {
-            pendingPlayerUpdateIndexes[++pendingUpdateCount - 1] = var1;
-         }
-
-         if (Client.players[var1] != null) {
-            throw new RuntimeException();
-         } else {
-            Player var13 = Client.players[var1] = new Player();
-            var13.field755 = var1;
-            if (playerAppearances[var1] != null) {
-               var13.updateAppearance(playerAppearances[var1]);
-            }
-
-            var13.field1007 = field1122[var1];
-            var13.targetIndex = targetIndexes[var1];
-            var8 = playerRegions[var1];
-            var9 = var8 >> 28;
-            var10 = var8 >> 14 & 255;
-            var11 = var8 & 255;
-            var13.field998[0] = movementTypeCache[var1];
-            var13.plane = (byte)var9;
-            var13.method1795((var10 << 13) + var4 - class342.baseX, var5 + (var11 << 13) - class144.baseY);
-            var13.teleporting = false;
-            return true;
-         }
-      } else if (var3 == 1) {
-         var4 = var0.readBits(2);
-         var5 = playerRegions[var1];
-         playerRegions[var1] = (var5 & 268435455) + (((var5 >> 28) + var4 & 3) << 28);
-         return false;
-      } else {
-         int var6;
-         int var7;
-         if (var3 == 2) {
-            var4 = var0.readBits(5);
-            var5 = var4 >> 3;
-            var6 = var4 & 7;
-            var7 = playerRegions[var1];
-            var8 = (var7 >> 28) + var5 & 3;
-            var9 = var7 >> 14 & 255;
-            var10 = var7 & 255;
-            if (var6 == 0) {
-               --var9;
-               --var10;
-            }
-
-            if (var6 == 1) {
-               --var10;
-            }
-
-            if (var6 == 2) {
-               ++var9;
-               --var10;
-            }
-
-            if (var6 == 3) {
-               --var9;
-            }
-
-            if (var6 == 4) {
-               ++var9;
-            }
-
-            if (var6 == 5) {
-               --var9;
-               ++var10;
-            }
-
-            if (var6 == 6) {
-               ++var10;
-            }
-
-            if (var6 == 7) {
-               ++var9;
-               ++var10;
-            }
-
-            playerRegions[var1] = (var8 << 28) + (var9 << 14) + var10;
-            return false;
-         } else {
-            var4 = var0.readBits(18);
-            var5 = var4 >> 16;
-            var6 = var4 >> 8 & 255;
-            var7 = var4 & 255;
-            var8 = playerRegions[var1];
-            var9 = var5 + (var8 >> 28) & 3;
-            var10 = var6 + (var8 >> 14) & 255;
-            var11 = var7 + var8 & 255;
-            playerRegions[var1] = var11 + (var10 << 14) + (var9 << 28);
-            return false;
-         }
-      }
-   }
-
-   static final void readUpdateFlags(PacketBuffer maskBuf) {
-      for(int i = 0; i < pendingUpdateCount; ++i) {
-         int index = pendingPlayerUpdateIndexes[i];
-         Player player = Client.players[index];
-         int mask = maskBuf.readUnsignedByte();
-         if ((mask & 0x4) != 0) {
-            mask += maskBuf.readUnsignedByte() << 8;
-         }
-
-         // Unknown : 1
-         if (0 != (mask & 0x4000)) {
-            mask += maskBuf.readUnsignedByte() << 16;
-         }
-
-         // : 2
-         byte movementType = MovementType.NONE.id;
-         if (0 != (mask & 512)) {
-            MovementType[] var7 = movementTypeCache;
-            MovementType[] var9 = new MovementType[]{MovementType.NONE, MovementType.field2457, MovementType.field2451, MovementType.field2450};
-            var7[index] = (MovementType)class373.method1724(var9, maskBuf.readByteAdd());
-         }
-
-         // 3
-         int length;
-         if ((mask & 32) != 0) {
-            player.targetIndex = maskBuf.readUnsignedShortLEAdd();
-            player.targetIndex += maskBuf.readUnsignedByte() << 16;
-            length = 16777215;
-            if (player.targetIndex == length) {
-               player.targetIndex = -1;
-            }
-         }
-
-         // 4
-         int var8;
-         if ((mask & 2) != 0) {
-            length = maskBuf.readUnsignedShortLE();
-            if (length == 65535) {
-               length = -1;
-            }
-
-            var8 = maskBuf.readUnsignedByteAdd();
-            class265.method5208(player, length, var8);
-         }
-
-         // : 5
-         int var10;
-         int var11;
-         int var14;
-         if ((mask & 16) != 0) {
-            length = maskBuf.readUnsignedShort();
-            class361 var19 = (class361)class373.method1724(class361.method2121(), maskBuf.readUnsignedByteNeg());
-            boolean var20 = maskBuf.readUnsignedByte() == 1;
-            var10 = maskBuf.readUnsignedByteSub();
-            var11 = maskBuf.offset;
-            if (null != player.field740 && null != player.field764) {
-               boolean var12 = false;
-               if (var19.field3997 && class165.field1782.method1096(player.field740)) {
-                  var12 = true;
-               }
-
-               if (!var12 && Client.field1553 == 0 && !player.field760) {
-                  field1125.offset = 0;
-                  maskBuf.readBytesReversedAdd(field1125.data, 0, var10);
-                  field1125.offset = 0;
-                  String var13 = class407.method7161(class380.method2549(class307.method5741(field1125)));
-                  player.field971 = var13.trim();
-                  player.field965 = length >> 8;
-                  player.field966 = length & 255;
-                  player.field940 = 150;
-                  player.field947 = null;
-                  player.field962 = var20;
-                  player.field950 = player != class146.field1362 && var19.field3997 && !Client.field1663.isEmpty() && var13.toLowerCase().indexOf(Client.field1663) == -1;
-                  if (var19.field3996) {
-                     var14 = var20 ? 91 : 1;
-                  } else {
-                     var14 = var20 ? 90 : 2;
-                  }
-
-                  if (-1 != var19.field3995) {
-                     class119.method7274(var14, class90.method2108(var19.field3995) + player.field740.method9155(), var13);
-                  } else {
-                     class119.method7274(var14, player.field740.method9155(), var13);
-                  }
-               }
-            }
-
-            maskBuf.offset = var11 + var10;
-         }
-
-         // : 6
-         if ((mask & 8192) != 0) {
-            for(length = 0; length < 3; ++length) {
-               player.field742[length] = maskBuf.readString();
-            }
-         }
-
-         // : 7
-         if (0 != (mask & 4096)) {
-            player.field992 = maskBuf.readByteSub();
-            player.field994 = maskBuf.readByteAdd();
-            player.field954 = maskBuf.readByteAdd();
-            player.field982 = maskBuf.readByteSub();
-            player.field964 = maskBuf.readUnsignedShortAdd() + Client.field1445;
-            player.field997 = maskBuf.readUnsignedShortLEAdd() + Client.field1445;
-            player.field990 = maskBuf.readUnsignedShortLEAdd();
-            if (player.teleporting) {
-               player.field992 += player.field758;
-               player.field994 += player.field766;
-               player.field954 += player.field758;
-               player.field982 += player.field766;
-               player.field1010 = 0;
-            } else {
-               player.field992 += player.pathX[0];
-               player.field994 += player.pathY[0];
-               player.field954 += player.pathX[0];
-               player.field982 += player.pathY[0];
-               player.field1010 = 1;
-            }
-
-            player.field1015 = 0;
-         }
-
-         // : 8
-         if (0 != (mask & 0x40)) {
-            player.field971 = maskBuf.readString();
-            if (player.field971.charAt(0) == '~') {
-               player.field971 = player.field971.substring(1);
-               class119.method7274(2, player.field740.method9155(), player.field971);
-            } else if (player == class146.field1362) {
-               class119.method7274(2, player.field740.method9155(), player.field971);
-            }
-
-            player.field962 = false;
-            player.field965 = 0;
-            player.field966 = 0;
-            player.field940 = 150;
-         }
-
-         // : 9
-         if ((mask & 0x8000) != 0) {
-            movementType = maskBuf.readByteSub();
-         }
-
-         // : 9
-         int var21;
-         int var28;
-         int var29;
-         if ((mask & 2048) != 0) {
-            length = maskBuf.readUnsignedShortLEAdd();
-            var8 = length >> 8;
-            var21 = var8 >= 13 && var8 <= 20 ? var8 - 12 : 0;
-            class361 var22 = (class361)class373.method1724(class361.method2121(), maskBuf.readUnsignedByteAdd());
-            boolean var26 = maskBuf.readUnsignedByteAdd() == 1;
-            var28 = maskBuf.readUnsignedByteAdd();
-            var29 = maskBuf.offset;
-            if (player.field740 != null && player.field764 != null) {
-               boolean var30 = false;
-               if (var22.field3997 && class165.field1782.method1096(player.field740)) {
-                  var30 = true;
-               }
-
-               if (!var30 && Client.field1553 == 0 && !player.field760) {
-                  field1125.offset = 0;
-                  maskBuf.readBytesReversed(field1125.data, 0, var28);
-                  field1125.offset = 0;
-                  String var15 = class407.method7161(class380.method2549(class307.method5741(field1125)));
-                  player.field971 = var15.trim();
-                  player.field965 = length >> 8;
-                  player.field966 = length & 255;
-                  player.field940 = 150;
-                  byte[] var16 = null;
-                  int var17;
-                  if (var21 > 0 && var21 <= 8) {
-                     var16 = new byte[var21];
-
-                     for(var17 = 0; var17 < var21; ++var17) {
-                        var16[var17] = maskBuf.readByteNeg();
-                     }
-                  }
-
-                  player.field947 = class533.method7678(var16);
-                  player.field962 = var26;
-                  player.field950 = class146.field1362 != player && var22.field3997 && !Client.field1663.isEmpty() && var15.toLowerCase().indexOf(Client.field1663) == -1;
-                  if (var22.field3996) {
-                     var17 = var26 ? 91 : 1;
-                  } else {
-                     var17 = var26 ? 90 : 2;
-                  }
-
-                  if (-1 != var22.field3995) {
-                     class119.method7274(var17, class90.method2108(var22.field3995) + player.field740.method9155(), var15);
-                  } else {
-                     class119.method7274(var17, player.field740.method9155(), var15);
-                  }
-               }
-            }
-
-            maskBuf.offset = var21 + var29 + var28;
-         }
-
-         // : 10
-         if (0 != (mask & 65536)) {
-            length = maskBuf.readUnsignedByteAdd();
-
-            for(var8 = 0; var8 < length; ++var8) {
-               var21 = maskBuf.readUnsignedByteSub();
-               var10 = maskBuf.readUnsignedShort();
-               var11 = maskBuf.readIntIME();
-               player.method2080(var21, var10, var11 >> 16, var11 & '\uffff');
-            }
-         }
-
-         // : 11
-         if (0 != (mask & 8)) {
-            length = maskBuf.readUnsignedByteAdd();
-            if (length > 0) {
-               for(var8 = 0; var8 < length; ++var8) {
-                  var10 = -1;
-                  var11 = -1;
-                  var28 = -1;
-                  var21 = maskBuf.readUnsignedSmartByteShort();
-                  if (var21 == 32767) {
-                     var21 = maskBuf.readUnsignedSmartByteShort();
-                     var11 = maskBuf.readUnsignedSmartByteShort();
-                     var10 = maskBuf.readUnsignedSmartByteShort();
-                     var28 = maskBuf.readUnsignedSmartByteShort();
-                  } else if (var21 != 32766) {
-                     var11 = maskBuf.readUnsignedSmartByteShort();
-                  } else {
-                     var21 = -1;
-                  }
-
-                  var29 = maskBuf.readUnsignedSmartByteShort();
-                  player.method2066(var21, var11, var10, var28, Client.field1445, var29);
-               }
-            }
-
-            var8 = maskBuf.readUnsignedByteNeg();
-            if (var8 > 0) {
-               for(var21 = 0; var21 < var8; ++var21) {
-                  var10 = maskBuf.readUnsignedSmartByteShort();
-                  var11 = maskBuf.readUnsignedSmartByteShort();
-                  if (var11 != 32767) {
-                     var28 = maskBuf.readUnsignedSmartByteShort();
-                     var29 = maskBuf.readUnsignedByte();
-                     var14 = var11 > 0 ? maskBuf.readUnsignedByteNeg() : var29;
-                     player.method2067(var10, Client.field1445, var11, var28, var29, var14);
-                  } else {
-                     player.method2068(var10);
-                  }
-               }
-            }
-         }
-
-         // : 12
-         if ((mask & 128) != 0) {
-            player.field977 = maskBuf.readUnsignedShortAdd();
-            if (player.field1010 == 0) {
-               player.field1007 = player.field977;
-               player.method2073();
-            }
-         }
-
-         // : 13
-         if (0 != (mask & 256)) {
-            player.field941 = Client.field1445 + maskBuf.readUnsignedShort();
-            player.field1002 = Client.field1445 + maskBuf.readUnsignedShortLEAdd();
-            player.field1003 = maskBuf.readByteSub();
-            player.field996 = maskBuf.readByteNeg();
-            player.field1005 = maskBuf.readByte();
-            player.field1006 = (byte)maskBuf.readUnsignedByte();
-         }
-
-         // APPEARANCE : 14
-         if ((mask & 0x1) != 0) {
-            length = maskBuf.readUnsignedByte();
-            byte[] data = new byte[length];
-            Buffer appearanceBuf = new Buffer(data);
-            maskBuf.readBytesReversed(data, 0, length);
-            playerAppearances[index] = appearanceBuf;
-            player.updateAppearance(appearanceBuf);
-         }
-
-         if (player.teleporting) {
-            if (movementType == 127) {
-               player.method1795(player.field758, player.field766);
-            } else {
-               MovementType var24;
-               if (movementType != MovementType.NONE.id) {
-                  MovementType[] var25 = new MovementType[]{MovementType.NONE, MovementType.field2457, MovementType.field2451, MovementType.field2450};
-                  var24 = (MovementType)class373.method1724(var25, movementType);
-               } else {
-                  var24 = movementTypeCache[index];
-               }
-
-               player.method1786(player.field758, player.field766, var24);
-            }
-         }
-      }
-
-   }
-
-   static void method4187() {
-      localPlayerCount = 0;
-
-      for(int var1 = 0; var1 < 2048; ++var1) {
-         playerAppearances[var1] = null;
-         movementTypeCache[var1] = MovementType.field2457;
-      }
-
-   }
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+
+public class class116 extends class292 {
+	public static class352 field726;
+	public static class352 field728;
+	public static class352 field740;
+	public static class5 field723;
+	public static class5 field725;
+	static boolean field732;
+	static class174 field724;
+	boolean[] field739;
+	int field731;
+	int field743;
+	int[] field734;
+	int[] field738;
+	public boolean field727;
+	public boolean field745;
+	public int field729;
+	public int field735;
+	public int field737;
+	public int field741;
+	public int field742;
+	public int field744;
+	public int field746;
+	public int field747;
+	public int field748;
+	public int[] field722;
+	public int[] field733;
+	public int[] field736;
+	public Map field730;
+
+	static {
+		field732 = false;
+		field726 = new class352(64);
+		field740 = new class352(100);
+		field728 = new class352(100);
+	}
+
+	class116() {
+		this.field729 = -1;
+		this.field731 = 0;
+		this.field743 = 0;
+		this.field737 = -1;
+		this.field745 = false;
+		this.field741 = 5;
+		this.field742 = -1;
+		this.field744 = -1;
+		this.field748 = 99;
+		this.field727 = false;
+		this.field735 = -1;
+		this.field746 = -1;
+		this.field747 = 2;
+	}
+
+	void method527(Buffer var1) {
+		while (true) {
+			int var3 = var1.readUnsignedByte();
+			if (var3 == 0) {
+				return;
+			}
+
+			this.method528(var1, var3);
+		}
+	}
+
+	void method528(Buffer var1, int var2) {
+		int var4;
+		int var5;
+		if (var2 == 1) {
+			var4 = var1.readUnsignedShort();
+			this.field722 = new int[var4];
+
+			for (var5 = 0; var5 < var4; ++var5) {
+				this.field722[var5] = var1.readUnsignedShort();
+			}
+
+			this.field733 = new int[var4];
+
+			for (var5 = 0; var5 < var4; ++var5) {
+				this.field733[var5] = var1.readUnsignedShort();
+			}
+
+			for (var5 = 0; var5 < var4; ++var5) {
+				this.field733[var5] += var1.readUnsignedShort() << 16;
+			}
+		} else if (var2 == 2) {
+			this.field737 = var1.readUnsignedShort();
+		} else if (var2 == 3) {
+			var4 = var1.readUnsignedByte();
+			this.field738 = new int[var4 + 1];
+
+			for (var5 = 0; var5 < var4; ++var5) {
+				this.field738[var5] = var1.readUnsignedByte();
+			}
+
+			this.field738[var4] = 9999999;
+		} else if (var2 == 4) {
+			this.field745 = true;
+		} else if (var2 == 5) {
+			this.field741 = var1.readUnsignedByte();
+		} else if (var2 == 6) {
+			this.field742 = var1.readUnsignedShort();
+		} else if (var2 == 7) {
+			this.field744 = var1.readUnsignedShort();
+		} else if (var2 == 8) {
+			this.field748 = var1.readUnsignedByte();
+			this.field727 = true;
+		} else if (var2 == 9) {
+			this.field735 = var1.readUnsignedByte();
+		} else if (var2 == 10) {
+			this.field746 = var1.readUnsignedByte();
+		} else if (var2 == 11) {
+			this.field747 = var1.readUnsignedByte();
+		} else if (var2 == 12) {
+			var4 = var1.readUnsignedByte();
+			this.field734 = new int[var4];
+
+			for (var5 = 0; var5 < var4; ++var5) {
+				this.field734[var5] = var1.readUnsignedShort();
+			}
+
+			for (var5 = 0; var5 < var4; ++var5) {
+				this.field734[var5] += var1.readUnsignedShort() << 16;
+			}
+		} else if (var2 == 13) {
+			var4 = var1.readUnsignedByte();
+			this.field736 = new int[var4];
+
+			for (var5 = 0; var5 < var4; ++var5) {
+				this.field736[var5] = var1.readUnsignedMedium();
+			}
+		} else if (var2 == 14) {
+			this.field729 = var1.readInt();
+		} else if (var2 == 15) {
+			var4 = var1.readUnsignedShort();
+			this.field730 = new HashMap();
+
+			for (var5 = 0; var5 < var4; ++var5) {
+				int var6 = var1.readUnsignedShort();
+				int var7 = var1.readUnsignedMedium();
+				this.field730.put(var6, var7);
+			}
+		} else if (var2 == 16) {
+			this.field731 = var1.readUnsignedShort();
+			this.field743 = var1.readUnsignedShort();
+		} else if (var2 == 17) {
+			this.field739 = new boolean[256];
+
+			for (var4 = 0; var4 < this.field739.length; ++var4) {
+				this.field739[var4] = false;
+			}
+
+			var4 = var1.readUnsignedByte();
+
+			for (var5 = 0; var5 < var4; ++var5) {
+				this.field739[var1.readUnsignedByte()] = true;
+			}
+		}
+
+	}
+
+	void method536() {
+		if (this.field735 == -1) {
+			if (null == this.field738 && null == this.field739) {
+				this.field735 = 0;
+			} else {
+				this.field735 = 2;
+			}
+		}
+
+		if (this.field746 == -1) {
+			if (this.field738 == null && this.field739 == null) {
+				this.field746 = 0;
+			} else {
+				this.field746 = 2;
+			}
+		}
+
+	}
+
+	public class490 method529(class490 var1, int var2) {
+		class490 var5;
+		if (!this.method533()) {
+			var2 = this.field733[var2];
+			class421 var6 = method538(var2 >> 16);
+			var2 &= 65535;
+			if (null == var6) {
+				return var1.method2255(true);
+			} else {
+				var5 = var1.method2255(!var6.method1922(var2));
+				var5.method2285(var6, var2);
+				return var5;
+			}
+		} else {
+			class19 var4 = method541(this.field729);
+			if (var4 == null) {
+				return var1.method2255(true);
+			} else {
+				var5 = var1.method2255(!var4.method76());
+				var5.method2265(var4, var2);
+				return var5;
+			}
+		}
+	}
+
+	class490 method530(class490 var1, int var2, int var3) {
+		class490 var6;
+		if (!this.method533()) {
+			var2 = this.field733[var2];
+			class421 var7 = method538(var2 >> 16);
+			var2 &= 65535;
+			if (var7 == null) {
+				return var1.method2255(true);
+			} else {
+				var6 = var1.method2255(!var7.method1922(var2));
+				var3 &= 3;
+				if (var3 == 1) {
+					var6.method2283();
+				} else if (var3 == 2) {
+					var6.method2270();
+				} else if (var3 == 3) {
+					var6.method2288();
+				}
+
+				var6.method2285(var7, var2);
+				if (var3 == 1) {
+					var6.method2288();
+				} else if (var3 == 2) {
+					var6.method2270();
+				} else if (var3 == 3) {
+					var6.method2283();
+				}
+
+				return var6;
+			}
+		} else {
+			class19 var5 = method541(this.field729);
+			if (var5 == null) {
+				return var1.method2255(true);
+			} else {
+				var6 = var1.method2255(!var5.method76());
+				var3 &= 3;
+				if (var3 == 1) {
+					var6.method2283();
+				} else if (var3 == 2) {
+					var6.method2270();
+				} else if (var3 == 3) {
+					var6.method2288();
+				}
+
+				var6.method2265(var5, var2);
+				if (var3 == 1) {
+					var6.method2288();
+				} else if (var3 == 2) {
+					var6.method2270();
+				} else if (var3 == 3) {
+					var6.method2283();
+				}
+
+				return var6;
+			}
+		}
+	}
+
+	class490 method531(class490 var1, int var2) {
+		class490 var5;
+		if (!this.method533()) {
+			var2 = this.field733[var2];
+			class421 var6 = method538(var2 >> 16);
+			var2 &= 65535;
+			if (var6 == null) {
+				return var1.method2258(true);
+			} else {
+				var5 = var1.method2258(!var6.method1922(var2));
+				var5.method2285(var6, var2);
+				return var5;
+			}
+		} else {
+			class19 var4 = method541(this.field729);
+			if (var4 == null) {
+				return var1.method2258(true);
+			} else {
+				var5 = var1.method2258(!var4.method76());
+				var5.method2265(var4, var2);
+				return var5;
+			}
+		}
+	}
+
+	public class490 method526(class490 var1, int var2, class116 var3, int var4) {
+		if (field732 && !this.method533() && !var3.method533()) {
+			return this.method537(var1, var2, var3, var4);
+		} else {
+			class490 var6 = var1.method2255(false);
+			boolean var7 = false;
+			class421 var8 = null;
+			class307 var9 = null;
+			class19 var10;
+			if (this.method533()) {
+				var10 = this.method534();
+				if (var10 == null) {
+					return var6;
+				}
+
+				if (var3.method533() && null == this.field739) {
+					var6.method2265(var10, var2);
+					return var6;
+				}
+
+				var9 = var10.field95;
+				var6.method2267(var9, var10, var2, this.field739, false, !var3.method533());
+			} else {
+				var2 = this.field733[var2];
+				var8 = method538(var2 >> 16);
+				var2 &= 65535;
+				if (null == var8) {
+					return var3.method529(var1, var4);
+				}
+
+				if (!var3.method533() && (this.field738 == null || var4 == -1)) {
+					var6.method2285(var8, var2);
+					return var6;
+				}
+
+				if (this.field738 == null || var4 == -1) {
+					var6.method2285(var8, var2);
+					return var6;
+				}
+
+				var7 = var3.method533();
+				if (!var7) {
+					var6.method2268(var8, var2, this.field738, false);
+				}
+			}
+
+			if (var3.method533()) {
+				var10 = var3.method534();
+				if (null == var10) {
+					return var6;
+				}
+
+				if (var9 == null) {
+					var9 = var10.field95;
+				}
+
+				var6.method2267(var9, var10, var4, this.field739, true, true);
+			} else {
+				var4 = var3.field733[var4];
+				class421 var11 = method538(var4 >> 16);
+				var4 &= 65535;
+				if (var11 == null) {
+					return this.method529(var1, var2);
+				}
+
+				var6.method2268(var11, var4, this.field738, true);
+			}
+
+			if (var7 && null != var8) {
+				var6.method2268(var8, var2, this.field738, false);
+			}
+
+			var6.method2263();
+			return var6;
+		}
+	}
+
+	class490 method537(class490 var1, int var2, class116 var3, int var4) {
+		var2 = this.field733[var2];
+		class421 var6 = method538(var2 >> 16);
+		var2 &= 65535;
+		if (null == var6) {
+			return var3.method529(var1, var4);
+		} else {
+			var4 = var3.field733[var4];
+			class421 var7 = method538(var4 >> 16);
+			var4 &= 65535;
+			class490 var8;
+			if (null == var7) {
+				var8 = var1.method2255(!var6.method1922(var2));
+				var8.method2285(var6, var2);
+				return var8;
+			} else {
+				var8 = var1.method2255(!var6.method1922(var2) & !var7.method1922(var4));
+				var8.method2264(var6, var2, var7, var4, this.field738);
+				return var8;
+			}
+		}
+	}
+
+	public class490 method532(class490 var1, int var2) {
+		if (!this.method533()) {
+			int var4 = this.field733[var2];
+			class421 var5 = method538(var4 >> 16);
+			var4 &= 65535;
+			if (var5 == null) {
+				return var1.method2255(true);
+			} else {
+				class421 var6 = null;
+				int var7 = 0;
+				if (this.field734 != null && var2 < this.field734.length) {
+					var7 = this.field734[var2];
+					var6 = method538(var7 >> 16);
+					var7 &= 65535;
+				}
+
+				class490 var8;
+				if (null != var6 && var7 != 65535) {
+					var8 = var1.method2255(!var5.method1922(var4) & !var6.method1922(var7));
+					var8.method2285(var5, var4);
+					var8.method2285(var6, var7);
+					return var8;
+				} else {
+					var8 = var1.method2255(!var5.method1922(var4));
+					var8.method2285(var5, var4);
+					return var8;
+				}
+			}
+		} else {
+			return this.method529(var1, var2);
+		}
+	}
+
+	public boolean method533() {
+		return this.field729 >= 0;
+	}
+
+	public int method535() {
+		return this.field743 - this.field731;
+	}
+
+	class19 method534() {
+		return this.method533() ? method541(this.field729) : null;
+	}
+
+	public static void method540(class5 var0, class5 var1, class5 var2) {
+		class361.field2478 = var0;
+		field723 = var1;
+		field725 = var2;
+	}
+
+	public static class116 method539(int var0) {
+		class116 var2 = (class116)field726.method1678((long)var0);
+		if (null != var2) {
+			return var2;
+		} else {
+			byte[] var3 = class361.field2478.method39(12, var0);
+			var2 = new class116();
+			if (null != var3) {
+				var2.method527(new Buffer(var3));
+			}
+
+			var2.method536();
+			field726.method1680(var2, (long)var0);
+			return var2;
+		}
+	}
+
+	static class421 method538(int var0) {
+		class421 var2 = (class421)field740.method1678((long)var0);
+		if (var2 != null) {
+			return var2;
+		} else {
+			var2 = class421.method1923(field723, field725, var0, false);
+			if (null != var2) {
+				field740.method1680(var2, (long)var0);
+			}
+
+			return var2;
+		}
+	}
+
+	static class19 method541(int var0) {
+		class19 var4 = (class19)field728.method1678((long)var0);
+		class19 var3;
+		class19 var5;
+		class5 var6;
+		class5 var7;
+		boolean var8;
+		byte[] var9;
+		int var10;
+		byte[] var11;
+		if (null != var4) {
+			var3 = var4;
+		} else {
+			var6 = field723;
+			var7 = field725;
+			var8 = true;
+			var9 = var6.method37(var0 >> 16 & 65535, var0 & 65535);
+			if (null == var9) {
+				var8 = false;
+				var5 = null;
+			} else {
+				var10 = (var9[1] & 255) << 8 | var9[2] & 255;
+				var11 = var7.method37(var10, 0);
+				if (null == var11) {
+					var8 = false;
+				}
+
+				if (!var8) {
+					var5 = null;
+				} else {
+					if (class209.field1389 == null) {
+						class217.field1414 = Runtime.getRuntime().availableProcessors();
+						class209.field1389 = new ThreadPoolExecutor(0, class217.field1414, 0L, TimeUnit.MILLISECONDS, new ArrayBlockingQueue(100 + class217.field1414 * 100), new class333());
+					}
+
+					try {
+						var5 = new class19(var6, var7, var0, false);
+					} catch (Exception var14) {
+						var5 = null;
+					}
+				}
+			}
+
+			if (var5 != null) {
+				field728.method1680(var5, (long)var0);
+			}
+
+			var3 = var5;
+		}
+
+		int var2;
+		if (var3 == null) {
+			var2 = 2;
+		} else {
+			var2 = var3.method79() ? 0 : 1;
+		}
+
+		if (var2 != 0) {
+			return null;
+		} else {
+			var4 = (class19)field728.method1678((long)var0);
+			if (var4 != null) {
+				var3 = var4;
+			} else {
+				var6 = field723;
+				var7 = field725;
+				var8 = true;
+				var9 = var6.method37(var0 >> 16 & 65535, var0 & 65535);
+				if (var9 == null) {
+					var8 = false;
+					var5 = null;
+				} else {
+					var10 = (var9[1] & 255) << 8 | var9[2] & 255;
+					var11 = var7.method37(var10, 0);
+					if (null == var11) {
+						var8 = false;
+					}
+
+					if (!var8) {
+						var5 = null;
+					} else {
+						if (class209.field1389 == null) {
+							class217.field1414 = Runtime.getRuntime().availableProcessors();
+							class209.field1389 = new ThreadPoolExecutor(0, class217.field1414, 0L, TimeUnit.MILLISECONDS, new ArrayBlockingQueue(100 + class217.field1414 * 100), new class186());
+						}
+
+						try {
+							var5 = new class19(var6, var7, var0, false);
+						} catch (Exception var13) {
+							var5 = null;
+						}
+					}
+				}
+
+				if (var5 != null) {
+					field728.method1680(var5, (long)var0);
+				}
+
+				var3 = var5;
+			}
+
+			return var3;
+		}
+	}
 }

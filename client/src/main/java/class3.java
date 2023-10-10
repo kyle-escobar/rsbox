@@ -1,52 +1,56 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.util.Map;
+import java.util.concurrent.Future;
 
 public class class3 {
-   static String field21;
-   final int field19;
-   final String field15;
-   final Map field13;
+	String field7;
+	Future field6;
 
-   class3(HttpURLConnection var1) throws IOException {
-      this.field19 = var1.getResponseCode();
-      var1.getResponseMessage();
-      this.field13 = var1.getHeaderFields();
-      StringBuilder var2 = new StringBuilder();
-      InputStream var3 = this.field19 >= 300 ? var1.getErrorStream() : var1.getInputStream();
-      if (null != var3) {
-         InputStreamReader var4 = new InputStreamReader(var3);
-         BufferedReader var5 = new BufferedReader(var4);
+	class3(Future var1) {
+		this.field6 = var1;
+	}
 
-         String var6;
-         while((var6 = var5.readLine()) != null) {
-            var2.append(var6);
-         }
+	class3(String var1) {
+		this.method2(var1);
+	}
 
-         var3.close();
-      }
+	void method2(String var1) {
+		if (var1 == null) {
+			var1 = "";
+		}
 
-      this.field15 = var2.toString();
-   }
+		this.field7 = var1;
+		if (null != this.field6) {
+			this.field6.cancel(true);
+			this.field6 = null;
+		}
 
-   class3(String var1) {
-      this.field19 = 400;
-      this.field13 = null;
-      this.field15 = "";
-   }
+	}
 
-   public int method56() {
-      return this.field19;
-   }
+	public final String method3() {
+		return this.field7;
+	}
 
-   public Map method57() {
-      return this.field13;
-   }
+	public boolean method4() {
+		return null != this.field7 || this.field6 == null;
+	}
 
-   public String method58() {
-      return this.field15;
-   }
+	public final boolean method6() {
+		return this.method4() ? true : this.field6.isDone();
+	}
+
+	public final class80 method5() {
+		if (this.method4()) {
+			return new class80(this.field7);
+		} else if (!this.method6()) {
+			return null;
+		} else {
+			try {
+				return (class80)this.field6.get();
+			} catch (Exception var4) {
+				String var3 = "Error retrieving REST request reply";
+				System.err.println(var3 + "\r\n" + var4);
+				this.method2(var3);
+				return new class80(var3);
+			}
+		}
+	}
 }

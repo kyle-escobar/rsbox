@@ -1,22 +1,21 @@
-import java.util.concurrent.Callable;
+public class class155 extends class415 {
+	int field1059;
+	long field1058;
+	// $FF: synthetic field
+	final class14 this$0;
 
-class class155 implements Callable {
-   public static int[] field1421;
-   // $FF: synthetic field
-   final class156 this$0;
-   // $FF: synthetic field
-   final Buffer val$p;
-   // $FF: synthetic field
-   final int val$version;
+	class155(class14 var1) {
+		this.this$0 = var1;
+	}
 
-   class155(class156 var1, Buffer var2, int var3) {
-      this.this$0 = var1;
-      this.val$p = var2;
-      this.val$version = var3;
-   }
+	@Override
+	void method1905(Buffer var1) {
+		this.field1059 = var1.readInt();
+		this.field1058 = var1.readLong();
+	}
 
-   public Object call() {
-      this.this$0.method2659(this.val$p, this.val$version);
-      return null;
-   }
+	@Override
+	void method1906(class511 var1) {
+		var1.method2410(this.field1059, this.field1058);
+	}
 }

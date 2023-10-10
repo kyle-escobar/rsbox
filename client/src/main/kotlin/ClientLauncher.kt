@@ -6,6 +6,7 @@ import java.awt.Color
 import java.awt.Dimension
 import java.awt.GridLayout
 import java.net.URL
+import java.net.URLClassLoader
 import javax.swing.ImageIcon
 import javax.swing.JDialog
 import javax.swing.JFrame
@@ -61,7 +62,7 @@ object ClientLauncher {
         "20" to "https://social.auth.jagex.com/",
         "21" to "0",
         "22" to "1",
-        "25" to "215",
+        "25" to "217",
         "28" to "https://account.jagex.com/",
     )
 
@@ -69,7 +70,7 @@ object ClientLauncher {
     private lateinit var frame: JFrame
 
     private fun start() {
-        applet = Client()
+        val applet = Client()
         applet.background = Color.BLACK
         applet.preferredSize = Dimension(params["applet_minwidth"]!!.toInt(), params["applet_minheight"]!!.toInt())
         applet.size = applet.preferredSize

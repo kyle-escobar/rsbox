@@ -1,74 +1,42 @@
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-
 public class class119 {
-   static int field1138 = 0;
-   static final class390 field1136 = new class390();
-   static final class469 field1135 = new class469(1024);
-   static final Map field1137 = new HashMap();
+	public static int[] field785;
+	public static int[] field786;
+	static class183 field787;
+	static int[] field784;
 
-   class119() throws Throwable {
-   }
+	static {
+		field784 = new int[32];
+		int var0 = 2;
 
-   static int method7714() {
-      return ++field1138 - 1;
-   }
+		for (int var1 = 0; var1 < 32; ++var1) {
+			field784[var1] = var0 - 1;
+			var0 += var0;
+		}
 
-   static void method7274(int var0, String var1, String var2) {
-      method4130(var0, var1, var2, (String)null);
-   }
+		field785 = new int[5000];
+		field786 = new int[5000];
+	}
 
-   static void method4130(int var0, String var1, String var2, String var3) {
-      class85 var5 = (class85)field1137.get(var0);
-      if (null == var5) {
-         var5 = new class85();
-         field1137.put(var0, var5);
-      }
+	public static int method580(int var0) {
+		class320 var2 = class320.method1582(var0);
+		int var3 = var2.field2331;
+		int var4 = var2.field2328;
+		int var5 = var2.field2329;
+		int var6 = field784[var5 - var4];
+		return field786[var3] >> var4 & var6;
+	}
 
-      class76 var6 = var5.method1840(var0, var1, var2, var3);
-      field1135.method8097(var6, (long)var6.field625);
-      field1136.method6965(var6);
-      Client.field1633 = Client.field1624;
-   }
+	public static void method581(int var0, int var1) {
+		class320 var3 = class320.method1582(var0);
+		int var4 = var3.field2331;
+		int var5 = var3.field2328;
+		int var6 = var3.field2329;
+		int var7 = field784[var6 - var5];
+		if (var1 < 0 || var1 > var7) {
+			var1 = 0;
+		}
 
-   static class76 method1962(int var0, int var1) {
-      class85 var3 = (class85)field1137.get(var0);
-      return var3.method1828(var1);
-   }
-
-   static class76 method2285(int var0) {
-      return (class76)field1135.method8096((long)var0);
-   }
-
-   static int method5748(int var0) {
-      class85 var2 = (class85)field1137.get(var0);
-      return var2 == null ? 0 : var2.method1827();
-   }
-
-   static void method503() {
-      field1137.clear();
-      field1135.method8098();
-      field1136.method6964();
-      field1138 = 0;
-   }
-
-   static void method2159() {
-      Iterator var1 = field1135.iterator();
-
-      while(var1.hasNext()) {
-         class76 var2 = (class76)var1.next();
-         var2.method1544();
-      }
-
-   }
-
-   static int method6595(int var0) {
-      class76 var2 = (class76)field1135.method8096((long)var0);
-      if (var2 == null) {
-         return -1;
-      } else {
-         return var2.field4849 == field1136.field4445 ? -1 : ((class76)var2.field4849).field625;
-      }
-   }
+		var7 <<= var5;
+		field786[var4] = field786[var4] & ~var7 | var1 << var5 & var7;
+	}
 }

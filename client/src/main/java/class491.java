@@ -1,72 +1,30 @@
-import java.util.Iterator;
+public class class491 implements class501 {
+	static long field3501;
+	static final class491 field3495;
+	static final class491 field3496;
+	static final class491 field3497;
+	static final class491 field3498;
+	static final class491 field3499;
+	final int field3500;
 
-public class class491 implements Iterator {
-   class469 field4956;
-   class470 field4957 = null;
-   class470 field4959;
-   int field4958;
+	static {
+		field3499 = new class491(0);
+		field3496 = new class491(1);
+		field3497 = new class491(2);
+		field3495 = new class491(3);
+		field3498 = new class491(4);
+	}
 
-   public class491(class469 var1) {
-      this.field4956 = var1;
-      this.method8440();
-   }
+	class491(int var1) {
+		this.field3500 = var1;
+	}
 
-   void method8440() {
-      this.field4959 = this.field4956.field4810[0].field4817;
-      this.field4958 = 1;
-      this.field4957 = null;
-   }
+	@Override
+	public int getId() {
+		return this.field3500;
+	}
 
-   public class470 method8449() {
-      this.method8440();
-      return (class470)this.next();
-   }
-
-   public Object next() {
-      class470 var1;
-      if (this.field4959 != this.field4956.field4810[this.field4958 - 1]) {
-         var1 = this.field4959;
-         this.field4959 = var1.field4817;
-         this.field4957 = var1;
-         return var1;
-      } else {
-         do {
-            if (this.field4958 >= this.field4956.field4811) {
-               return null;
-            }
-
-            var1 = this.field4956.field4810[this.field4958++].field4817;
-         } while(var1 == this.field4956.field4810[this.field4958 - 1]);
-
-         this.field4959 = var1.field4817;
-         this.field4957 = var1;
-         return var1;
-      }
-   }
-
-   public boolean hasNext() {
-      if (this.field4959 != this.field4956.field4810[this.field4958 - 1]) {
-         return true;
-      } else {
-         while(this.field4958 < this.field4956.field4811) {
-            if (this.field4956.field4810[this.field4958++].field4817 != this.field4956.field4810[this.field4958 - 1]) {
-               this.field4959 = this.field4956.field4810[this.field4958 - 1].field4817;
-               return true;
-            }
-
-            this.field4959 = this.field4956.field4810[this.field4958 - 1];
-         }
-
-         return false;
-      }
-   }
-
-   public void remove() {
-      if (this.field4957 == null) {
-         throw new IllegalStateException();
-      } else {
-         this.field4957.method8116();
-         this.field4957 = null;
-      }
-   }
+	static class491[] method2291() {
+		return new class491[]{field3497, field3498, field3499, field3495, field3496};
+	}
 }

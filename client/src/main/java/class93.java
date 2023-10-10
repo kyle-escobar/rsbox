@@ -1,82 +1,134 @@
-public class class93 extends class470 {
-   static class481 field858 = new class481(32);
-   int[] field857 = new int[]{0};
-   int[] field860 = new int[]{-1};
+import java.util.concurrent.ThreadFactory;
+import java.util.concurrent.atomic.AtomicInteger;
 
-   class93() {
-   }
+public class class93 implements ThreadFactory {
+	public static class554 field596;
+	static String field599;
+	// $FF: synthetic field
+	final class434 this$0;
+	final ThreadGroup field597;
+	final AtomicInteger field598;
 
-   static int method5753(int var0, int var1) {
-      class93 var3 = (class93)field858.get((long)var0);
-      if (var3 == null) {
-         return -1;
-      } else {
-         return var1 >= 0 && var1 < var3.field860.length ? var3.field860[var1] : -1;
-      }
-   }
+	class93(class434 var1) {
+		this.this$0 = var1;
+		this.field598 = new AtomicInteger(1);
+		SecurityManager var2 = System.getSecurityManager();
+		this.field597 = var2 != null ? var2.getThreadGroup() : Thread.currentThread().getThreadGroup();
+	}
 
-   static int method8154(int var0, int var1) {
-      class93 var3 = (class93)field858.get((long)var0);
-      if (var3 == null) {
-         return 0;
-      } else {
-         return var1 >= 0 && var1 < var3.field857.length ? var3.field857[var1] : 0;
-      }
-   }
+	@Override
+	public Thread newThread(Runnable var1) {
+		Thread var2 = new Thread(this.field597, var1, this.this$0.field2909 + "-rest-request-" + this.field598.getAndIncrement(), 0L);
+		var2.setDaemon(true);
+		var2.setPriority(5);
+		return var2;
+	}
 
-   static int method1586(int var0, int var1) {
-      class93 var3 = (class93)field858.get((long)var0);
-      if (null == var3) {
-         return 0;
-      } else if (var1 == -1) {
-         return 0;
-      } else {
-         int var4 = 0;
+	static final void method422(class378 var0, int var1, int var2, int var3) {
+		class73 var5 = var0.field2605;
+		if (Client.field1979 < 400) {
+			if (null != var5.field477) {
+				var5 = var5.method363();
+			}
 
-         for(int var5 = 0; var5 < var3.field857.length; ++var5) {
-            if (var3.field860[var5] == var1) {
-               var4 += var3.field857[var5];
-            }
-         }
+			if (var5 != null) {
+				if (var5.field492) {
+					if (!var5.field514 || Client.field2011 == var1) {
+						String var6 = var0.method1777();
+						int var7;
+						if (var5.field507 != 0 && var0.field404 != 0) {
+							var7 = var0.field404 != -1 ? var0.field404 : var5.field507;
+							var6 = var6 + Client.method1437(var7, class114.field720.field2993) + " " + class274.field1821 + class513.field3919 + var7 + class274.field1822;
+						}
 
-         return var4;
-      }
-   }
+						if (var5.field514 && Client.field1988) {
+							Client.method1359(class513.field3997, class274.method1266(16776960) + var6, 1003, var1, var2, var3);
+						}
 
-   static void method3491(int var0, int var1, int var2, int var3) {
-      class93 var5 = (class93)field858.get((long)var0);
-      if (var5 == null) {
-         var5 = new class93();
-         field858.put(var5, (long)var0);
-      }
+						if (Client.field1892 == 1) {
+							Client.method1359(class513.field3913, Client.field2084 + " " + class274.field1823 + " " + class274.method1266(16776960) + var6, 7, var1, var2, var3);
+						} else if (Client.field1997) {
+							if ((class467.field3301 & 2) == 2) {
+								Client.method1359(Client.field2063, Client.field2001 + " " + class274.field1823 + " " + class274.method1266(16776960) + var6, 8, var1, var2, var3);
+							}
+						} else {
+							var7 = var5.field514 && Client.field1988 ? 2000 : 0;
+							String[] var8 = var5.field489;
+							int var9;
+							int var10;
+							if (null != var8) {
+								for (var9 = 4; var9 >= 0; --var9) {
+									if (var0.method1764(var9) && null != var8[var9] && !var8[var9].equalsIgnoreCase(class513.field3930)) {
+										var10 = 0;
+										if (var9 == 0) {
+											var10 = var7 + 9;
+										}
 
-      if (var5.field860.length <= var1) {
-         int[] var6 = new int[var1 + 1];
-         int[] var7 = new int[var1 + 1];
+										if (var9 == 1) {
+											var10 = var7 + 10;
+										}
 
-         int var8;
-         for(var8 = 0; var8 < var5.field860.length; ++var8) {
-            var6[var8] = var5.field860[var8];
-            var7[var8] = var5.field857[var8];
-         }
+										if (var9 == 2) {
+											var10 = var7 + 11;
+										}
 
-         for(var8 = var5.field860.length; var8 < var1; ++var8) {
-            var6[var8] = -1;
-            var7[var8] = 0;
-         }
+										if (var9 == 3) {
+											var10 = var7 + 12;
+										}
 
-         var5.field860 = var6;
-         var5.field857 = var7;
-      }
+										if (var9 == 4) {
+											var10 = var7 + 13;
+										}
 
-      var5.field860[var1] = var2;
-      var5.field857[var1] = var3;
-   }
+										Client.method1359(var8[var9], class274.method1266(16776960) + var6, var10, var1, var2, var3);
+									}
+								}
+							}
 
-   static void method1534(int var0) {
-      class93 var2 = (class93)field858.get((long)var0);
-      if (var2 != null) {
-         var2.method8116();
-      }
-   }
+							if (null != var8) {
+								for (var9 = 4; var9 >= 0; --var9) {
+									if (var0.method1764(var9) && null != var8[var9] && var8[var9].equalsIgnoreCase(class513.field3930)) {
+										short var11 = 0;
+										if (class491.field3495 != Client.field2115) {
+											if (Client.field2115 == class491.field3496 || Client.field2115 == class491.field3499 && var5.field507 > class114.field720.field2993) {
+												var11 = 2000;
+											}
+
+											var10 = 0;
+											if (var9 == 0) {
+												var10 = var11 + 9;
+											}
+
+											if (var9 == 1) {
+												var10 = var11 + 10;
+											}
+
+											if (var9 == 2) {
+												var10 = var11 + 11;
+											}
+
+											if (var9 == 3) {
+												var10 = var11 + 12;
+											}
+
+											if (var9 == 4) {
+												var10 = var11 + 13;
+											}
+
+											Client.method1359(var8[var9], class274.method1266(16776960) + var6, var10, var1, var2, var3);
+										}
+									}
+								}
+							}
+
+							if (!var5.field514 || !Client.field1988) {
+								Client.method1359(class513.field3997, class274.method1266(16776960) + var6, 1003, var1, var2, var3);
+							}
+						}
+
+					}
+				}
+			}
+		}
+	}
 }

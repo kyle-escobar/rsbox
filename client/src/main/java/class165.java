@@ -1,18 +1,43 @@
-public class class165 {
-   public static class56 field1782;
-   // $FF: synthetic field
-   final class173 this$0;
-   public float[] field1783;
-   public int field1780;
-   public int field1784;
-   public int field1785;
-   public String field1786;
+import java.util.Iterator;
 
-   class165(class173 var1) {
-      this.this$0 = var1;
-      this.field1783 = new float[4];
-      this.field1784 = 1;
-      this.field1785 = 1;
-      this.field1780 = 0;
-   }
+public class class165 implements Iterator {
+	class292 field1171;
+	class292 field1173;
+	class530 field1172;
+
+	class165(class530 var1) {
+		this.field1171 = null;
+		this.field1172 = var1;
+		this.field1173 = this.field1172.field4142.field2176;
+		this.field1171 = null;
+	}
+
+	@Override
+	public Object next() {
+		class292 var1 = this.field1173;
+		if (var1 == this.field1172.field4142) {
+			var1 = null;
+			this.field1173 = null;
+		} else {
+			this.field1173 = var1.field2176;
+		}
+
+		this.field1171 = var1;
+		return var1;
+	}
+
+	@Override
+	public boolean hasNext() {
+		return this.field1173 != this.field1172.field4142;
+	}
+
+	@Override
+	public void remove() {
+		if (this.field1171 == null) {
+			throw new IllegalStateException();
+		} else {
+			this.field1171.method1517();
+			this.field1171 = null;
+		}
+	}
 }

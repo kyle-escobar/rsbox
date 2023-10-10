@@ -1,114 +1,31 @@
-import java.util.ArrayList;
-import java.util.BitSet;
-import java.util.List;
+public class class164 {
+	public static int field1170;
 
-public class class164 extends class470 {
-   public static short[][] field1774;
-   boolean field1770;
-   boolean field1777 = true;
-   int[] field1773;
-   long field1771;
-   public byte field1776;
-   public byte field1778;
-   public String field1775 = null;
-   public List field1772;
+	public static int method880(int var0, int var1, int var2) {
+		var2 &= 3;
+		if (var2 == 0) {
+			return var1;
+		} else if (var2 == 1) {
+			return 7 - var0;
+		} else {
+			return var2 == 2 ? 7 - var1 : var0;
+		}
+	}
 
-   static {
-      new BitSet(65536);
-   }
+	public static int method879(int var0, int var1, int var2, int var3, int var4, int var5) {
+		if ((var5 & 1) == 1) {
+			int var7 = var3;
+			var3 = var4;
+			var4 = var7;
+		}
 
-   public class164(Buffer var1) {
-      this.method3262(var1);
-   }
-
-   public int[] method3259() {
-      if (this.field1773 == null) {
-         String[] var2 = new String[this.field1772.size()];
-         this.field1773 = new int[this.field1772.size()];
-
-         for(int var3 = 0; var3 < this.field1772.size(); this.field1773[var3] = var3++) {
-            var2[var3] = ((class152)this.field1772.get(var3)).field1389.method9156();
-         }
-
-         int[] var4 = this.field1773;
-         class502.method2094(var2, var4, 0, var2.length - 1);
-      }
-
-      return this.field1773;
-   }
-
-   void method3260(class152 var1) {
-      this.field1772.add(var1);
-      this.field1773 = null;
-   }
-
-   void method3261(int var1) {
-      this.field1772.remove(var1);
-      this.field1773 = null;
-   }
-
-   public int method3279() {
-      return this.field1772.size();
-   }
-
-   public int method3266(String var1) {
-      if (!this.field1777) {
-         throw new RuntimeException("Displaynames not available");
-      } else {
-         for(int var3 = 0; var3 < this.field1772.size(); ++var3) {
-            if (((class152)this.field1772.get(var3)).field1389.method9155().equalsIgnoreCase(var1)) {
-               return var3;
-            }
-         }
-
-         return -1;
-      }
-   }
-
-   void method3262(Buffer var1) {
-      int var3 = var1.readUnsignedByte();
-      if (0 != (var3 & 1)) {
-         this.field1770 = true;
-      }
-
-      if ((var3 & 2) != 0) {
-         this.field1777 = true;
-      }
-
-      int var4 = 2;
-      if (0 != (var3 & 4)) {
-         var4 = var1.readUnsignedByte();
-      }
-
-      super.field4816 = var1.readLong();
-      this.field1771 = var1.readLong();
-      this.field1775 = var1.readString();
-      var1.readBoolean();
-      this.field1778 = var1.readByte();
-      this.field1776 = var1.readByte();
-      int var5 = var1.readUnsignedShort();
-      if (var5 > 0) {
-         this.field1772 = new ArrayList(var5);
-
-         for(int var6 = 0; var6 < var5; ++var6) {
-            class152 var7 = new class152();
-            if (this.field1770) {
-               var1.readLong();
-            }
-
-            if (this.field1777) {
-               var7.field1389 = new class526(var1.readString());
-            }
-
-            var7.field1391 = var1.readByte();
-            var7.field1388 = var1.readUnsignedShort();
-            if (var4 >= 3) {
-               var1.readBoolean();
-            }
-
-            this.field1772.add(var6, var7);
-         }
-      }
-
-   }
+		var2 &= 3;
+		if (var2 == 0) {
+			return var0;
+		} else if (var2 == 1) {
+			return var1;
+		} else {
+			return var2 == 2 ? 7 - var0 - (var3 - 1) : 7 - var1 - (var4 - 1);
+		}
+	}
 }

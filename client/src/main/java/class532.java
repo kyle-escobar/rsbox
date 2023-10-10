@@ -1,38 +1,23 @@
-public class class532 {
-   class532() throws Throwable {
-   }
+public class class532 implements class501 {
+	public static final class532 field4144;
+	public static final class532 field4145;
+	public static final class532 field4146;
+	public static final class532 field4148;
+	final int field4147;
 
-   public static String method8695(CharSequence var0) {
-      int var2 = var0.length();
-      StringBuilder var3 = new StringBuilder(var2);
+	static {
+		field4144 = new class532(-1);
+		field4148 = new class532(0);
+		field4145 = new class532(1);
+		field4146 = new class532(2);
+	}
 
-      for(int var4 = 0; var4 < var2; ++var4) {
-         char var5 = var0.charAt(var4);
-         if ((var5 < 'a' || var5 > 'z') && (var5 < 'A' || var5 > 'Z') && (var5 < '0' || var5 > '9') && var5 != '.' && var5 != '-' && var5 != '*' && var5 != '_') {
-            if (var5 == ' ') {
-               var3.append('+');
-            } else {
-               byte var6 = class318.method5854(var5);
-               var3.append('%');
-               int var7 = var6 >> 4 & 15;
-               if (var7 >= 10) {
-                  var3.append((char)(var7 + 55));
-               } else {
-                  var3.append((char)(var7 + 48));
-               }
+	class532(int var1) {
+		this.field4147 = var1;
+	}
 
-               var7 = var6 & 15;
-               if (var7 >= 10) {
-                  var3.append((char)(var7 + 55));
-               } else {
-                  var3.append((char)(var7 + 48));
-               }
-            }
-         } else {
-            var3.append(var5);
-         }
-      }
-
-      return var3.toString();
-   }
+	@Override
+	public int getId() {
+		return this.field4147;
+	}
 }

@@ -1,18 +1,11 @@
-import java.lang.ref.SoftReference;
+public abstract class class304 {
+	public int field2222;
+	public int field2223;
+	public int field2224;
+	public int field2225;
 
-public class class304 extends class287 {
-   SoftReference field3209;
+	protected class304() {
+	}
 
-   class304(Object var1, int var2) {
-      super(var2);
-      this.field3209 = new SoftReference(var1);
-   }
-
-   Object method5457() {
-      return this.field3209.get();
-   }
-
-   boolean method5458() {
-      return true;
-   }
+	protected abstract boolean method1554(int var1, int var2, int var3, class151 var4);
 }

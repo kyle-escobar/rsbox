@@ -1,44 +1,56 @@
-public class class308 extends class470 {
-   static class154 field3359;
-   static class308[] field3355 = new class308[300];
-   static int field3354 = 0;
-   public ClientPacket field3360;
-   public PacketBuffer buffer;
-   public int field3352;
-   public int field3353;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-   class308() {
-   }
+public class class308 extends class292 {
+	class499[] field2235;
+	List field2234;
 
-   public static class308 method2535() {
-      return 0 == field3354 ? new class308() : field3355[--field3354];
-   }
+	public class308(class5 var1, int var2, int var3) {
+		byte[] var4 = var1.method39(var2, var3 + 1);
+		this.method1566(new Buffer(var4));
+	}
 
-   public static class308 createPacket(ClientPacket var0, class540 var1) {
-      class308 var3 = method2535();
-      var3.field3360 = var0;
-      var3.field3352 = var0.opcode;
-      if (-1 == var3.field3352) {
-         var3.buffer = new PacketBuffer(260);
-      } else if (-2 == var3.field3352) {
-         var3.buffer = new PacketBuffer(10000);
-      } else if (var3.field3352 <= 18) {
-         var3.buffer = new PacketBuffer(20);
-      } else if (var3.field3352 <= 98) {
-         var3.buffer = new PacketBuffer(100);
-      } else {
-         var3.buffer = new PacketBuffer(260);
-      }
+	public class308(class5 var1, int var2) {
+		byte[] var3 = var1.method39(var2, 0);
+		this.method1566(new Buffer(var3));
+	}
 
-      var3.buffer.method8474(var1);
-      var3.buffer.method8477(var3.field3360.length);
-      var3.field3353 = 0;
-      return var3;
-   }
+	void method1566(Buffer var1) {
+		int var3 = var1.method2483((byte)-57);
+		this.field2235 = new class499[var3];
+		this.field2234 = new ArrayList(var3);
 
-   public void method5744() {
-      if (field3354 < field3355.length) {
-         field3355[++field3354 - 1] = this;
-      }
-   }
+		for (int var4 = 0; var4 < var3; ++var4) {
+			this.field2235[var4] = (class499)class26.method87(class499.method2361(), var1.readUnsignedByte());
+			int var5 = var1.method2483((byte)-114);
+			HashMap var6 = new HashMap(var5);
+
+			while (var5-- > 0) {
+				Object var7 = this.field2235[var4].method2360(var1);
+				int var8 = var1.method2483((byte)-8);
+				ArrayList var9 = new ArrayList();
+
+				while (var8-- > 0) {
+					int var10 = var1.method2483((byte)-68);
+					var9.add(var10);
+				}
+
+				var6.put(var7, var9);
+			}
+
+			this.field2234.add(var4, var6);
+		}
+
+	}
+
+	public List method1567(Object var1, int var2) {
+		if (var2 < 0) {
+			var2 = 0;
+		}
+
+		Map var4 = (Map)this.field2234.get(var2);
+		return (List)var4.get(var1);
+	}
 }

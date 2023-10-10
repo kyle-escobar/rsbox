@@ -1,27 +1,15 @@
-public class class131 implements class383 {
-   static class363 field1236;
-   static class523[] field1229;
-   static final class131 field1227 = new class131(0, 0, (String)null, 0);
-   static final class131 field1228 = new class131(1, 1, (String)null, 9);
-   static final class131 field1230 = new class131(3, 3, (String)null, 6);
-   static final class131 field1231 = new class131(2, 2, (String)null, 3);
-   static final class131 field1232 = new class131(5, 5, (String)null, 3);
-   static final class131 field1233 = new class131(4, 4, (String)null, 1);
-   final int field1234;
-   final int field1235;
-   final int field1240;
+import java.util.Calendar;
+import java.util.TimeZone;
 
-   class131(int var1, int var2, String var3, int var4) {
-      this.field1240 = var1;
-      this.field1234 = var2;
-      this.field1235 = var4;
-   }
+public class class131 {
+	public static Calendar field850;
+	public static final String[] field852;
+	public static final String[][] field851;
 
-   int method2443() {
-      return this.field1235;
-   }
-
-   public int serialId() {
-      return this.field1234;
-   }
+	static {
+		field851 = new String[][]{{"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"}, {"Jan", "Feb", "M\u00e4r", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"}, {"jan", "f\u00e9v", "mars", "avr", "mai", "juin", "juil", "ao\u00fbt", "sept", "oct", "nov", "d\u00e9c"}, {"jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"}, {"jan", "feb", "mrt", "apr", "mei", "jun", "jul", "aug", "sep", "okt", "nov", "dec"}, {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"}, {"ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"}};
+		field852 = new String[]{"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
+		Calendar.getInstance();
+		field850 = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
+	}
 }

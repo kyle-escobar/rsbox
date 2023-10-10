@@ -1,83 +1,121 @@
-public class class81 extends class476 {
-   static class290 field708 = new class290(128);
-   static int field718;
-   static String field719;
-   class469[] field717;
-   int field711;
-   int field714;
-   int field715;
-   int field716;
-   int[] field712;
-   int[] field713;
-   String field709;
-   String[] field710;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.security.cert.Certificate;
+import javax.net.ssl.HandshakeCompletedListener;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.SSLSocket;
+import org.bouncycastle.crypto.tls.TlsClientProtocol;
 
-   class81() {
-   }
+class class81 extends SSLSocket {
+	Certificate[] field551;
+	// $FF: synthetic field
+	final class30 this$0;
+	// $FF: synthetic field
+	final String val$host;
+	// $FF: synthetic field
+	final TlsClientProtocol val$tlsClientProtocol;
 
-   static class81 method1382(int var0) {
-      class81 var2 = (class81)field708.method5643((long)var0);
-      if (var2 != null) {
-         return var2;
-      } else {
-         byte[] var3 = class130.field1226.method6381(var0, 0);
-         if (null == var3) {
-            return null;
-         } else {
-            var2 = class34.method520(var3);
-            field708.method5640(var2, (long)var0);
-            return var2;
-         }
-      }
-   }
+	class81(class30 var1, TlsClientProtocol var2, String var3) {
+		this.this$0 = var1;
+		this.val$tlsClientProtocol = var2;
+		this.val$host = var3;
+	}
 
-   static class81 method652(int var0, int var1, int var2) {
-      int var4 = class351.method2180(var1, var0);
-      class81 var5 = method499(var4, var0);
-      if (var5 != null) {
-         return var5;
-      } else {
-         var4 = class351.method2583(var2, var0);
-         var5 = method499(var4, var0);
-         if (var5 != null) {
-            return var5;
-         } else {
-            int var6 = var0 + -512;
-            var5 = method499(var6, var0);
-            return var5 != null ? var5 : null;
-         }
-      }
-   }
+	@Override
+	public InputStream getInputStream() throws IOException {
+		return this.val$tlsClientProtocol.getInputStream();
+	}
 
-   static class81 method499(int var0, int var1) {
-      class81 var3 = (class81)field708.method5643((long)(var0 << 16));
-      if (null != var3) {
-         return var3;
-      } else {
-         String var4 = String.valueOf(var0);
-         int var5 = class130.field1226.getGroupId(var4);
-         if (var5 == -1) {
-            return null;
-         } else {
-            byte[] var6 = class130.field1226.method6388(var5);
-            if (var6 != null) {
-               if (var6.length <= 1) {
-                  return null;
-               }
+	@Override
+	public OutputStream getOutputStream() throws IOException {
+		return this.val$tlsClientProtocol.getOutputStream();
+	}
 
-               var3 = class34.method520(var6);
-               if (null != var3) {
-                  field708.method5640(var3, (long)(var0 << 16));
-                  return var3;
-               }
-            }
+	@Override
+	public synchronized void close() throws IOException {
+		this.val$tlsClientProtocol.close();
+	}
 
-            return null;
-         }
-      }
-   }
+	@Override
+	public void addHandshakeCompletedListener(HandshakeCompletedListener var1) {
+	}
 
-   class469[] method1743(int var1) {
-      return new class469[var1];
-   }
+	@Override
+	public boolean getEnableSessionCreation() {
+		return false;
+	}
+
+	@Override
+	public String[] getEnabledCipherSuites() {
+		return null;
+	}
+
+	@Override
+	public String[] getEnabledProtocols() {
+		return null;
+	}
+
+	@Override
+	public boolean getNeedClientAuth() {
+		return false;
+	}
+
+	@Override
+	public SSLSession getSession() {
+		return new class122(this);
+	}
+
+	@Override
+	public String[] getSupportedProtocols() {
+		return null;
+	}
+
+	@Override
+	public String[] getSupportedCipherSuites() {
+		return null;
+	}
+
+	@Override
+	public boolean getUseClientMode() {
+		return false;
+	}
+
+	@Override
+	public boolean getWantClientAuth() {
+		return false;
+	}
+
+	@Override
+	public void removeHandshakeCompletedListener(HandshakeCompletedListener var1) {
+	}
+
+	@Override
+	public void setEnableSessionCreation(boolean var1) {
+	}
+
+	@Override
+	public void setEnabledCipherSuites(String[] var1) {
+	}
+
+	@Override
+	public void setEnabledProtocols(String[] var1) {
+	}
+
+	@Override
+	public void setNeedClientAuth(boolean var1) {
+	}
+
+	@Override
+	public void setUseClientMode(boolean var1) {
+	}
+
+	@Override
+	public void setWantClientAuth(boolean var1) {
+	}
+
+	@Override
+	public void startHandshake() throws IOException {
+		this.val$tlsClientProtocol.connect(new class318(this));
+	}
 }

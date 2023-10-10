@@ -7,11 +7,12 @@ import io.rsbox.server.engine.net.game.Codec
 import io.rsbox.server.engine.net.game.Packet
 import io.rsbox.server.engine.net.game.PacketType
 import io.rsbox.server.engine.net.game.ServerPacket
+import io.rsbox.server.util.buffer.ADD
 import io.rsbox.server.util.buffer.BIT_MODE
 import io.rsbox.server.util.buffer.BYTE_MODE
 import io.rsbox.server.util.buffer.JagByteBuf
 
-@ServerPacket(opcode = 99, type = PacketType.VARIABLE_SHORT)
+@ServerPacket(opcode = 73, type = PacketType.VARIABLE_SHORT)
 data class RebuildNormalServerPacket(
     val player: Player,
     val gpi: Boolean = false
@@ -32,7 +33,7 @@ data class RebuildNormalServerPacket(
             val regions = packet.player.scene.regions
 
             out.writeShort(baseChunk.y)
-            out.writeShort(baseChunk.x)
+            out.writeShort(baseChunk.x, transform = ADD)
             out.writeShort(regions.size)
 
             regions.forEach { region ->

@@ -1,88 +1,83 @@
-import java.io.EOFException;
-import java.io.File;
-import java.io.IOException;
-import java.io.RandomAccessFile;
-import java.io.SyncFailedException;
+public class class508 {
+	class39 field3709;
+	int field3710;
+	int field3711;
 
-public final class class508 {
-   RandomAccessFile field5081;
-   long field5080;
-   final long field5082;
+	class508(class39 var1, int var2, int var3) {
+		this.field3711 = 0;
+		this.field3710 = 0;
+		this.field3709 = var1;
+		this.field3711 = var2;
+		this.field3710 = var3;
+	}
 
-   public class508(File var1, String var2, long var3) throws IOException {
-      if (var3 == -1L) {
-         var3 = Long.MAX_VALUE;
-      }
+	public String method2395() {
+		if (this.method2391()) {
+			return "";
+		} else {
+			StringBuilder var2 = new StringBuilder(this.method2392());
 
-      if (var1.length() > var3) {
-         var1.delete();
-      }
+			for (int var3 = this.field3711; var3 < this.field3710; ++var3) {
+				class101 var4 = this.field3709.method109(var3);
+				var2.append(var4.field657);
+			}
 
-      this.field5081 = new RandomAccessFile(var1, var2);
-      this.field5082 = var3;
-      this.field5080 = 0L;
-      int var5 = this.field5081.read();
-      if (var5 != -1 && !var2.equals("r")) {
-         this.field5081.seek(0L);
-         this.field5081.write(var5);
-      }
+			return var2.toString();
+		}
+	}
 
-      this.field5081.seek(0L);
-   }
+	boolean method2390(int var1) {
+		return this.field3709.method134() == 2 || this.field3709.method134() == 1 && (!this.field3709.field194 || var1 != this.field3710 - 1);
+	}
 
-   final void method8608(long var1) throws IOException {
-      this.field5081.seek(var1);
-      this.field5080 = var1;
-   }
+	public boolean method2391() {
+		return this.field3710 == this.field3711;
+	}
 
-   public final void method8610(byte[] var1, int var2, int var3) throws IOException {
-      if (this.field5080 + (long)var3 > this.field5082) {
-         this.field5081.seek(this.field5082);
-         this.field5081.write(1);
-         throw new EOFException();
-      } else {
-         this.field5081.write(var1, var2, var3);
-         this.field5080 += (long)var3;
-      }
-   }
+	public int method2392() {
+		return this.field3710 - this.field3711;
+	}
 
-   public final void method8611() throws IOException {
-      this.method8624(false);
-   }
+	boolean method2397(class101 var1) {
+		if (this.field3709.field197 == 2) {
+			return true;
+		} else if (this.field3709.field197 == 0) {
+			return false;
+		} else {
+			return this.field3709.method149() != var1;
+		}
+	}
 
-   public final void method8624(boolean var1) throws IOException {
-      if (this.field5081 != null) {
-         if (var1) {
-            try {
-               this.field5081.getFD().sync();
-            } catch (SyncFailedException var4) {
-            }
-         }
+	int method2396() {
+		if (this.method2391()) {
+			return 0;
+		} else {
+			class101 var2 = this.field3709.method109(this.field3710 - 1);
+			if (var2.field657 == '\n') {
+				return 0;
+			} else if (this.method2397(var2)) {
+				return this.field3709.field190.field1480[42];
+			} else {
+				int var3 = this.field3709.field190.field1480[var2.field657];
+				if (var3 == 0) {
+					return var2.field657 == '\t' ? 3 * this.field3709.field190.field1480[32] : this.field3709.field190.field1480[32];
+				} else {
+					return var3;
+				}
+			}
+		}
+	}
 
-         this.field5081.close();
-         this.field5081 = null;
-      }
+	public class203 method2393() {
+		if (this.method2391()) {
+			return new class203(0, 0);
+		} else {
+			class101 var2 = this.field3709.method109(this.field3710 - 1);
+			return new class203(var2.field658 + this.method2396(), var2.field659);
+		}
+	}
 
-   }
-
-   public final long method8613() throws IOException {
-      return this.field5081.length();
-   }
-
-   public final int method8615(byte[] var1, int var2, int var3) throws IOException {
-      int var5 = this.field5081.read(var1, var2, var3);
-      if (var5 > 0) {
-         this.field5080 += (long)var5;
-      }
-
-      return var5;
-   }
-
-   protected void finalize() throws Throwable {
-      if (null != this.field5081) {
-         System.out.println("");
-         this.method8611();
-      }
-
-   }
+	public class101 method2394(int var1) {
+		return var1 >= 0 && var1 < this.method2392() ? this.field3709.method109(this.field3711 + var1) : null;
+	}
 }

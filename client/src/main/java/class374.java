@@ -1,39 +1,58 @@
-import java.util.Iterator;
+import java.io.UnsupportedEncodingException;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-public class class374 implements Iterator {
-   class390 field4357;
-   class476 field4358;
-   class476 field4359 = null;
+public class class374 implements class531 {
+	JSONObject field2578;
 
-   class374(class390 var1) {
-      this.field4357 = var1;
-      this.field4358 = this.field4357.field4445.field4849;
-      this.field4359 = null;
-   }
+	public class374(JSONObject var1) {
+		this.field2578 = var1;
+	}
 
-   public Object next() {
-      class476 var1 = this.field4358;
-      if (var1 == this.field4357.field4445) {
-         var1 = null;
-         this.field4358 = null;
-      } else {
-         this.field4358 = var1.field4849;
-      }
+	public class374(String var1) throws UnsupportedEncodingException {
+		this.method1750(var1);
+	}
 
-      this.field4359 = var1;
-      return var1;
-   }
+	public class374(byte[] var1) throws UnsupportedEncodingException {
+		this.method1749(var1);
+	}
 
-   public boolean hasNext() {
-      return this.field4358 != this.field4357.field4445;
-   }
+	@Override
+	public class125 method2549() {
+		return class125.field818;
+	}
 
-   public void remove() {
-      if (this.field4359 == null) {
-         throw new IllegalStateException();
-      } else {
-         this.field4359.method8161();
-         this.field4359 = null;
-      }
-   }
+	void method1749(byte[] var1) throws UnsupportedEncodingException {
+		String var3 = new String(var1, "UTF-8");
+		this.method1750(var3);
+	}
+
+	void method1750(String var1) throws UnsupportedEncodingException {
+		try {
+			if (var1.charAt(0) == '{') {
+				this.field2578 = new JSONObject(var1);
+			} else {
+				if (var1.charAt(0) != '[') {
+					throw new UnsupportedEncodingException("Invalid JSON passed to the JSON content builder.");
+				}
+
+				JSONArray var3 = new JSONArray(var1);
+				this.field2578 = new JSONObject();
+				this.field2578.put("arrayValues", var3);
+			}
+
+		} catch (JSONException var4) {
+			throw new UnsupportedEncodingException(var4.getMessage());
+		}
+	}
+
+	public JSONObject method1751() {
+		return this.field2578;
+	}
+
+	@Override
+	public byte[] method2548() throws UnsupportedEncodingException {
+		return null == this.field2578 ? new byte[0] : this.field2578.toString().getBytes("UTF-8");
+	}
 }

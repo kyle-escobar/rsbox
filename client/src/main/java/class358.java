@@ -1,24 +1,38 @@
-public class class358 {
-   static Component field3961;
+public class class358 implements class501 {
+	static class198 field2470;
+	static final class358 field2462;
+	static final class358 field2463;
+	static final class358 field2464;
+	static final class358 field2465;
+	static final class358 field2466;
+	static final class358 field2467;
+	final int field2468;
+	final int field2469;
 
-   static {
-      int var0 = 0;
-      int var1 = 0;
-      class341[] var2 = new class341[]{class341.field3819, class341.field3816};
+	static {
+		field2465 = new class358(0, -1);
+		field2463 = new class358(1, 2);
+		field2462 = new class358(2, 3);
+		field2464 = new class358(3, 4);
+		field2466 = new class358(4, 5);
+		field2467 = new class358(5, 6);
+	}
 
-      for(int var4 = 0; var4 < var2.length; ++var4) {
-         class341 var5 = var2[var4];
-         if (var5.field3817 > var0) {
-            var0 = var5.field3817;
-         }
+	class358(int var1, int var2) {
+		this.field2468 = var1;
+		this.field2469 = var2;
+	}
 
-         if (var5.field3818 > var1) {
-            var1 = var5.field3818;
-         }
-      }
+	@Override
+	public int getId() {
+		return this.field2469;
+	}
 
-   }
+	static class358[] method1718() {
+		return new class358[]{field2462, field2465, field2463, field2467, field2466, field2464};
+	}
 
-   class358() throws Throwable {
-   }
+	public static boolean method1717(byte var0) {
+		return Client.field2087 >= 2;
+	}
 }

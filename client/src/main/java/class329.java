@@ -1,49 +1,25 @@
-public class class329 {
-   public static int[] field3576;
-   public static int[] field3577;
-   static int field3580;
-   static int[] field3579 = new int[32];
+public class class329 extends class415 {
+	int field2347;
+	int field2348;
+	int field2349;
+	int field2350;
+	// $FF: synthetic field
+	final class14 this$0;
 
-   static {
-      int var0 = 2;
+	class329(class14 var1) {
+		this.this$0 = var1;
+	}
 
-      for(int var1 = 0; var1 < 32; ++var1) {
-         field3579[var1] = var0 - 1;
-         var0 += var0;
-      }
+	@Override
+	void method1905(Buffer var1) {
+		this.field2350 = var1.readInt();
+		this.field2349 = var1.readInt();
+		this.field2347 = var1.readUnsignedByte();
+		this.field2348 = var1.readUnsignedByte();
+	}
 
-      field3576 = new int[4000];
-      field3577 = new int[4000];
-   }
-
-   class329() throws Throwable {
-   }
-
-   public static void method3291(int var0, int var1) {
-      class196 var4 = (class196)class196.field2143.method5643((long)var0);
-      class196 var3;
-      if (null != var4) {
-         var3 = var4;
-      } else {
-         byte[] var5 = class196.field2144.method6381(14, var0);
-         var4 = new class196();
-         if (var5 != null) {
-            var4.method3754(new Buffer(var5));
-         }
-
-         class196.field2143.method5640(var4, (long)var0);
-         var3 = var4;
-      }
-
-      int var9 = var3.field2142;
-      int var6 = var3.field2140;
-      int var7 = var3.field2141;
-      int var8 = field3579[var7 - var6];
-      if (var1 < 0 || var1 > var8) {
-         var1 = 0;
-      }
-
-      var8 <<= var6;
-      field3577[var9] = field3577[var9] & ~var8 | var1 << var6 & var8;
-   }
+	@Override
+	void method1906(class511 var1) {
+		var1.method2423(this.field2350, this.field2349, this.field2347, this.field2348);
+	}
 }

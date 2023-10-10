@@ -1,100 +1,96 @@
-import java.security.Principal;
-import java.security.cert.Certificate;
-import javax.net.ssl.SSLPeerUnverifiedException;
-import javax.net.ssl.SSLSession;
-import javax.net.ssl.SSLSessionContext;
-import javax.security.cert.X509Certificate;
+import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.PrintWriter;
+import java.io.StringReader;
+import java.io.StringWriter;
+import java.net.URL;
 
-class class2 implements SSLSession {
-   static class523[] field12;
-   // $FF: synthetic field
-   final class8 this$1;
+public class class2 extends RuntimeException {
+	public static int field2;
+	public static int field3;
+	public static String field5;
+	String field4;
+	Throwable field1;
 
-   class2(class8 var1) {
-      this.this$1 = var1;
-   }
+	class2(Throwable var1, String var2) {
+		this.field4 = var2;
+		this.field1 = var1;
+	}
 
-   public int getApplicationBufferSize() {
-      return 0;
-   }
+	public static void method1(String var0, Throwable var1) {
+		try {
+			String var3 = "";
+			if (var1 != null) {
+				Throwable var5 = var1;
+				String var6;
+				if (var1 instanceof class2) {
+					class2 var7 = (class2)var1;
+					var6 = var7.field4 + " | ";
+					var5 = var7.field1;
+				} else {
+					var6 = "";
+				}
 
-   public String getCipherSuite() {
-      throw new UnsupportedOperationException();
-   }
+				StringWriter var19 = new StringWriter();
+				PrintWriter var8 = new PrintWriter(var19);
+				var5.printStackTrace(var8);
+				var8.close();
+				String var9 = var19.toString();
+				BufferedReader var10 = new BufferedReader(new StringReader(var9));
+				String var11 = var10.readLine();
 
-   public long getCreationTime() {
-      throw new UnsupportedOperationException();
-   }
+				while (true) {
+					String var12 = var10.readLine();
+					if (null == var12) {
+						var6 = var6 + "| " + var11;
+						var3 = var6;
+						break;
+					}
 
-   public byte[] getId() {
-      throw new UnsupportedOperationException();
-   }
+					int var13 = var12.indexOf(40);
+					int var14 = var12.indexOf(41, var13 + 1);
+					if (var13 >= 0 && var14 >= 0) {
+						String var15 = var12.substring(var13 + 1, var14);
+						int var16 = var15.indexOf(".java:");
+						if (var16 >= 0) {
+							var15 = var15.substring(0, var16) + var15.substring(var16 + 5);
+							var6 = var6 + var15 + ' ';
+							continue;
+						}
 
-   public long getLastAccessedTime() {
-      throw new UnsupportedOperationException();
-   }
+						var12 = var12.substring(0, var13);
+					}
 
-   public Certificate[] getLocalCertificates() {
-      throw new UnsupportedOperationException();
-   }
+					var12 = var12.trim();
+					var12 = var12.substring(var12.lastIndexOf(32) + 1);
+					var12 = var12.substring(var12.lastIndexOf(9) + 1);
+					var6 = var6 + var12 + ' ';
+				}
+			}
 
-   public Principal getLocalPrincipal() {
-      throw new UnsupportedOperationException();
-   }
+			if (null != var0) {
+				if (var1 != null) {
+					var3 = var3 + " | ";
+				}
 
-   public int getPacketBufferSize() {
-      throw new UnsupportedOperationException();
-   }
+				var3 = var3 + var0;
+			}
 
-   public X509Certificate[] getPeerCertificateChain() throws SSLPeerUnverifiedException {
-      return null;
-   }
+			System.out.println("Error: " + var3);
+			var3 = var3.replace(':', '.');
+			var3 = var3.replace('@', '_');
+			var3 = var3.replace('&', '_');
+			var3 = var3.replace('#', '_');
+			if (class6.field31 == null) {
+				return;
+			}
 
-   public Certificate[] getPeerCertificates() throws SSLPeerUnverifiedException {
-      return this.this$1.field50;
-   }
+			URL var4 = new URL(class6.field31.getCodeBase(), "clienterror.ws?cv=" + field2 + "&cs=" + field3 + "&u=" + field5 + "&v1=" + class430.field2885 + "&v2=" + class430.field2881 + "&ct=" + class371.field2562 + "&e=" + var3);
+			DataInputStream var18 = new DataInputStream(var4.openStream());
+			var18.read();
+			var18.close();
+		} catch (Exception var17) {
+		}
 
-   public String getPeerHost() {
-      throw new UnsupportedOperationException();
-   }
-
-   public int getPeerPort() {
-      return 0;
-   }
-
-   public Principal getPeerPrincipal() throws SSLPeerUnverifiedException {
-      return null;
-   }
-
-   public String getProtocol() {
-      throw new UnsupportedOperationException();
-   }
-
-   public SSLSessionContext getSessionContext() {
-      throw new UnsupportedOperationException();
-   }
-
-   public Object getValue(String var1) {
-      throw new UnsupportedOperationException();
-   }
-
-   public String[] getValueNames() {
-      throw new UnsupportedOperationException();
-   }
-
-   public void invalidate() {
-      throw new UnsupportedOperationException();
-   }
-
-   public boolean isValid() {
-      throw new UnsupportedOperationException();
-   }
-
-   public void putValue(String var1, Object var2) {
-      throw new UnsupportedOperationException();
-   }
-
-   public void removeValue(String var1) {
-      throw new UnsupportedOperationException();
-   }
+	}
 }

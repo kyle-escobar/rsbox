@@ -1,35 +1,20 @@
-public abstract class class406 {
-   static class523 field4516;
-   boolean field4511;
-   boolean field4515;
-   class406 field4512;
-   String field4513;
-   String field4514;
+public final class class406 {
+	static int field2788;
 
-   class406(class406 var1) {
-      this.field4512 = var1;
-   }
+	public static class536 method1866(int var0) {
+		class536 var2 = (class536)class536.field4196.method1678((long)var0);
+		if (null != var2) {
+			return var2;
+		} else {
+			byte[] var3 = class412.field2847.method39(4, var0);
+			var2 = new class536();
+			if (null != var3) {
+				var2.method2597(new Buffer(var3), var0);
+			}
 
-   public abstract boolean method7131(int var1);
-
-   public boolean method7150() {
-      return this.field4515;
-   }
-
-   public boolean method7132() {
-      return this.field4511;
-   }
-
-   public String method7133() {
-      return "Error in task: " + this.field4513 + ", Error message: " + this.field4514;
-   }
-
-   public class406 method7134() {
-      return this.field4512;
-   }
-
-   void method7135(String var1) {
-      this.field4515 = true;
-      this.field4514 = var1;
-   }
+			var2.method2594();
+			class536.field4196.method1680(var2, (long)var0);
+			return var2;
+		}
+	}
 }

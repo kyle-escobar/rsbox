@@ -1,401 +1,104 @@
-public class class218 {
-   public static String field2396;
-   int field2383;
-   int field2392 = 0;
-   int field2394;
-   int field2397 = 0;
-   public int[][] field2393;
+public final class class218 extends class359 {
+	static class69 field1421;
+	class335 field1422;
+	class335 field1425;
+	class397 field1430;
+	int field1416;
+	int field1417;
+	int field1418;
+	int field1419;
+	int field1420;
+	int field1423;
+	int field1424;
+	int field1426;
+	int field1428;
+	int field1429;
+	int[] field1427;
+
+	static {
+		field1421 = new class69();
+	}
+
+	class218() {
+	}
+
+	void method1004() {
+		int var2 = this.field1429;
+		class397 var3 = this.field1430.method1845();
+		if (var3 != null) {
+			this.field1429 = var3.field2706;
+			this.field1417 = var3.field2731 * 128;
+			this.field1424 = var3.field2734;
+			this.field1426 = var3.field2733;
+			this.field1427 = var3.field2704;
+		} else {
+			this.field1429 = -1;
+			this.field1417 = 0;
+			this.field1424 = 0;
+			this.field1426 = 0;
+			this.field1427 = null;
+		}
+
+		if (var2 != this.field1429 && null != this.field1422) {
+			class244.field1632.method1131(this.field1422);
+			this.field1422 = null;
+		}
+
+	}
+
+	static void method1005() {
+		for (class218 var1 = (class218)field1421.method327(); null != var1; var1 = (class218)field1421.method331()) {
+			if (var1.field1422 != null) {
+				class244.field1632.method1131(var1.field1422);
+				var1.field1422 = null;
+			}
+
+			if (var1.field1425 != null) {
+				class244.field1632.method1131(var1.field1425);
+				var1.field1425 = null;
+			}
+		}
+
+		field1421.method329();
+	}
+
+	static void method1007() {
+		for (class218 var1 = (class218)field1421.method327(); var1 != null; var1 = (class218)field1421.method331()) {
+			if (null != var1.field1430) {
+				var1.method1004();
+			}
+		}
+
+	}
+
+	static void method1006(int var0, int var1, int var2, class397 var3, int var4) {
+		class218 var6 = new class218();
+		var6.field1416 = var0;
+		var6.field1418 = var1 * 128;
+		var6.field1419 = var2 * 128;
+		int var7 = var3.field2701;
+		int var8 = var3.field2702;
+		if (var4 == 1 || var4 == 3) {
+			var7 = var3.field2702;
+			var8 = var3.field2701;
+		}
+
+		var6.field1420 = 128 * (var7 + var1);
+		var6.field1423 = (var8 + var2) * 128;
+		var6.field1429 = var3.field2706;
+		var6.field1417 = var3.field2731 * 128;
+		var6.field1424 = var3.field2734;
+		var6.field1426 = var3.field2733;
+		var6.field1427 = var3.field2704;
+		if (var3.field2727 != null) {
+			var6.field1430 = var3;
+			var6.method1004();
+		}
+
+		field1421.method323(var6);
+		if (var6.field1427 != null) {
+			var6.field1428 = var6.field1424 + (int)(Math.random() * (double)(var6.field1426 - var6.field1424));
+		}
 
-   public class218(int var1, int var2) {
-      this.field2383 = var1;
-      this.field2394 = var2;
-      this.field2393 = new int[this.field2383][this.field2394];
-      this.method4164();
-   }
-
-   public void method4164() {
-      for(int var2 = 0; var2 < this.field2383; ++var2) {
-         for(int var3 = 0; var3 < this.field2394; ++var3) {
-            if (var2 != 0 && var3 != 0 && var2 < this.field2383 - 5 && var3 < this.field2394 - 5) {
-               this.field2393[var2][var3] = 16777216;
-            } else {
-               this.field2393[var2][var3] = 16777215;
-            }
-         }
-      }
-
-   }
-
-   public void method4170(int var1, int var2, int var3, int var4, boolean var5) {
-      var1 -= this.field2397;
-      var2 -= this.field2392;
-      if (var3 == 0) {
-         if (var4 == 0) {
-            this.method4169(var1, var2, 128);
-            this.method4169(var1 - 1, var2, 8);
-         }
-
-         if (var4 == 1) {
-            this.method4169(var1, var2, 2);
-            this.method4169(var1, var2 + 1, 32);
-         }
-
-         if (var4 == 2) {
-            this.method4169(var1, var2, 8);
-            this.method4169(var1 + 1, var2, 128);
-         }
-
-         if (var4 == 3) {
-            this.method4169(var1, var2, 32);
-            this.method4169(var1, var2 - 1, 2);
-         }
-      }
-
-      if (var3 == 1 || var3 == 3) {
-         if (var4 == 0) {
-            this.method4169(var1, var2, 1);
-            this.method4169(var1 - 1, var2 + 1, 16);
-         }
-
-         if (var4 == 1) {
-            this.method4169(var1, var2, 4);
-            this.method4169(var1 + 1, var2 + 1, 64);
-         }
-
-         if (var4 == 2) {
-            this.method4169(var1, var2, 16);
-            this.method4169(var1 + 1, var2 - 1, 1);
-         }
-
-         if (var4 == 3) {
-            this.method4169(var1, var2, 64);
-            this.method4169(var1 - 1, var2 - 1, 4);
-         }
-      }
-
-      if (var3 == 2) {
-         if (var4 == 0) {
-            this.method4169(var1, var2, 130);
-            this.method4169(var1 - 1, var2, 8);
-            this.method4169(var1, var2 + 1, 32);
-         }
-
-         if (var4 == 1) {
-            this.method4169(var1, var2, 10);
-            this.method4169(var1, var2 + 1, 32);
-            this.method4169(var1 + 1, var2, 128);
-         }
-
-         if (var4 == 2) {
-            this.method4169(var1, var2, 40);
-            this.method4169(var1 + 1, var2, 128);
-            this.method4169(var1, var2 - 1, 2);
-         }
-
-         if (var4 == 3) {
-            this.method4169(var1, var2, 160);
-            this.method4169(var1, var2 - 1, 2);
-            this.method4169(var1 - 1, var2, 8);
-         }
-      }
-
-      if (var5) {
-         if (var3 == 0) {
-            if (var4 == 0) {
-               this.method4169(var1, var2, 65536);
-               this.method4169(var1 - 1, var2, 4096);
-            }
-
-            if (var4 == 1) {
-               this.method4169(var1, var2, 1024);
-               this.method4169(var1, var2 + 1, 16384);
-            }
-
-            if (var4 == 2) {
-               this.method4169(var1, var2, 4096);
-               this.method4169(var1 + 1, var2, 65536);
-            }
-
-            if (var4 == 3) {
-               this.method4169(var1, var2, 16384);
-               this.method4169(var1, var2 - 1, 1024);
-            }
-         }
-
-         if (var3 == 1 || var3 == 3) {
-            if (var4 == 0) {
-               this.method4169(var1, var2, 512);
-               this.method4169(var1 - 1, var2 + 1, 8192);
-            }
-
-            if (var4 == 1) {
-               this.method4169(var1, var2, 2048);
-               this.method4169(var1 + 1, var2 + 1, 32768);
-            }
-
-            if (var4 == 2) {
-               this.method4169(var1, var2, 8192);
-               this.method4169(var1 + 1, var2 - 1, 512);
-            }
-
-            if (var4 == 3) {
-               this.method4169(var1, var2, 32768);
-               this.method4169(var1 - 1, var2 - 1, 2048);
-            }
-         }
-
-         if (var3 == 2) {
-            if (var4 == 0) {
-               this.method4169(var1, var2, 66560);
-               this.method4169(var1 - 1, var2, 4096);
-               this.method4169(var1, var2 + 1, 16384);
-            }
-
-            if (var4 == 1) {
-               this.method4169(var1, var2, 5120);
-               this.method4169(var1, var2 + 1, 16384);
-               this.method4169(var1 + 1, var2, 65536);
-            }
-
-            if (var4 == 2) {
-               this.method4169(var1, var2, 20480);
-               this.method4169(var1 + 1, var2, 65536);
-               this.method4169(var1, var2 - 1, 1024);
-            }
-
-            if (var4 == 3) {
-               this.method4169(var1, var2, 81920);
-               this.method4169(var1, var2 - 1, 1024);
-               this.method4169(var1 - 1, var2, 4096);
-            }
-         }
-      }
-
-   }
-
-   public void method4166(int var1, int var2, int var3, int var4, boolean var5) {
-      int var7 = 256;
-      if (var5) {
-         var7 += 131072;
-      }
-
-      var1 -= this.field2397;
-      var2 -= this.field2392;
-
-      for(int var8 = var1; var8 < var1 + var3; ++var8) {
-         if (var8 >= 0 && var8 < this.field2383) {
-            for(int var9 = var2; var9 < var4 + var2; ++var9) {
-               if (var9 >= 0 && var9 < this.field2394) {
-                  this.method4169(var8, var9, var7);
-               }
-            }
-         }
-      }
-
-   }
-
-   public void method4167(int var1, int var2) {
-      var1 -= this.field2397;
-      var2 -= this.field2392;
-      int[] var10000 = this.field2393[var1];
-      var10000[var2] |= 2097152;
-   }
-
-   public void method4190(int var1, int var2) {
-      var1 -= this.field2397;
-      var2 -= this.field2392;
-      int[] var10000 = this.field2393[var1];
-      var10000[var2] |= 262144;
-   }
-
-   void method4169(int var1, int var2, int var3) {
-      int[] var10000 = this.field2393[var1];
-      var10000[var2] |= var3;
-   }
-
-   public void method4181(int var1, int var2, int var3, int var4, boolean var5) {
-      var1 -= this.field2397;
-      var2 -= this.field2392;
-      if (var3 == 0) {
-         if (var4 == 0) {
-            this.method4172(var1, var2, 128);
-            this.method4172(var1 - 1, var2, 8);
-         }
-
-         if (var4 == 1) {
-            this.method4172(var1, var2, 2);
-            this.method4172(var1, var2 + 1, 32);
-         }
-
-         if (var4 == 2) {
-            this.method4172(var1, var2, 8);
-            this.method4172(var1 + 1, var2, 128);
-         }
-
-         if (var4 == 3) {
-            this.method4172(var1, var2, 32);
-            this.method4172(var1, var2 - 1, 2);
-         }
-      }
-
-      if (var3 == 1 || var3 == 3) {
-         if (var4 == 0) {
-            this.method4172(var1, var2, 1);
-            this.method4172(var1 - 1, var2 + 1, 16);
-         }
-
-         if (var4 == 1) {
-            this.method4172(var1, var2, 4);
-            this.method4172(var1 + 1, var2 + 1, 64);
-         }
-
-         if (var4 == 2) {
-            this.method4172(var1, var2, 16);
-            this.method4172(var1 + 1, var2 - 1, 1);
-         }
-
-         if (var4 == 3) {
-            this.method4172(var1, var2, 64);
-            this.method4172(var1 - 1, var2 - 1, 4);
-         }
-      }
-
-      if (var3 == 2) {
-         if (var4 == 0) {
-            this.method4172(var1, var2, 130);
-            this.method4172(var1 - 1, var2, 8);
-            this.method4172(var1, var2 + 1, 32);
-         }
-
-         if (var4 == 1) {
-            this.method4172(var1, var2, 10);
-            this.method4172(var1, var2 + 1, 32);
-            this.method4172(var1 + 1, var2, 128);
-         }
-
-         if (var4 == 2) {
-            this.method4172(var1, var2, 40);
-            this.method4172(var1 + 1, var2, 128);
-            this.method4172(var1, var2 - 1, 2);
-         }
-
-         if (var4 == 3) {
-            this.method4172(var1, var2, 160);
-            this.method4172(var1, var2 - 1, 2);
-            this.method4172(var1 - 1, var2, 8);
-         }
-      }
-
-      if (var5) {
-         if (var3 == 0) {
-            if (var4 == 0) {
-               this.method4172(var1, var2, 65536);
-               this.method4172(var1 - 1, var2, 4096);
-            }
-
-            if (var4 == 1) {
-               this.method4172(var1, var2, 1024);
-               this.method4172(var1, var2 + 1, 16384);
-            }
-
-            if (var4 == 2) {
-               this.method4172(var1, var2, 4096);
-               this.method4172(var1 + 1, var2, 65536);
-            }
-
-            if (var4 == 3) {
-               this.method4172(var1, var2, 16384);
-               this.method4172(var1, var2 - 1, 1024);
-            }
-         }
-
-         if (var3 == 1 || var3 == 3) {
-            if (var4 == 0) {
-               this.method4172(var1, var2, 512);
-               this.method4172(var1 - 1, var2 + 1, 8192);
-            }
-
-            if (var4 == 1) {
-               this.method4172(var1, var2, 2048);
-               this.method4172(var1 + 1, var2 + 1, 32768);
-            }
-
-            if (var4 == 2) {
-               this.method4172(var1, var2, 8192);
-               this.method4172(var1 + 1, var2 - 1, 512);
-            }
-
-            if (var4 == 3) {
-               this.method4172(var1, var2, 32768);
-               this.method4172(var1 - 1, var2 - 1, 2048);
-            }
-         }
-
-         if (var3 == 2) {
-            if (var4 == 0) {
-               this.method4172(var1, var2, 66560);
-               this.method4172(var1 - 1, var2, 4096);
-               this.method4172(var1, var2 + 1, 16384);
-            }
-
-            if (var4 == 1) {
-               this.method4172(var1, var2, 5120);
-               this.method4172(var1, var2 + 1, 16384);
-               this.method4172(var1 + 1, var2, 65536);
-            }
-
-            if (var4 == 2) {
-               this.method4172(var1, var2, 20480);
-               this.method4172(var1 + 1, var2, 65536);
-               this.method4172(var1, var2 - 1, 1024);
-            }
-
-            if (var4 == 3) {
-               this.method4172(var1, var2, 81920);
-               this.method4172(var1, var2 - 1, 1024);
-               this.method4172(var1 - 1, var2, 4096);
-            }
-         }
-      }
-
-   }
-
-   public void method4171(int var1, int var2, int var3, int var4, int var5, boolean var6) {
-      int var8 = 256;
-      if (var6) {
-         var8 += 131072;
-      }
-
-      var1 -= this.field2397;
-      var2 -= this.field2392;
-      int var9;
-      if (var5 == 1 || var5 == 3) {
-         var9 = var3;
-         var3 = var4;
-         var4 = var9;
-      }
-
-      for(var9 = var1; var9 < var3 + var1; ++var9) {
-         if (var9 >= 0 && var9 < this.field2383) {
-            for(int var10 = var2; var10 < var4 + var2; ++var10) {
-               if (var10 >= 0 && var10 < this.field2394) {
-                  this.method4172(var9, var10, var8);
-               }
-            }
-         }
-      }
-
-   }
-
-   void method4172(int var1, int var2, int var3) {
-      int[] var10000 = this.field2393[var1];
-      var10000[var2] &= ~var3;
-   }
-
-   public void method4173(int var1, int var2) {
-      var1 -= this.field2397;
-      var2 -= this.field2392;
-      int[] var10000 = this.field2393[var1];
-      var10000[var2] &= -262145;
-   }
+	}
 }

@@ -1,12 +1,9 @@
-public class class338 {
-   class28 field3785 = new class28();
-   class337 field3789 = new class337();
-   public class327 field3786 = new class327();
-   public Object[] field3787;
-   public Object[] field3788;
-   public Object[] field3790;
-   public Object[] field3791;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
-   class338() {
-   }
+@Target({ElementType.FIELD, ElementType.TYPE, ElementType.METHOD, ElementType.CONSTRUCTOR})
+@Retention(RetentionPolicy.CLASS)
+public @interface class338 {
 }

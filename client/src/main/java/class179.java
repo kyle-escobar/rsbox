@@ -1,24 +1,13 @@
-public abstract class class179 {
-   String field1873;
-   // $FF: synthetic field
-   final class173 this$0;
+public class class179 extends class292 {
+	static class198 field1232;
+	static class352 field1231;
+	static int field1230;
 
-   class179(class173 var1, String var2) {
-      this.this$0 = var1;
-      this.field1873 = var2;
-   }
+	static {
+		field1231 = new class352(64);
+	}
 
-   public abstract int method3416();
-
-   public String method3421() {
-      return this.field1873;
-   }
-
-   public String method3417() {
-      return null;
-   }
-
-   public int method3418() {
-      return -1;
-   }
+	public static void method927() {
+		field1231.method1679();
+	}
 }

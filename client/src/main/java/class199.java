@@ -1,59 +1,61 @@
-public class class199 extends class476 {
-   public static class290 field2175 = new class290(64);
-   public static class342 field2178;
-   boolean field2179 = true;
-   char field2176;
-   public int field2177;
-   public String field2174;
+import java.util.HashMap;
 
-   class199() {
-   }
+public class class199 {
+	class5 field1347;
+	class5 field1349;
+	HashMap field1348;
 
-   public static class199 method6362(int var0) {
-      class199 var2 = (class199)field2175.method5643((long)var0);
-      if (null != var2) {
-         return var2;
-      } else {
-         byte[] var3 = field2178.method6381(11, var0);
-         var2 = new class199();
-         if (var3 != null) {
-            var2.method3812(new Buffer(var3));
-         }
+	public class199(class5 var1, class5 var2) {
+		this.field1347 = var1;
+		this.field1349 = var2;
+		this.field1348 = new HashMap();
+	}
 
-         var2.method3797();
-         field2175.method5640(var2, (long)var0);
-         return var2;
-      }
-   }
+	public HashMap method966(class43[] var1) {
+		HashMap var3 = new HashMap();
+		class43[] var4 = var1;
 
-   void method3797() {
-   }
+		for (int var5 = 0; var5 < var4.length; ++var5) {
+			class43 var6 = var4[var5];
+			if (this.field1348.containsKey(var6)) {
+				var3.put(var6, this.field1348.get(var6));
+			} else {
+				class5 var8 = this.field1347;
+				class5 var9 = this.field1349;
+				String var10 = var6.field214;
+				class282 var7;
+				if (!var8.method33(var10, "")) {
+					var7 = null;
+				} else {
+					int var11 = var8.method28(var10);
+					int var12 = var8.method17(var11, "");
+					class282 var13;
+					if (!class168.method887(var8, var11, var12)) {
+						var13 = null;
+					} else {
+						byte[] var15 = var9.method39(var11, var12);
+						class282 var14;
+						if (null == var15) {
+							var14 = null;
+						} else {
+							class282 var16 = new class282(var15, class498.field3673, class442.field2971, class28.field136, class168.field1184, class205.field1376, class299.field2203);
+							class345.method1664();
+							var14 = var16;
+						}
 
-   void method3812(Buffer var1) {
-      while(true) {
-         int var3 = var1.readUnsignedByte();
-         if (var3 == 0) {
-            return;
-         }
+						var13 = var14;
+					}
 
-         this.method3799(var1, var3);
-      }
-   }
+					var7 = var13;
+				}
 
-   void method3799(Buffer var1, int var2) {
-      if (var2 == 1) {
-         this.field2176 = CP1252UTF8.method53(var1.readByte());
-      } else if (var2 == 2) {
-         this.field2177 = var1.readInt();
-      } else if (var2 == 4) {
-         this.field2179 = false;
-      } else if (var2 == 5) {
-         this.field2174 = var1.readString();
-      }
+				if (null != var7) {
+					this.field1348.put(var6, var7);
+					var3.put(var6, var7);
+				}
+			}
+		}
 
-   }
-
-   public boolean method3800() {
-      return this.field2176 == 's';
-   }
+		return var3;
+	}
 }

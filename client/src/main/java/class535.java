@@ -1,852 +1,756 @@
-public class class535 extends class476 {
-   public static float[] field5204;
-   public static int field5202;
-   public static int field5203;
-   public static int field5206 = 0;
-   public static int field5207 = 0;
-   public static int field5208 = 0;
-   public static int field5209 = 0;
-   public static int[] field5201;
-
-   protected class535() {
-   }
-
-   protected static void method9241(int[] var0, int var1, int var2, float[] var3) {
-      field5201 = var0;
-      field5202 = var1;
-      field5203 = var2;
-      field5204 = var3;
-      method9304(0, 0, var1, var2);
-   }
-
-   public static void method9222() {
-      field5208 = 0;
-      field5206 = 0;
-      field5209 = field5202;
-      field5207 = field5203;
-   }
-
-   public static void method9304(int var0, int var1, int var2, int var3) {
-      if (var0 < 0) {
-         var0 = 0;
-      }
-
-      if (var1 < 0) {
-         var1 = 0;
-      }
-
-      if (var2 > field5202) {
-         var2 = field5202;
-      }
-
-      if (var3 > field5203) {
-         var3 = field5203;
-      }
-
-      field5208 = var0;
-      field5206 = var1;
-      field5209 = var2;
-      field5207 = var3;
-   }
-
-   public static void method9224(int var0, int var1, int var2, int var3) {
-      if (field5208 < var0) {
-         field5208 = var0;
-      }
-
-      if (field5206 < var1) {
-         field5206 = var1;
-      }
-
-      if (field5209 > var2) {
-         field5209 = var2;
-      }
-
-      if (field5207 > var3) {
-         field5207 = var3;
-      }
-
-   }
-
-   public static void method9240(int[] var0) {
-      var0[0] = field5208;
-      var0[1] = field5206;
-      var0[2] = field5209;
-      var0[3] = field5207;
-   }
-
-   public static void method9226(int[] var0) {
-      field5208 = var0[0];
-      field5206 = var0[1];
-      field5209 = var0[2];
-      field5207 = var0[3];
-   }
-
-   public static void method9301() {
-      int var0 = 0;
-
-      int var1;
-      for(var1 = field5202 * field5203 - 7; var0 < var1; field5201[var0++] = 0) {
-         field5201[var0++] = 0;
-         field5201[var0++] = 0;
-         field5201[var0++] = 0;
-         field5201[var0++] = 0;
-         field5201[var0++] = 0;
-         field5201[var0++] = 0;
-         field5201[var0++] = 0;
-      }
-
-      for(var1 += 7; var0 < var1; field5201[var0++] = 0) {
-      }
-
-      method9244();
-   }
-
-   static void method9250(int var0, int var1, int var2, int var3) {
-      if (var2 == 0) {
-         method9242(var0, var1, var3);
-      } else {
-         if (var2 < 0) {
-            var2 = -var2;
-         }
-
-         int var4 = var1 - var2;
-         if (var4 < field5206) {
-            var4 = field5206;
-         }
-
-         int var5 = var1 + var2 + 1;
-         if (var5 > field5207) {
-            var5 = field5207;
-         }
-
-         int var6 = var4;
-         int var7 = var2 * var2;
-         int var8 = 0;
-         int var9 = var1 - var4;
-         int var10 = var9 * var9;
-         int var11 = var10 - var9;
-         if (var1 > var5) {
-            var1 = var5;
-         }
-
-         int var12;
-         int var13;
-         int var14;
-         int var15;
-         while(var6 < var1) {
-            while(var11 <= var7 || var10 <= var7) {
-               var10 += var8 + var8;
-               var11 += var8++ + var8;
-            }
-
-            var12 = var0 - var8 + 1;
-            if (var12 < field5208) {
-               var12 = field5208;
-            }
-
-            var13 = var0 + var8;
-            if (var13 > field5209) {
-               var13 = field5209;
-            }
-
-            var14 = var12 + var6 * field5202;
-
-            for(var15 = var12; var15 < var13; ++var15) {
-               field5201[var14++] = var3;
-            }
-
-            ++var6;
-            var10 -= var9-- + var9;
-            var11 -= var9 + var9;
-         }
-
-         var8 = var2;
-         var9 = var6 - var1;
-         var11 = var9 * var9 + var7;
-         var10 = var11 - var2;
-
-         for(var11 -= var9; var6 < var5; var10 += var9++ + var9) {
-            while(var11 > var7 && var10 > var7) {
-               var11 -= var8-- + var8;
-               var10 -= var8 + var8;
-            }
-
-            var12 = var0 - var8;
-            if (var12 < field5208) {
-               var12 = field5208;
-            }
-
-            var13 = var0 + var8;
-            if (var13 > field5209 - 1) {
-               var13 = field5209 - 1;
-            }
-
-            var14 = var12 + var6 * field5202;
-
-            for(var15 = var12; var15 <= var13; ++var15) {
-               field5201[var14++] = var3;
-            }
-
-            ++var6;
-            var11 += var9 + var9;
-         }
-
-      }
-   }
-
-   public static void method9220(int var0, int var1, int var2, int var3, int var4) {
-      if (var4 != 0) {
-         if (var4 == 256) {
-            method9250(var0, var1, var2, var3);
-         } else {
-            if (var2 < 0) {
-               var2 = -var2;
-            }
-
-            int var5 = 256 - var4;
-            int var6 = (var3 >> 16 & 255) * var4;
-            int var7 = (var3 >> 8 & 255) * var4;
-            int var8 = (var3 & 255) * var4;
-            int var12 = var1 - var2;
-            if (var12 < field5206) {
-               var12 = field5206;
-            }
-
-            int var13 = var1 + var2 + 1;
-            if (var13 > field5207) {
-               var13 = field5207;
-            }
-
-            int var14 = var12;
-            int var15 = var2 * var2;
-            int var16 = 0;
-            int var17 = var1 - var12;
-            int var18 = var17 * var17;
-            int var19 = var18 - var17;
-            if (var1 > var13) {
-               var1 = var13;
-            }
-
-            int var9;
-            int var10;
-            int var11;
-            int var20;
-            int var21;
-            int var22;
-            int var23;
-            int var24;
-            while(var14 < var1) {
-               while(var19 <= var15 || var18 <= var15) {
-                  var18 += var16 + var16;
-                  var19 += var16++ + var16;
-               }
-
-               var20 = var0 - var16 + 1;
-               if (var20 < field5208) {
-                  var20 = field5208;
-               }
-
-               var21 = var0 + var16;
-               if (var21 > field5209) {
-                  var21 = field5209;
-               }
-
-               var22 = var20 + var14 * field5202;
-
-               for(var23 = var20; var23 < var21; ++var23) {
-                  var9 = (field5201[var22] >> 16 & 255) * var5;
-                  var10 = (field5201[var22] >> 8 & 255) * var5;
-                  var11 = (field5201[var22] & 255) * var5;
-                  var24 = (var6 + var9 >> 8 << 16) + (var7 + var10 >> 8 << 8) + (var8 + var11 >> 8);
-                  field5201[var22++] = var24;
-               }
-
-               ++var14;
-               var18 -= var17-- + var17;
-               var19 -= var17 + var17;
-            }
-
-            var16 = var2;
-            var17 = -var17;
-            var19 = var17 * var17 + var15;
-            var18 = var19 - var2;
-
-            for(var19 -= var17; var14 < var13; var18 += var17++ + var17) {
-               while(var19 > var15 && var18 > var15) {
-                  var19 -= var16-- + var16;
-                  var18 -= var16 + var16;
-               }
-
-               var20 = var0 - var16;
-               if (var20 < field5208) {
-                  var20 = field5208;
-               }
-
-               var21 = var0 + var16;
-               if (var21 > field5209 - 1) {
-                  var21 = field5209 - 1;
-               }
-
-               var22 = var20 + var14 * field5202;
-
-               for(var23 = var20; var23 <= var21; ++var23) {
-                  var9 = (field5201[var22] >> 16 & 255) * var5;
-                  var10 = (field5201[var22] >> 8 & 255) * var5;
-                  var11 = (field5201[var22] & 255) * var5;
-                  var24 = (var6 + var9 >> 8 << 16) + (var7 + var10 >> 8 << 8) + (var8 + var11 >> 8);
-                  field5201[var22++] = var24;
-               }
-
-               ++var14;
-               var19 += var17 + var17;
-            }
-
-         }
-      }
-   }
-
-   public static void method9230(int var0, int var1, int var2, int var3, int var4, int var5) {
-      if (var0 < field5208) {
-         var2 -= field5208 - var0;
-         var0 = field5208;
-      }
-
-      if (var1 < field5206) {
-         var3 -= field5206 - var1;
-         var1 = field5206;
-      }
-
-      if (var0 + var2 > field5209) {
-         var2 = field5209 - var0;
-      }
-
-      if (var1 + var3 > field5207) {
-         var3 = field5207 - var1;
-      }
-
-      var4 = ((var4 & 16711935) * var5 >> 8 & 16711935) + ((var4 & '\uff00') * var5 >> 8 & '\uff00');
-      int var6 = 256 - var5;
-      int var7 = field5202 - var2;
-      int var8 = var0 + var1 * field5202;
-
-      for(int var9 = 0; var9 < var3; ++var9) {
-         for(int var10 = -var2; var10 < 0; ++var10) {
-            int var11 = field5201[var8];
-            var11 = ((var11 & 16711935) * var6 >> 8 & 16711935) + ((var11 & '\uff00') * var6 >> 8 & '\uff00');
-            field5201[var8++] = var4 + var11;
-         }
-
-         var8 += var7;
-      }
-
-   }
-
-   public static void method9231(int var0, int var1, int var2, int var3, int var4) {
-      if (var0 < field5208) {
-         var2 -= field5208 - var0;
-         var0 = field5208;
-      }
-
-      if (var1 < field5206) {
-         var3 -= field5206 - var1;
-         var1 = field5206;
-      }
-
-      if (var0 + var2 > field5209) {
-         var2 = field5209 - var0;
-      }
-
-      if (var1 + var3 > field5207) {
-         var3 = field5207 - var1;
-      }
-
-      int var5 = field5202 - var2;
-      int var6 = var0 + var1 * field5202;
-
-      for(int var7 = -var3; var7 < 0; ++var7) {
-         for(int var8 = -var2; var8 < 0; ++var8) {
-            field5201[var6++] = var4;
-         }
-
-         var6 += var5;
-      }
-
-   }
-
-   public static void method9225(int var0, int var1, int var2, int var3, int var4, int var5) {
-      if (var2 > 0 && var3 > 0) {
-         int var6 = 0;
-         int var7 = 65536 / var3;
-         if (var0 < field5208) {
-            var2 -= field5208 - var0;
-            var0 = field5208;
-         }
-
-         if (var1 < field5206) {
-            var6 += (field5206 - var1) * var7;
-            var3 -= field5206 - var1;
-            var1 = field5206;
-         }
-
-         if (var0 + var2 > field5209) {
-            var2 = field5209 - var0;
-         }
-
-         if (var1 + var3 > field5207) {
-            var3 = field5207 - var1;
-         }
-
-         int var8 = field5202 - var2;
-         int var9 = var0 + var1 * field5202;
-
-         for(int var10 = -var3; var10 < 0; ++var10) {
-            int var11 = 65536 - var6 >> 8;
-            int var12 = var6 >> 8;
-            int var13 = ((var4 & 16711935) * var11 + (var5 & 16711935) * var12 & -16711936) + ((var4 & '\uff00') * var11 + (var5 & '\uff00') * var12 & 16711680) >>> 8;
-
-            for(int var14 = -var2; var14 < 0; ++var14) {
-               field5201[var9++] = var13;
-            }
-
-            var9 += var8;
-            var6 += var7;
-         }
-
-      }
-   }
-
-   public static void method9233(int var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7) {
-      if (var2 > 0 && var3 > 0) {
-         int var8 = 0;
-         int var9 = 65536 / var3;
-         if (var0 < field5208) {
-            var2 -= field5208 - var0;
-            var0 = field5208;
-         }
-
-         if (var1 < field5206) {
-            var8 += (field5206 - var1) * var9;
-            var3 -= field5206 - var1;
-            var1 = field5206;
-         }
-
-         if (var0 + var2 > field5209) {
-            var2 = field5209 - var0;
-         }
-
-         if (var1 + var3 > field5207) {
-            var3 = field5207 - var1;
-         }
-
-         int var10 = field5202 - var2;
-         int var11 = var0 + var1 * field5202;
-
-         for(int var12 = -var3; var12 < 0; ++var12) {
-            int var13 = 65536 - var8 >> 8;
-            int var14 = var8 >> 8;
-            int var15 = (var6 * var13 + var7 * var14 & '\uff00') >>> 8;
-            if (var15 == 0) {
-               var11 += field5202;
-               var8 += var9;
-            } else {
-               int var16 = ((var4 & 16711935) * var13 + (var5 & 16711935) * var14 & -16711936) + ((var4 & '\uff00') * var13 + (var5 & '\uff00') * var14 & 16711680) >>> 8;
-               int var17 = 255 - var15;
-               int var18 = ((var16 & 16711935) * var15 >> 8 & 16711935) + ((var16 & '\uff00') * var15 >> 8 & '\uff00');
-
-               for(int var19 = -var2; var19 < 0; ++var19) {
-                  int var20 = field5201[var11];
-                  if (var20 == 0) {
-                     field5201[var11++] = var18;
-                  } else {
-                     var20 = ((var20 & 16711935) * var17 >> 8 & 16711935) + ((var20 & '\uff00') * var17 >> 8 & '\uff00');
-                     field5201[var11++] = var18 + var20;
-                  }
-               }
-
-               var11 += var10;
-               var8 += var9;
-            }
-         }
-
-      }
-   }
-
-   public static void method9234(int var0, int var1, int var2, int var3, int var4, int var5, byte[] var6, int var7, boolean var8) {
-      if (var0 + var2 >= 0 && var1 + var3 >= 0) {
-         if (var0 < field5202 && var1 < field5203) {
-            int var9 = 0;
-            int var10 = 0;
-            if (var0 < 0) {
-               var9 -= var0;
-               var2 += var0;
-            }
-
-            if (var1 < 0) {
-               var10 -= var1;
-               var3 += var1;
-            }
-
-            if (var0 + var2 > field5202) {
-               var2 = field5202 - var0;
-            }
-
-            if (var1 + var3 > field5203) {
-               var3 = field5203 - var1;
-            }
-
-            int var11 = var6.length / var7;
-            int var12 = field5202 - var2;
-            int var13 = var4 >>> 24;
-            int var14 = var5 >>> 24;
-            int var15;
-            int var16;
-            int var17;
-            int var18;
-            int var19;
-            if (var8 && (var13 != 255 || var14 != 255)) {
-               var15 = (var1 + var10) * field5202 + var0 + var9;
-
-               for(var16 = var1 + var10; var16 < var1 + var10 + var3; ++var16) {
-                  for(var17 = var0 + var9; var17 < var0 + var9 + var2; ++var17) {
-                     var18 = (var16 - var1) % var11;
-                     var19 = (var17 - var0) % var7;
-                     int var20 = var4;
-                     if (var6[var18 * var7 + var19] != 0) {
-                        var20 = var5;
-                     }
-
-                     int var21 = var20 >>> 24;
-                     int var22 = 255 - var21;
-                     int var23 = field5201[var15];
-                     int var24 = ((var20 & 16711935) * var21 + (var23 & 16711935) * var22 & -16711936) + ((var20 & '\uff00') * var21 + (var23 & '\uff00') * var22 & 16711680) >> 8;
-                     field5201[var15++] = var24;
-                  }
-
-                  var15 += var12;
-               }
-            } else {
-               var15 = (var1 + var10) * field5202 + var0 + var9;
-
-               for(var16 = var1 + var10; var16 < var1 + var10 + var3; ++var16) {
-                  for(var17 = var0 + var9; var17 < var0 + var9 + var2; ++var17) {
-                     var18 = (var16 - var1) % var11;
-                     var19 = (var17 - var0) % var7;
-                     if (var6[var18 * var7 + var19] != 0) {
-                        field5201[var15++] = var5;
-                     } else {
-                        field5201[var15++] = var4;
-                     }
-                  }
-
-                  var15 += var12;
-               }
-            }
-
-         }
-      }
-   }
-
-   public static void method9223(int var0, int var1, int var2, int var3, int var4) {
-      method9237(var0, var1, var2, var4);
-      method9237(var0, var1 + var3 - 1, var2, var4);
-      method9239(var0, var1, var3, var4);
-      method9239(var0 + var2 - 1, var1, var3, var4);
-   }
-
-   public static void method9236(int var0, int var1, int var2, int var3, int var4, int var5) {
-      method9263(var0, var1, var2, var4, var5);
-      method9263(var0, var1 + var3 - 1, var2, var4, var5);
-      if (var3 >= 3) {
-         method9282(var0, var1 + 1, var3 - 2, var4, var5);
-         method9282(var0 + var2 - 1, var1 + 1, var3 - 2, var4, var5);
-      }
-
-   }
-
-   public static void method9237(int var0, int var1, int var2, int var3) {
-      if (var1 >= field5206 && var1 < field5207) {
-         if (var0 < field5208) {
-            var2 -= field5208 - var0;
-            var0 = field5208;
-         }
-
-         if (var0 + var2 > field5209) {
-            var2 = field5209 - var0;
-         }
-
-         int var4 = var0 + var1 * field5202;
-
-         for(int var5 = 0; var5 < var2; ++var5) {
-            field5201[var4 + var5] = var3;
-         }
-
-      }
-   }
-
-   static void method9263(int var0, int var1, int var2, int var3, int var4) {
-      if (var1 >= field5206 && var1 < field5207) {
-         if (var0 < field5208) {
-            var2 -= field5208 - var0;
-            var0 = field5208;
-         }
-
-         if (var0 + var2 > field5209) {
-            var2 = field5209 - var0;
-         }
-
-         int var5 = 256 - var4;
-         int var6 = (var3 >> 16 & 255) * var4;
-         int var7 = (var3 >> 8 & 255) * var4;
-         int var8 = (var3 & 255) * var4;
-         int var12 = var0 + var1 * field5202;
-
-         for(int var13 = 0; var13 < var2; ++var13) {
-            int var9 = (field5201[var12] >> 16 & 255) * var5;
-            int var10 = (field5201[var12] >> 8 & 255) * var5;
-            int var11 = (field5201[var12] & 255) * var5;
-            int var14 = (var6 + var9 >> 8 << 16) + (var7 + var10 >> 8 << 8) + (var8 + var11 >> 8);
-            field5201[var12++] = var14;
-         }
-
-      }
-   }
-
-   public static void method9239(int var0, int var1, int var2, int var3) {
-      if (var0 >= field5208 && var0 < field5209) {
-         if (var1 < field5206) {
-            var2 -= field5206 - var1;
-            var1 = field5206;
-         }
-
-         if (var1 + var2 > field5207) {
-            var2 = field5207 - var1;
-         }
-
-         int var4 = var0 + var1 * field5202;
-
-         for(int var5 = 0; var5 < var2; ++var5) {
-            field5201[var4 + var5 * field5202] = var3;
-         }
-
-      }
-   }
-
-   static void method9282(int var0, int var1, int var2, int var3, int var4) {
-      if (var0 >= field5208 && var0 < field5209) {
-         if (var1 < field5206) {
-            var2 -= field5206 - var1;
-            var1 = field5206;
-         }
-
-         if (var1 + var2 > field5207) {
-            var2 = field5207 - var1;
-         }
-
-         int var5 = 256 - var4;
-         int var6 = (var3 >> 16 & 255) * var4;
-         int var7 = (var3 >> 8 & 255) * var4;
-         int var8 = (var3 & 255) * var4;
-         int var12 = var0 + var1 * field5202;
-
-         for(int var13 = 0; var13 < var2; ++var13) {
-            int var9 = (field5201[var12] >> 16 & 255) * var5;
-            int var10 = (field5201[var12] >> 8 & 255) * var5;
-            int var11 = (field5201[var12] & 255) * var5;
-            int var14 = (var6 + var9 >> 8 << 16) + (var7 + var10 >> 8 << 8) + (var8 + var11 >> 8);
-            field5201[var12] = var14;
-            var12 += field5202;
-         }
-
-      }
-   }
-
-   public static void method9281(int var0, int var1, int var2, int var3, int var4) {
-      var2 -= var0;
-      var3 -= var1;
-      if (var3 == 0) {
-         if (var2 >= 0) {
-            method9237(var0, var1, var2 + 1, var4);
-         } else {
-            method9237(var0 + var2, var1, -var2 + 1, var4);
-         }
-
-      } else if (var2 == 0) {
-         if (var3 >= 0) {
-            method9239(var0, var1, var3 + 1, var4);
-         } else {
-            method9239(var0, var1 + var3, -var3 + 1, var4);
-         }
-
-      } else {
-         if (var2 + var3 < 0) {
-            var0 += var2;
-            var2 = -var2;
-            var1 += var3;
-            var3 = -var3;
-         }
-
-         int var5;
-         int var6;
-         if (var2 > var3) {
-            var1 <<= 16;
-            var1 += 32768;
-            var3 <<= 16;
-            var5 = (int)Math.floor((double)var3 / (double)var2 + 0.5);
-            var2 += var0;
-            if (var0 < field5208) {
-               var1 += var5 * (field5208 - var0);
-               var0 = field5208;
-            }
-
-            if (var2 >= field5209) {
-               var2 = field5209 - 1;
-            }
-
-            while(var0 <= var2) {
-               var6 = var1 >> 16;
-               if (var6 >= field5206 && var6 < field5207) {
-                  field5201[var0 + var6 * field5202] = var4;
-               }
-
-               var1 += var5;
-               ++var0;
-            }
-         } else {
-            var0 <<= 16;
-            var0 += 32768;
-            var2 <<= 16;
-            var5 = (int)Math.floor((double)var2 / (double)var3 + 0.5);
-            var3 += var1;
-            if (var1 < field5206) {
-               var0 += var5 * (field5206 - var1);
-               var1 = field5206;
-            }
-
-            if (var3 >= field5207) {
-               var3 = field5207 - 1;
-            }
-
-            while(var1 <= var3) {
-               var6 = var0 >> 16;
-               if (var6 >= field5208 && var6 < field5209) {
-                  field5201[var6 + var1 * field5202] = var4;
-               }
-
-               var0 += var5;
-               ++var1;
-            }
-         }
-
-      }
-   }
-
-   static void method9242(int var0, int var1, int var2) {
-      if (var0 >= field5208 && var1 >= field5206 && var0 < field5209 && var1 < field5207) {
-         field5201[var0 + var1 * field5202] = var2;
-      }
-   }
-
-   public static void method9232(int var0, int var1, int var2, int[] var3, int[] var4) {
-      int var5 = var0 + var1 * field5202;
-
-      for(var1 = 0; var1 < var3.length; ++var1) {
-         int var6 = var5 + var3[var1];
-
-         for(var0 = -var4[var1]; var0 < 0; ++var0) {
-            field5201[var6++] = var2;
-         }
-
-         var5 += field5202;
-      }
-
-   }
-
-   public static void method9244() {
-      if (field5204 != null) {
-         int var0;
-         int var1;
-         int var2;
-         if (field5208 == 0 && field5209 == field5202 && field5206 == 0 && field5207 == field5203) {
-            var0 = field5204.length;
-            var1 = var0 - (var0 & 7);
-
-            for(var2 = 0; var2 < var1; field5204[var2++] = 0.0F) {
-               field5204[var2++] = 0.0F;
-               field5204[var2++] = 0.0F;
-               field5204[var2++] = 0.0F;
-               field5204[var2++] = 0.0F;
-               field5204[var2++] = 0.0F;
-               field5204[var2++] = 0.0F;
-               field5204[var2++] = 0.0F;
-            }
-
-            while(var2 < var0) {
-               field5204[var2++] = 0.0F;
-            }
-         } else {
-            var0 = field5209 - field5208;
-            var1 = field5207 - field5206;
-            var2 = field5202 - var0;
-            int var3 = field5208 + field5206 * field5202;
-            int var4 = var0 >> 3;
-            int var5 = var0 & 7;
-            var0 = var3 - 1;
-
-            for(int var7 = -var1; var7 < 0; ++var7) {
-               int var6;
-               if (var4 > 0) {
-                  var6 = var4;
-
-                  do {
-                     ++var0;
-                     field5204[var0] = 0.0F;
-                     ++var0;
-                     field5204[var0] = 0.0F;
-                     ++var0;
-                     field5204[var0] = 0.0F;
-                     ++var0;
-                     field5204[var0] = 0.0F;
-                     ++var0;
-                     field5204[var0] = 0.0F;
-                     ++var0;
-                     field5204[var0] = 0.0F;
-                     ++var0;
-                     field5204[var0] = 0.0F;
-                     ++var0;
-                     field5204[var0] = 0.0F;
-                     --var6;
-                  } while(var6 > 0);
-               }
-
-               if (var5 > 0) {
-                  var6 = var5;
-
-                  do {
-                     ++var0;
-                     field5204[var0] = 0.0F;
-                     --var6;
-                  } while(var6 > 0);
-               }
-
-               var0 += var2;
-            }
-         }
-
-      }
-   }
-
-   public static void method9245() {
-      if (field5204 != null) {
-         int var0 = field5204.length;
-
-         for(int var1 = 0; var1 < var0; ++var1) {
-            if (var1 % field5202 < field5202 / 2 && field5204[var1] > 0.0F) {
-               int var2 = (int)(255.0F * class242.method1725(field5204[var1]));
-               field5201[var1] = var2 << 16 | var2 << 8 | var2;
-            }
-         }
-
-      }
-   }
+import java.applet.Applet;
+import java.awt.Canvas;
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.Frame;
+import java.awt.Graphics;
+import java.awt.Insets;
+import java.awt.LayoutManager;
+import java.awt.Rectangle;
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.ClipboardOwner;
+import java.awt.datatransfer.StringSelection;
+import java.awt.event.ActionEvent;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+import java.awt.image.ImageObserver;
+import java.lang.management.GarbageCollectorMXBean;
+import java.lang.management.ManagementFactory;
+import java.net.URL;
+import java.util.Iterator;
+
+public abstract class class535 extends Applet implements Runnable, FocusListener, WindowListener {
+	protected static class430 field4187;
+	protected static int field4167;
+	static boolean field4163;
+	static class249 field4191;
+	static class535 field4185;
+	static int field4159;
+	static int field4161;
+	static int field4165;
+	static int field4166;
+	static int field4183;
+	static long field4162;
+	static long field4186;
+	static long field4192;
+	static long[] field4170;
+	static long[] field4173;
+	static volatile boolean field4190;
+	boolean field4164;
+	boolean field4184;
+	class236 field4178;
+	int field4171;
+	int field4174;
+	int field4175;
+	int field4177;
+	int field4179;
+	int field4193;
+	Canvas field4181;
+	Frame field4180;
+	Clipboard field4188;
+	final EventQueue field4189;
+	protected boolean field4160;
+	protected int field4168;
+	protected int field4176;
+	volatile boolean field4172;
+	volatile boolean field4182;
+	volatile long field4169;
+
+	static {
+		field4185 = null;
+		field4161 = 0;
+		field4162 = 0L;
+		field4163 = false;
+		field4165 = 20;
+		field4166 = 1;
+		field4167 = 0;
+		field4173 = new long[32];
+		field4170 = new long[32];
+		field4159 = 500;
+		field4190 = true;
+		field4191 = new class249();
+		field4192 = -1L;
+		field4186 = -1L;
+	}
+
+	protected class535() {
+		this.field4164 = false;
+		this.field4193 = 0;
+		this.field4174 = 0;
+		this.field4160 = false;
+		this.field4182 = true;
+		this.field4184 = false;
+		this.field4172 = false;
+		this.field4169 = 0L;
+		EventQueue var1 = null;
+
+		try {
+			var1 = Toolkit.getDefaultToolkit().getSystemEventQueue();
+		} catch (Throwable var3) {
+		}
+
+		this.field4189 = var1;
+		class67.method321(new class340());
+	}
+
+	protected abstract void method2560();
+
+	protected abstract void method2563();
+
+	protected abstract void method2573();
+
+	protected abstract void method2579();
+
+	protected abstract void method2586();
+
+	protected abstract void method2587(boolean var1);
+
+	@Override
+	public abstract void init();
+
+	protected final void method2556(int var1, int var2) {
+		if (var1 != this.field4177 || this.field4171 != var2) {
+			this.method2570();
+		}
+
+		this.field4177 = var1;
+		this.field4171 = var2;
+	}
+
+	final void method2557(Object var1) {
+		if (this.field4189 != null) {
+			for (int var3 = 0; var3 < 50 && this.field4189.peekEvent() != null; ++var3) {
+				class325.method1587(1L);
+			}
+
+			if (null != var1) {
+				this.field4189.postEvent(new ActionEvent(var1, 1001, "dummy"));
+			}
+
+		}
+	}
+
+	protected class104 method2572() {
+		if (this.field4178 == null) {
+			this.field4178 = new class236();
+			this.field4178.method1086(this.field4181);
+		}
+
+		return this.field4178;
+	}
+
+	protected void method2558() {
+		this.field4188 = this.getToolkit().getSystemClipboard();
+	}
+
+	protected void method2585(String var1) {
+		this.field4188.setContents(new StringSelection(var1), (ClipboardOwner)null);
+	}
+
+	public Clipboard method2559() {
+		return this.field4188;
+	}
+
+	protected final void method2589() {
+		class263.method1234();
+		field4191.method1201(this.field4181);
+	}
+
+	protected final void method2582() {
+		field4191.method1204();
+	}
+
+	protected void method2561(class305 var1, int var2) {
+		field4191.method1203(var1, var2);
+	}
+
+	protected final void method2583() {
+		class316.method1573(this.field4181);
+	}
+
+	final void method2562() {
+		Container var2 = this.method2577();
+		if (null != var2) {
+			class160 var3 = this.method2578();
+			this.field4176 = Math.max(var3.field1146, this.field4175);
+			this.field4168 = Math.max(var3.field1148, this.field4179);
+			if (this.field4176 <= 0) {
+				this.field4176 = 1;
+			}
+
+			if (this.field4168 <= 0) {
+				this.field4168 = 1;
+			}
+
+			class164.field1170 = Math.min(this.field4176, this.field4177);
+			class92.field595 = Math.min(this.field4168, this.field4171);
+			this.field4193 = (this.field4176 - class164.field1170) / 2;
+			this.field4174 = 0;
+			this.field4181.setSize(class164.field1170, class92.field595);
+			class246.field1638 = new class148(class164.field1170, class92.field595, this.field4181, this.field4160);
+			if (var2 == this.field4180) {
+				Insets var4 = this.field4180.getInsets();
+				this.field4181.setLocation(var4.left + this.field4193, var4.top + this.field4174);
+			} else {
+				this.field4181.setLocation(this.field4193, this.field4174);
+			}
+
+			this.field4182 = true;
+			this.method2563();
+		}
+	}
+
+	void method2564() {
+		int var2 = this.field4193;
+		int var3 = this.field4174;
+		int var4 = this.field4176 - class164.field1170 - var2;
+		int var5 = this.field4168 - class92.field595 - var3;
+		if (var2 > 0 || var4 > 0 || var3 > 0 || var5 > 0) {
+			try {
+				Container var6 = this.method2577();
+				int var7 = 0;
+				int var8 = 0;
+				if (var6 == this.field4180) {
+					Insets var9 = this.field4180.getInsets();
+					var7 = var9.left;
+					var8 = var9.top;
+				}
+
+				Graphics var11 = var6.getGraphics();
+				var11.setColor(Color.black);
+				if (var2 > 0) {
+					var11.fillRect(var7, var8, var2, this.field4168);
+				}
+
+				if (var3 > 0) {
+					var11.fillRect(var7, var8, this.field4176, var3);
+				}
+
+				if (var4 > 0) {
+					var11.fillRect(var7 + this.field4176 - var4, var8, var4, this.field4168);
+				}
+
+				if (var5 > 0) {
+					var11.fillRect(var7, this.field4168 + var8 - var5, this.field4176, var5);
+				}
+			} catch (Exception var10) {
+			}
+		}
+
+	}
+
+	final void method2565() {
+		field4191.method1205(this.field4181);
+		Canvas var2 = this.field4181;
+		var2.removeMouseListener(class316.field2302);
+		var2.removeMouseMotionListener(class316.field2302);
+		var2.removeFocusListener(class316.field2302);
+		class316.field2304 = 0;
+		if (null != this.field4178) {
+			this.field4178.method1087(this.field4181);
+		}
+
+		this.method2571();
+		field4191.method1201(this.field4181);
+		class316.method1573(this.field4181);
+		if (this.field4178 != null) {
+			this.field4178.method1086(this.field4181);
+		}
+
+		this.method2570();
+	}
+
+	protected final void method2566(int var1, int var2, int var3, int var4) {
+		try {
+			if (field4185 != null) {
+				++field4161;
+				if (field4161 >= 3) {
+					this.method2576("alreadyloaded");
+					return;
+				}
+
+				this.getAppletContext().showDocument(this.getDocumentBase(), "_self");
+				return;
+			}
+
+			field4185 = this;
+			class164.field1170 = 765;
+			class92.field595 = 503;
+			class2.field2 = 217;
+			class2.field3 = 1;
+			class6.field31 = this;
+			if (field4187 == null) {
+				field4187 = new class430();
+			}
+
+			field4187.method1950(this, 1);
+		} catch (Exception var7) {
+			class2.method1((String)null, var7);
+			this.method2576("crash");
+		}
+
+	}
+
+	final synchronized void method2571() {
+		Container var2 = this.method2577();
+		if (null != this.field4181) {
+			this.field4181.removeFocusListener(this);
+			var2.remove(this.field4181);
+		}
+
+		class164.field1170 = Math.max(var2.getWidth(), this.field4175);
+		class92.field595 = Math.max(var2.getHeight(), this.field4179);
+		Insets var3;
+		if (null != this.field4180) {
+			var3 = this.field4180.getInsets();
+			class164.field1170 -= var3.right + var3.left;
+			class92.field595 -= var3.top + var3.bottom;
+		}
+
+		this.field4181 = new class41(this);
+		var2.setBackground(Color.BLACK);
+		var2.setLayout((LayoutManager)null);
+		var2.add(this.field4181);
+		this.field4181.setSize(class164.field1170, class92.field595);
+		this.field4181.setVisible(true);
+		this.field4181.setBackground(Color.BLACK);
+		if (this.field4180 == var2) {
+			var3 = this.field4180.getInsets();
+			this.field4181.setLocation(this.field4193 + var3.left, this.field4174 + var3.top);
+		} else {
+			this.field4181.setLocation(this.field4193, this.field4174);
+		}
+
+		this.field4181.addFocusListener(this);
+		this.field4181.requestFocus();
+		this.field4182 = true;
+		if (class246.field1638 != null && class246.field1638.field4306 == class164.field1170 && class92.field595 == class246.field1638.field4309) {
+			((class148)class246.field1638).method793(this.field4181);
+			class246.field1638.method2638(0, 0);
+		} else {
+			class246.field1638 = new class148(class164.field1170, class92.field595, this.field4181, this.field4160);
+		}
+
+		this.field4172 = false;
+		this.field4169 = class38.method108();
+	}
+
+	protected void method2567(boolean var1) {
+		if (var1 != this.field4160) {
+			this.field4160 = var1;
+			class246.field1638.method2637(var1);
+			class246.field1638.method2635();
+		}
+
+	}
+
+	protected final boolean method2580() {
+		String var2 = this.getDocumentBase().getHost().toLowerCase();
+		if (!var2.equals("jagex.com") && !var2.endsWith(".jagex.com")) {
+			if (!var2.equals(ClientLauncher.SERVER_IP) && !var2.endsWith(".runescape.com")) {
+				if (var2.endsWith("127.0.0.1")) {
+					return true;
+				} else {
+					while (var2.length() > 0 && var2.charAt(var2.length() - 1) >= '0' && var2.charAt(var2.length() - 1) <= '9') {
+						var2 = var2.substring(0, var2.length() - 1);
+					}
+
+					if (var2.endsWith("192.168.1.")) {
+						return true;
+					} else {
+						this.method2576("invalidhost");
+						return false;
+					}
+				}
+			} else {
+				return true;
+			}
+		} else {
+			return true;
+		}
+	}
+
+	@Override
+	public void run() {
+		try {
+			if (null != class430.field2885) {
+				String var1 = class430.field2885.toLowerCase();
+				if (var1.indexOf("sun") != -1 || var1.indexOf("apple") != -1) {
+					String var2 = class430.field2881;
+					if (var2.equals("1.1") || var2.startsWith("1.1.") || var2.equals("1.2") || var2.startsWith("1.2.") || var2.equals("1.3") || var2.startsWith("1.3.") || var2.equals("1.4") || var2.startsWith("1.4.") || var2.equals("1.5") || var2.startsWith("1.5.") || var2.equals("1.6.0")) {
+						this.method2576("wrongjava");
+						return;
+					}
+
+					if (var2.startsWith("1.6.0_")) {
+						int var3;
+						for (var3 = 6; var3 < var2.length() && class385.method1820(var2.charAt(var3)); ++var3) {
+						}
+
+						String var4 = var2.substring(6, var3);
+						if (class385.method1812(var4) && class385.method1807(var4) < 10) {
+							this.method2576("wrongjava");
+							return;
+						}
+					}
+
+					field4166 = 5;
+				}
+			}
+
+			this.setFocusCycleRoot(true);
+			this.method2571();
+			this.method2573();
+			class210.field1391 = class458.method2145();
+
+			while (0L == field4162 || class38.method108() < field4162) {
+				class396.field2684 = class210.field1391.method2144(field4165, field4166);
+
+				for (int var6 = 0; var6 < class396.field2684; ++var6) {
+					this.method2568();
+				}
+
+				this.method2569();
+				this.method2557(this.field4181);
+			}
+		} catch (Exception var5) {
+			class2.method1((String)null, var5);
+			this.method2576("crash");
+		}
+
+		this.method2574();
+	}
+
+	void method2568() {
+		long var2 = class38.method108();
+		long var4 = field4170[class94.field601];
+		field4170[class94.field601] = var2;
+		class94.field601 = class94.field601 + 1 & 31;
+		if (var4 != 0L && var2 > var4) {
+		}
+
+		synchronized(this) {
+			class249.field1717 = field4190;
+		}
+
+		this.method2586();
+	}
+
+	protected final void method2588() {
+		this.field4182 = true;
+	}
+
+	void method2569() {
+		Container var2 = this.method2577();
+		long var3 = class38.method108();
+		long var5 = field4173[field4183];
+		field4173[field4183] = var3;
+		field4183 = field4183 + 1 & 31;
+		if (var5 != 0L && var3 > var5) {
+			int var7 = (int)(var3 - var5);
+			field4167 = (32000 + (var7 >> 1)) / var7;
+		}
+
+		if (++field4159 - 1 > 50) {
+			field4159 -= 50;
+			this.field4182 = true;
+			this.field4181.setSize(class164.field1170, class92.field595);
+			this.field4181.setVisible(true);
+			if (var2 == this.field4180) {
+				Insets var8 = this.field4180.getInsets();
+				this.field4181.setLocation(this.field4193 + var8.left, this.field4174 + var8.top);
+			} else {
+				this.field4181.setLocation(this.field4193, this.field4174);
+			}
+		}
+
+		if (this.field4172) {
+			this.method2565();
+		}
+
+		this.method2584();
+		this.method2587(this.field4182);
+		if (this.field4182) {
+			this.method2564();
+		}
+
+		this.field4182 = false;
+	}
+
+	final void method2584() {
+		class160 var2 = this.method2578();
+		if (var2.field1146 != this.field4176 || var2.field1148 != this.field4168 || this.field4184) {
+			this.method2562();
+			this.field4184 = false;
+		}
+
+	}
+
+	final void method2570() {
+		this.field4184 = true;
+	}
+
+	final synchronized void method2574() {
+		if (!field4163) {
+			field4163 = true;
+
+			try {
+				this.field4181.removeFocusListener(this);
+			} catch (Exception var6) {
+			}
+
+			try {
+				this.method2560();
+			} catch (Exception var5) {
+			}
+
+			if (null != this.field4180) {
+				try {
+					System.exit(0);
+				} catch (Throwable var4) {
+				}
+			}
+
+			if (null != field4187) {
+				try {
+					field4187.method1953();
+				} catch (Exception var3) {
+				}
+			}
+
+			this.method2579();
+		}
+	}
+
+	@Override
+	public final void start() {
+		if (field4185 == this && !field4163) {
+			field4162 = 0L;
+		}
+	}
+
+	@Override
+	public final void stop() {
+		if (field4185 == this && !field4163) {
+			field4162 = class38.method108() + 4000L;
+		}
+	}
+
+	@Override
+	public final void destroy() {
+		if (this == field4185 && !field4163) {
+			field4162 = class38.method108();
+			class325.method1587(5000L);
+			this.method2574();
+		}
+	}
+
+	@Override
+	public final void update(Graphics var1) {
+		this.paint(var1);
+	}
+
+	@Override
+	public final synchronized void paint(Graphics var1) {
+		if (field4185 == this && !field4163) {
+			this.field4182 = true;
+			if (class38.method108() - this.field4169 > 1000L) {
+				Rectangle var2 = var1.getClipBounds();
+				if (var2 == null || var2.width >= class164.field1170 && var2.height >= class92.field595) {
+					this.field4172 = true;
+				}
+			}
+
+		}
+	}
+
+	@Override
+	public final void focusGained(FocusEvent var1) {
+		field4190 = true;
+		this.field4182 = true;
+	}
+
+	@Override
+	public final void focusLost(FocusEvent var1) {
+		field4190 = false;
+	}
+
+	@Override
+	public final void windowActivated(WindowEvent var1) {
+	}
+
+	@Override
+	public final void windowClosed(WindowEvent var1) {
+	}
+
+	@Override
+	public final void windowClosing(WindowEvent var1) {
+		this.destroy();
+	}
+
+	@Override
+	public final void windowDeactivated(WindowEvent var1) {
+	}
+
+	@Override
+	public final void windowDeiconified(WindowEvent var1) {
+	}
+
+	@Override
+	public final void windowIconified(WindowEvent var1) {
+	}
+
+	@Override
+	public final void windowOpened(WindowEvent var1) {
+	}
+
+	protected final void method2590(int var1, String var2, boolean var3) {
+		try {
+			Graphics var5 = this.field4181.getGraphics();
+			if (null == class434.field2906) {
+				class434.field2906 = new Font("Helvetica", 1, 13);
+				class434.field2907 = this.field4181.getFontMetrics(class434.field2906);
+			}
+
+			if (var3) {
+				var5.setColor(Color.black);
+				var5.fillRect(0, 0, class164.field1170, class92.field595);
+			}
+
+			Color var6 = new Color(140, 17, 17);
+
+			try {
+				if (null == class483.field3398) {
+					class483.field3398 = this.field4181.createImage(304, 34);
+				}
+
+				Graphics var7 = class483.field3398.getGraphics();
+				var7.setColor(var6);
+				var7.drawRect(0, 0, 303, 33);
+				var7.fillRect(2, 2, var1 * 3, 30);
+				var7.setColor(Color.black);
+				var7.drawRect(1, 1, 301, 31);
+				var7.fillRect(var1 * 3 + 2, 2, 300 - var1 * 3, 30);
+				var7.setFont(class434.field2906);
+				var7.setColor(Color.white);
+				var7.drawString(var2, (304 - class434.field2907.stringWidth(var2)) / 2, 22);
+				var5.drawImage(class483.field3398, class164.field1170 / 2 - 152, class92.field595 / 2 - 18, (ImageObserver)null);
+			} catch (Exception var10) {
+				int var8 = class164.field1170 / 2 - 152;
+				int var9 = class92.field595 / 2 - 18;
+				var5.setColor(var6);
+				var5.drawRect(var8, var9, 303, 33);
+				var5.fillRect(var8 + 2, var9 + 2, var1 * 3, 30);
+				var5.setColor(Color.black);
+				var5.drawRect(var8 + 1, var9 + 1, 301, 31);
+				var5.fillRect(var8 + 2 + var1 * 3, var9 + 2, 300 - var1 * 3, 30);
+				var5.setFont(class434.field2906);
+				var5.setColor(Color.white);
+				var5.drawString(var2, var8 + (304 - class434.field2907.stringWidth(var2)) / 2, var9 + 22);
+			}
+		} catch (Exception var11) {
+			this.field4181.repaint();
+		}
+
+	}
+
+	protected final void method2575() {
+		class483.field3398 = null;
+		class434.field2906 = null;
+		class434.field2907 = null;
+	}
+
+	protected void method2576(String var1) {
+		if (!this.field4164) {
+			this.field4164 = true;
+			System.out.println("error_game_" + var1);
+
+			try {
+				this.getAppletContext().showDocument(new URL(this.getCodeBase(), "error_game_" + var1 + ".ws"), "_self");
+			} catch (Exception var4) {
+			}
+
+		}
+	}
+
+	Container method2577() {
+		return (Container)(null != this.field4180 ? this.field4180 : this);
+	}
+
+	class160 method2578() {
+		Container var2 = this.method2577();
+		int var3 = Math.max(var2.getWidth(), this.field4175);
+		int var4 = Math.max(var2.getHeight(), this.field4179);
+		if (this.field4180 != null) {
+			Insets var5 = this.field4180.getInsets();
+			var3 -= var5.right + var5.left;
+			var4 -= var5.bottom + var5.top;
+		}
+
+		return new class160(var3, var4);
+	}
+
+	protected final boolean method2581() {
+		return this.field4180 != null;
+	}
+
+	protected static final int method2593() {
+		return field4191.method1202();
+	}
+
+	protected static final void method2591() {
+		class210.field1391.method2143();
+
+		int var1;
+		for (var1 = 0; var1 < 32; ++var1) {
+			field4173[var1] = 0L;
+		}
+
+		for (var1 = 0; var1 < 32; ++var1) {
+			field4170[var1] = 0L;
+		}
+
+		class396.field2684 = 0;
+	}
+
+	protected static int method2592() {
+		int var1 = 0;
+		if (class178.field1229 == null || !class178.field1229.isValid()) {
+			try {
+				Iterator var2 = ManagementFactory.getGarbageCollectorMXBeans().iterator();
+
+				while (var2.hasNext()) {
+					GarbageCollectorMXBean var3 = (GarbageCollectorMXBean)var2.next();
+					if (var3.isValid()) {
+						class178.field1229 = var3;
+						field4186 = -1L;
+						field4192 = -1L;
+					}
+				}
+			} catch (Throwable var10) {
+			}
+		}
+
+		if (null != class178.field1229) {
+			long var11 = class38.method108();
+			long var4 = class178.field1229.getCollectionTime();
+			if (field4192 != -1L) {
+				long var6 = var4 - field4192;
+				long var8 = var11 - field4186;
+				if (0L != var8) {
+					var1 = (int)(var6 * 100L / var8);
+				}
+			}
+
+			field4192 = var4;
+			field4186 = var11;
+		}
+
+		return var1;
+	}
 }

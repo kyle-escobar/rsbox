@@ -1,17 +1,22 @@
 public class class419 {
-   static final class419 field4589 = new class419("Bearer");
-   static final class419 field4593 = new class419("Basic");
-   final String field4590;
+	static final int[] field2856;
 
-   class419(String var1) {
-      this.field4590 = var1;
-   }
+	static {
+		field2856 = new int[]{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, -1, 1, -1, 1, 1, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, -1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 1, 1, 1, 1, 3, 3, 1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
+	}
 
-   static class70 method7529() {
-      return class70.field567 < class70.field569 ? class380.field4385[++class70.field567 - 1] : null;
-   }
+	public static int method1921(int var0) {
+		return var0 != 0 && var0 != 1 ? -1 : 0;
+	}
 
-   String method7524() {
-      return this.field4590;
-   }
+	public static class499 method1920(int var0) {
+		int var2 = field2856[var0];
+		if (var2 == 1) {
+			return class499.field3676;
+		} else if (var2 == 2) {
+			return class499.field3674;
+		} else {
+			return var2 == 3 ? class499.field3675 : null;
+		}
+	}
 }

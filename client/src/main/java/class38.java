@@ -1,14 +1,13 @@
-import java.util.concurrent.locks.ReentrantLock;
+public final class class38 {
+	static long field187;
 
-public class class38 {
-   static class537 field207;
-   class35 field204;
-   class78 field208;
-   ReentrantLock field205;
+	public static final synchronized long method108() {
+		long var1 = System.currentTimeMillis();
+		if (var1 < class315.field2298) {
+			field187 += class315.field2298 - var1;
+		}
 
-   class38(class78 var1, class35 var2) {
-      this.field208 = var1;
-      this.field204 = var2;
-      this.field205 = new ReentrantLock();
-   }
+		class315.field2298 = var1;
+		return var1 + field187;
+	}
 }

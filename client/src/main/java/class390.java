@@ -1,86 +1,42 @@
-import java.util.Iterator;
+import java.util.ArrayList;
 
-public class class390 implements Iterable {
-   class476 field4444;
-   public class476 field4445 = new class476();
+public class class390 extends class4 {
+	ArrayList field2662;
 
-   public class390() {
-      this.field4445.field4849 = this.field4445;
-      this.field4445.field4848 = this.field4445;
-   }
+	public class390(class4 var1, ArrayList var2) {
+		super(var1);
+		this.field2662 = var2;
+		super.field8 = "ConcurrentMidiTask";
+	}
 
-   public static void method6972(class476 var0, class476 var1) {
-      if (var0.field4848 != null) {
-         var0.method8161();
-      }
+	@Override
+	public boolean method8() {
+		for (int var2 = 0; var2 < this.field2662.size(); ++var2) {
+			class4 var3 = (class4)this.field2662.get(var2);
+			if (null == var3) {
+				this.field2662.remove(var2);
+				--var2;
+			} else if (var3.method8()) {
+				if (var3.method7()) {
+					this.method12(var3.method10());
+					this.field2662.clear();
+					return true;
+				}
 
-      var0.field4848 = var1;
-      var0.field4849 = var1.field4849;
-      var0.field4848.field4849 = var0;
-      var0.field4849.field4848 = var0;
-   }
+				if (var3.method11() != null) {
+					this.field2662.add(var3.method11());
+				}
 
-   public void method6964() {
-      while(this.field4445.field4849 != this.field4445) {
-         this.field4445.field4849.method8161();
-      }
+				super.field9 = var3.field9;
+				this.field2662.remove(var2);
+				--var2;
+			}
+		}
 
-   }
-
-   public void method6965(class476 var1) {
-      if (var1.field4848 != null) {
-         var1.method8161();
-      }
-
-      var1.field4848 = this.field4445.field4848;
-      var1.field4849 = this.field4445;
-      var1.field4848.field4849 = var1;
-      var1.field4849.field4848 = var1;
-   }
-
-   public class476 method6974() {
-      class476 var1 = this.field4445.field4849;
-      if (var1 == this.field4445) {
-         return null;
-      } else {
-         var1.method8161();
-         return var1;
-      }
-   }
-
-   public class476 method6967() {
-      return this.method6968((class476)null);
-   }
-
-   class476 method6968(class476 var1) {
-      class476 var2;
-      if (var1 == null) {
-         var2 = this.field4445.field4849;
-      } else {
-         var2 = var1;
-      }
-
-      if (var2 == this.field4445) {
-         this.field4444 = null;
-         return null;
-      } else {
-         this.field4444 = var2.field4849;
-         return var2;
-      }
-   }
-
-   public class476 method6969() {
-      class476 var1 = this.field4444;
-      if (var1 == this.field4445) {
-         this.field4444 = null;
-         return null;
-      } else {
-         this.field4444 = var1.field4849;
-         return var1;
-      }
-   }
-
-   public Iterator iterator() {
-      return new class374(this);
-   }
+		if (this.field2662.isEmpty()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }

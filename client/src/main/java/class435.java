@@ -1,174 +1,59 @@
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.HashMap;
+public class class435 implements class501 {
+	static final class435 field2910;
+	static final class435 field2911;
+	static final class435 field2912;
+	static final class435 field2913;
+	static final class435 field2914;
+	static final class435 field2915;
+	static final class435 field2917;
+	static final class435 field2918;
+	static final class435 field2919;
+	static final class435 field2920;
+	static final class435 field2921;
+	static final class435 field2922;
+	static final class435 field2923;
+	static final class435 field2924;
+	static final class435 field2925;
+	static final class435 field2926;
+	static final class435 field2930;
+	final int field2927;
+	public final boolean field2916;
+	public final boolean field2929;
+	public final int field2928;
 
-public abstract class class435 {
-   static int field4652;
-   class421[] field4654;
-   int field4653 = 0;
-   Comparator field4657 = null;
-   HashMap field4658;
-   HashMap field4659;
-   final int field4655;
+	static {
+		field2910 = new class435(0, -1, true, false, true);
+		field2911 = new class435(1, 0, true, true, true);
+		field2925 = new class435(2, 1, true, true, false);
+		field2913 = new class435(3, 2, false, false, true);
+		field2914 = new class435(4, 3, false, false, true);
+		field2926 = new class435(5, 10, false, false, true);
+		field2924 = new class435(6, 22, false, false, true);
+		field2917 = new class435(7, 41, false, false, true);
+		field2918 = new class435(8, 42, false, false, true);
+		field2930 = new class435(9, 43, false, false, true);
+		field2920 = new class435(10, 44, false, false, true);
+		field2915 = new class435(11, 45, false, false, true);
+		field2922 = new class435(12, 46, false, false, true);
+		field2923 = new class435(13, 47, false, false, true);
+		field2912 = new class435(14, 48, false, false, true);
+		field2919 = new class435(15, 49, false, false, true);
+		field2921 = new class435(16, 52, false, false, true);
+	}
 
-   class435(int var1) {
-      this.field4655 = var1;
-      this.field4654 = this.method7768(var1);
-      this.field4659 = new HashMap(var1 / 8);
-      this.field4658 = new HashMap(var1 / 8);
-   }
+	class435(int var1, int var2, boolean var3, boolean var4, boolean var5) {
+		this.field2927 = var1;
+		this.field2928 = var2;
+		this.field2929 = var4;
+		this.field2916 = var5;
+	}
 
-   abstract class421 method7736();
+	@Override
+	public int getId() {
+		return this.field2927;
+	}
 
-   abstract class421[] method7768(int var1);
-
-   public void method7785() {
-      this.field4653 = 0;
-      Arrays.fill(this.field4654, (Object)null);
-      this.field4659.clear();
-      this.field4658.clear();
-   }
-
-   public int method7770() {
-      return this.field4653;
-   }
-
-   public boolean method7719() {
-      return this.field4653 == this.field4655;
-   }
-
-   public boolean method7720(class526 var1) {
-      if (!var1.method9157()) {
-         return false;
-      } else {
-         return this.field4659.containsKey(var1) ? true : this.field4658.containsKey(var1);
-      }
-   }
-
-   public class421 method7721(class526 var1) {
-      class421 var3 = this.method7722(var1);
-      return null != var3 ? var3 : this.method7723(var1);
-   }
-
-   class421 method7722(class526 var1) {
-      return !var1.method9157() ? null : (class421)this.field4659.get(var1);
-   }
-
-   class421 method7723(class526 var1) {
-      return !var1.method9157() ? null : (class421)this.field4658.get(var1);
-   }
-
-   public final boolean method7724(class526 var1) {
-      class421 var3 = this.method7722(var1);
-      if (var3 == null) {
-         return false;
-      } else {
-         this.method7725(var3);
-         return true;
-      }
-   }
-
-   final void method7725(class421 var1) {
-      int var3 = this.method7731(var1);
-      if (var3 != -1) {
-         this.method7735(var3);
-         this.method7732(var1);
-      }
-   }
-
-   class421 method7726(class526 var1) {
-      return this.method7727(var1, (class526)null);
-   }
-
-   class421 method7727(class526 var1, class526 var2) {
-      if (this.method7722(var1) != null) {
-         throw new IllegalStateException();
-      } else {
-         class421 var4 = this.method7736();
-         var4.method7545(var1, var2);
-         this.method7733(var4);
-         this.method7734(var4);
-         return var4;
-      }
-   }
-
-   public final class421 method7728(int var1) {
-      if (var1 >= 0 && var1 < this.field4653) {
-         return this.field4654[var1];
-      } else {
-         throw new ArrayIndexOutOfBoundsException(var1);
-      }
-   }
-
-   public final void method7729() {
-      if (null == this.field4657) {
-         Arrays.sort(this.field4654, 0, this.field4653);
-      } else {
-         Arrays.sort(this.field4654, 0, this.field4653, this.field4657);
-      }
-
-   }
-
-   final void method7730(class421 var1, class526 var2, class526 var3) {
-      this.method7732(var1);
-      var1.method7545(var2, var3);
-      this.method7734(var1);
-   }
-
-   final int method7731(class421 var1) {
-      for(int var3 = 0; var3 < this.field4653; ++var3) {
-         if (var1 == this.field4654[var3]) {
-            return var3;
-         }
-      }
-
-      return -1;
-   }
-
-   final void method7732(class421 var1) {
-      if (this.field4659.remove(var1.field4595) == null) {
-         throw new IllegalStateException();
-      } else {
-         if (var1.field4596 != null) {
-            this.field4658.remove(var1.field4596);
-         }
-
-      }
-   }
-
-   final void method7733(class421 var1) {
-      this.field4654[++this.field4653 - 1] = var1;
-   }
-
-   final void method7734(class421 var1) {
-      this.field4659.put(var1.field4595, var1);
-      if (null != var1.field4596) {
-         class421 var3 = (class421)this.field4658.put(var1.field4596, var1);
-         if (null != var3 && var1 != var3) {
-            var3.field4596 = null;
-         }
-      }
-
-   }
-
-   final void method7735(int var1) {
-      --this.field4653;
-      if (var1 < this.field4653) {
-         System.arraycopy(this.field4654, var1 + 1, this.field4654, var1, this.field4653 - var1);
-      }
-
-   }
-
-   public final void method7786() {
-      this.field4657 = null;
-   }
-
-   public final void method7739(Comparator var1) {
-      if (this.field4657 == null) {
-         this.field4657 = var1;
-      } else if (this.field4657 instanceof class442) {
-         ((class442)this.field4657).method7817(var1);
-      }
-
-   }
+	public static class435[] method1985() {
+		return new class435[]{field2912, field2930, field2918, field2913, field2923, field2914, field2920, field2922, field2926, field2911, field2917, field2925, field2921, field2919, field2924, field2910, field2915};
+	}
 }

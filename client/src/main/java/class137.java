@@ -1,41 +1,167 @@
-public class class137 implements class383 {
-   static int field1265;
-   static final class137 field1261 = new class137(6, 6, (String)null, 5, 1);
-   static final class137 field1262 = new class137(1, 1, (String)null, 0, 2);
-   static final class137 field1263 = new class137(2, 2, (String)null, 1, 2);
-   static final class137 field1264 = new class137(3, 3, (String)null, 2, 2);
-   static final class137 field1266 = new class137(0, 0, (String)null, -1, -1);
-   static final class137 field1267 = new class137(12, 12, (String)null, 2, 7);
-   static final class137 field1268 = new class137(7, 7, (String)null, 6, 3);
-   static final class137 field1269 = new class137(8, 8, (String)null, 7, 3);
-   static final class137 field1270 = new class137(9, 9, (String)null, 8, 3);
-   static final class137 field1271 = new class137(10, 10, (String)null, 0, 7);
-   static final class137 field1272 = new class137(14, 14, (String)null, 4, 7);
-   static final class137 field1273 = new class137(4, 4, (String)null, 3, 1);
-   static final class137 field1274 = new class137(13, 13, (String)null, 3, 7);
-   static final class137 field1275 = new class137(5, 5, (String)null, 4, 1);
-   static final class137 field1276 = new class137(15, 15, (String)null, 5, 7);
-   static final class137 field1277 = new class137(11, 11, (String)null, 1, 7);
-   static final class137 field1283 = new class137(16, 16, (String)null, 0, 5);
-   final int field1278;
-   final int field1279;
-   final int field1280;
+public class class137 extends class292 {
+	public static class5 field886;
+	public static class5 field887;
+	static class352 field885;
+	static class352 field890;
+	int field883;
+	int field888;
+	int field893;
+	int field894;
+	int field895;
+	int field897;
+	int field898;
+	short[] field884;
+	short[] field889;
+	short[] field891;
+	short[] field892;
+	public int field896;
 
-   class137(int var1, int var2, String var3, int var4, int var5) {
-      this.field1278 = var1;
-      this.field1279 = var2;
-      this.field1280 = var4;
-   }
+	static {
+		field885 = new class352(64);
+		field890 = new class352(30);
+	}
 
-   static class137[] method1197() {
-      return new class137[]{field1266, field1262, field1263, field1264, field1273, field1275, field1261, field1268, field1269, field1270, field1271, field1277, field1267, field1274, field1272, field1276, field1283};
-   }
+	class137() {
+		this.field896 = -1;
+		this.field894 = 128;
+		this.field895 = 128;
+		this.field883 = 0;
+		this.field893 = 0;
+		this.field898 = 0;
+	}
 
-   public int serialId() {
-      return this.field1279;
-   }
+	void method702(Buffer var1) {
+		while (true) {
+			int var3 = var1.readUnsignedByte();
+			if (var3 == 0) {
+				return;
+			}
 
-   int method2482() {
-      return this.field1280;
-   }
+			this.method705(var1, var3);
+		}
+	}
+
+	void method705(Buffer var1, int var2) {
+		if (var2 == 1) {
+			this.field888 = var1.readUnsignedShort();
+		} else if (var2 == 2) {
+			this.field896 = var1.readUnsignedShort();
+		} else if (var2 == 4) {
+			this.field894 = var1.readUnsignedShort();
+		} else if (var2 == 5) {
+			this.field895 = var1.readUnsignedShort();
+		} else if (var2 == 6) {
+			this.field883 = var1.readUnsignedShort();
+		} else if (var2 == 7) {
+			this.field893 = var1.readUnsignedByte();
+		} else if (var2 == 8) {
+			this.field898 = var1.readUnsignedByte();
+		} else {
+			int var4;
+			int var5;
+			if (var2 == 40) {
+				var4 = var1.readUnsignedByte();
+				this.field884 = new short[var4];
+				this.field891 = new short[var4];
+
+				for (var5 = 0; var5 < var4; ++var5) {
+					this.field884[var5] = (short)var1.readUnsignedShort();
+					this.field891[var5] = (short)var1.readUnsignedShort();
+				}
+			} else if (var2 == 41) {
+				var4 = var1.readUnsignedByte();
+				this.field892 = new short[var4];
+				this.field889 = new short[var4];
+
+				for (var5 = 0; var5 < var4; ++var5) {
+					this.field892[var5] = (short)var1.readUnsignedShort();
+					this.field889[var5] = (short)var1.readUnsignedShort();
+				}
+			}
+		}
+
+	}
+
+	public final class490 method703(int var1) {
+		class490 var3 = this.method704();
+		class490 var4;
+		if (this.field896 != -1 && var1 != -1) {
+			var4 = class116.method539(this.field896).method531(var3, var1);
+		} else {
+			var4 = var3.method2258(true);
+		}
+
+		if (this.field894 != 128 || this.field895 != 128) {
+			var4.method2273(this.field894, this.field895, this.field894);
+		}
+
+		if (this.field883 != 0) {
+			if (this.field883 == 90) {
+				var4.method2288();
+			}
+
+			if (this.field883 == 180) {
+				var4.method2288();
+				var4.method2288();
+			}
+
+			if (this.field883 == 270) {
+				var4.method2288();
+				var4.method2288();
+				var4.method2288();
+			}
+		}
+
+		return var4;
+	}
+
+	public final class490 method704() {
+		class490 var2 = (class490)field890.method1678((long)this.field897);
+		if (null == var2) {
+			class239 var3 = class239.method1092(field886, this.field888, 0);
+			if (null == var3) {
+				return null;
+			}
+
+			int var4;
+			if (null != this.field884) {
+				for (var4 = 0; var4 < this.field884.length; ++var4) {
+					var3.method1116(this.field884[var4], this.field891[var4]);
+				}
+			}
+
+			if (null != this.field892) {
+				for (var4 = 0; var4 < this.field892.length; ++var4) {
+					var3.method1101(this.field892[var4], this.field889[var4]);
+				}
+			}
+
+			var2 = var3.method1107(64 + this.field893, this.field898 + 850, -30, -50, -30);
+			field890.method1680(var2, (long)this.field897);
+		}
+
+		return var2;
+	}
+
+	public static class137 method707(int var0) {
+		class137 var2 = (class137)field885.method1678((long)var0);
+		if (var2 != null) {
+			return var2;
+		} else {
+			byte[] var3 = field887.method39(13, var0);
+			var2 = new class137();
+			var2.field897 = var0;
+			if (null != var3) {
+				var2.method702(new Buffer(var3));
+			}
+
+			field885.method1680(var2, (long)var0);
+			return var2;
+		}
+	}
+
+	public static void method706() {
+		field885.method1679();
+		field890.method1679();
+	}
 }

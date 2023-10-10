@@ -1,65 +1,107 @@
 public class class278 {
-   class278() throws Throwable {
-   }
+	static char[] field2138;
+	static char[] field2139;
+	static char[] field2140;
+	static int[] field2141;
 
-   public static final int method6634(double var0, double var2, double var4) {
-      double var6 = var4;
-      double var8 = var4;
-      double var10 = var4;
-      if (var2 != 0.0) {
-         double var12;
-         if (var4 < 0.5) {
-            var12 = var4 * (var2 + 1.0);
-         } else {
-            var12 = var4 + var2 - var4 * var2;
-         }
+	static {
+		field2139 = new char[64];
 
-         double var14 = var4 * 2.0 - var12;
-         double var16 = var0 + 0.3333333333333333;
-         if (var16 > 1.0) {
-            --var16;
-         }
+		int var0;
+		for (var0 = 0; var0 < 26; ++var0) {
+			field2139[var0] = (char)(var0 + 65);
+		}
 
-         double var20 = var0 - 0.3333333333333333;
-         if (var20 < 0.0) {
-            ++var20;
-         }
+		for (var0 = 26; var0 < 52; ++var0) {
+			field2139[var0] = (char)(var0 + 97 - 26);
+		}
 
-         if (var16 * 6.0 < 1.0) {
-            var6 = var14 + var16 * (var12 - var14) * 6.0;
-         } else if (var16 * 2.0 < 1.0) {
-            var6 = var12;
-         } else if (var16 * 3.0 < 2.0) {
-            var6 = 6.0 * (0.6666666666666666 - var16) * (var12 - var14) + var14;
-         } else {
-            var6 = var14;
-         }
+		for (var0 = 52; var0 < 62; ++var0) {
+			field2139[var0] = (char)(var0 + 48 - 52);
+		}
 
-         if (var0 * 6.0 < 1.0) {
-            var8 = var14 + 6.0 * (var12 - var14) * var0;
-         } else if (var0 * 2.0 < 1.0) {
-            var8 = var12;
-         } else if (var0 * 3.0 < 2.0) {
-            var8 = var14 + (var12 - var14) * (0.6666666666666666 - var0) * 6.0;
-         } else {
-            var8 = var14;
-         }
+		field2139[62] = '+';
+		field2139[63] = '/';
+		field2138 = new char[64];
 
-         if (var20 * 6.0 < 1.0) {
-            var10 = (var12 - var14) * 6.0 * var20 + var14;
-         } else if (var20 * 2.0 < 1.0) {
-            var10 = var12;
-         } else if (var20 * 3.0 < 2.0) {
-            var10 = 6.0 * (var12 - var14) * (0.6666666666666666 - var20) + var14;
-         } else {
-            var10 = var14;
-         }
-      }
+		for (var0 = 0; var0 < 26; ++var0) {
+			field2138[var0] = (char)(var0 + 65);
+		}
 
-      int var22 = (int)(var6 * 256.0);
-      int var13 = (int)(var8 * 256.0);
-      int var23 = (int)(var10 * 256.0);
-      int var15 = (var22 << 16) + (var13 << 8) + var23;
-      return var15;
-   }
+		for (var0 = 26; var0 < 52; ++var0) {
+			field2138[var0] = (char)(var0 + 97 - 26);
+		}
+
+		for (var0 = 52; var0 < 62; ++var0) {
+			field2138[var0] = (char)(var0 + 48 - 52);
+		}
+
+		field2138[62] = '*';
+		field2138[63] = '-';
+		field2140 = new char[64];
+
+		for (var0 = 0; var0 < 26; ++var0) {
+			field2140[var0] = (char)(var0 + 65);
+		}
+
+		for (var0 = 26; var0 < 52; ++var0) {
+			field2140[var0] = (char)(var0 + 97 - 26);
+		}
+
+		for (var0 = 52; var0 < 62; ++var0) {
+			field2140[var0] = (char)(var0 + 48 - 52);
+		}
+
+		field2140[62] = '-';
+		field2140[63] = '_';
+		field2141 = new int[128];
+
+		for (var0 = 0; var0 < field2141.length; ++var0) {
+			field2141[var0] = -1;
+		}
+
+		for (var0 = 65; var0 <= 90; ++var0) {
+			field2141[var0] = var0 - 65;
+		}
+
+		for (var0 = 97; var0 <= 122; ++var0) {
+			field2141[var0] = var0 - 97 + 26;
+		}
+
+		for (var0 = 48; var0 <= 57; ++var0) {
+			field2141[var0] = 52 + (var0 - 48);
+		}
+
+		int[] var2 = field2141;
+		field2141[43] = 62;
+		var2[42] = 62;
+		int[] var1 = field2141;
+		field2141[47] = 63;
+		var1[45] = 63;
+	}
+
+	public static String method1472(byte[] var0) {
+		int var3 = var0.length;
+		StringBuilder var4 = new StringBuilder();
+
+		for (int var5 = 0; var5 < var3 + 0; var5 += 3) {
+			int var6 = var0[var5] & 255;
+			var4.append(field2139[var6 >>> 2]);
+			if (var5 < var3 - 1) {
+				int var7 = var0[var5 + 1] & 255;
+				var4.append(field2139[(var6 & 3) << 4 | var7 >>> 4]);
+				if (var5 < var3 - 2) {
+					int var8 = var0[var5 + 2] & 255;
+					var4.append(field2139[(var7 & 15) << 2 | var8 >>> 6]).append(field2139[var8 & 63]);
+				} else {
+					var4.append(field2139[(var7 & 15) << 2]).append("=");
+				}
+			} else {
+				var4.append(field2139[(var6 & 3) << 4]).append("==");
+			}
+		}
+
+		String var2 = var4.toString();
+		return var2;
+	}
 }

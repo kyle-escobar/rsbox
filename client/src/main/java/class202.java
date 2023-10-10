@@ -1,58 +1,31 @@
-public class class202 extends class476 {
-   static class290 field2191 = new class290(64);
-   static class342 field2192;
-   class469 field2190;
+public class class202 extends class415 {
+	static class282 field1360;
+	int field1356;
+	int field1357;
+	int field1358;
+	int field1359;
+	// $FF: synthetic field
+	final class14 this$0;
 
-   class202() {
-   }
+	class202(class14 var1) {
+		this.this$0 = var1;
+		this.field1359 = -1;
+	}
 
-   public static void method64(class342 var0) {
-      field2192 = var0;
-   }
+	@Override
+	void method1905(Buffer var1) {
+		this.field1359 = var1.readUnsignedShort();
+		this.field1356 = var1.readInt();
+		this.field1357 = var1.readUnsignedByte();
+		this.field1358 = var1.readUnsignedByte();
+	}
 
-   public static void method2657() {
-      field2191.method5637();
-   }
+	@Override
+	void method1906(class511 var1) {
+		var1.method2421(this.field1359, this.field1356, this.field1357, this.field1358);
+	}
 
-   void method3831() {
-   }
-
-   void method3824(Buffer var1) {
-      while(true) {
-         int var3 = var1.readUnsignedByte();
-         if (var3 == 0) {
-            return;
-         }
-
-         this.method3822(var1, var3);
-      }
-   }
-
-   void method3822(Buffer var1, int var2) {
-      if (var2 == 249) {
-         this.field2190 = class200.method2466(var1, this.field2190);
-      }
-
-   }
-
-   public int method3826(int var1, int var2) {
-      return class200.method3300(this.field2190, var1, var2);
-   }
-
-   public String method3827(int var1, String var2) {
-      class469 var5 = this.field2190;
-      String var4;
-      if (null == var5) {
-         var4 = var2;
-      } else {
-         class486 var6 = (class486)var5.method8096((long)var1);
-         if (var6 == null) {
-            var4 = var2;
-         } else {
-            var4 = (String)var6.field4940;
-         }
-      }
-
-      return var4;
-   }
+	public static void method971(class5 var0) {
+		class492.field3504 = var0;
+	}
 }

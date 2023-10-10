@@ -1,23 +1,121 @@
-public class class122 {
-   static final class122 field1153 = new class122(12);
-   static final class122 field1154 = new class122(1);
-   static final class122 field1155 = new class122(2);
-   static final class122 field1156 = new class122(3);
-   static final class122 field1157 = new class122(9);
-   static final class122 field1158 = new class122(5);
-   static final class122 field1159 = new class122(0);
-   static final class122 field1160 = new class122(7);
-   static final class122 field1161 = new class122(8);
-   static final class122 field1162 = new class122(15);
-   static final class122 field1163 = new class122(10);
-   static final class122 field1165 = new class122(6);
-   static final class122 field1166 = new class122(13);
-   static final class122 field1167 = new class122(14);
-   static final class122 field1168 = new class122(4);
-   static final class122 field1169 = new class122(11);
-   int field1164;
+import java.security.Principal;
+import java.security.cert.Certificate;
+import javax.net.ssl.SSLPeerUnverifiedException;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.SSLSessionContext;
+import javax.security.cert.X509Certificate;
 
-   class122(int var1) {
-      this.field1164 = var1;
-   }
+class class122 implements SSLSession {
+	static int field794;
+	// $FF: synthetic field
+	final class81 this$1;
+
+	class122(class81 var1) {
+		this.this$1 = var1;
+	}
+
+	@Override
+	public int getApplicationBufferSize() {
+		return 0;
+	}
+
+	@Override
+	public String getCipherSuite() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public long getCreationTime() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public byte[] getId() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public long getLastAccessedTime() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public Certificate[] getLocalCertificates() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public Principal getLocalPrincipal() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public int getPacketBufferSize() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public X509Certificate[] getPeerCertificateChain() throws SSLPeerUnverifiedException {
+		return null;
+	}
+
+	@Override
+	public Certificate[] getPeerCertificates() throws SSLPeerUnverifiedException {
+		return this.this$1.field551;
+	}
+
+	@Override
+	public String getPeerHost() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public int getPeerPort() {
+		return 0;
+	}
+
+	@Override
+	public Principal getPeerPrincipal() throws SSLPeerUnverifiedException {
+		return null;
+	}
+
+	@Override
+	public String getProtocol() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public SSLSessionContext getSessionContext() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public Object getValue(String var1) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public String[] getValueNames() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public void invalidate() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public boolean isValid() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public void putValue(String var1, Object var2) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public void removeValue(String var1) {
+		throw new UnsupportedOperationException();
+	}
 }

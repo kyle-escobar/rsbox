@@ -1,14 +1,22 @@
-public class class347 {
-   public static final class347 field3852 = new class347("RC", 1);
-   public static final class347 field3854 = new class347("WIP", 2);
-   public static final class347 field3855 = new class347("LIVE", 0);
-   public static final class347 field3858 = new class347("BUILDLIVE", 3);
-   static int[] field3857;
-   public final int field3856;
-   public final String field3853;
+public class class347 extends class415 {
+	boolean field2429;
+	int field2428;
+	// $FF: synthetic field
+	final class14 this$0;
 
-   class347(String var1, int var2) {
-      this.field3853 = var1;
-      this.field3856 = var2;
-   }
+	class347(class14 var1) {
+		this.this$0 = var1;
+		this.field2428 = -1;
+	}
+
+	@Override
+	void method1905(Buffer var1) {
+		this.field2428 = var1.readUnsignedShort();
+		this.field2429 = var1.readUnsignedByte() == 1;
+	}
+
+	@Override
+	void method1906(class511 var1) {
+		var1.method2420(this.field2428, this.field2429);
+	}
 }

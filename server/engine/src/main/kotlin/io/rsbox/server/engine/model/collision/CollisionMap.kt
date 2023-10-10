@@ -30,11 +30,11 @@ class CollisionMap(private val flags: ZoneFlags = ZoneFlags()) {
             for(x in 0 until Region.SIZE) {
                 for(y in 0 until Region.SIZE) {
                     if((entry.terrain[entry.pack(x, y, level)]!!.collision and 0x1) != 0x1) continue
-                    val newLevel = if((entry.terrain[entry.pack(x, y, 1)]!!.collision and 0x2) == 0x2) level - 1 else level
+                    val newLevel = if(entry.terrain[entry.pack(x, y, 1)]!!.collision and 0x2 == 0x2) level - 1 else level
                     if(newLevel < 0) continue
                     val baseX = entry.regionX shl 6
                     val baseY = entry.regionY shl 6
-                    val tile = Tile(baseX + x, baseY + y, level)
+                    val tile = Tile(baseX + x, baseY + y, newLevel)
                     addFloorCollision(tile)
                 }
             }

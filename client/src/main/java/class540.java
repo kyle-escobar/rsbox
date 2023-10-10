@@ -1,187 +1,84 @@
-public final class class540 {
-   int field5231;
-   int field5235;
-   int field5236;
-   int field5237;
-   int[] field5230 = new int[256];
-   int[] field5233 = new int[256];
+import java.io.IOException;
 
-   public class540(int[] var1) {
-      for(int var2 = 0; var2 < var1.length; ++var2) {
-         this.field5233[var2] = var1[var2];
-      }
+public class class540 {
+	boolean field4227;
+	PacketBuffer field4220;
+	class444 field4223;
+	ServerPacket field4215;
+	ServerPacket serverPacket;
+	ServerPacket field4226;
+	ServerPacket field4228;
+	Buffer field4218;
+	class86 field4216;
+	int field4217;
+	int field4222;
+	int field4224;
+	int field4225;
+	public class534 field4219;
 
-      this.method9372();
-   }
+	class540() {
+		this.field4223 = new class444();
+		this.field4217 = 0;
+		this.field4218 = new Buffer(5000);
+		this.field4220 = new PacketBuffer(40000);
+		this.serverPacket = null;
+		this.field4222 = 0;
+		this.field4227 = true;
+		this.field4224 = 0;
+		this.field4225 = 0;
+	}
 
-   public final int method9368() {
-      if (this.field5237 == 0) {
-         this.method9371();
-         this.field5237 = 256;
-      }
+	final void method2613() {
+		this.field4223.method2092();
+		this.field4217 = 0;
+	}
 
-      return this.field5233[--this.field5237];
-   }
+	final void method2608() throws IOException {
+		if (this.field4216 != null && this.field4217 > 0) {
+			this.field4218.offset = 0;
 
-   public final int method9370() {
-      if (0 == this.field5237) {
-         this.method9371();
-         this.field5237 = 256;
-      }
+			while (true) {
+				class341 var2 = (class341)this.field4223.method2088();
+				if (var2 == null || var2.field2393 > this.field4218.data.length - this.field4218.offset) {
+					this.field4216.method403(this.field4218.data, 0, this.field4218.offset);
+					this.field4225 = 0;
+					break;
+				}
 
-      return this.field5233[this.field5237 - 1];
-   }
+				this.field4218.writeBytes(var2.buffer.data, 0, var2.field2393);
+				this.field4217 -= var2.field2393;
+				var2.method1719();
+				var2.buffer.method2457();
+				var2.method1654();
+			}
+		}
 
-   final void method9371() {
-      this.field5236 += ++this.field5231;
+	}
 
-      for(int var2 = 0; var2 < 256; ++var2) {
-         int var3 = this.field5230[var2];
-         if (0 == (var2 & 2)) {
-            if ((var2 & 1) == 0) {
-               this.field5235 ^= this.field5235 << 13;
-            } else {
-               this.field5235 ^= this.field5235 >>> 6;
-            }
-         } else if ((var2 & 1) == 0) {
-            this.field5235 ^= this.field5235 << 2;
-         } else {
-            this.field5235 ^= this.field5235 >>> 16;
-         }
+	public final void method2612(class341 var1) {
+		this.field4223.method2095(var1);
+		var1.field2393 = var1.buffer.offset;
+		var1.buffer.offset = 0;
+		this.field4217 += var1.field2393;
+	}
 
-         this.field5235 += this.field5230[var2 + 128 & 255];
-         int var4;
-         this.field5230[var2] = var4 = this.field5236 + this.field5230[(var3 & 1020) >> 2] + this.field5235;
-         this.field5233[var2] = this.field5236 = this.field5230[(var4 >> 8 & 1020) >> 2] + var3;
-      }
+	void method2609(class86 var1) {
+		this.field4216 = var1;
+	}
 
-   }
+	void method2610() {
+		if (null != this.field4216) {
+			this.field4216.method406();
+			this.field4216 = null;
+		}
 
-   final void method9372() {
-      int var10 = -1640531527;
-      int var9 = -1640531527;
-      int var8 = -1640531527;
-      int var7 = -1640531527;
-      int var6 = -1640531527;
-      int var5 = -1640531527;
-      int var4 = -1640531527;
-      int var3 = -1640531527;
+	}
 
-      int var2;
-      for(var2 = 0; var2 < 4; ++var2) {
-         var3 ^= var4 << 11;
-         var6 += var3;
-         var4 += var5;
-         var4 ^= var5 >>> 2;
-         var7 += var4;
-         var5 += var6;
-         var5 ^= var6 << 8;
-         var8 += var5;
-         var6 += var7;
-         var6 ^= var7 >>> 16;
-         var9 += var6;
-         var7 += var8;
-         var7 ^= var8 << 10;
-         var10 += var7;
-         var8 += var9;
-         var8 ^= var9 >>> 4;
-         var3 += var8;
-         var9 += var10;
-         var9 ^= var10 << 8;
-         var4 += var9;
-         var10 += var3;
-         var10 ^= var3 >>> 9;
-         var5 += var10;
-         var3 += var4;
-      }
+	void method2607() {
+		this.field4216 = null;
+	}
 
-      for(var2 = 0; var2 < 256; var2 += 8) {
-         var3 += this.field5233[var2];
-         var4 += this.field5233[var2 + 1];
-         var5 += this.field5233[var2 + 2];
-         var6 += this.field5233[var2 + 3];
-         var7 += this.field5233[var2 + 4];
-         var8 += this.field5233[var2 + 5];
-         var9 += this.field5233[var2 + 6];
-         var10 += this.field5233[var2 + 7];
-         var3 ^= var4 << 11;
-         var6 += var3;
-         var4 += var5;
-         var4 ^= var5 >>> 2;
-         var7 += var4;
-         var5 += var6;
-         var5 ^= var6 << 8;
-         var8 += var5;
-         var6 += var7;
-         var6 ^= var7 >>> 16;
-         var9 += var6;
-         var7 += var8;
-         var7 ^= var8 << 10;
-         var10 += var7;
-         var8 += var9;
-         var8 ^= var9 >>> 4;
-         var3 += var8;
-         var9 += var10;
-         var9 ^= var10 << 8;
-         var4 += var9;
-         var10 += var3;
-         var10 ^= var3 >>> 9;
-         var5 += var10;
-         var3 += var4;
-         this.field5230[var2] = var3;
-         this.field5230[var2 + 1] = var4;
-         this.field5230[var2 + 2] = var5;
-         this.field5230[var2 + 3] = var6;
-         this.field5230[var2 + 4] = var7;
-         this.field5230[var2 + 5] = var8;
-         this.field5230[var2 + 6] = var9;
-         this.field5230[var2 + 7] = var10;
-      }
-
-      for(var2 = 0; var2 < 256; var2 += 8) {
-         var3 += this.field5230[var2];
-         var4 += this.field5230[var2 + 1];
-         var5 += this.field5230[var2 + 2];
-         var6 += this.field5230[var2 + 3];
-         var7 += this.field5230[var2 + 4];
-         var8 += this.field5230[var2 + 5];
-         var9 += this.field5230[var2 + 6];
-         var10 += this.field5230[var2 + 7];
-         var3 ^= var4 << 11;
-         var6 += var3;
-         var4 += var5;
-         var4 ^= var5 >>> 2;
-         var7 += var4;
-         var5 += var6;
-         var5 ^= var6 << 8;
-         var8 += var5;
-         var6 += var7;
-         var6 ^= var7 >>> 16;
-         var9 += var6;
-         var7 += var8;
-         var7 ^= var8 << 10;
-         var10 += var7;
-         var8 += var9;
-         var8 ^= var9 >>> 4;
-         var3 += var8;
-         var9 += var10;
-         var9 ^= var10 << 8;
-         var4 += var9;
-         var10 += var3;
-         var10 ^= var3 >>> 9;
-         var5 += var10;
-         var3 += var4;
-         this.field5230[var2] = var3;
-         this.field5230[var2 + 1] = var4;
-         this.field5230[var2 + 2] = var5;
-         this.field5230[var2 + 3] = var6;
-         this.field5230[var2 + 4] = var7;
-         this.field5230[var2 + 5] = var8;
-         this.field5230[var2 + 6] = var9;
-         this.field5230[var2 + 7] = var10;
-      }
-
-      this.method9371();
-      this.field5237 = 256;
-   }
+	class86 method2611() {
+		return this.field4216;
+	}
 }

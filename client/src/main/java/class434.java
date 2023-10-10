@@ -1,48 +1,47 @@
-public final class class434 implements Comparable {
-   Object field4649;
-   Object field4651;
-   long field4648;
-   long field4650;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.ThreadFactory;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
-   class434(Object var1, Object var2) {
-      this.field4649 = var1;
-      this.field4651 = var2;
-   }
+public class class434 {
+	static class282 field2908;
+	static int field2905;
+	static Font field2906;
+	static FontMetrics field2907;
+	final int field2903;
+	final String field2909;
+	final ThreadFactory field2902;
+	final ThreadPoolExecutor field2904;
 
-   static void method7715(class342 var0, int var1) {
-      if ((var1 & 536870912) != 0) {
-         Login.field465 = class538.method8011(var0, "logo_deadman_mode", "");
-      } else if (0 != (var1 & 1073741824)) {
-         Login.field465 = class538.method8011(var0, "logo_seasonal_mode", "");
-      } else if ((var1 & 256) != 0) {
-         Login.field465 = class538.method8011(var0, "logo_speedrunning", "");
-      } else {
-         Login.field465 = class538.method8011(var0, "logo", "");
-      }
+	public class434(String var1, int var2, int var3) {
+		this.field2909 = var1;
+		this.field2903 = var2;
+		this.field2902 = new class93(this);
+		this.field2904 = this.method1983(var3);
+	}
 
-   }
+	final ThreadPoolExecutor method1983(int var1) {
+		return new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS, new ArrayBlockingQueue(this.field2903), this.field2902);
+	}
 
-   int method7709(class434 var1) {
-      if (this.field4648 < var1.field4648) {
-         return -1;
-      } else {
-         return this.field4648 > var1.field4648 ? 1 : 0;
-      }
-   }
+	public class3 method1981(class141 var1) {
+		if (this.field2904.getQueue().remainingCapacity() <= 0) {
+			System.err.println("REST thread pool queue is empty\r\nThread pool size " + this.field2904.getCorePoolSize() + " Queue capacity " + this.field2903);
+			return new class3("Queue full");
+		} else {
+			class3 var3 = new class3(this.field2904.submit(new class425(this, var1)));
+			return var3;
+		}
+	}
 
-   public boolean equals(Object var1) {
-      if (var1 instanceof class434) {
-         return this.field4651.equals(((class434)var1).field4651);
-      } else {
-         throw new IllegalArgumentException();
-      }
-   }
+	public final void method1982() {
+		try {
+			this.field2904.shutdown();
+		} catch (Exception var3) {
+			System.err.println("Error shutting down RestRequestService\r\n" + var3);
+		}
 
-   public int hashCode() {
-      return this.field4651.hashCode();
-   }
-
-   public int compareTo(Object var1) {
-      return this.method7709((class434)var1);
-   }
+	}
 }

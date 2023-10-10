@@ -1,19 +1,27 @@
-public final class class237 {
-   int field2628;
-   int field2629;
-   int field2630;
-   int field2631;
-   int field2632;
-   int field2633 = 0;
-   int field2634;
-   int field2635;
-   int field2636;
-   int field2637;
-   int field2638;
-   int field2640;
-   public class228 field2627;
-   public long field2639 = 0L;
+public class class237 extends class415 {
+	String field1565;
+	long field1566;
+	// $FF: synthetic field
+	final class14 this$0;
 
-   class237() {
-   }
+	class237(class14 var1) {
+		this.this$0 = var1;
+		this.field1566 = -1L;
+		this.field1565 = null;
+	}
+
+	@Override
+	void method1905(Buffer var1) {
+		if (var1.readUnsignedByte() != 255) {
+			--var1.offset;
+			this.field1566 = var1.readLong();
+		}
+
+		this.field1565 = var1.readString();
+	}
+
+	@Override
+	void method1906(class511 var1) {
+		var1.method2415(this.field1566, this.field1565, 0);
+	}
 }

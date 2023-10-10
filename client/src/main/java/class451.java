@@ -1,27 +1,32 @@
 public class class451 {
-   float field4727;
-   float field4728;
-   float field4729;
+	static final int field2986;
+	static final int field2987;
 
-   static {
-      new class451(0.0F, 0.0F, 0.0F);
-      new class451(1.0F, 1.0F, 1.0F);
-      new class451(1.0F, 0.0F, 0.0F);
-      new class451(0.0F, 1.0F, 0.0F);
-      new class451(0.0F, 0.0F, 1.0F);
-   }
+	static {
+		field2987 = (int)(Math.pow(2.0D, 4.0D) - 1.0D);
+		field2986 = (int)(Math.pow(2.0D, 8.0D) - 1.0D);
+	}
 
-   class451(float var1, float var2, float var3) {
-      this.field4729 = var1;
-      this.field4728 = var2;
-      this.field4727 = var3;
-   }
+	public static int method2112(int var0) {
+		return var0 >>> 4 & field2986;
+	}
 
-   final float method7884() {
-      return (float)Math.sqrt((double)(this.field4729 * this.field4729 + this.field4728 * this.field4728 + this.field4727 * this.field4727));
-   }
+	public static int method2111(int var0) {
+		return (var0 & field2987) - 1;
+	}
 
-   public String toString() {
-      return this.field4729 + ", " + this.field4728 + ", " + this.field4727;
-   }
+	static Object[] method2113(Buffer var0, int[] var1) {
+		int var3 = var0.method2522();
+		Object[] var4 = new Object[var1.length * var3];
+
+		for (int var5 = 0; var5 < var3; ++var5) {
+			for (int var6 = 0; var6 < var1.length; ++var6) {
+				int var7 = var6 + var1.length * var5;
+				class499 var8 = class419.method1920(var1[var6]);
+				var4[var7] = var8.method2360(var0);
+			}
+		}
+
+		return var4;
+	}
 }

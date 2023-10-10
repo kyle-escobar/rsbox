@@ -20,5 +20,6 @@ class PlayerPostSyncTask : SyncTask {
     private fun Player.clearMovement() {
         teleportTile = null
         movementType = MovementType.NONE
+
     }
 }

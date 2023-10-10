@@ -1,46 +1,33 @@
-public abstract class class456 extends class270 implements class529 {
-   static int field4751;
+public class class456 implements class501 {
+	public static final class456 field3024;
+	static final class456 field3022;
+	static final class456 field3023;
+	static final class456 field3025;
+	static final class456 field3026;
+	static final class456 field3029;
+	final int field3028;
+	public final String field3027;
 
-   protected class456(class359 var1, class384 var2, int var3) {
-      super(var1, var2, var3);
-   }
+	static {
+		field3025 = new class456("runescape", "RuneScape", 0);
+		field3022 = new class456("stellardawn", "Stellar Dawn", 1);
+		field3023 = new class456("game3", "Game 3", 2);
+		field3026 = new class456("game4", "Game 4", 3);
+		field3029 = new class456("game5", "Game 5", 4);
+		field3024 = new class456("oldscape", "RuneScape 2007", 5);
+	}
 
-   protected abstract class445 method8012(int var1);
+	class456(String var1, String var2, int var3) {
+		this.field3027 = var1;
+		this.field3028 = var3;
+	}
 
-   public int method8015() {
-      return super.field2985;
-   }
+	@Override
+	public int getId() {
+		return this.field3028;
+	}
 
-   public Object method9197(int var1) {
-      class445 var3 = this.method8012(var1);
-      return var3 != null && var3.method7832() ? var3.method7833() : null;
-   }
-
-   public class525 method8013(Buffer var1) {
-      int var3 = var1.readUnsignedShort();
-      class445 var4 = this.method8012(var3);
-      class525 var5 = new class525(var3);
-      Class var6 = var4.field4696.field5070;
-      if (var6 == Integer.class) {
-         var5.field5162 = var1.readInt();
-      } else if (var6 == Long.class) {
-         var5.field5162 = var1.readLong();
-      } else if (var6 == String.class) {
-         var5.field5162 = var1.readJagString();
-      } else {
-         if (!class506.class.isAssignableFrom(var6)) {
-            throw new IllegalStateException();
-         }
-
-         try {
-            class506 var7 = (class506)var6.newInstance();
-            var7.method8589(var1);
-            var5.field5162 = var7;
-         } catch (InstantiationException var8) {
-         } catch (IllegalAccessException var9) {
-         }
-      }
-
-      return var5;
-   }
+	public static class456[] method2131() {
+		return new class456[]{field3023, field3029, field3025, field3022, field3024, field3026};
+	}
 }

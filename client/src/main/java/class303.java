@@ -1,176 +1,205 @@
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-
 public class class303 {
-   public static int field3192 = 0;
-   public static int field3202 = 0;
-   public static int field3203 = 0;
-   public static int field3207 = 0;
-   public static ArrayList field3194 = new ArrayList(3);
-   public static ArrayList field3195 = null;
-   public static ArrayList field3198 = new ArrayList(3);
-   public static LinkedList field3196 = new LinkedList();
-   public static final List field3200 = new ArrayList();
-   static class342 field3193;
-   static class342 field3197;
-   static class342 field3201;
-   static ArrayList field3199 = new ArrayList();
+	static final byte[] field2219;
+	Buffer field2213;
+	int field2218;
+	int field2220;
+	int[] field2214;
+	int[] field2215;
+	int[] field2216;
+	int[] field2217;
+	long field2221;
 
-   class303() throws Throwable {
-   }
+	static {
+		field2219 = new byte[]{2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 1, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+	}
 
-   public static boolean method5350(class342 var0, class342 var1, class342 var2, ArrayList var3) {
-      field3193 = var0;
-      field3197 = var1;
-      field3201 = var2;
-      field3195 = var3;
-      return true;
-   }
+	class303() {
+		this.field2213 = new Buffer((byte[])null);
+	}
 
-   public static void method1739(class326 var0) {
-      if (!field3200.contains(var0)) {
-         field3200.add(var0);
-      }
+	void method1539(byte[] var1) {
+		this.field2213.data = var1;
+		this.field2213.offset = 10;
+		int var2 = this.field2213.readUnsignedShort();
+		this.field2220 = this.field2213.readUnsignedShort();
+		this.field2218 = 500000;
+		this.field2215 = new int[var2];
 
-   }
+		Buffer var10000;
+		int var3;
+		int var5;
+		for (var3 = 0; var3 < var2; var10000.offset += var5) {
+			int var4 = this.field2213.readInt();
+			var5 = this.field2213.readInt();
+			if (var4 == 1297379947) {
+				this.field2215[var3] = this.field2213.offset;
+				++var3;
+			}
 
-   public static void method3925(int var0, int var1) {
-      Iterator var3 = field3200.iterator();
+			var10000 = this.field2213;
+		}
 
-      while(var3.hasNext()) {
-         class326 var4 = (class326)var3.next();
-         var4.method5899(var0, var1);
-      }
+		this.field2221 = 0L;
+		this.field2216 = new int[var2];
 
-   }
+		for (var3 = 0; var3 < var2; ++var3) {
+			this.field2216[var3] = this.field2215[var3];
+		}
 
-   public static void method2298(ArrayList var0, int var1, int var2, int var3, int var4, boolean var5) {
-      if (var5 || !field3196.isEmpty() && !var0.isEmpty()) {
-         field3196.clear();
-         field3199.clear();
-      }
+		this.field2217 = new int[var2];
+		this.field2214 = new int[var2];
+	}
 
-      if (!var0.isEmpty()) {
-         method2577(var0, var5);
-         if (!field3196.isEmpty()) {
-            method2001(var1, var2, var3, var4);
-            field3199.add(new class395((class406)null));
-            field3199.add(new class409((class406)null, field3193, field3197, field3201));
-            if (!field3194.isEmpty()) {
-               ArrayList var7 = new ArrayList();
-               var7.add(new class404(new class399(new class392((class406)null, 0, true, field3207)), field3203));
-               ArrayList var8 = method3308();
-               var7.add(new class404(new class414(new class411((class406)null, var8), 0, false, field3202), field3192));
-               field3199.add(new class396((class406)null, var7));
-            } else {
-               field3199.add(new class404((class406)null, field3203));
-               field3199.add(new class399((class406)null));
-               field3199.add(new class392((class406)null, 0, true, field3207));
-            }
+	void method1540() {
+		this.field2213.data = null;
+		this.field2215 = null;
+		this.field2216 = null;
+		this.field2217 = null;
+		this.field2214 = null;
+	}
 
-         }
-      }
-   }
+	boolean method1553() {
+		return this.field2213.data != null;
+	}
 
-   public static void method375(int var0) {
-      if (!field3194.isEmpty()) {
-         Iterator var2 = field3194.iterator();
+	int method1550() {
+		return this.field2216.length;
+	}
 
-         while(var2.hasNext()) {
-            class322 var3 = (class322)var2.next();
-            if (null != var3) {
-               var3.field3527 = var0;
-            }
-         }
+	void method1541(int var1) {
+		this.field2213.offset = this.field2216[var1];
+	}
 
-         class322 var4 = (class322)field3194.get(0);
-         if (null != var4 && var4.field3533 != null && var4.field3533.method5533() && !var4.field3532) {
-            var4.field3533.method5525(var0);
-            var4.field3528 = (float)var0;
-         }
-      }
+	void method1542(int var1) {
+		this.field2216[var1] = this.field2213.offset;
+	}
 
-   }
+	void method1552() {
+		this.field2213.offset = -1;
+	}
 
-   public static void method4211(int var0, int var1) {
-      method2001(var0, var1, 0, 0);
-      field3198.clear();
-      if (!field3194.isEmpty() && (var0 != 0 || var1 != 0)) {
-         field3199.add(new class404((class406)null, field3192));
-         field3199.add(new class414((class406)null, 0, false, field3202));
-      }
+	void method1544(int var1) {
+		int var2 = this.field2213.method2521();
+		int[] var10000 = this.field2217;
+		var10000[var1] += var2;
+	}
 
-      ArrayList var3 = method3308();
-      field3199.add(new class411((class406)null, var3));
-   }
+	int method1545(int var1) {
+		int var2 = this.method1546(var1);
+		return var2;
+	}
 
-   public static boolean method1987() {
-      if (!field3199.isEmpty()) {
-         return true;
-      } else {
-         return !field3194.isEmpty() && field3194.get(0) != null && ((class322)field3194.get(0)).field3533 != null ? ((class322)field3194.get(0)).field3533.method5533() : false;
-      }
-   }
+	int method1546(int var1) {
+		byte var2 = this.field2213.data[this.field2213.offset];
+		int var5;
+		if (var2 < 0) {
+			var5 = var2 & 255;
+			this.field2214[var1] = var5;
+			++this.field2213.offset;
+		} else {
+			var5 = this.field2214[var1];
+		}
 
-   public static void method8062(int var0, int var1, int var2, int var3) {
-      if (field3194.size() > 1 && field3194.get(0) != null && ((class322)field3194.get(0)).field3533.method5533() && field3194.get(1) != null && ((class322)field3194.get(1)).field3533.method5533()) {
-         method2001(var0, var1, var2, var3);
-         field3199.add(new class400((class406)null));
-         ArrayList var5 = new ArrayList();
-         var5.add(new class404(new class392((class406)null, 1, false, field3207), field3203));
-         var5.add(new class404(new class414((class406)null, 0, false, field3202), field3192));
-         field3199.add(new class396((class406)null, var5));
-         if (field3198.get(0) != null && field3198.get(1) != null) {
-            class322 var6 = (class322)field3198.get(0);
-            field3198.set(0, field3194.get(1));
-            field3198.set(1, var6);
-         }
-      }
+		if (var5 != 240 && var5 != 247) {
+			return this.method1547(var1, var5);
+		} else {
+			int var3 = this.field2213.method2521();
+			if (var5 == 247 && var3 > 0) {
+				int var4 = this.field2213.data[this.field2213.offset] & 255;
+				if (var4 >= 241 && var4 <= 243 || var4 == 246 || var4 == 248 || var4 >= 250 && var4 <= 252 || var4 == 254) {
+					++this.field2213.offset;
+					this.field2214[var1] = var4;
+					return this.method1547(var1, var4);
+				}
+			}
 
-   }
+			Buffer var10000 = this.field2213;
+			var10000.offset += var3;
+			return 0;
+		}
+	}
 
-   public static boolean method3904() {
-      return !field3198.isEmpty();
-   }
+	int method1547(int var1, int var2) {
+		int var4;
+		if (var2 == 255) {
+			int var7 = this.field2213.readUnsignedByte();
+			var4 = this.field2213.method2521();
+			Buffer var10000;
+			if (var7 == 47) {
+				var10000 = this.field2213;
+				var10000.offset += var4;
+				return 1;
+			} else if (var7 == 81) {
+				int var5 = this.field2213.readUnsignedMedium();
+				var4 -= 3;
+				int var6 = this.field2217[var1];
+				this.field2221 += (long)var6 * (long)(this.field2218 - var5);
+				this.field2218 = var5;
+				var10000 = this.field2213;
+				var10000.offset += var4;
+				return 2;
+			} else {
+				var10000 = this.field2213;
+				var10000.offset += var4;
+				return 3;
+			}
+		} else {
+			byte var3 = field2219[var2 - 128];
+			var4 = var2;
+			if (var3 >= 1) {
+				var4 = var2 | this.field2213.readUnsignedByte() << 8;
+			}
 
-   static void method2577(ArrayList var0, boolean var1) {
-      if (!var1) {
-         field3198.clear();
-      }
+			if (var3 >= 2) {
+				var4 |= this.field2213.readUnsignedByte() << 16;
+			}
 
-      Iterator var3 = var0.iterator();
+			return var4;
+		}
+	}
 
-      while(var3.hasNext()) {
-         class322 var4 = (class322)var3.next();
-         if (-1 != var4.field3524 && -1 != var4.field3526) {
-            if (!var1) {
-               field3198.add(var4);
-            }
+	long method1551(int var1) {
+		return this.field2221 + (long)var1 * (long)this.field2218;
+	}
 
-            field3196.add(var4);
-         }
-      }
+	int method1543() {
+		int var1 = this.field2216.length;
+		int var2 = -1;
+		int var3 = Integer.MAX_VALUE;
 
-   }
+		for (int var4 = 0; var4 < var1; ++var4) {
+			if (this.field2216[var4] >= 0 && this.field2217[var4] < var3) {
+				var2 = var4;
+				var3 = this.field2217[var4];
+			}
+		}
 
-   public static void method2001(int var0, int var1, int var2, int var3) {
-      field3192 = var0;
-      field3202 = var1;
-      field3203 = var2;
-      field3207 = var3;
-   }
+		return var2;
+	}
 
-   static ArrayList method3308() {
-      ArrayList var1 = new ArrayList();
-      Iterator var2 = field3194.iterator();
+	boolean method1548() {
+		int var1 = this.field2216.length;
 
-      while(var2.hasNext()) {
-         class322 var3 = (class322)var2.next();
-         var1.add(var3);
-      }
+		for (int var2 = 0; var2 < var1; ++var2) {
+			if (this.field2216[var2] >= 0) {
+				return false;
+			}
+		}
 
-      return var1;
-   }
+		return true;
+	}
+
+	void method1549(long var1) {
+		this.field2221 = var1;
+		int var3 = this.field2216.length;
+
+		for (int var4 = 0; var4 < var3; ++var4) {
+			this.field2217[var4] = 0;
+			this.field2214[var4] = 0;
+			this.field2213.offset = this.field2215[var4];
+			this.method1544(var4);
+			this.field2216[var4] = this.field2213.offset;
+		}
+
+	}
 }

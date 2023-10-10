@@ -1,8 +1,15 @@
-public abstract class class188 {
-   class188() {
-   }
+public class class188 {
+	public static final class188 field1281;
+	public static final class188 field1282;
+	public static final class188 field1284;
+	static int field1283;
 
-   public abstract int method3590(int var1, int var2);
+	static {
+		field1281 = new class188();
+		field1284 = new class188();
+		field1282 = new class188();
+	}
 
-   public abstract void method3588();
+	class188() {
+	}
 }

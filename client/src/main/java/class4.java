@@ -1,68 +1,35 @@
-import java.util.concurrent.Future;
+public abstract class class4 {
+	static class198 field13;
+	boolean field12;
+	boolean field9;
+	class4 field11;
+	String field10;
+	String field8;
 
-public class class4 {
-   static int field24;
-   static int[][] xteaKeys;
-   String field23;
-   Future field25;
+	class4(class4 var1) {
+		this.field11 = var1;
+	}
 
-   class4(Future var1) {
-      this.field25 = var1;
-   }
+	public abstract boolean method8();
 
-   class4(String var1) {
-      this.method72(var1);
-   }
+	public boolean method7() {
+		return this.field12;
+	}
 
-   static int method85(int var0, class81 var1, boolean var2) {
-      if (var0 == 7463) {
-         boolean var4 = class63.field483[--class63.field479] == 1;
-         Client.method299(var4);
-         return 1;
-      } else {
-         return 2;
-      }
-   }
+	public boolean method9() {
+		return this.field9;
+	}
 
-   void method72(String var1) {
-      if (var1 == null) {
-         var1 = "";
-      }
+	public String method10() {
+		return "Error in task: " + this.field8 + ", Error message: " + this.field10;
+	}
 
-      this.field23 = var1;
-      if (this.field25 != null) {
-         this.field25.cancel(true);
-         this.field25 = null;
-      }
+	public class4 method11() {
+		return this.field11;
+	}
 
-   }
-
-   public final String method73() {
-      return this.field23;
-   }
-
-   public boolean method74() {
-      return null != this.field23 || null == this.field25;
-   }
-
-   public final boolean method71() {
-      return this.method74() ? true : this.field25.isDone();
-   }
-
-   public final class3 method76() {
-      if (this.method74()) {
-         return new class3(this.field23);
-      } else if (!this.method71()) {
-         return null;
-      } else {
-         try {
-            return (class3)this.field25.get();
-         } catch (Exception var4) {
-            String var3 = "Error retrieving REST request reply";
-            System.err.println(var3 + "\r\n" + var4);
-            this.method72(var3);
-            return new class3(var3);
-         }
-      }
-   }
+	void method12(String var1) {
+		this.field12 = true;
+		this.field10 = var1;
+	}
 }

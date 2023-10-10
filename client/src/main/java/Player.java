@@ -1,409 +1,419 @@
-public final class Player extends class102 {
-   boolean teleporting;
-   boolean field756;
-   boolean field760;
-   class249 field751;
-   class314 field764;
-   class426 field738;
-   class426 field746;
-   class426 field762;
-   class526 field740;
-   int field737;
-   int field739 = -1;
-   int field743;
-   int field745;
-   int field747;
-   int field748;
-   int field749;
-   int field750;
-   int field752 = -1;
-   int field753;
-   int field754;
-   int field755;
-   int field757;
-   int field758;
-   int plane;
-   int field761;
-   int field763;
-   int field765;
-   int field766;
-   String[] field742 = new String[3];
+public final class Player extends class65 {
+	boolean teleporting;
+	boolean field3006;
+	boolean field3008;
+	class171 field2989;
+	class188 field3002;
+	class188 field3012;
+	class188 field3013;
+	class490 field2991;
+	class509 field3005;
+	int field2988;
+	int field2990;
+	int field2993;
+	int field2995;
+	int field2996;
+	int field2997;
+	int field2998;
+	int field2999;
+	int field3000;
+	int field3001;
+	int field3003;
+	int field3004;
+	int field3007;
+	int field3009;
+	int field3010;
+	int field3011;
+	int field3014;
+	int field3015;
+	int field3016;
+	String[] field2992;
 
-   Player() {
-      for(int var1 = 0; var1 < 3; ++var1) {
-         this.field742[var1] = "";
-      }
+	Player() {
+		this.field3000 = -1;
+		this.field2988 = -1;
+		this.field2992 = new String[3];
 
-      this.field743 = 0;
-      this.field761 = 0;
-      this.field737 = 0;
-      this.field747 = 0;
-      this.field756 = false;
-      this.field757 = 0;
-      this.field760 = false;
-      this.field738 = class426.field4610;
-      this.field746 = class426.field4610;
-      this.field762 = class426.field4610;
-      this.teleporting = false;
-   }
+		for (int var1 = 0; var1 < 3; ++var1) {
+			this.field2992[var1] = "";
+		}
 
-   final void updateAppearance(Buffer buf) {
-      buf.offset = 0;
-      int var3 = buf.readUnsignedByte();
-      boolean var4 = true;
-      this.field739 = buf.readByte();
-      this.field752 = buf.readByte();
-      int var5 = -1;
-      this.field757 = 0;
-      int[] var6 = new int[12];
+		this.field2993 = 0;
+		this.field2999 = 0;
+		this.field2996 = 0;
+		this.field3011 = 0;
+		this.field3006 = false;
+		this.field3007 = 0;
+		this.field3008 = false;
+		this.field3002 = class188.field1281;
+		this.field3012 = class188.field1281;
+		this.field3013 = class188.field1281;
+		this.teleporting = false;
+	}
 
-      int i;
-      int var9;
-      int var10;
-      for(int var7 = 0; var7 < 12; ++var7) {
-         i = buf.readUnsignedByte();
-         if (i == 0) {
-            var6[var7] = 0;
-         } else {
-            var9 = buf.readUnsignedByte();
-            var6[var7] = (i << 8) + var9;
-            if (var7 == 0 && 65535 == var6[0]) {
-               var5 = buf.readUnsignedShort();
-               break;
-            }
+	final void decode(Buffer var1) {
+		var1.offset = 0;
+		int var3 = var1.readUnsignedByte();
+		boolean var4 = true;
+		this.field3000 = var1.readByte();
+		this.field2988 = var1.readByte();
+		int var5 = -1;
+		this.field3007 = 0;
+		int[] var6 = new int[12];
 
-            if (var6[var7] >= 512) {
-               var10 = class185.method2355(var6[var7] - 512).field2005;
-               if (var10 != 0) {
-                  this.field757 = var10;
-               }
-            }
-         }
-      }
+		int var8;
+		int var9;
+		int var10;
+		for (int var7 = 0; var7 < 12; ++var7) {
+			var8 = var1.readUnsignedByte();
+			if (var8 == 0) {
+				var6[var7] = 0;
+			} else {
+				var9 = var1.readUnsignedByte();
+				var6[var7] = (var8 << 8) + var9;
+				if (var7 == 0 && var6[0] == 65535) {
+					var5 = var1.readUnsignedShort();
+					break;
+				}
 
-      int[] var28 = null;
-      if (Client.revision >= 213) {
-         var28 = new int[12];
+				if (var6[var7] >= 512) {
+					var10 = class158.method857(var6[var7] - 512).field1134;
+					if (var10 != 0) {
+						this.field3007 = var10;
+					}
+				}
+			}
+		}
 
-         for(i = 0; i < 12; ++i) {
-            var9 = buf.readUnsignedByte();
-            if (var9 == 0) {
-               var28[i] = 0;
-            } else {
-               var10 = buf.readUnsignedByte();
-               var28[i] = (var9 << 8) + var10;
-            }
-         }
-      }
+		int[] var28 = null;
+		if (Client.field1841 >= 213) {
+			var28 = new int[12];
 
-      int[] var29 = new int[5];
+			for (var8 = 0; var8 < 12; ++var8) {
+				var9 = var1.readUnsignedByte();
+				if (var9 == 0) {
+					var28[var8] = 0;
+				} else {
+					var10 = var1.readUnsignedByte();
+					var28[var8] = var10 + (var9 << 8);
+				}
+			}
+		}
 
-      for(var9 = 0; var9 < 5; ++var9) {
-         var10 = buf.readUnsignedByte();
-         if (var10 < 0 || var10 >= class164.field1774[var9].length) {
-            var10 = 0;
-         }
+		int[] var29 = new int[5];
 
-         var29[var9] = var10;
-      }
+		for (var9 = 0; var9 < 5; ++var9) {
+			var10 = var1.readUnsignedByte();
+			if (var10 < 0 || var10 >= class510.field3717[var9].length) {
+				var10 = 0;
+			}
 
-      super.field989 = buf.readUnsignedShort();
-      if (super.field989 == 65535) {
-         super.field989 = -1;
-      }
+			var29[var9] = var10;
+		}
 
-      super.field995 = buf.readUnsignedShort();
-      if (65535 == super.field995) {
-         super.field995 = -1;
-      }
+		super.field383 = var1.readUnsignedShort();
+		if (super.field383 == 65535) {
+			super.field383 = -1;
+		}
 
-      super.field948 = super.field995;
-      super.field993 = buf.readUnsignedShort();
-      if (65535 == super.field993) {
-         super.field993 = -1;
-      }
+		super.field335 = var1.readUnsignedShort();
+		if (super.field335 == 65535) {
+			super.field335 = -1;
+		}
 
-      super.field1004 = buf.readUnsignedShort();
-      if (super.field1004 == 65535) {
-         super.field1004 = -1;
-      }
+		super.field336 = super.field335;
+		super.field331 = var1.readUnsignedShort();
+		if (super.field331 == 65535) {
+			super.field331 = -1;
+		}
 
-      super.field1001 = buf.readUnsignedShort();
-      if (super.field1001 == 65535) {
-         super.field1001 = -1;
-      }
+		super.field338 = var1.readUnsignedShort();
+		if (super.field338 == 65535) {
+			super.field338 = -1;
+		}
 
-      super.field984 = buf.readUnsignedShort();
-      if (65535 == super.field984) {
-         super.field984 = -1;
-      }
+		super.field341 = var1.readUnsignedShort();
+		if (super.field341 == 65535) {
+			super.field341 = -1;
+		}
 
-      super.field953 = buf.readUnsignedShort();
-      if (65535 == super.field953) {
-         super.field953 = -1;
-      }
+		super.field340 = var1.readUnsignedShort();
+		if (super.field340 == 65535) {
+			super.field340 = -1;
+		}
 
-      this.field740 = new class526(buf.readString(), class454.field4743);
-      this.method1812();
-      this.method1785();
-      this.method1805();
-      if (class146.field1362 == this) {
-         class524.field5155 = this.field740.method9155();
-      }
+		super.field401 = var1.readUnsignedShort();
+		if (super.field401 == 65535) {
+			super.field401 = -1;
+		}
 
-      this.field743 = buf.readUnsignedByte();
-      this.field761 = buf.readUnsignedShort();
-      this.field760 = buf.readUnsignedByte() == 1;
-      if (Client.field1434 == 0 && Client.privilege >= 2) {
-         this.field760 = false;
-      }
+		this.field3005 = new class509(var1.readStringOrNull(), class474.field3325);
+		this.method2116();
+		this.method2124();
+		this.method2125();
+		if (class114.field720 == this) {
+			class2.field5 = this.field3005.method2398();
+		}
 
-      class204[] var30 = null;
-      boolean var31 = false;
-      int var11 = buf.readUnsignedShort();
-      var31 = 1 == (var11 >> 15 & 1);
-      int var12;
-      if (var11 > 0 && var11 != 32768) {
-         var30 = new class204[12];
+		this.field2993 = var1.readUnsignedByte();
+		this.field2999 = var1.readUnsignedShort();
+		this.field3008 = var1.readUnsignedByte() == 1;
+		if (Client.field1842 == 0 && Client.field2087 >= 2) {
+			this.field3008 = false;
+		}
 
-         for(var12 = 0; var12 < 12; ++var12) {
-            int var13 = var11 >> 12 - var12 & 1;
-            if (var13 == 1) {
-               int var17 = var6[var12] - 512;
-               int var18 = buf.readUnsignedByte();
-               boolean var19 = 0 != (var18 & 1);
-               boolean var20 = (var18 & 2) != 0;
-               class204 var21 = new class204(var17);
-               int var22;
-               int[] var23;
-               boolean var24;
-               int var25;
-               short var26;
-               if (var19) {
-                  var22 = buf.readUnsignedByte();
-                  var23 = new int[]{var22 & 15, var22 >> 4 & 15};
-                  var24 = var21.field2198 != null && var23.length == var21.field2198.length;
+		class272[] var30 = null;
+		boolean var31 = false;
+		int var11 = var1.readUnsignedShort();
+		var31 = (var11 >> 15 & 1) == 1;
+		int var12;
+		if (var11 > 0 && var11 != 32768) {
+			var30 = new class272[12];
 
-                  for(var25 = 0; var25 < 2; ++var25) {
-                     if (15 != var23[var25]) {
-                        var26 = (short)buf.readUnsignedShort();
-                        if (var24) {
-                           var21.field2198[var23[var25]] = var26;
-                        }
-                     }
-                  }
-               }
+			for (var12 = 0; var12 < 12; ++var12) {
+				int var13 = var11 >> 12 - var12 & 1;
+				if (var13 == 1) {
+					int var17 = var6[var12] - 512;
+					int var18 = var1.readUnsignedByte();
+					boolean var19 = (var18 & 1) != 0;
+					boolean var20 = (var18 & 2) != 0;
+					class272 var21 = new class272(var17);
+					int var22;
+					int[] var23;
+					boolean var24;
+					int var25;
+					short var26;
+					if (var19) {
+						var22 = var1.readUnsignedByte();
+						var23 = new int[]{var22 & 15, var22 >> 4 & 15};
+						var24 = var21.field1796 != null && var23.length == var21.field1796.length;
 
-               if (var20) {
-                  var22 = buf.readUnsignedByte();
-                  var23 = new int[]{var22 & 15, var22 >> 4 & 15};
-                  var24 = null != var21.field2201 && var21.field2201.length == var23.length;
+						for (var25 = 0; var25 < 2; ++var25) {
+							if (var23[var25] != 15) {
+								var26 = (short)var1.readUnsignedShort();
+								if (var24) {
+									var21.field1796[var23[var25]] = var26;
+								}
+							}
+						}
+					}
 
-                  for(var25 = 0; var25 < 2; ++var25) {
-                     if (15 != var23[var25]) {
-                        var26 = (short)buf.readUnsignedShort();
-                        if (var24) {
-                           var21.field2201[var23[var25]] = var26;
-                        }
-                     }
-                  }
-               }
+					if (var20) {
+						var22 = var1.readUnsignedByte();
+						var23 = new int[]{var22 & 15, var22 >> 4 & 15};
+						var24 = null != var21.field1795 && var23.length == var21.field1795.length;
 
-               var30[var12] = var21;
-            }
-         }
-      }
+						for (var25 = 0; var25 < 2; ++var25) {
+							if (var23[var25] != 15) {
+								var26 = (short)var1.readUnsignedShort();
+								if (var24) {
+									var21.field1795[var23[var25]] = var26;
+								}
+							}
+						}
+					}
 
-      for(var12 = 0; var12 < 3; ++var12) {
-         this.field742[var12] = buf.readString();
-      }
+					var30[var12] = var21;
+				}
+			}
+		}
 
-      int var27 = buf.readUnsignedByte();
-      if (null == this.field764) {
-         this.field764 = new class314();
-      }
+		for (var12 = 0; var12 < 3; ++var12) {
+			this.field2992[var12] = var1.readStringOrNull();
+		}
 
-      this.field764.method5794(var28, var6, var30, var31, var29, var3, var5, var27);
-   }
+		int var27 = var1.readUnsignedByte();
+		if (this.field2989 == null) {
+			this.field2989 = new class171();
+		}
 
-   boolean method1779() {
-      if (class426.field4610 == this.field738) {
-         this.method1781();
-      }
+		this.field2989.method898(var28, var6, var30, var31, var29, var3, var5, var27);
+	}
 
-      return class426.field4611 == this.field738;
-   }
+	boolean method2115() {
+		if (this.field3002 == class188.field1281) {
+			this.method2128();
+		}
 
-   void method1812() {
-      this.field738 = class426.field4610;
-   }
+		return this.field3002 == class188.field1284;
+	}
 
-   void method1781() {
-      this.field738 = class165.field1782.method1103(this.field740) ? class426.field4611 : class426.field4612;
-   }
+	void method2116() {
+		this.field3002 = class188.field1281;
+	}
 
-   boolean method1790() {
-      if (class426.field4610 == this.field746) {
-         this.method1818();
-      }
+	void method2128() {
+		this.field3002 = class35.field176.method381(this.field3005) ? class188.field1284 : class188.field1282;
+	}
 
-      return this.field746 == class426.field4611;
-   }
+	boolean method2117() {
+		if (class188.field1281 == this.field3012) {
+			this.method2118();
+		}
 
-   void method1785() {
-      this.field746 = class426.field4610;
-   }
+		return class188.field1284 == this.field3012;
+	}
 
-   void method1818() {
-      this.field746 = null != Js5Index.field42 && Js5Index.field42.method7720(this.field740) ? class426.field4611 : class426.field4612;
-   }
+	void method2124() {
+		this.field3012 = class188.field1281;
+	}
 
-   void method1780() {
-      for(int var2 = 0; var2 < 4; ++var2) {
-         if (Client.field1628[var2] != null && Client.field1628[var2].method2601(this.field740.method9155()) != -1 && var2 != 2) {
-            this.field762 = class426.field4611;
-            return;
-         }
-      }
+	void method2118() {
+		this.field3012 = class257.field1749 != null && class257.field1749.method2232(this.field3005) ? class188.field1284 : class188.field1282;
+	}
 
-      this.field762 = class426.field4612;
-   }
+	void method2119() {
+		for (int var2 = 0; var2 < 4; ++var2) {
+			if (Client.field1919[var2] != null && Client.field1919[var2].method2408(this.field3005.method2398()) != -1 && var2 != 2) {
+				this.field3013 = class188.field1284;
+				return;
+			}
+		}
 
-   void method1805() {
-      this.field762 = class426.field4610;
-   }
+		this.field3013 = class188.field1282;
+	}
 
-   boolean method1787() {
-      if (this.field762 == class426.field4610) {
-         this.method1780();
-      }
+	void method2125() {
+		this.field3013 = class188.field1281;
+	}
 
-      return this.field762 == class426.field4611;
-   }
+	boolean method2126() {
+		if (class188.field1281 == this.field3013) {
+			this.method2119();
+		}
 
-   int method1788() {
-      return null != this.field764 && this.field764.field3495 != -1 ? class191.method4208(this.field764.field3495).field2049 : 1;
-   }
+		return this.field3013 == class188.field1284;
+	}
 
-   protected final class249 method4273() {
-      if (this.field764 == null) {
-         return null;
-      } else {
-         class215 var2 = -1 != super.field968 && super.field988 == 0 ? class215.method2582(super.field968) : null;
-         class215 var3 = -1 != super.field1013 && !this.field756 && (super.field989 != super.field1013 || null == var2) ? class215.method2582(super.field1013) : null;
-         class249 var4 = this.field764.method5801(var2, super.field986, var3, super.field1011);
-         if (var4 == null) {
-            return null;
-         } else {
-            var4.method4763();
-            super.field1000 = var4.field2507;
-            int var5 = var4.field2750;
-            if (!this.field756) {
-               var4 = this.method2072(var4);
-            }
+	int method2120() {
+		return this.field2989 != null && this.field2989.field1206 != -1 ? class73.method366(this.field2989.field1206).field484 : 1;
+	}
 
-            if (!this.field756 && this.field751 != null) {
-               if (Client.field1445 >= this.field747) {
-                  this.field751 = null;
-               }
+	@Override
+	protected final class490 method2152() {
+		if (this.field2989 == null) {
+			return null;
+		} else {
+			class116 var2 = super.field373 != -1 && super.field376 == 0 ? class116.method539(super.field373) : null;
+			class116 var3 = super.field369 != -1 && !this.field3006 && (super.field383 != super.field369 || var2 == null) ? class116.method539(super.field369) : null;
+			class490 var4 = this.field2989.method906(var2, super.field334, var3, super.field370);
+			if (null == var4) {
+				return null;
+			} else {
+				var4.method2261();
+				super.field353 = var4.field3161;
+				int var5 = var4.field3448;
+				if (!this.field3006) {
+					var4 = this.method296(var4);
+				}
 
-               if (Client.field1445 >= this.field737 && Client.field1445 < this.field747) {
-                  class249 var6 = this.field751;
-                  var6.method4830(this.field748 - super.field949, this.field749 - this.field765, this.field745 - super.field963);
-                  if (512 == super.field1007) {
-                     var6.method4774();
-                     var6.method4774();
-                     var6.method4774();
-                  } else if (super.field1007 == 1024) {
-                     var6.method4774();
-                     var6.method4774();
-                  } else if (1536 == super.field1007) {
-                     var6.method4774();
-                  }
+				if (!this.field3006 && null != this.field2991) {
+					if (Client.field1846 >= this.field3011) {
+						this.field2991 = null;
+					}
 
-                  class249[] var7 = new class249[]{var4, var6};
-                  var4 = new class249(var7, 2);
-                  if (super.field1007 == 512) {
-                     var6.method4774();
-                  } else if (super.field1007 == 1024) {
-                     var6.method4774();
-                     var6.method4774();
-                  } else if (super.field1007 == 1536) {
-                     var6.method4774();
-                     var6.method4774();
-                     var6.method4774();
-                  }
+					if (Client.field1846 >= this.field2996 && Client.field1846 < this.field3011) {
+						class490 var6 = this.field2991;
+						var6.method2272(this.field2998 - super.field368, this.field2997 - this.field2995, this.field2990 - super.field329);
+						if (super.field351 == 512) {
+							var6.method2288();
+							var6.method2288();
+							var6.method2288();
+						} else if (super.field351 == 1024) {
+							var6.method2288();
+							var6.method2288();
+						} else if (super.field351 == 1536) {
+							var6.method2288();
+						}
 
-                  var6.method4830(super.field949 - this.field748, this.field765 - this.field749, super.field963 - this.field745);
-               }
-            }
+						class490[] var7 = new class490[]{var4, var6};
+						var4 = new class490(var7, 2);
+						if (super.field351 == 512) {
+							var6.method2288();
+						} else if (super.field351 == 1024) {
+							var6.method2288();
+							var6.method2288();
+						} else if (super.field351 == 1536) {
+							var6.method2288();
+							var6.method2288();
+							var6.method2288();
+						}
 
-            var4.field2749 = true;
-            if (super.field1006 != 0 && Client.field1445 >= super.field941 && Client.field1445 < super.field1002) {
-               var4.field2761 = super.field1003;
-               var4.field2792 = super.field996;
-               var4.field2793 = super.field1005;
-               var4.field2720 = super.field1006;
-               var4.field2730 = (short)var5;
-            } else {
-               var4.field2720 = 0;
-            }
+						var6.method2272(super.field368 - this.field2998, this.field2995 - this.field2997, super.field329 - this.field2990);
+					}
+				}
 
-            return var4;
-         }
-      }
-   }
+				var4.field3454 = true;
+				if (super.field394 != 0 && Client.field1846 >= super.field389 && Client.field1846 < super.field390) {
+					var4.field3490 = super.field391;
+					var4.field3467 = super.field392;
+					var4.field3492 = super.field393;
+					var4.field3493 = super.field394;
+					var4.field3494 = (short)var5;
+				} else {
+					var4.field3493 = 0;
+				}
 
-   final void method1786(int var1, int var2, MovementType var3) {
-      if (-1 != super.field968 && class215.method2582(super.field968).field2356 == 1) {
-         super.field968 = -1;
-      }
+				return var4;
+			}
+		}
+	}
 
-      this.method2073();
-      if (var1 >= 0 && var1 < 104 && var2 >= 0 && var2 < 104) {
-         if (super.pathX[0] >= 0 && super.pathX[0] < 104 && super.pathY[0] >= 0 && super.pathY[0] < 104) {
-            if (var3 == MovementType.field2450) {
-               Client.method1483(this, var1, var2, MovementType.field2450);
-            }
+	final void moveTo(int var1, int var2, MovementType var3) {
+		if (super.field373 != -1 && class116.method539(super.field373).field746 == 1) {
+			super.field373 = -1;
+		}
 
-            this.method1792(var1, var2, var3);
-         } else {
-            this.method1795(var1, var2);
-         }
-      } else {
-         this.method1795(var1, var2);
-      }
+		this.method294();
+		if (var1 >= 0 && var1 < 104 && var2 >= 0 && var2 < 104) {
+			if (super.field399[0] >= 0 && super.field399[0] < 104 && super.field400[0] >= 0 && super.field400[0] < 104) {
+				if (var3 == MovementType.run) {
+					Client.method1375(this, var1, var2, MovementType.run);
+				}
 
-   }
+				this.method2123(var1, var2, var3);
+			} else {
+				this.teleport(var1, var2);
+			}
+		} else {
+			this.teleport(var1, var2);
+		}
 
-   void method1795(int var1, int var2) {
-      super.field1010 = 0;
-      super.field1015 = 0;
-      super.field1014 = 0;
-      super.pathX[0] = var1;
-      super.pathY[0] = var2;
-      int var4 = this.method1788();
-      super.field949 = super.pathX[0] * 128 + var4 * 64;
-      super.field963 = super.pathY[0] * 128 + var4 * 64;
-   }
+	}
 
-   final void method1792(int var1, int var2, MovementType var3) {
-      if (super.field1010 < 9) {
-         ++super.field1010;
-      }
+	void teleport(int var1, int var2) {
+		super.field360 = 0;
+		super.field403 = 0;
+		super.field375 = 0;
+		super.field399[0] = var1;
+		super.field400[0] = var2;
+		int var4 = this.method2120();
+		super.field368 = var4 * 64 + 128 * super.field399[0];
+		super.field329 = var4 * 64 + super.field400[0] * 128;
+	}
 
-      for(int var5 = super.field1010; var5 > 0; --var5) {
-         super.pathX[var5] = super.pathX[var5 - 1];
-         super.pathY[var5] = super.pathY[var5 - 1];
-         super.field998[var5] = super.field998[var5 - 1];
-      }
+	final void method2123(int var1, int var2, MovementType var3) {
+		if (super.field360 < 9) {
+			++super.field360;
+		}
 
-      super.pathX[0] = var1;
-      super.pathY[0] = var2;
-      super.field998[0] = var3;
-   }
+		for (int var5 = super.field360; var5 > 0; --var5) {
+			super.field399[var5] = super.field399[var5 - 1];
+			super.field400[var5] = super.field400[var5 - 1];
+			super.field342[var5] = super.field342[var5 - 1];
+		}
 
-   final boolean method2065() {
-      return null != this.field764;
-   }
+		super.field399[0] = var1;
+		super.field400[0] = var2;
+		super.field342[0] = var3;
+	}
+
+	@Override
+	final boolean method289() {
+		return this.field2989 != null;
+	}
+
+	static int method2129(int var0, int var1, int var2) {
+		return var0 << 28 | var1 << 14 | var2;
+	}
 }

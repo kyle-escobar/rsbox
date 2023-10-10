@@ -1,18 +1,38 @@
-public class class7 implements class383 {
-   static final class7 field47 = new class7(0, 0);
-   final int field44;
-   final int field45;
+public class class7 extends class22 {
+	int field32;
+	public boolean field36;
+	public byte[] field35;
+	public int field33;
+	public int field34;
 
-   class7(int var1, int var2) {
-      this.field45 = var1;
-      this.field44 = var2;
-   }
+	class7(int var1, byte[] var2, int var3, int var4) {
+		this.field34 = var1;
+		this.field35 = var2;
+		this.field33 = var3;
+		this.field32 = var4;
+	}
 
-   public static class7[] method5783() {
-      return new class7[]{field47};
-   }
+	class7(int var1, byte[] var2, int var3, int var4, boolean var5) {
+		this.field34 = var1;
+		this.field35 = var2;
+		this.field33 = var3;
+		this.field32 = var4;
+		this.field36 = var5;
+	}
 
-   public int serialId() {
-      return this.field44;
-   }
+	public class7 method41(class388 var1) {
+		this.field35 = var1.method1823(this.field35);
+		this.field34 = var1.method1824(this.field34);
+		if (this.field33 == this.field32) {
+			this.field33 = this.field32 = var1.method1826(this.field33);
+		} else {
+			this.field33 = var1.method1826(this.field33);
+			this.field32 = var1.method1826(this.field32);
+			if (this.field33 == this.field32) {
+				--this.field33;
+			}
+		}
+
+		return this;
+	}
 }

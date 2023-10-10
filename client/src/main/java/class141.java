@@ -1,30 +1,127 @@
-public class class141 extends class133 {
-   static class79 clientPreferences;
-   boolean field1308;
-   byte field1305;
-   byte field1306;
-   byte field1309;
-   byte field1311;
-   // $FF: synthetic field
-   final class148 this$0;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.ProtocolException;
+import java.net.URL;
+import javax.net.ssl.HttpsURLConnection;
 
-   class141(class148 var1) {
-      this.this$0 = var1;
-   }
+public class class141 {
+	static class142 field937;
+	static int field933;
+	boolean field930;
+	boolean field934;
+	class531 field931;
+	int field936;
+	final class520 field935;
+	final class548 field932;
+	final HttpsURLConnection field938;
 
-   void method2457(Buffer var1) {
-      this.field1308 = var1.readUnsignedByte() == 1;
-      this.field1306 = var1.readByte();
-      this.field1305 = var1.readByte();
-      this.field1309 = var1.readByte();
-      this.field1311 = var1.readByte();
-   }
+	public class141(URL var1, class548 var2, boolean var3) throws IOException {
+		this(var1, var2, new class520(), var3);
+	}
 
-   void method2458(class154 var1) {
-      var1.field1401 = this.field1308;
-      var1.field1403 = this.field1306;
-      var1.field1397 = this.field1305;
-      var1.field1404 = this.field1309;
-      var1.field1405 = this.field1311;
-   }
+	public class141(URL var1, class548 var2, class520 var3, boolean var4) throws IOException {
+		this.field934 = false;
+		this.field930 = false;
+		this.field936 = 300000;
+		if (!var2.method2628()) {
+			throw new UnsupportedEncodingException("Unsupported request method used " + var2.method2629());
+		} else {
+			this.field938 = (HttpsURLConnection)var1.openConnection();
+			if (!var4) {
+				HttpsURLConnection var5 = this.field938;
+				if (null == class30.field149) {
+					class30.field149 = new class30();
+				}
+
+				class30 var6 = class30.field149;
+				var5.setSSLSocketFactory(var6);
+			}
+
+			this.field932 = var2;
+			this.field935 = null != var3 ? var3 : new class520();
+		}
+	}
+
+	public class520 method728() {
+		return this.field935;
+	}
+
+	public void method724(class531 var1) {
+		if (!this.field934) {
+			if (var1 == null) {
+				this.field935.method2438("Content-Type");
+				this.field931 = null;
+			} else {
+				this.field931 = var1;
+				if (this.field931.method2549() != null) {
+					this.field935.method2440(this.field931.method2549());
+				} else {
+					this.field935.method2441();
+				}
+
+			}
+		}
+	}
+
+	void method725() throws ProtocolException {
+		if (!this.field934) {
+			this.field938.setRequestMethod(this.field932.method2629());
+			this.field935.method2437(this.field938);
+			if (this.field932.method2627() && this.field931 != null) {
+				this.field938.setDoOutput(true);
+				ByteArrayOutputStream var2 = new ByteArrayOutputStream();
+
+				try {
+					var2.write(this.field931.method2548());
+					var2.writeTo(this.field938.getOutputStream());
+				} catch (IOException var12) {
+					var12.printStackTrace();
+				} finally {
+					try {
+						var2.close();
+					} catch (IOException var11) {
+						var11.printStackTrace();
+					}
+
+				}
+			}
+
+			this.field938.setConnectTimeout(this.field936);
+			this.field938.setInstanceFollowRedirects(this.field930);
+			this.field934 = true;
+		}
+	}
+
+	boolean method726() throws IOException {
+		if (!this.field934) {
+			this.method725();
+		}
+
+		this.field938.connect();
+		return this.field938.getResponseCode() == -1;
+	}
+
+	class80 method727() {
+		try {
+			if (!this.field934 || this.field938.getResponseCode() == -1) {
+				return new class80("No REST response has been received yet.");
+			}
+		} catch (IOException var11) {
+			this.field938.disconnect();
+			return new class80("Error decoding REST response code: " + var11.getMessage());
+		}
+
+		class80 var4;
+		try {
+			class80 var2 = new class80(this.field938);
+			return var2;
+		} catch (IOException var9) {
+			var4 = new class80("Error decoding REST response: " + var9.getMessage());
+		} finally {
+			this.field938.disconnect();
+		}
+
+		return var4;
+	}
 }

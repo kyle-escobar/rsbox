@@ -1,20 +1,14 @@
-public class class94 extends class470 {
-   int field861;
-   int field862;
-   int field863;
-   int field864;
+public class class94 {
+	static class230[] field602;
+	static int field601;
+	static int[][] regionXteaKeys;
+	// $FF: synthetic field
+	final class57 this$0;
+	public class394 field604;
+	public float[] field603;
 
-   class94(int var1, int var2, int var3, int var4) {
-      this.field864 = var1;
-      this.field862 = var2;
-      this.field863 = var3;
-      this.field861 = var4;
-   }
-
-   void method1992(int var1, int var2, int var3, int var4) {
-      this.field864 = var1;
-      this.field862 = var2;
-      this.field863 = var3;
-      this.field861 = var4;
-   }
+	class94(class57 var1) {
+		this.this$0 = var1;
+		this.field603 = new float[4];
+	}
 }

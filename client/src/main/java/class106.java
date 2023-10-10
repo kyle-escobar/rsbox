@@ -1,75 +1,137 @@
-import java.io.IOException;
+public class class106 implements Runnable {
+	static boolean field680;
+	static class69 field677;
+	static int field678;
+	static Object field676;
+	static final class69 field679;
 
-public class class106 {
-   boolean field1050 = true;
-   ServerPacket serverPacket = null;
-   ServerPacket field1049;
-   ServerPacket field1054;
-   ServerPacket field1055;
-   class382 field1043 = new class382();
-   class424 field1051;
-   PacketBuffer buffer = new PacketBuffer(40000);
-   Buffer field1045 = new Buffer(5000);
-   int packetLength = 0;
-   int field1052 = 0;
-   int field1053 = 0;
-   int field1056 = 0;
-   public class540 field1046;
+	static {
+		field679 = new class69();
+		field677 = new class69();
+		field678 = 0;
+		field680 = false;
+		field676 = new Object();
+	}
 
-   class106() {
-   }
+	class106() {
+	}
 
-   final void clearQueue() {
-      this.field1043.method6903();
-      this.field1053 = 0;
-   }
+	@Override
+	public void run() {
+		try {
+			while (true) {
+				class87 var1;
+				synchronized(field679) {
+					var1 = (class87)field679.method327();
+				}
 
-   final void method2131() throws IOException {
-      if (this.field1051 != null && this.field1053 > 0) {
-         this.field1045.offset = 0;
+				if (var1 != null) {
+					if (var1.field577 == 0) {
+						var1.field578.method2186((int)var1.field2472, var1.field580, var1.field580.length);
+						synchronized(field679) {
+							var1.method1719();
+						}
+					} else if (var1.field577 == 1) {
+						var1.field580 = var1.field578.method2185((int)var1.field2472);
+						synchronized(field679) {
+							field677.method323(var1);
+						}
+					}
 
-         while(true) {
-            class308 var2 = (class308)this.field1043.method6847();
-            if (null == var2 || var2.field3353 > this.field1045.data.length - this.field1045.offset) {
-               this.field1051.write(this.field1045.data, 0, this.field1045.offset);
-               this.field1052 = 0;
-               break;
-            }
+					synchronized(field676) {
+						if ((field680 || field678 <= 1) && field679.method333()) {
+							field678 = 0;
+							field676.notifyAll();
+							return;
+						}
 
-            this.field1045.writeBytes(var2.buffer.data, 0, var2.field3353);
-            this.field1053 -= var2.field3353;
-            var2.method8116();
-            var2.buffer.release();
-            var2.method5744();
-         }
-      }
+						field678 = 600;
+					}
+				} else {
+					class325.method1587(100L);
+					synchronized(field676) {
+						if ((field680 || field678 <= 1) && field679.method333()) {
+							field678 = 0;
+							field676.notifyAll();
+							return;
+						}
 
-   }
+						--field678;
+					}
+				}
+			}
+		} catch (Exception var13) {
+			class2.method1((String)null, var13);
+		}
+	}
 
-   public final void write(class308 var1) {
-      this.field1043.method6874(var1);
-      var1.field3353 = var1.buffer.offset;
-      var1.buffer.offset = 0;
-      this.field1053 += var1.field3353;
-   }
+	static void method499(int var0, byte[] var1, class471 var2) {
+		class87 var4 = new class87();
+		var4.field577 = 0;
+		var4.field2472 = (long)var0;
+		var4.field580 = var1;
+		var4.field578 = var2;
+		synchronized(field679) {
+			field679.method323(var4);
+		}
 
-   void method2133(class424 var1) {
-      this.field1051 = var1;
-   }
+		method497();
+	}
 
-   void method2146() {
-      if (null != this.field1051) {
-         this.field1051.method7589();
-         this.field1051 = null;
-      }
+	static void method498(int var0, class471 var1, class198 var2) {
+		class87 var4 = new class87();
+		var4.field577 = 1;
+		var4.field2472 = (long)var0;
+		var4.field578 = var1;
+		var4.field579 = var2;
+		synchronized(field679) {
+			field679.method323(var4);
+		}
 
-   }
+		method497();
+	}
 
-   void method2150() {
-      this.field1051 = null;
-   }
+	public static void method501() {
+		while (true) {
+			class87 var1;
+			synchronized(field679) {
+				var1 = (class87)field677.method326();
+			}
 
-   class424 method2137() {
-      return this.field1051;
-   }
+			if (var1 == null) {
+				return;
+			}
+
+			var1.field579.method963(var1.field578, (int)var1.field2472, var1.field580, false);
+		}
+	}
+
+	static void method497() {
+		synchronized(field676) {
+			if (field678 == 0) {
+				class233.field1536 = new Thread(new class106());
+				class233.field1536.setDaemon(true);
+				class233.field1536.start();
+				class233.field1536.setPriority(5);
+			}
+
+			field678 = 600;
+			field680 = false;
+		}
+	}
+
+	public static void method500() {
+		synchronized(field676) {
+			if (field678 != 0) {
+				field678 = 1;
+				field680 = true;
+
+				try {
+					field676.wait();
+				} catch (InterruptedException var4) {
+				}
+			}
+
+		}
+	}
 }

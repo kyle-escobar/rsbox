@@ -9,11 +9,11 @@ import io.rsbox.server.util.buffer.ADD
 import io.rsbox.server.util.buffer.JagByteBuf
 import io.rsbox.server.util.buffer.LITTLE
 
-@ServerPacket(opcode = 106, type = PacketType.FIXED)
+@ServerPacket(opcode = 49, type = PacketType.FIXED)
 data class IfOpenTopServerPacket(val interfaceId: Int) : Packet {
     companion object : Codec<IfOpenTopServerPacket> {
         override fun encode(session: Session, packet: IfOpenTopServerPacket, out: JagByteBuf) {
-            out.writeShort(packet.interfaceId, endian = LITTLE, transform = ADD)
+            out.writeShort(packet.interfaceId, transform = ADD)
         }
     }
 }

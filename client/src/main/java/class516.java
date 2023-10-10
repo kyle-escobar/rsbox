@@ -1,21 +1,29 @@
-public class class516 {
-   static final int[] field5120 = new int[]{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, -1, 1, -1, 1, 1, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, -1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 1, 1, 1, 1, 3, 3, 1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
+public class class516 implements class501 {
+	static class198 field4073;
+	static int[] field4078;
+	static final class516 field4072;
+	static final class516 field4074;
+	static final class516 field4077;
+	final int field4076;
+	public final int field4075;
 
-   class516() throws Throwable {
-   }
+	static {
+		field4077 = new class516(1, 0);
+		field4074 = new class516(0, 1);
+		field4072 = new class516(2, 2);
+	}
 
-   public static int method6377(int var0) {
-      return var0 != 0 && var0 != 1 ? -1 : 0;
-   }
+	class516(int var1, int var2) {
+		this.field4075 = var1;
+		this.field4076 = var2;
+	}
 
-   public static class507 method7421(int var0) {
-      int var2 = field5120[var0];
-      if (var2 == 1) {
-         return class507.field5074;
-      } else if (var2 == 2) {
-         return class507.field5072;
-      } else {
-         return var2 == 3 ? class507.field5071 : null;
-      }
-   }
+	@Override
+	public int getId() {
+		return this.field4076;
+	}
+
+	static class516[] method2430() {
+		return new class516[]{field4074, field4077, field4072};
+	}
 }

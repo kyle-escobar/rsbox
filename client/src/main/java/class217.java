@@ -1,67 +1,157 @@
-public abstract class class217 extends class535 {
-   boolean field2376 = false;
-   boolean field2381 = false;
-   class251 field2382;
-   int[] field2378;
+public class class217 extends class362 {
+	public static int field1414;
+	class118 field1412;
+	class247 field1415;
+	class69 field1413;
 
-   class217(class251 var1) {
-      this.field2378 = class229.field2514;
-      this.field2382 = var1;
-   }
+	class217(class118 var1) {
+		this.field1413 = new class69();
+		this.field1415 = new class247();
+		this.field1412 = var1;
+	}
 
-   static int method4149(int var0, byte var1, byte var2, byte var3, byte var4) {
-      int var5 = var0 >> 10 & 63;
-      int var6 = var0 >> 7 & 7;
-      int var7 = var0 & 127;
-      int var8 = var4 & 255;
-      if (var1 != -1) {
-         var5 += (var1 - var5) * var8 >> 7;
-      }
+	@Override
+	protected class362 method1727() {
+		class273 var1 = (class273)this.field1413.method327();
+		if (var1 == null) {
+			return null;
+		} else {
+			return (class362)(null != var1.field1805 ? var1.field1805 : this.method1728());
+		}
+	}
 
-      if (var2 != -1) {
-         var6 += (var2 - var6) * var8 >> 7;
-      }
+	@Override
+	protected class362 method1728() {
+		class273 var1;
+		do {
+			var1 = (class273)this.field1413.method331();
+			if (null == var1) {
+				return null;
+			}
+		} while(null == var1.field1805);
 
-      if (var3 != -1) {
-         var7 += (var3 - var7) * var8 >> 7;
-      }
+		return var1.field1805;
+	}
 
-      return (var5 << 10 | var6 << 7 | var7) & '\uffff';
-   }
+	@Override
+	protected int method1723() {
+		return 0;
+	}
 
-   static final int method4162(int var0, int var1) {
-      var1 = var1 * (var0 & 127) >> 7;
-      if (var1 < 2) {
-         var1 = 2;
-      } else if (var1 > 126) {
-         var1 = 126;
-      }
+	@Override
+	protected void method1725(int[] var1, int var2, int var3) {
+		this.field1415.method1725(var1, var2, var3);
 
-      return (var0 & '\uff80') + var1;
-   }
+		for (class273 var6 = (class273)this.field1413.method327(); null != var6; var6 = (class273)this.field1413.method331()) {
+			if (!this.field1412.method573(var6)) {
+				int var4 = var2;
+				int var5 = var3;
 
-   abstract void method4138(int var1, int var2, int var3, int var4, int var5, int var6, float var7, float var8, float var9, int var10);
+				do {
+					if (var5 <= var6.field1817) {
+						this.method1000(var6, var1, var4, var5, var5 + var4);
+						var6.field1817 -= var5;
+						break;
+					}
 
-   abstract void method4137(int var1, int var2, int var3, int var4, int var5, int var6, float var7, float var8, float var9, int var10, int var11, int var12);
+					this.method1000(var6, var1, var4, var6.field1817, var4 + var5);
+					var4 += var6.field1817;
+					var5 -= var6.field1817;
+				} while(!this.field1412.method568(var6, var1, var4, var5));
+			}
+		}
 
-   abstract void method4139(int var1, int var2, int var3, int var4, int var5, int var6, float var7, float var8, float var9, int var10, int var11, int var12, int var13, int var14, int var15, int var16, int var17, int var18, int var19, int var20, int var21, int var22);
+	}
 
-   abstract void method4152(int var1, int var2, int var3, int var4, int var5, int var6, float var7, float var8, float var9, int var10, int var11, int var12, int var13, int var14, int var15, int var16, int var17, int var18, int var19, int var20, int var21, int var22);
+	@Override
+	protected void method1726(int var1) {
+		this.field1415.method1726(var1);
 
-   void method4132(int[] var1, int var2, int var3, float[] var4) {
-      method9241(var1, var2, var3, var4);
-   }
+		for (class273 var3 = (class273)this.field1413.method327(); var3 != null; var3 = (class273)this.field1413.method331()) {
+			if (!this.field1412.method573(var3)) {
+				int var2 = var1;
 
-   void method4135(int var1, int var2, int var3, int var4, int var5, int var6, float var7, float var8, float var9, int var10, int var11, int var12, byte var13, byte var14, byte var15, byte var16) {
-      var10 = method4149(var10, var13, var14, var15, var16);
-      var11 = method4149(var11, var13, var14, var15, var16);
-      var12 = method4149(var12, var13, var14, var15, var16);
-      this.method4137(var1, var2, var3, var4, var5, var6, var7, var8, var9, var10, var11, var12);
-   }
+				do {
+					if (var2 <= var3.field1817) {
+						this.method1003(var3, var2);
+						var3.field1817 -= var2;
+						break;
+					}
 
-   void method4140(int var1, int var2, int var3, int var4, int var5, int var6, float var7, float var8, float var9, int var10, byte var11, byte var12, byte var13, byte var14) {
-      int var15 = method4149(var10, var11, var12, var13, var14);
-      var10 = this.field2378[var15];
-      this.method4138(var1, var2, var3, var4, var5, var6, var7, var8, var9, var10);
-   }
+					this.method1003(var3, var3.field1817);
+					var2 -= var3.field1817;
+				} while(!this.field1412.method568(var3, (int[])null, 0, var2));
+			}
+		}
+
+	}
+
+	void method1000(class273 var1, int[] var2, int var3, int var4, int var5) {
+		if ((this.field1412.field765[var1.field1798] & 4) != 0 && var1.field1806 < 0) {
+			int var7 = this.field1412.field783[var1.field1798] / class67.field437;
+
+			while (true) {
+				int var8 = (var7 + 1048575 - var1.field1816) / var7;
+				if (var8 > var4) {
+					var1.field1816 += var4 * var7;
+					break;
+				}
+
+				var1.field1805.method1725(var2, var3, var8);
+				var3 += var8;
+				var4 -= var8;
+				var1.field1816 += var8 * var7 - 1048576;
+				int var9 = class67.field437 / 100;
+				int var10 = 262144 / var7;
+				if (var10 < var9) {
+					var9 = var10;
+				}
+
+				class335 var11 = var1.field1805;
+				if (this.field1412.field768[var1.field1798] == 0) {
+					var1.field1805 = class335.method1638(var1.field1797, var11.method1617(), var11.method1610(), var11.method1634());
+				} else {
+					var1.field1805 = class335.method1638(var1.field1797, var11.method1617(), 0, var11.method1634());
+					this.field1412.method552(var1, var1.field1814.field129[var1.field1802] < 0);
+					var1.field1805.method1613(var9, var11.method1610());
+				}
+
+				if (var1.field1814.field129[var1.field1802] < 0) {
+					var1.field1805.method1623(-1);
+				}
+
+				var11.method1615(var9);
+				var11.method1725(var2, var3, var5 - var3);
+				if (var11.method1626()) {
+					this.field1415.method1140(var11);
+				}
+			}
+		}
+
+		var1.field1805.method1725(var2, var3, var4);
+	}
+
+	void method1003(class273 var1, int var2) {
+		if ((this.field1412.field765[var1.field1798] & 4) != 0 && var1.field1806 < 0) {
+			int var4 = this.field1412.field783[var1.field1798] / class67.field437;
+			int var5 = (var4 + 1048575 - var1.field1816) / var4;
+			var1.field1816 = var1.field1816 + var2 * var4 & 1048575;
+			if (var5 <= var2) {
+				if (this.field1412.field768[var1.field1798] == 0) {
+					var1.field1805 = class335.method1638(var1.field1797, var1.field1805.method1617(), var1.field1805.method1610(), var1.field1805.method1634());
+				} else {
+					var1.field1805 = class335.method1638(var1.field1797, var1.field1805.method1617(), 0, var1.field1805.method1634());
+					this.field1412.method552(var1, var1.field1814.field129[var1.field1802] < 0);
+				}
+
+				if (var1.field1814.field129[var1.field1802] < 0) {
+					var1.field1805.method1623(-1);
+				}
+
+				var2 = var1.field1816 / var4;
+			}
+		}
+
+		var1.field1805.method1726(var2);
+	}
 }

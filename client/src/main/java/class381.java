@@ -1,159 +1,131 @@
-import java.util.HashMap;
+import java.util.Arrays;
 
-public class class381 {
-   class453 field4388 = new class453(0, 0);
-   int field4389 = 0;
-   int[] field4387 = new int[2048];
-   int[] field4393 = new int[2048];
-   final HashMap field4390 = new HashMap();
+public class class381 implements class305 {
+	boolean[] field2633;
+	boolean[] field2634;
+	boolean[] field2635;
+	char[] field2625;
+	int field2629;
+	int field2631;
+	int field2632;
+	int field2636;
+	int[] field2628;
+	int[] field2630;
+	public char field2626;
+	public int field2627;
+	public int field2637;
+	public int[] field2624;
 
-   public class381() {
-      class235.field2616 = new int[2000];
-      int var1 = 0;
-      int var2 = 240;
+	public class381() {
+		this.field2625 = new char[128];
+		this.field2630 = new int[128];
+		this.field2624 = new int[128];
+		this.field2627 = 0;
+		this.field2628 = new int[128];
+		this.field2629 = 0;
+		this.field2636 = 0;
+		this.field2631 = 0;
+		this.field2632 = 0;
+		this.field2633 = new boolean[112];
+		this.field2634 = new boolean[112];
+		this.field2635 = new boolean[112];
+	}
 
-      int var3;
-      int var4;
-      for(var3 = 12; var1 < 16; var2 -= var3) {
-         var4 = class278.method6634((double)((float)var2 / 360.0F), 0.9998999834060669, (double)((float)var1 * 0.425F / 16.0F + 0.075F));
-         class235.field2616[var1] = var4;
-         ++var1;
-      }
+	@Override
+	public boolean method1558(int var1) {
+		this.method1794(var1);
+		this.field2633[var1] = true;
+		this.field2634[var1] = true;
+		this.field2635[var1] = false;
+		this.field2624[++this.field2627 - 1] = var1;
+		return true;
+	}
 
-      var2 = 48;
+	@Override
+	public boolean method1555(int var1) {
+		this.field2633[var1] = false;
+		this.field2634[var1] = false;
+		this.field2635[var1] = true;
+		this.field2628[++this.field2629 - 1] = var1;
+		return true;
+	}
 
-      for(var3 = var2 / 6; var1 < class235.field2616.length; var2 -= var3) {
-         var4 = var1 * 2;
+	@Override
+	public boolean method1557(char var1, byte var2) {
+		int var3 = 1 + this.field2631 & 127;
+		if (var3 != this.field2636) {
+			this.field2630[this.field2631] = -1;
+			this.field2625[this.field2631] = var1;
+			this.field2631 = var3;
+		}
 
-         for(int var5 = class278.method6634((double)((float)var2 / 360.0F), 0.9998999834060669, 0.5); var1 < var4 && var1 < class235.field2616.length; ++var1) {
-            class235.field2616[var1] = var5;
-         }
-      }
+		return false;
+	}
 
-   }
+	void method1794(int var1) {
+		int var3 = 1 + this.field2631 & 127;
+		if (this.field2636 != var3) {
+			this.field2630[this.field2631] = var1;
+			this.field2625[this.field2631] = 0;
+			this.field2631 = var3;
+		}
 
-   void method6820(int var1) {
-      int var3 = var1 * 2 + 1;
-      double var5 = (double)((float)var1 / 3.0F);
-      int var7 = 1 + var1 * 2;
-      double[] var8 = new double[var7];
-      int var9 = -var1;
+	}
 
-      for(int var10 = 0; var9 <= var1; ++var10) {
-         var8[var10] = class444.method10((double)var9, 0.0, var5);
-         ++var9;
-      }
+	@Override
+	public boolean method1556(boolean var1) {
+		return false;
+	}
 
-      double[] var4 = var8;
-      double var15 = var8[var1] * var8[var1];
-      int[] var16 = new int[var3 * var3];
-      boolean var11 = false;
+	public void method1793() {
+		this.field2636 = this.field2632;
+		this.field2632 = this.field2631;
+		this.field2627 = 0;
+		this.field2629 = 0;
+		Arrays.fill(this.field2634, false);
+		Arrays.fill(this.field2635, false);
+	}
 
-      for(int var12 = 0; var12 < var3; ++var12) {
-         for(int var13 = 0; var13 < var3; ++var13) {
-            int var14 = var16[var3 * var12 + var13] = (int)(256.0 * (var4[var13] * var4[var12] / var15));
-            if (!var11 && var14 > 0) {
-               var11 = true;
-            }
-         }
-      }
+	public final boolean method1795() {
+		if (this.field2636 == this.field2632) {
+			return false;
+		} else {
+			this.field2637 = this.field2630[this.field2636];
+			this.field2626 = this.field2625[this.field2636];
+			this.field2636 = 1 + this.field2636 & 127;
+			return true;
+		}
+	}
 
-      class523 var17 = new class523(var16, var3, var3);
-      this.field4390.put(var1, var17);
-   }
+	public boolean method1797(int var1) {
+		return var1 >= 0 && var1 < 112 ? this.field2634[var1] : false;
+	}
 
-   class523 method6821(int var1) {
-      if (!this.field4390.containsKey(var1)) {
-         this.method6820(var1);
-      }
+	public boolean method1798(int var1) {
+		return var1 >= 0 && var1 < 112 ? this.field2633[var1] : false;
+	}
 
-      return (class523)this.field4390.get(var1);
-   }
+	public boolean method1796(int var1) {
+		return var1 >= 0 && var1 < 112 ? this.field2635[var1] : false;
+	}
 
-   public final void method6822(int var1, int var2) {
-      if (this.field4389 < this.field4387.length) {
-         this.field4387[this.field4389] = var1;
-         this.field4393[this.field4389] = var2;
-         ++this.field4389;
-      }
-   }
+	public int[] method1800() {
+		int[] var2 = new int[this.field2627];
 
-   public final void method6823() {
-      this.field4389 = 0;
-   }
+		for (int var3 = 0; var3 < this.field2627; ++var3) {
+			var2[var3] = this.field2624[var3];
+		}
 
-   public final void method6824(int var1, int var2, class523 var3, float var4) {
-      int var6 = (int)(var4 * 18.0F);
-      class523 var7 = this.method6821(var6);
-      int var8 = 1 + var6 * 2;
-      class453 var9 = new class453(0, 0, var3.field5148, var3.field5153);
-      class453 var10 = new class453(0, 0);
-      this.field4388.method7916(var8, var8);
-      System.nanoTime();
+		return var2;
+	}
 
-      int var11;
-      int var12;
-      int var13;
-      for(var11 = 0; var11 < this.field4389; ++var11) {
-         var12 = this.field4387[var11];
-         var13 = this.field4393[var11];
-         int var14 = (int)((float)(var12 - var1) * var4) - var6;
-         int var15 = (int)((float)var3.field5153 - (float)(var13 - var2) * var4) - var6;
-         this.field4388.method7915(var14, var15);
-         this.field4388.method7928(var9, var10);
-         this.method6825(var7, var3, var10);
-      }
+	public int[] method1799() {
+		int[] var2 = new int[this.field2629];
 
-      System.nanoTime();
-      System.nanoTime();
+		for (int var3 = 0; var3 < this.field2629; ++var3) {
+			var2[var3] = this.field2628[var3];
+		}
 
-      for(var11 = 0; var11 < var3.field5147.length; ++var11) {
-         if (var3.field5147[var11] == 0) {
-            var3.field5147[var11] = -16777216;
-         } else {
-            var12 = (var3.field5147[var11] + 64 - 1) / 256;
-            if (var12 <= 0) {
-               var3.field5147[var11] = -16777216;
-            } else {
-               if (var12 > class235.field2616.length) {
-                  var12 = class235.field2616.length;
-               }
-
-               var13 = class235.field2616[var12 - 1];
-               var3.field5147[var11] = -16777216 | var13;
-            }
-         }
-      }
-
-      System.nanoTime();
-   }
-
-   void method6825(class523 var1, class523 var2, class453 var3) {
-      if (0 != var3.field4742 && 0 != var3.field4740) {
-         int var5 = 0;
-         int var6 = 0;
-         if (0 == var3.field4741) {
-            var5 = var1.field5148 - var3.field4742;
-         }
-
-         if (var3.field4739 == 0) {
-            var6 = var1.field5153 - var3.field4740;
-         }
-
-         int var7 = var5 + var6 * var1.field5148;
-         int var8 = var3.field4741 + var3.field4739 * var2.field5148;
-
-         for(int var9 = 0; var9 < var3.field4740; ++var9) {
-            for(int var10 = 0; var10 < var3.field4742; ++var10) {
-               int[] var10000 = var2.field5147;
-               int var10001 = var8++;
-               var10000[var10001] += var1.field5147[var7++];
-            }
-
-            var7 += var1.field5148 - var3.field4742;
-            var8 += var2.field5148 - var3.field4742;
-         }
-
-      }
-   }
+		return var2;
+	}
 }

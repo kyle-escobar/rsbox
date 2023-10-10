@@ -1,38 +1,33 @@
-import java.io.ByteArrayOutputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.util.Hashtable;
-import org.bouncycastle.crypto.tls.DefaultTlsClient;
-import org.bouncycastle.crypto.tls.TlsAuthentication;
+public class class24 {
+	static int field125;
+	float field123;
+	float field124;
+	float field126;
 
-class class24 extends DefaultTlsClient {
-   static class363 field121;
-   // $FF: synthetic field
-   final class8 this$1;
+	static {
+		new class24(0.0F, 0.0F, 0.0F);
+		new class24(1.0F, 1.0F, 1.0F);
+		new class24(1.0F, 0.0F, 0.0F);
+		new class24(0.0F, 1.0F, 0.0F);
+		new class24(0.0F, 0.0F, 1.0F);
+		method86(100);
+	}
 
-   class24(class8 var1) {
-      this.this$1 = var1;
-   }
+	class24(float var1, float var2, float var3) {
+		this.field126 = var1;
+		this.field124 = var2;
+		this.field123 = var3;
+	}
 
-   public Hashtable getClientExtensions() throws IOException {
-      Hashtable var1 = super.getClientExtensions();
-      if (var1 == null) {
-         var1 = new Hashtable();
-      }
+	final float method85() {
+		return (float)Math.sqrt((double)(this.field126 * this.field126 + this.field124 * this.field124 + this.field123 * this.field123));
+	}
 
-      byte[] var2 = this.this$1.val$host.getBytes();
-      ByteArrayOutputStream var3 = new ByteArrayOutputStream();
-      DataOutputStream var4 = new DataOutputStream(var3);
-      var4.writeShort(var2.length + 3);
-      var4.writeByte(0);
-      var4.writeShort(var2.length);
-      var4.write(var2);
-      var4.close();
-      var1.put(0, var3.toByteArray());
-      return var1;
-   }
+	@Override
+	public String toString() {
+		return this.field126 + ", " + this.field124 + ", " + this.field123;
+	}
 
-   public TlsAuthentication getAuthentication() throws IOException {
-      return new class20(this);
-   }
+	static void method86(int var0) {
+	}
 }

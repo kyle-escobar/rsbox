@@ -1,43 +1,31 @@
-import java.util.HashMap;
+public abstract class class494 {
+	static class198 field3514;
 
-public class class494 {
-   class342 field4994;
-   class342 field4995;
-   HashMap field4996;
+	class494() {
+	}
 
-   public class494(class342 var1, class342 var2) {
-      this.field4995 = var1;
-      this.field4994 = var2;
-      this.field4996 = new HashMap();
-   }
+	abstract byte[] method2299();
 
-   public HashMap method8461(class475[] var1) {
-      HashMap var3 = new HashMap();
+	public abstract void method2300(byte[] var1);
 
-      for(int var5 = 0; var5 < var1.length; ++var5) {
-         class475 var6 = var1[var5];
-         if (this.field4996.containsKey(var6)) {
-            var3.put(var6, this.field4996.get(var6));
-         } else {
-            class342 var8 = this.field4995;
-            class342 var9 = this.field4994;
-            String var10 = var6.field4840;
-            class393 var7;
-            if (!var8.method6401(var10, "")) {
-               var7 = null;
-            } else {
-               int var11 = var8.getGroupId(var10);
-               int var12 = var8.method6400(var11, "");
-               var7 = class538.method7037(var8, var9, var11, var12);
-            }
-
-            if (null != var7) {
-               this.field4996.put(var6, var7);
-               var3.put(var6, var7);
-            }
-         }
-      }
-
-      return var3;
-   }
+	public static byte[] method2301(Object var0, boolean var1) {
+		if (null == var0) {
+			return null;
+		} else if (var0 instanceof byte[]) {
+			byte[] var7 = (byte[])((byte[])var0);
+			if (var1) {
+				int var5 = var7.length;
+				byte[] var6 = new byte[var5];
+				System.arraycopy(var7, 0, var6, 0, var5);
+				return var6;
+			} else {
+				return var7;
+			}
+		} else if (var0 instanceof class494) {
+			class494 var3 = (class494)var0;
+			return var3.method2299();
+		} else {
+			throw new IllegalArgumentException();
+		}
+	}
 }

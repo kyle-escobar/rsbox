@@ -1,69 +1,67 @@
-public class class148 {
-   class382 field1370 = new class382();
-   int field1373 = -1;
-   long field1374;
+import java.awt.Component;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Point;
+import java.awt.Shape;
+import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferInt;
+import java.awt.image.DirectColorModel;
+import java.awt.image.Raster;
+import java.awt.image.WritableRaster;
+import java.util.Hashtable;
 
-   public class148(Buffer var1) {
-      this.method2559(var1);
-   }
+public final class class148 extends class552 {
+	Component field1028;
+	Image field1027;
 
-   void method2559(Buffer var1) {
-      this.field1374 = var1.readLong();
-      this.field1373 = var1.readInt();
+	class148(int var1, int var2, Component var3, boolean var4) {
+		super.field4306 = var1;
+		super.field4309 = var2;
+		super.field4308 = new int[1 + var2 * var1];
+		if (var4) {
+			super.field4307 = new float[var1 * var2 + 1];
+		}
 
-      for(int var3 = var1.readUnsignedByte(); var3 != 0; var3 = var1.readUnsignedByte()) {
-         Object var4;
-         if (var3 == 3) {
-            var4 = new class169(this);
-         } else if (var3 == 1) {
-            var4 = new class134(this);
-         } else if (var3 == 13) {
-            var4 = new class157(this);
-         } else if (var3 == 4) {
-            var4 = new class141(this);
-         } else if (var3 == 6) {
-            var4 = new class172(this);
-         } else if (var3 == 5) {
-            var4 = new class138(this);
-         } else if (var3 == 2) {
-            var4 = new class149(this);
-         } else if (var3 == 7) {
-            var4 = new class142(this);
-         } else if (var3 == 14) {
-            var4 = new class151(this);
-         } else if (var3 == 8) {
-            var4 = new class161(this);
-         } else if (var3 == 9) {
-            var4 = new class174(this);
-         } else if (var3 == 10) {
-            var4 = new Js5NetQueue(this);
-         } else if (var3 == 11) {
-            var4 = new class144(this);
-         } else if (var3 == 12) {
-            var4 = new class135(this);
-         } else {
-            if (var3 != 15) {
-               throw new RuntimeException("");
-            }
+		DataBufferInt var5 = new DataBufferInt(super.field4308, super.field4308.length);
+		DirectColorModel var6 = new DirectColorModel(32, 16711680, 65280, 255);
+		WritableRaster var7 = Raster.createWritableRaster(var6.createCompatibleSampleModel(super.field4306, super.field4309), var5, (Point)null);
+		this.field1027 = new BufferedImage(var6, var7, false, new Hashtable());
+		this.method793(var3);
+		this.method2635();
+	}
 
-            var4 = new class171(this);
-         }
+	final void method793(Component var1) {
+		this.field1028 = var1;
+	}
 
-         ((class133)var4).method2457(var1);
-         this.field1370.method6874((class470)var4);
-      }
+	@Override
+	public final void method2638(int var1, int var2) {
+		this.method797(this.field1028.getGraphics(), 0, 0);
+	}
 
-   }
+	@Override
+	public final void method2636(int var1, int var2, int var3, int var4) {
+		this.method795(this.field1028.getGraphics(), var1, var2, var3, var4);
+	}
 
-   public void method2563(class154 var1) {
-      if (this.field1374 == var1.field1395 && this.field1373 == var1.field1398) {
-         for(class133 var3 = (class133)this.field1370.method6847(); var3 != null; var3 = (class133)this.field1370.method6849()) {
-            var3.method2458(var1);
-         }
+	final void method797(Graphics var1, int var2, int var3) {
+		try {
+			var1.drawImage(this.field1027, 0, 0, this.field1028);
+		} catch (Exception var6) {
+			this.field1028.repaint();
+		}
 
-         ++var1.field1398;
-      } else {
-         throw new RuntimeException("");
-      }
-   }
+	}
+
+	final void method795(Graphics var1, int var2, int var3, int var4, int var5) {
+		try {
+			Shape var7 = var1.getClip();
+			var1.clipRect(var2, var3, var4, var5);
+			var1.drawImage(this.field1027, 0, 0, this.field1028);
+			var1.setClip(var7);
+		} catch (Exception var8) {
+			this.field1028.repaint();
+		}
+
+	}
 }

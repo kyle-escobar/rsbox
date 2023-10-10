@@ -1,66 +1,46 @@
-import java.io.UnsupportedEncodingException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+public class class10 implements class501 {
+	static class32 field49;
+	static final class10 field44;
+	static final class10 field45;
+	static final class10 field46;
+	static final class10 field47;
+	static final class10 field50;
+	static final class10 field51;
+	final int field42;
+	final int field43;
+	final int field48;
 
-public class class10 implements class18 {
-   final MessageDigest field57 = this.method195();
+	static {
+		field51 = new class10(0, 0, (String)null, 0);
+		field50 = new class10(1, 1, (String)null, 9);
+		field44 = new class10(2, 2, (String)null, 3);
+		field45 = new class10(3, 3, (String)null, 6);
+		field46 = new class10(4, 4, (String)null, 1);
+		field47 = new class10(5, 5, (String)null, 3);
+	}
 
-   class10(class22 var1) {
-   }
+	class10(int var1, int var2, String var3, int var4) {
+		this.field48 = var1;
+		this.field43 = var2;
+		this.field42 = var4;
+	}
 
-   static int method203(byte[] var0) {
-      int var1 = 0;
+	int method46() {
+		return this.field42;
+	}
 
-      for(int var3 = 0; var3 < var0.length; ++var3) {
-         byte var4 = var0[var3];
-         int var5 = method207(var4);
-         var1 += var5;
-         if (var5 != 8) {
-            break;
-         }
-      }
+	@Override
+	public int getId() {
+		return this.field43;
+	}
 
-      return var1;
-   }
+	static class10 method48(int var0) {
+		class10[] var2 = new class10[]{field51, field50, field44, field45, field46, field47};
+		class10 var3 = (class10)class26.method87(var2, var0);
+		if (var3 == null) {
+			var3 = field51;
+		}
 
-   static int method207(byte var0) {
-      int var1 = 0;
-      if (var0 == 0) {
-         var1 = 8;
-      } else {
-         for(int var2 = var0 & 255; (var2 & 128) == 0; var2 <<= 1) {
-            ++var1;
-         }
-      }
-
-      return var1;
-   }
-
-   boolean method191(int var1, String var2, long var3) {
-      byte[] var5 = this.method194(var2, var3);
-      return method203(var5) >= var1;
-   }
-
-   byte[] method194(String var1, long var2) {
-      StringBuilder var4 = new StringBuilder();
-      var4.append(var1).append(Long.toHexString(var2));
-      this.field57.reset();
-
-      try {
-         this.field57.update(var4.toString().getBytes("UTF-8"));
-      } catch (UnsupportedEncodingException var6) {
-         var6.printStackTrace();
-      }
-
-      return this.field57.digest();
-   }
-
-   MessageDigest method195() {
-      try {
-         return MessageDigest.getInstance("SHA-256");
-      } catch (NoSuchAlgorithmException var2) {
-         var2.printStackTrace();
-         return null;
-      }
-   }
+		return var3;
+	}
 }

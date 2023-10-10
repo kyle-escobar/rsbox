@@ -1,67 +1,22 @@
-import java.util.Iterator;
+public class class409 extends class415 {
+	byte field2807;
+	int field2806;
+	// $FF: synthetic field
+	final class14 this$0;
 
-public class class409 extends class406 {
-   class342 field4543;
-   class342 field4544;
-   class342 field4545;
+	class409(class14 var1) {
+		this.this$0 = var1;
+		this.field2806 = -1;
+	}
 
-   public class409(class406 var1, class342 var2, class342 var3, class342 var4) {
-      super(var1);
-      this.field4543 = var2;
-      this.field4544 = var3;
-      this.field4545 = var4;
-      super.field4513 = "LoadSongTask";
-   }
+	@Override
+	void method1905(Buffer var1) {
+		this.field2806 = var1.readUnsignedShort();
+		this.field2807 = var1.readByte();
+	}
 
-   public boolean method7131(int var1) {
-      int var3 = 0;
-      Iterator var4 = class303.field3194.iterator();
-
-      while(true) {
-         while(var4.hasNext()) {
-            class322 var5 = (class322)var4.next();
-            if (var5 != null && var5.field3533.field3113 > 1 && var5.field3533.method5619()) {
-               this.method7135("Attempted to load patches of already loading midiplayer!");
-               return true;
-            }
-
-            if (null != var5 && !var5.field3530) {
-               try {
-                  if (null != var5.field3531 && var5.field3524 != -1 && -1 != var5.field3526) {
-                     if (var5.field3535 == null) {
-                        var5.field3535 = class328.method6179(var5.field3531, var5.field3524, var5.field3526);
-                        if (var5.field3535 == null) {
-                           continue;
-                        }
-                     }
-
-                     if (var5.field3534 == null) {
-                        var5.field3534 = new class34(this.field4545, this.field4544);
-                     }
-
-                     if (var5.field3533.method5527(var5.field3535, this.field4543, var5.field3534)) {
-                        ++var3;
-                        var5.field3530 = true;
-                        var5.field3533.method5550();
-                     }
-                  } else {
-                     ++var3;
-                  }
-               } catch (Exception var7) {
-                  var7.printStackTrace();
-                  this.method7135(var7.getMessage());
-                  return true;
-               }
-            } else {
-               ++var3;
-            }
-         }
-
-         if (var3 == class303.field3194.size()) {
-            return true;
-         }
-
-         return false;
-      }
-   }
+	@Override
+	void method1906(class511 var1) {
+		var1.method2427(this.field2806, this.field2807);
+	}
 }

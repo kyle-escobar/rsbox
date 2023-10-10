@@ -26,26 +26,45 @@ class XteaConfig {
 
     operator fun get(region: Int): IntArray = xteas[region] ?: EMPTY_KEYS
 
-    data class XteaEntry(private val mapsquare: Int, private val key: IntArray) {
+    data class XteaEntry(
+        private val archive: Int,
+        private val group: Int,
+        private val name_hash: Int,
+        private val name: String,
+        private val mapsquare: Int,
+        private val key: IntArray
+    ) {
 
         val region = mapsquare
         val keys = key
 
         override fun equals(other: Any?): Boolean {
             if (this === other) return true
-            if (javaClass != other?.javaClass) return false
+            if (other !is XteaEntry) return false
 
-            other as XteaEntry
-
+            if (archive != other.archive) return false
+            if (group != other.group) return false
+            if (name_hash != other.name_hash) return false
+            if (name != other.name) return false
             if (mapsquare != other.mapsquare) return false
-            return key.contentEquals(other.key)
+            if (!key.contentEquals(other.key)) return false
+            if (region != other.region) return false
+            return keys.contentEquals(other.keys)
         }
 
         override fun hashCode(): Int {
-            var result = mapsquare
+            var result = archive
+            result = 31 * result + group
+            result = 31 * result + name_hash
+            result = 31 * result + name.hashCode()
+            result = 31 * result + mapsquare
             result = 31 * result + key.contentHashCode()
+            result = 31 * result + region
+            result = 31 * result + keys.contentHashCode()
             return result
         }
+
+
     }
 
     companion object {

@@ -1,12 +1,7 @@
-public class class182 {
-   static class363 field1885;
-   // $FF: synthetic field
-   final class173 this$0;
-   public class113 field1886;
-   public float[] field1882;
+public class class182 extends class292 {
+	public static class352 field1272;
 
-   class182(class173 var1) {
-      this.this$0 = var1;
-      this.field1882 = new float[4];
-   }
+	static {
+		field1272 = new class352(64);
+	}
 }

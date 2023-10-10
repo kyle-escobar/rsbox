@@ -43,7 +43,7 @@ class Player internal constructor(val session: Session) : Entity() {
     var passwordHash: String = ""
     var privilege = 3
     var isMember = true
-    var displayMode = DisplayMode.RESIZABLE_MODERN
+    var displayMode = DisplayMode.FIXED
     var appearance = Appearance.DEFAULT
     var skullIcon = -1
     var prayerIcon = -1
@@ -78,6 +78,11 @@ class Player internal constructor(val session: Session) : Entity() {
     fun moveTo(tile: Tile) {
         val route = pathFinder.findPath(this.tile.x, this.tile.y, tile.x, tile.y, tile.level, collision = CollisionStrategies.Normal)
         movementQueue.addRoute(route)
+    }
+
+    fun teleportTo(tile: Tile) {
+        movementQueue.clear()
+        teleportTile = tile
     }
 
     override fun equals(other: Any?): Boolean {

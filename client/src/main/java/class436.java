@@ -1,10 +1,12 @@
-public class class436 extends class484 {
-   public class526 field4661;
-   public int field4660 = (int)(class302.safeTime() / 1000L);
-   public short field4662;
+public class class436 {
+	class436 field2935;
+	int field2931;
+	Object field2936;
+	public int field2934;
+	public volatile int field2932;
+	public volatile Object field2933;
 
-   class436(class526 var1, int var2) {
-      this.field4661 = var1;
-      this.field4662 = (short)var2;
-   }
+	class436() {
+		this.field2932 = 0;
+	}
 }

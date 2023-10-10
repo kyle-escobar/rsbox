@@ -1,19 +1,11 @@
-public final class class302 {
-   public static class513[] field3191;
-   static class537[] field3190;
-   static long field3187;
-   static long field3188;
+public class class302 extends class292 {
+	static class352 field2212;
 
-   class302() throws Throwable {
-   }
+	static {
+		field2212 = new class352(64);
+	}
 
-   public static final synchronized long safeTime() {
-      long var1 = System.currentTimeMillis();
-      if (var1 < field3187) {
-         field3188 += field3187 - var1;
-      }
-
-      field3187 = var1;
-      return field3188 + var1;
-   }
+	public static void method1538() {
+		field2212.method1679();
+	}
 }

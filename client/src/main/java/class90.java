@@ -1,21 +1,20 @@
-public class class90 {
-   static String field827 = "true";
-   static String field828 = "->";
-   static String field829 = ",";
-   static String field830 = ")";
-   static String field831 = " (";
-   static String field832 = "|";
-   static String field833 = "</col>";
-   static String field835 = "<br>";
+public class class90 extends class147 {
+	final boolean field586;
 
-   class90() throws Throwable {
-   }
+	public class90(boolean var1) {
+		this.field586 = var1;
+	}
 
-   static String method2108(int var0) {
-      return "<img=" + var0 + ">";
-   }
+	int method417(class111 var1, class111 var2) {
+		if (var1.field705 != var2.field705) {
+			return this.field586 ? var1.field705 - var2.field705 : var2.field705 - var1.field705;
+		} else {
+			return this.method792(var1, var2);
+		}
+	}
 
-   static String method5890(int var0) {
-      return "<col=" + Integer.toHexString(var0) + ">";
-   }
+	@Override
+	public int compare(Object var1, Object var2) {
+		return this.method417((class111)var1, (class111)var2);
+	}
 }

@@ -1,12 +1,28 @@
-public class class271 {
-   static Component[] field2990;
-   final int field2987;
-   final int field2988;
-   final int field2989;
+import java.util.Comparator;
 
-   class271(int var1, int var2, int var3) {
-      this.field2989 = var1;
-      this.field2987 = var2;
-      this.field2988 = var3;
-   }
+class class271 implements Comparator {
+	// $FF: synthetic field
+	final class157 this$0;
+
+	class271(class157 var1) {
+		this.this$0 = var1;
+	}
+
+	int method1264(class360 var1, class360 var2) {
+		if (var1.field2476 > var2.field2476) {
+			return 1;
+		} else {
+			return var1.field2476 < var2.field2476 ? -1 : 0;
+		}
+	}
+
+	@Override
+	public int compare(Object var1, Object var2) {
+		return this.method1264((class360)var1, (class360)var2);
+	}
+
+	@Override
+	public boolean equals(Object var1) {
+		return super.equals(var1);
+	}
 }

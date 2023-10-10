@@ -1,172 +1,90 @@
-public class class489 implements class483 {
-   int field4951;
-   int field4953;
-   int field4954;
+import java.util.concurrent.ThreadFactory;
 
-   public class493 method8198() {
-      byte var2;
-      if (class218.field2396.startsWith("win")) {
-         var2 = 1;
-      } else if (class218.field2396.startsWith("mac")) {
-         var2 = 2;
-      } else if (class218.field2396.startsWith("linux")) {
-         var2 = 3;
-      } else {
-         var2 = 4;
-      }
+final class class489 implements ThreadFactory {
+	@Override
+	public Thread newThread(Runnable var1) {
+		return new Thread(var1, "OSRS Maya Anim Load");
+	}
 
-      String var3;
-      try {
-         var3 = System.getProperty("os.arch").toLowerCase();
-      } catch (Exception var31) {
-         var3 = "";
-      }
+	static final void method2254() {
+		for (int var1 = 0; var1 < Client.field1957; ++var1) {
+			int var10002 = Client.field1913[var1]--;
+			if (Client.field1913[var1] >= -10) {
+				class357 var10 = Client.field2089[var1];
+				if (null == var10) {
+					class357 var10000 = (class357)null;
+					var10 = class357.method1715(class174.field1221, Client.field2124[var1], 0);
+					if (null == var10) {
+						continue;
+					}
 
-      String var4;
-      try {
-         var4 = System.getProperty("os.version").toLowerCase();
-      } catch (Exception var30) {
-         var4 = "";
-      }
+					int[] var13 = Client.field1913;
+					var13[var1] += var10.method1713();
+					Client.field2089[var1] = var10;
+				}
 
-      String var5 = "Unknown";
-      String var6 = "1.1";
+				if (Client.field1913[var1] < 0) {
+					int var3;
+					if (Client.field2088[var1] != 0) {
+						int var4 = 128 * (Client.field2088[var1] & 255);
+						int var5 = Client.field2088[var1] >> 16 & 255;
+						int var6 = var5 * 128 + 64 - class114.field720.field368;
+						if (var6 < 0) {
+							var6 = -var6;
+						}
 
-      try {
-         var5 = System.getProperty("java.vendor");
-         var6 = System.getProperty("java.version");
-      } catch (Exception var29) {
-      }
+						int var7 = Client.field2088[var1] >> 8 & 255;
+						int var8 = var7 * 128 + 64 - class114.field720.field329;
+						if (var8 < 0) {
+							var8 = -var8;
+						}
 
-      boolean var7;
-      if (!var3.startsWith("amd64") && !var3.startsWith("x86_64")) {
-         var7 = false;
-      } else {
-         var7 = true;
-      }
+						int var9 = var6 + var8 - 128;
+						if (var9 > var4) {
+							Client.field1913[var1] = -100;
+							continue;
+						}
 
-      byte var8 = 0;
-      if (var2 == 1) {
-         if (var4.indexOf("4.0") != -1) {
-            var8 = 1;
-         } else if (var4.indexOf("4.1") != -1) {
-            var8 = 2;
-         } else if (var4.indexOf("4.9") != -1) {
-            var8 = 3;
-         } else if (var4.indexOf("5.0") != -1) {
-            var8 = 4;
-         } else if (var4.indexOf("5.1") != -1) {
-            var8 = 5;
-         } else if (var4.indexOf("5.2") != -1) {
-            var8 = 8;
-         } else if (var4.indexOf("6.0") != -1) {
-            var8 = 6;
-         } else if (var4.indexOf("6.1") != -1) {
-            var8 = 7;
-         } else if (var4.indexOf("6.2") != -1) {
-            var8 = 9;
-         } else if (var4.indexOf("6.3") != -1) {
-            var8 = 10;
-         } else if (var4.indexOf("10.0") != -1) {
-            var8 = 11;
-         }
-      } else if (var2 == 2) {
-         if (var4.indexOf("10.4") != -1) {
-            var8 = 20;
-         } else if (var4.indexOf("10.5") != -1) {
-            var8 = 21;
-         } else if (var4.indexOf("10.6") != -1) {
-            var8 = 22;
-         } else if (var4.indexOf("10.7") != -1) {
-            var8 = 23;
-         } else if (var4.indexOf("10.8") != -1) {
-            var8 = 24;
-         } else if (var4.indexOf("10.9") != -1) {
-            var8 = 25;
-         } else if (var4.indexOf("10.10") != -1) {
-            var8 = 26;
-         } else if (var4.indexOf("10.11") != -1) {
-            var8 = 27;
-         } else if (var4.indexOf("10.12") != -1) {
-            var8 = 28;
-         } else if (var4.indexOf("10.13") != -1) {
-            var8 = 29;
-         }
-      }
+						if (var9 < 0) {
+							var9 = 0;
+						}
 
-      byte var9;
-      if (var5.toLowerCase().indexOf("sun") != -1) {
-         var9 = 1;
-      } else if (var5.toLowerCase().indexOf("microsoft") != -1) {
-         var9 = 2;
-      } else if (var5.toLowerCase().indexOf("apple") != -1) {
-         var9 = 3;
-      } else if (var5.toLowerCase().indexOf("oracle") != -1) {
-         var9 = 5;
-      } else {
-         var9 = 4;
-      }
+						var3 = (var4 - var9) * class109.field693.method464() / var4;
+					} else {
+						var3 = class109.field693.method448();
+					}
 
-      this.method8433(var6);
-      boolean var10 = false;
-      int var11 = (int)(Runtime.getRuntime().maxMemory() / 1048576L) + 1;
-      int var12;
-      if (this.field4954 > 3) {
-         var12 = Runtime.getRuntime().availableProcessors();
-      } else {
-         var12 = 0;
-      }
+					if (var3 > 0) {
+						class7 var11 = var10.method1712().method41(class276.field1830);
+						class335 var12 = class335.method1633(var11, 100, var3);
+						var12.method1623(Client.field1887[var1] - 1);
+						class244.field1632.method1140(var12);
+					}
 
-      byte var13 = 0;
-      String var14 = "";
-      String var15 = "";
-      String var16 = "";
-      String var17 = "";
-      String var18 = "";
-      String var19 = "";
-      boolean var20 = false;
-      boolean var21 = false;
-      boolean var22 = false;
-      boolean var23 = false;
-      int[] var24 = new int[3];
-      boolean var25 = false;
-      String var26 = "";
-      String var27 = "";
-      boolean var28 = false;
-      return new class493(var2, var7, var8, var9, this.field4954, this.field4951, this.field4953, false, var11, var12, var13, 0, var14, var15, var16, var17, 0, 0, 0, 0, var18, var19, var24, 0, "", "");
-   }
+					Client.field1913[var1] = -100;
+				}
+			} else {
+				--Client.field1957;
 
-   void method8433(String var1) {
-      if (var1.startsWith("1.")) {
-         this.method8438(var1);
-      } else {
-         this.method8434(var1);
-      }
+				for (int var2 = var1; var2 < Client.field1957; ++var2) {
+					Client.field2124[var2] = Client.field2124[var2 + 1];
+					Client.field2089[var2] = Client.field2089[var2 + 1];
+					Client.field1887[var2] = Client.field1887[var2 + 1];
+					Client.field1913[var2] = Client.field1913[var2 + 1];
+					Client.field2088[var2] = Client.field2088[var2 + 1];
+				}
 
-   }
+				--var1;
+			}
+		}
 
-   void method8438(String var1) {
-      String[] var3 = var1.split("\\.");
+		if (Client.field2083 && !class483.method2227()) {
+			if (class109.field693.method446() != 0 && class483.method2218()) {
+				class483.method2221(class151.field1049, class109.field693.method446());
+			}
 
-      try {
-         this.field4954 = Integer.parseInt(var3[1]);
-         var3 = var3[2].split("_");
-         this.field4951 = Integer.parseInt(var3[0]);
-         this.field4953 = Integer.parseInt(var3[1]);
-      } catch (Exception var5) {
-      }
+			Client.field2083 = false;
+		}
 
-   }
-
-   void method8434(String var1) {
-      String[] var3 = var1.split("\\.");
-
-      try {
-         this.field4954 = Integer.parseInt(var3[0]);
-         this.field4951 = Integer.parseInt(var3[1]);
-         this.field4953 = Integer.parseInt(var3[2]);
-      } catch (Exception var5) {
-      }
-
-   }
+	}
 }

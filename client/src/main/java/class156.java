@@ -1,246 +1,283 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.Future;
+public class class156 extends class292 {
+	public static class352 field1062;
+	public static class352 field1063;
+	public static class352 field1075;
+	static class5 field1060;
+	static class5 field1073;
+	int field1061;
+	int field1070;
+	int field1071;
+	int field1076;
+	int field1077;
+	int field1079;
+	int field1080;
+	String field1068;
+	public int field1064;
+	public int field1065;
+	public int field1066;
+	public int field1067;
+	public int field1069;
+	public int field1072;
+	public int field1074;
+	public int[] field1078;
 
-public class class156 extends class476 {
-   boolean field1428;
-   class143[][] field1426 = (class143[][])null;
-   int field1423;
-   int field1427 = 0;
-   List field1430;
-   Future field1429;
-   public class143[][] field1424 = (class143[][])null;
-   public class219 field1425;
+	static {
+		field1062 = new class352(64);
+		field1063 = new class352(64);
+		field1075 = new class352(20);
+	}
 
-   public class156(class342 var1, class342 var2, int var3, boolean var4) {
-      this.field1423 = var3;
-      byte[] var5 = var1.method6381(this.field1423 >> 16 & '\uffff', this.field1423 & '\uffff');
-      Buffer var6 = new Buffer(var5);
-      int var7 = var6.readUnsignedByte();
-      int var8 = var6.readUnsignedShort();
-      byte[] var9;
-      if (var4) {
-         var9 = var2.method6389(0, var8);
-      } else {
-         var9 = var2.method6389(var8, 0);
-      }
+	class156() {
+		this.field1061 = -1;
+		this.field1066 = 16777215;
+		this.field1067 = 70;
+		this.field1070 = -1;
+		this.field1077 = -1;
+		this.field1076 = -1;
+		this.field1071 = -1;
+		this.field1072 = 0;
+		this.field1064 = 0;
+		this.field1074 = -1;
+		this.field1068 = "";
+		this.field1069 = -1;
+		this.field1065 = 0;
+		this.field1079 = -1;
+		this.field1080 = -1;
+	}
 
-      this.field1425 = new class219(var8, var9);
-      this.field1430 = new ArrayList();
-      this.field1429 = class34.field173.submit(new class155(this, var6, var7));
-   }
+	void method820(Buffer var1) {
+		while (true) {
+			int var3 = var1.readUnsignedByte();
+			if (var3 == 0) {
+				return;
+			}
 
-   void method2659(Buffer var1, int var2) {
-      var1.readUnsignedShort();
-      var1.readUnsignedShort();
-      this.field1427 = var1.readUnsignedByte();
-      int var4 = var1.readUnsignedShort();
-      this.field1426 = new class143[this.field1425.method4198().method4367()][];
-      this.field1424 = new class143[this.field1425.method4203()][];
-      class120[] var5 = new class120[var4];
+			this.method826(var1, var3);
+		}
+	}
 
-      int var6;
-      int var8;
-      int var19;
-      for(var6 = 0; var6 < var4; ++var6) {
-         var8 = var1.readUnsignedByte();
-         class131[] var9 = new class131[]{class131.field1227, class131.field1228, class131.field1231, class131.field1230, class131.field1233, class131.field1232};
-         class131 var10 = (class131)class373.method1724(var9, var8);
-         if (null == var10) {
-            var10 = class131.field1227;
-         }
+	void method826(Buffer var1, int var2) {
+		if (var2 == 1) {
+			this.field1061 = var1.method2482();
+		} else if (var2 == 2) {
+			this.field1066 = var1.readUnsignedMedium();
+		} else if (var2 == 3) {
+			this.field1070 = var1.method2482();
+		} else if (var2 == 4) {
+			this.field1076 = var1.method2482();
+		} else if (var2 == 5) {
+			this.field1077 = var1.method2482();
+		} else if (var2 == 6) {
+			this.field1071 = var1.method2482();
+		} else if (var2 == 7) {
+			this.field1072 = var1.readShort();
+		} else if (var2 == 8) {
+			this.field1068 = var1.readJagexString();
+		} else if (var2 == 9) {
+			this.field1067 = var1.readUnsignedShort();
+		} else if (var2 == 10) {
+			this.field1064 = var1.readShort();
+		} else if (var2 == 11) {
+			this.field1074 = 0;
+		} else if (var2 == 12) {
+			this.field1069 = var1.readUnsignedByte();
+		} else if (var2 == 13) {
+			this.field1065 = var1.readShort();
+		} else if (var2 == 14) {
+			this.field1074 = var1.readUnsignedShort();
+		} else if (var2 == 17 || var2 == 18) {
+			this.field1079 = var1.readUnsignedShort();
+			if (this.field1079 == 65535) {
+				this.field1079 = -1;
+			}
 
-         var19 = var1.readSmartByteShort();
-         int var12 = var1.readUnsignedByte();
-         class137 var13 = (class137)class373.method1724(class137.method1197(), var12);
-         if (var13 == null) {
-            var13 = class137.field1266;
-         }
+			this.field1080 = var1.readUnsignedShort();
+			if (this.field1080 == 65535) {
+				this.field1080 = -1;
+			}
 
-         class143 var14 = new class143();
-         var14.method2521(var1, var2);
-         var5[var6] = new class120(this, var14, var10, var13, var19);
-         int var15 = var10.method2443();
-         class143[][] var16;
-         if (var10 == class131.field1228) {
-            var16 = this.field1426;
-         } else {
-            var16 = this.field1424;
-         }
+			int var4 = -1;
+			if (var2 == 18) {
+				var4 = var1.readUnsignedShort();
+				if (var4 == 65535) {
+					var4 = -1;
+				}
+			}
 
-         if (null == var16[var19]) {
-            var16[var19] = new class143[var15];
-         }
+			int var5 = var1.readUnsignedByte();
+			this.field1078 = new int[var5 + 2];
 
-         if (class131.field1233 == var10) {
-            this.field1428 = true;
-         }
-      }
+			for (int var6 = 0; var6 <= var5; ++var6) {
+				this.field1078[var6] = var1.readUnsignedShort();
+				if (this.field1078[var6] == 65535) {
+					this.field1078[var6] = -1;
+				}
+			}
 
-      var6 = var4 / class118.field1132;
-      int var17 = var4 % class118.field1132;
-      int var18 = 0;
+			this.field1078[var5 + 1] = var4;
+		}
 
-      for(var19 = 0; var19 < class118.field1132; ++var19) {
-         var8 = var18;
-         var18 += var6;
-         if (var17 > 0) {
-            ++var18;
-            --var17;
-         }
+	}
 
-         if (var8 == var18) {
-            break;
-         }
+	public final class156 method821() {
+		int var2 = -1;
+		if (this.field1079 != -1) {
+			var2 = class119.method580(this.field1079);
+		} else if (this.field1080 != -1) {
+			var2 = class119.field786[this.field1080];
+		}
 
-         this.field1430.add(class34.field173.submit(new class146(this, var8, var18, var5)));
-      }
+		int var3;
+		if (var2 >= 0 && var2 < this.field1078.length - 1) {
+			var3 = this.field1078[var2];
+		} else {
+			var3 = this.field1078[this.field1078.length - 1];
+		}
 
-   }
+		return var3 != -1 ? method830(var3) : null;
+	}
 
-   public boolean method2660() {
-      if (null == this.field1429 && this.field1430 == null) {
-         return true;
-      } else {
-         if (this.field1429 != null) {
-            if (!this.field1429.isDone()) {
-               return false;
-            }
+	public String method827(int var1) {
+		String var3 = this.field1068;
 
-            this.field1429 = null;
-         }
+		while (true) {
+			int var4 = var3.indexOf("%1");
+			if (var4 < 0) {
+				return var3;
+			}
 
-         boolean var2 = true;
+			var3 = var3.substring(0, var4) + class385.method1819(var1, false) + var3.substring(var4 + 2);
+		}
+	}
 
-         for(int var3 = 0; var3 < this.field1430.size(); ++var3) {
-            if (!((Future)this.field1430.get(var3)).isDone()) {
-               var2 = false;
-            } else {
-               this.field1430.remove(var3);
-               --var3;
-            }
-         }
+	public class42 method822() {
+		if (this.field1070 < 0) {
+			return null;
+		} else {
+			class42 var2 = (class42)field1063.method1678((long)this.field1070);
+			if (var2 != null) {
+				return var2;
+			} else {
+				var2 = class168.method884(field1060, this.field1070, 0);
+				if (var2 != null) {
+					field1063.method1680(var2, (long)this.field1070);
+				}
 
-         if (!var2) {
-            return false;
-         } else {
-            this.field1430 = null;
-            return true;
-         }
-      }
-   }
+				return var2;
+			}
+		}
+	}
 
-   public int method2686() {
-      return this.field1427;
-   }
+	public class42 method823() {
+		if (this.field1077 < 0) {
+			return null;
+		} else {
+			class42 var2 = (class42)field1063.method1678((long)this.field1077);
+			if (var2 != null) {
+				return var2;
+			} else {
+				var2 = class168.method884(field1060, this.field1077, 0);
+				if (null != var2) {
+					field1063.method1680(var2, (long)this.field1077);
+				}
 
-   public boolean method2677() {
-      return this.field1428;
-   }
+				return var2;
+			}
+		}
+	}
 
-   public void method2663(int var1, class115 var2, int var3, int var4) {
-      class455 var6 = class455.method2516();
-      this.method2664(var6, var3, var2, var1);
-      this.method2679(var6, var3, var2, var1);
-      this.method2665(var6, var3, var2, var1);
-      var2.method2264(var6);
-      var6.method7978();
-   }
+	public class42 method824() {
+		if (this.field1076 < 0) {
+			return null;
+		} else {
+			class42 var2 = (class42)field1063.method1678((long)this.field1076);
+			if (null != var2) {
+				return var2;
+			} else {
+				var2 = class168.method884(field1060, this.field1076, 0);
+				if (var2 != null) {
+					field1063.method1680(var2, (long)this.field1076);
+				}
 
-   void method2664(class455 var1, int var2, class115 var3, int var4) {
-      float[] var6 = var3.method2241(this.field1427);
-      float var7 = var6[0];
-      float var8 = var6[1];
-      float var9 = var6[2];
-      if (null != this.field1426[var2]) {
-         class143 var10 = this.field1426[var2][0];
-         class143 var11 = this.field1426[var2][1];
-         class143 var12 = this.field1426[var2][2];
-         if (null != var10) {
-            var7 = var10.method2523(var4);
-         }
+				return var2;
+			}
+		}
+	}
 
-         if (var11 != null) {
-            var8 = var11.method2523(var4);
-         }
+	public class42 method825() {
+		if (this.field1071 < 0) {
+			return null;
+		} else {
+			class42 var2 = (class42)field1063.method1678((long)this.field1071);
+			if (null != var2) {
+				return var2;
+			} else {
+				var2 = class168.method884(field1060, this.field1071, 0);
+				if (null != var2) {
+					field1063.method1680(var2, (long)this.field1071);
+				}
 
-         if (var12 != null) {
-            var9 = var12.method2523(var4);
-         }
-      }
+				return var2;
+			}
+		}
+	}
 
-      class452 var15 = class452.method4916();
-      var15.method7892(1.0F, 0.0F, 0.0F, var7);
-      class452 var16 = class452.method4916();
-      var16.method7892(0.0F, 1.0F, 0.0F, var8);
-      class452 var17 = class452.method4916();
-      var17.method7892(0.0F, 0.0F, 1.0F, var9);
-      class452 var13 = class452.method4916();
-      var13.method7898(var17);
-      var13.method7898(var15);
-      var13.method7898(var16);
-      class455 var14 = class455.method2516();
-      var14.method7954(var13);
-      var1.method7984(var14);
-      var15.method7894();
-      var16.method7894();
-      var17.method7894();
-      var13.method7894();
-      var14.method7978();
-   }
+	public class282 method828() {
+		if (this.field1061 == -1) {
+			return null;
+		} else {
+			class282 var2 = (class282)field1075.method1678((long)this.field1061);
+			if (var2 != null) {
+				return var2;
+			} else {
+				class5 var4 = field1060;
+				class5 var5 = class315.field2299;
+				int var6 = this.field1061;
+				class282 var3;
+				if (!class168.method887(var4, var6, 0)) {
+					var3 = null;
+				} else {
+					byte[] var8 = var5.method39(var6, 0);
+					class282 var7;
+					if (null == var8) {
+						var7 = null;
+					} else {
+						class282 var9 = new class282(var8, class498.field3673, class442.field2971, class28.field136, class168.field1184, class205.field1376, class299.field2203);
+						class345.method1664();
+						var7 = var9;
+					}
 
-   void method2665(class455 var1, int var2, class115 var3, int var4) {
-      float[] var6 = var3.method2242(this.field1427);
-      float var7 = var6[0];
-      float var8 = var6[1];
-      float var9 = var6[2];
-      if (null != this.field1426[var2]) {
-         class143 var10 = this.field1426[var2][3];
-         class143 var11 = this.field1426[var2][4];
-         class143 var12 = this.field1426[var2][5];
-         if (var10 != null) {
-            var7 = var10.method2523(var4);
-         }
+					var3 = var7;
+				}
 
-         if (var11 != null) {
-            var8 = var11.method2523(var4);
-         }
+				if (null != var3) {
+					field1075.method1680(var3, (long)this.field1061);
+				}
 
-         if (null != var12) {
-            var9 = var12.method2523(var4);
-         }
-      }
+				return var3;
+			}
+		}
+	}
 
-      var1.field4749[12] = var7;
-      var1.field4749[13] = var8;
-      var1.field4749[14] = var9;
-   }
+	public static void method829(class5 var0, class5 var1, class5 var2) {
+		field1073 = var0;
+		field1060 = var1;
+		class315.field2299 = var2;
+	}
 
-   void method2679(class455 var1, int var2, class115 var3, int var4) {
-      float[] var6 = var3.method2243(this.field1427);
-      float var7 = var6[0];
-      float var8 = var6[1];
-      float var9 = var6[2];
-      if (null != this.field1426[var2]) {
-         class143 var10 = this.field1426[var2][6];
-         class143 var11 = this.field1426[var2][7];
-         class143 var12 = this.field1426[var2][8];
-         if (null != var10) {
-            var7 = var10.method2523(var4);
-         }
+	public static class156 method830(int var0) {
+		class156 var2 = (class156)field1062.method1678((long)var0);
+		if (null != var2) {
+			return var2;
+		} else {
+			byte[] var3 = field1073.method39(32, var0);
+			var2 = new class156();
+			if (var3 != null) {
+				var2.method820(new Buffer(var3));
+			}
 
-         if (null != var11) {
-            var8 = var11.method2523(var4);
-         }
-
-         if (var12 != null) {
-            var9 = var12.method2523(var4);
-         }
-      }
-
-      class455 var13 = class455.method2516();
-      var13.method7965(var7, var8, var9);
-      var1.method7984(var13);
-      var13.method7978();
-   }
+			field1062.method1680(var2, (long)var0);
+			return var2;
+		}
+	}
 }

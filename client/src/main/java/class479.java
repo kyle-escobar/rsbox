@@ -1,105 +1,127 @@
-public abstract class class479 {
-   double field4866 = 0.0;
-   int field4867 = 0;
-   int field4868 = 0;
-   int field4869 = 0;
+public class class479 extends class292 {
+	public static class352 field3365;
+	public static class5 field3366;
+	int field3367;
+	public int field3368;
+	public int field3369;
+	public int field3370;
+	public int field3371;
 
-   class479(int var1, int var2) {
-      this.field4867 = var1;
-      this.field4868 = 0;
-      this.field4869 = var2 >= 0 && var2 <= 27 ? var2 : 0;
-      this.field4866 = method6482(this.field4868, this.field4867, this.field4869);
-   }
+	static {
+		field3365 = new class352(64);
+	}
 
-   static double method6482(int var0, int var1, int var2) {
-      double var4 = var1 > 0 ? (double)Math.max(0.0F, Math.min(1.0F, (float)var0 / (float)var1)) : 1.0;
-      if (!(var4 <= 0.0) && !(var4 >= 1.0)) {
-         double var6;
-         double var8;
-         switch (var2) {
-            case 0:
-               return var4;
-            case 1:
-               return 1.0 - Math.cos(var4 * Math.PI / 2.0);
-            case 2:
-               return Math.sin(var4 * Math.PI / 2.0);
-            case 3:
-               return -(Math.cos(var4 * Math.PI) - 1.0) / 2.0;
-            case 4:
-               return var4 * var4;
-            case 5:
-               return 1.0 - (1.0 - var4) * (1.0 - var4);
-            case 6:
-               return var4 < 0.5 ? var4 * var4 * 2.0 : 1.0 - Math.pow(2.0 + var4 * -2.0, 2.0) / 2.0;
-            case 7:
-               return var4 * var4 * var4;
-            case 8:
-               return 1.0 - Math.pow(1.0 - var4, 3.0);
-            case 9:
-               return var4 < 0.5 ? var4 * var4 * 4.0 * var4 : 1.0 - Math.pow(2.0 + var4 * -2.0, 3.0) / 2.0;
-            case 10:
-               return var4 * var4 * var4 * var4;
-            case 11:
-               return 1.0 - Math.pow(1.0 - var4, 4.0);
-            case 12:
-               return var4 < 0.5 ? var4 * var4 * var4 * 8.0 * var4 : 1.0 - Math.pow(var4 * -2.0 + 2.0, 4.0) / 2.0;
-            case 13:
-               return var4 * var4 * var4 * var4 * var4;
-            case 14:
-               return 1.0 - Math.pow(1.0 - var4, 5.0);
-            case 15:
-               return var4 < 0.5 ? var4 * var4 * var4 * 8.0 * var4 * var4 : 1.0 - Math.pow(var4 * -2.0 + 2.0, 5.0) / 2.0;
-            case 16:
-               return Math.pow(2.0, var4 * 10.0 - 10.0);
-            case 17:
-               return 1.0 - Math.pow(2.0, var4 * -10.0);
-            case 18:
-               return var4 < 0.5 ? Math.pow(2.0, 10.0 + var4 * 20.0) / 2.0 : (2.0 - Math.pow(2.0, 10.0 + var4 * -20.0)) / 2.0;
-            case 19:
-               return 1.0 - Math.sqrt(1.0 - Math.pow(var4, 2.0));
-            case 20:
-               return Math.sqrt(1.0 - Math.pow(var4 - 1.0, 2.0));
-            case 21:
-               return var4 < 0.5 ? (1.0 - Math.sqrt(1.0 - Math.pow(var4 * 2.0, 2.0))) / 2.0 : (Math.sqrt(1.0 - Math.pow(2.0 + var4 * -2.0, 2.0)) + 1.0) / 2.0;
-            case 22:
-               var6 = 1.70158;
-               var8 = 2.70158;
-               return var4 * var4 * 2.70158 * var4 - var4 * 1.70158 * var4;
-            case 23:
-               var6 = 1.70158;
-               var8 = 2.70158;
-               return 1.0 + 2.70158 * Math.pow(var4 - 1.0, 3.0) + 1.70158 * Math.pow(var4 - 1.0, 2.0);
-            case 24:
-               var6 = 1.70158;
-               var8 = 2.5949095;
-               return var4 < 0.5 ? Math.pow(var4 * 2.0, 2.0) * (var4 * 7.189819 - 2.5949095) / 2.0 : (Math.pow(var4 * 2.0 - 2.0, 2.0) * (2.5949095 + (var4 * 2.0 - 2.0) * 3.5949095) + 2.0) / 2.0;
-            case 25:
-               var6 = 2.0943951023931953;
-               return -Math.pow(2.0, var4 * 10.0 - 10.0) * Math.sin((var4 * 10.0 - 10.75) * 2.0943951023931953);
-            case 26:
-               var6 = 2.0943951023931953;
-               return Math.pow(2.0, var4 * -10.0) * Math.sin(2.0943951023931953 * (var4 * 10.0 - 0.75)) + 1.0;
-            case 27:
-               var6 = 1.3962634015954636;
-               var8 = Math.sin(1.3962634015954636 * (var4 * 20.0 - 11.125));
-               return var4 < 0.5 ? -(Math.pow(2.0, var4 * 20.0 - 10.0) * var8) / 2.0 : Math.pow(2.0, 10.0 + var4 * -20.0) * var8 / 2.0 + 1.0;
-            default:
-               return var4;
-         }
-      } else {
-         return var4 <= 0.0 ? 0.0 : 1.0;
-      }
-   }
+	class479() {
+		this.field3367 = 0;
+	}
 
-   public void method8170() {
-      if (this.field4868 < this.field4867) {
-         ++this.field4868;
-         this.field4866 = method6482(this.field4868, this.field4867, this.field4869);
-      }
+	void method2202() {
+		this.method2201(this.field3367);
+	}
 
-   }
+	void method2199(Buffer var1, int var2) {
+		while (true) {
+			int var4 = var1.readUnsignedByte();
+			if (var4 == 0) {
+				return;
+			}
 
-   double method8168() {
-      return this.field4866;
-   }
+			this.method2200(var1, var4, var2);
+		}
+	}
+
+	void method2200(Buffer var1, int var2, int var3) {
+		if (var2 == 1) {
+			this.field3367 = var1.readUnsignedMedium();
+		}
+
+	}
+
+	void method2201(int var1) {
+		double var3 = (double)(var1 >> 16 & 255) / 256.0D;
+		double var5 = (double)(var1 >> 8 & 255) / 256.0D;
+		double var7 = (double)(var1 & 255) / 256.0D;
+		double var9 = var3;
+		if (var5 < var3) {
+			var9 = var5;
+		}
+
+		if (var7 < var9) {
+			var9 = var7;
+		}
+
+		double var11 = var3;
+		if (var5 > var3) {
+			var11 = var5;
+		}
+
+		if (var7 > var11) {
+			var11 = var7;
+		}
+
+		double var13 = 0.0D;
+		double var15 = 0.0D;
+		double var17 = (var11 + var9) / 2.0D;
+		if (var11 != var9) {
+			if (var17 < 0.5D) {
+				var15 = (var11 - var9) / (var9 + var11);
+			}
+
+			if (var17 >= 0.5D) {
+				var15 = (var11 - var9) / (2.0D - var11 - var9);
+			}
+
+			if (var11 == var3) {
+				var13 = (var5 - var7) / (var11 - var9);
+			} else if (var5 == var11) {
+				var13 = (var7 - var3) / (var11 - var9) + 2.0D;
+			} else if (var11 == var7) {
+				var13 = (var3 - var5) / (var11 - var9) + 4.0D;
+			}
+		}
+
+		var13 /= 6.0D;
+		this.field3369 = (int)(var15 * 256.0D);
+		this.field3370 = (int)(var17 * 256.0D);
+		if (this.field3369 < 0) {
+			this.field3369 = 0;
+		} else if (this.field3369 > 255) {
+			this.field3369 = 255;
+		}
+
+		if (this.field3370 < 0) {
+			this.field3370 = 0;
+		} else if (this.field3370 > 255) {
+			this.field3370 = 255;
+		}
+
+		if (var17 > 0.5D) {
+			this.field3368 = (int)((1.0D - var17) * var15 * 512.0D);
+		} else {
+			this.field3368 = (int)(var17 * var15 * 512.0D);
+		}
+
+		if (this.field3368 < 1) {
+			this.field3368 = 1;
+		}
+
+		this.field3371 = (int)(var13 * (double)this.field3368);
+	}
+
+	public static class479 method2203(int var0) {
+		class479 var2 = (class479)field3365.method1678((long)var0);
+		if (null != var2) {
+			return var2;
+		} else {
+			byte[] var3 = field3366.method39(1, var0);
+			var2 = new class479();
+			if (var3 != null) {
+				var2.method2199(new Buffer(var3), var0);
+			}
+
+			var2.method2202();
+			field3365.method1680(var2, (long)var0);
+			return var2;
+		}
+	}
 }

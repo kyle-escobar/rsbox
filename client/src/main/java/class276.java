@@ -1,12 +1,23 @@
-public class class276 {
-   public static final class276 field3021 = new class276("compositemap");
-   public static final class276 field3024 = new class276("labels");
-   public static final class276 field3025 = new class276("details");
-   public static final class276 field3026 = new class276("compositetexture");
-   static final class276 field3020 = new class276("area");
-   public final String field3022;
+import java.util.concurrent.Callable;
 
-   class276(String var1) {
-      this.field3022 = var1;
-   }
+class class276 implements Callable {
+	static class388 field1830;
+	// $FF: synthetic field
+	final class19 this$0;
+	// $FF: synthetic field
+	final Buffer val$p;
+	// $FF: synthetic field
+	final int val$version;
+
+	class276(class19 var1, Buffer var2, int var3) {
+		this.this$0 = var1;
+		this.val$p = var2;
+		this.val$version = var3;
+	}
+
+	@Override
+	public Object call() {
+		this.this$0.method81(this.val$p, this.val$version);
+		return null;
+	}
 }

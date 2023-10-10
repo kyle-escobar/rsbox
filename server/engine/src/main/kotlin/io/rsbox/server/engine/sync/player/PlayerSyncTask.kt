@@ -188,21 +188,23 @@ class PlayerSyncTask : SyncTask {
             mask = mask or it.mask
         }
 
+        val extraFlag1 = 0x1
+        val extraFlag2 = 0x1000
+
         if(mask and 0xFF.inv() != 0) {
-           mask = mask or 0x4
+           mask = mask or extraFlag1
         }
         if(mask and 0xFFFF.inv() != 0) {
-            mask = mask or 0x4000
+            mask = mask or extraFlag2
         }
 
         writeByte(mask)
-        if(mask and 0x4 != 0) {
+        if(mask and extraFlag1 != 0) {
             writeByte(mask ushr 8)
         }
-        if(mask and 0x4000 != 0) {
+        if(mask and extraFlag2 != 0) {
             writeByte(mask ushr 16)
         }
-
 
         updateFlags.forEach { updateFlag ->
             updateFlag.encode(this, player)

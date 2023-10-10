@@ -1,222 +1,86 @@
-public class class209 extends class476 {
-   public static class290 field2251 = new class290(64);
-   public static class342 field2253;
-   public boolean field2256 = true;
-   public int field2245;
-   public int field2247 = 0;
-   public int field2248 = -1;
-   public int field2249;
-   public int field2250 = -1;
-   public int field2252;
-   public int field2254;
-   public int field2255;
-   public int field2258;
+import java.util.concurrent.ThreadPoolExecutor;
 
-   public static int method3916(CharSequence var0, CharSequence var1, class384 var2) {
-      int var4 = var0.length();
-      int var5 = var1.length();
-      int var6 = 0;
-      int var7 = 0;
-      char var8 = 0;
-      char var9 = 0;
+public class class209 {
+	public static ThreadPoolExecutor field1389;
+	static class282 field1388;
+	class375 field1387;
+	class5 field1386;
+	class5 field1390;
 
-      int var10;
-      int var11;
-      while(var6 - var8 < var4 || var7 - var9 < var5) {
-         if (var6 - var8 >= var4) {
-            return -1;
-         }
+	public class209(class5 var1, class5 var2) {
+		new class375(256);
+		this.field1387 = new class375(256);
+		this.field1390 = var1;
+		this.field1386 = var2;
+	}
 
-         if (var7 - var9 >= var5) {
-            return 1;
-         }
+	class7 method983(int var1, int var2, int[] var3) {
+		long var5 = this.method984(var1, var2, false);
+		class214 var7 = (class214)this.field1387.get(var5);
+		if (var7 != null) {
+			return var7.method993();
+		} else if (null != var3 && var3[0] <= 0) {
+			return null;
+		} else {
+			class357 var8 = class357.method1715(this.field1390, var1, var2);
+			if (null == var8) {
+				return null;
+			} else {
+				class7 var9 = var8.method1712();
+				this.field1387.put(new class214(var9), var5);
+				if (null != var3) {
+					var3[0] -= var9.field35.length;
+				}
 
-         if (var8 != 0) {
-            var10 = var8;
-            boolean var15 = false;
-         } else {
-            var10 = var0.charAt(var6++);
-         }
+				return var9;
+			}
+		}
+	}
 
-         if (var9 != 0) {
-            var11 = var9;
-            boolean var16 = false;
-         } else {
-            var11 = var1.charAt(var7++);
-         }
+	class214 method979(int var1, int var2) {
+		long var4 = this.method984(var1, var2, true);
+		class214 var6 = (class214)this.field1387.get(var4);
+		if (var6 != null) {
+			return var6;
+		} else {
+			class191 var7 = class191.method941(this.field1386, var1, var2);
+			if (null == var7) {
+				return new class214();
+			} else {
+				class214 var8 = new class214(var7);
+				this.field1387.put(var8, var4);
+				return var8;
+			}
+		}
+	}
 
-         var8 = class370.method2652((char)var10);
-         var9 = class370.method2652((char)var11);
-         var10 = class370.method1741((char)var10, var2);
-         var11 = class370.method1741((char)var11, var2);
-         if (var10 != var11 && Character.toUpperCase((char)var10) != Character.toUpperCase((char)var11)) {
-            var10 = Character.toLowerCase((char)var10);
-            var11 = Character.toLowerCase((char)var11);
-            if (var10 != var11) {
-               return class370.method1246((char)var10, var2) - class370.method1246((char)var11, var2);
-            }
-         }
-      }
+	class7 method980(int var1, int[] var2) {
+		if (this.field1390.method24() == 1) {
+			return this.method983(0, var1, var2);
+		} else if (this.field1390.method23(var1) == 1) {
+			return this.method983(var1, 0, var2);
+		} else {
+			throw new RuntimeException();
+		}
+	}
 
-      var10 = Math.min(var4, var5);
+	public class214 method981(int var1) {
+		if (this.field1386.method24() == 1) {
+			return this.method979(0, var1);
+		} else if (this.field1386.method23(var1) == 1) {
+			return this.method979(var1, 0);
+		} else {
+			throw new RuntimeException();
+		}
+	}
 
-      int var12;
-      char var13;
-      for(var11 = 0; var11 < var10; ++var11) {
-         if (class384.field4410 == var2) {
-            var6 = var4 - 1 - var11;
-            var7 = var5 - 1 - var11;
-         } else {
-            var7 = var11;
-            var6 = var11;
-         }
+	public class7 method982(int var1) {
+		return this.method980(var1, (int[])null);
+	}
 
-         var12 = var0.charAt(var6);
-         var13 = var1.charAt(var7);
-         if (var13 != var12 && Character.toUpperCase((char)var12) != Character.toUpperCase(var13)) {
-            var12 = Character.toLowerCase((char)var12);
-            var13 = Character.toLowerCase(var13);
-            if (var13 != var12) {
-               return class370.method1246((char)var12, var2) - class370.method1246(var13, var2);
-            }
-         }
-      }
-
-      var11 = var4 - var5;
-      if (var11 != 0) {
-         return var11;
-      } else {
-         for(var12 = 0; var12 < var10; ++var12) {
-            var13 = var0.charAt(var12);
-            char var14 = var1.charAt(var12);
-            if (var13 != var14) {
-               return class370.method1246(var13, var2) - class370.method1246(var14, var2);
-            }
-         }
-
-         return 0;
-      }
-   }
-
-   public static void method2479(class342 var0) {
-      field2253 = var0;
-   }
-
-   public static class209 method2449(int var0) {
-      class209 var2 = (class209)field2251.method5643((long)var0);
-      if (var2 != null) {
-         return var2;
-      } else {
-         byte[] var3 = field2253.method6381(4, var0);
-         var2 = new class209();
-         if (var3 != null) {
-            var2.method3908(new Buffer(var3), var0);
-         }
-
-         var2.method3912();
-         field2251.method5640(var2, (long)var0);
-         return var2;
-      }
-   }
-
-   public static void method7425() {
-      field2251.method5637();
-   }
-
-   public void method3912() {
-      if (-1 != this.field2250) {
-         this.method3910(this.field2250);
-         this.field2258 = this.field2249;
-         this.field2255 = this.field2245;
-         this.field2252 = this.field2254;
-      }
-
-      this.method3910(this.field2247);
-   }
-
-   public void method3908(Buffer var1, int var2) {
-      while(true) {
-         int var4 = var1.readUnsignedByte();
-         if (var4 == 0) {
-            return;
-         }
-
-         this.method3909(var1, var4, var2);
-      }
-   }
-
-   void method3909(Buffer var1, int var2, int var3) {
-      if (var2 == 1) {
-         this.field2247 = var1.readUnsignedMedium();
-      } else if (var2 == 2) {
-         this.field2248 = var1.readUnsignedByte();
-      } else if (var2 == 5) {
-         this.field2256 = false;
-      } else if (var2 == 7) {
-         this.field2250 = var1.readUnsignedMedium();
-      } else if (var2 == 8) {
-      }
-
-   }
-
-   void method3910(int var1) {
-      double var3 = (double)(var1 >> 16 & 255) / 256.0;
-      double var5 = (double)(var1 >> 8 & 255) / 256.0;
-      double var7 = (double)(var1 & 255) / 256.0;
-      double var9 = var3;
-      if (var5 < var3) {
-         var9 = var5;
-      }
-
-      if (var7 < var9) {
-         var9 = var7;
-      }
-
-      double var11 = var3;
-      if (var5 > var3) {
-         var11 = var5;
-      }
-
-      if (var7 > var11) {
-         var11 = var7;
-      }
-
-      double var13 = 0.0;
-      double var15 = 0.0;
-      double var17 = (var11 + var9) / 2.0;
-      if (var11 != var9) {
-         if (var17 < 0.5) {
-            var15 = (var11 - var9) / (var9 + var11);
-         }
-
-         if (var17 >= 0.5) {
-            var15 = (var11 - var9) / (2.0 - var11 - var9);
-         }
-
-         if (var3 == var11) {
-            var13 = (var5 - var7) / (var11 - var9);
-         } else if (var5 == var11) {
-            var13 = 2.0 + (var7 - var3) / (var11 - var9);
-         } else if (var7 == var11) {
-            var13 = 4.0 + (var3 - var5) / (var11 - var9);
-         }
-      }
-
-      var13 /= 6.0;
-      this.field2249 = (int)(var13 * 256.0);
-      this.field2245 = (int)(var15 * 256.0);
-      this.field2254 = (int)(var17 * 256.0);
-      if (this.field2245 < 0) {
-         this.field2245 = 0;
-      } else if (this.field2245 > 255) {
-         this.field2245 = 255;
-      }
-
-      if (this.field2254 < 0) {
-         this.field2254 = 0;
-      } else if (this.field2254 > 255) {
-         this.field2254 = 255;
-      }
-
-   }
+	long method984(int var1, int var2, boolean var3) {
+		int var5 = var2 ^ (var1 << 4 & 65535 | var1 >> 12);
+		var5 |= var1 << 16;
+		return var3 ? (long)var5 ^ 4294967296L : (long)var5;
+	}
 }

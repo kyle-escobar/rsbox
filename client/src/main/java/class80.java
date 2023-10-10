@@ -1,29 +1,52 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.util.Map;
+
 public class class80 {
-   int field702;
-   int field703;
-   int field704;
-   int field705;
+	static int selectedTileX;
+	final int field550;
+	final String field548;
+	final Map field547;
 
-   class80(int var1, int var2, int var3, int var4) {
-      this.field702 = var1;
-      this.field704 = var2;
-      this.field703 = var3;
-      this.field705 = var4;
-   }
+	class80(HttpURLConnection var1) throws IOException {
+		this.field550 = var1.getResponseCode();
+		var1.getResponseMessage();
+		this.field547 = var1.getHeaderFields();
+		StringBuilder var2 = new StringBuilder();
+		InputStream var3 = this.field550 >= 300 ? var1.getErrorStream() : var1.getInputStream();
+		if (var3 != null) {
+			InputStreamReader var4 = new InputStreamReader(var3);
+			BufferedReader var5 = new BufferedReader(var4);
 
-   int method1727() {
-      return this.field702;
-   }
+			String var6;
+			while ((var6 = var5.readLine()) != null) {
+				var2.append(var6);
+			}
 
-   int method1728() {
-      return this.field704;
-   }
+			var3.close();
+		}
 
-   int method1729() {
-      return this.field703;
-   }
+		this.field548 = var2.toString();
+	}
 
-   int method1731() {
-      return this.field705;
-   }
+	class80(String var1) {
+		this.field550 = 400;
+		this.field547 = null;
+		this.field548 = "";
+	}
+
+	public int method394() {
+		return this.field550;
+	}
+
+	public Map method395() {
+		return this.field547;
+	}
+
+	public String method396() {
+		return this.field548;
+	}
 }
