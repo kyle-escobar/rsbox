@@ -132,26 +132,42 @@ class LoginDecoder(private val session: Session) {
         xteaBuf.readString()
         xteaBuf.readInt()
 
-        xteaBuf.skipBytes(18)
-        xteaBuf.readJagString()
-        xteaBuf.readJagString()
-        xteaBuf.readJagString()
-        xteaBuf.readJagString()
-        xteaBuf.skipBytes(3)
-        xteaBuf.readJagString()
-        xteaBuf.readJagString()
-        xteaBuf.skipBytes(2)
-        repeat(3) { xteaBuf.skipBytes(4) }
-        xteaBuf.skipBytes(4)
-        xteaBuf.readJagString()
-        xteaBuf.readJagString()
-        xteaBuf.skipBytes(1)
+        val val1 = xteaBuf.readInt()
+        val plat1 = xteaBuf.readByte()
+        val os = xteaBuf.readByte()
+        val plat2 = xteaBuf.readByte()
+        val osversion = xteaBuf.readByte()
+        val vendor = xteaBuf.readShort()
+        val javamajor = xteaBuf.readByte()
+        val javaminor = xteaBuf.readByte()
+        val javapatch = xteaBuf.readByte()
+        val pat2 = xteaBuf.readByte()
+        val maxMemory = xteaBuf.readByte()
+        val cpuCores = xteaBuf.readShort()
+        val plat3 = xteaBuf.readByte()
+        val plat4medium = xteaBuf.readMedium()
+        val clockSpeed = xteaBuf.readShort()
+        val platstr1 = xteaBuf.readJagString()
+        val platstr2 = xteaBuf.readJagString()
+        val platstr3 = xteaBuf.readJagString()
+        val platstr4 = xteaBuf.readJagString()
+        val plat5 = xteaBuf.readByte()
+        val plat6 = xteaBuf.readShort()
 
-        repeat(22) {
+        repeat(3) { xteaBuf.readInt() }
+
+        val plat7 = xteaBuf.readInt()
+        val plat8 = xteaBuf.readJagString()
+        val plat9 = xteaBuf.readJagString()
+
+        val clientType2 = xteaBuf.readByte()
+        val zeroInt = xteaBuf.readInt()
+
+        repeat(21) {
             xteaBuf.skipBytes(Int.SIZE_BYTES)
         }
 
-        buf.readBytes(buf.readableBytes())
+        xteaBuf.skipBytes(xteaBuf.readableBytes())
 
         LoginRequest(
             session,

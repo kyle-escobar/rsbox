@@ -7,7 +7,7 @@ import io.rsbox.server.engine.model.coord.Scene
 import io.rsbox.server.engine.model.coord.Tile
 import io.rsbox.server.engine.model.entity.Player
 import io.rsbox.server.engine.model.MovementType
-import io.rsbox.server.engine.net.game.packet.server.PlayerInfoServerPacket
+import io.rsbox.server.engine.net.packet.server.PlayerInfoServerPacket
 import io.rsbox.server.engine.sync.SyncTask
 import io.rsbox.server.engine.sync.update.PlayerUpdateFlag
 import io.rsbox.server.util.buffer.BIT_MODE

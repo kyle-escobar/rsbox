@@ -21,6 +21,7 @@ class PlayerPreSyncTask : SyncTask {
     }
 
     private fun Player.updateMovement() {
+        prevTile = tile
         movementQueue.cycle()
     }
 }

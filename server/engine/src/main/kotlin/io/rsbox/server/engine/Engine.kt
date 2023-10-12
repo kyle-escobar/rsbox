@@ -5,6 +5,7 @@ import io.rsbox.server.config.ServerConfig
 import io.rsbox.server.engine.coroutine.EngineCoroutineScope
 import io.rsbox.server.engine.model.World
 import io.rsbox.server.engine.net.NetworkServer
+import io.rsbox.server.engine.net.http.HttpServer
 import io.rsbox.server.engine.sync.SyncTaskList
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.delay
@@ -17,6 +18,7 @@ class Engine {
 
     private val engineCoroutine: EngineCoroutineScope by inject()
     private val networkServer: NetworkServer by inject()
+    private val httpServer: HttpServer by inject()
     private val world: World by inject()
     private val syncTasks: SyncTaskList by inject()
 
@@ -29,6 +31,7 @@ class Engine {
 
         world.load()
         engineCoroutine.start()
+        httpServer.start()
         networkServer.start()
     }
 
@@ -36,6 +39,7 @@ class Engine {
         Logger.info("Stopping RSBox engine.")
         running = false
 
+        httpServer.stop()
         networkServer.stop()
     }
 

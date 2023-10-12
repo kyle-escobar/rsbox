@@ -57,7 +57,7 @@ class PlayerUpdateFlag(mask: Int, order: Int, val encode: JagByteBuf.(Player) ->
         }
 
         val MOVEMENT = PlayerUpdateFlag(mask = 0x2000, order = 14) { player ->
-            writeByte(player.movementType.id, transform = SUB)
+            writeByte(player.movementType.id)
         }
     }
 }

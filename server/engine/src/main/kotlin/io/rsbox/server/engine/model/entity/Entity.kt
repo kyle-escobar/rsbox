@@ -21,6 +21,7 @@ abstract class Entity {
 
     abstract var tile: Tile
     abstract var prevTile: Tile
+    abstract var followTile: Tile
 
     var index: Int = -1
     var invisible = false

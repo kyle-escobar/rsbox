@@ -21,7 +21,7 @@ object GamePackets {
     private fun loadClientPackets() {
         ClassGraph()
             .enableAnnotationInfo()
-            .acceptPackagesNonRecursive("io.rsbox.server.engine.net.game.packet.client")
+            .acceptPackagesNonRecursive("io.rsbox.server.engine.net.packet.client")
             .scan().also { res ->
                 res.getClassesImplementing(Packet::class.qualifiedName).forEach { cls ->
                     val annotation = cls.annotationInfo.firstOrNull { it.name == ClientPacket::class.qualifiedName }?.let { it.loadClassAndInstantiate() as ClientPacket } ?: return@forEach
@@ -39,7 +39,7 @@ object GamePackets {
     private fun loadServerPackets() {
         ClassGraph()
             .enableAnnotationInfo()
-            .acceptPackagesNonRecursive("io.rsbox.server.engine.net.game.packet.server")
+            .acceptPackagesNonRecursive("io.rsbox.server.engine.net.packet.server")
             .scan().also { res ->
                 res.getClassesImplementing(Packet::class.qualifiedName).forEach { cls ->
                     val annotation = cls.annotationInfo.firstOrNull { it.name == ServerPacket::class.qualifiedName }?.let { it.loadClassAndInstantiate() as ServerPacket } ?: return@forEach

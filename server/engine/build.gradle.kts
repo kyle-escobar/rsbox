@@ -1,3 +1,7 @@
+plugins {
+    idea
+}
+
 dependencies {
     implementation(project(":server:common"))
     implementation(project(":server:logger"))

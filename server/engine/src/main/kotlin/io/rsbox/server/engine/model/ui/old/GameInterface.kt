@@ -1,8 +1,10 @@
-package io.rsbox.server.engine.model.ui
+package io.rsbox.server.engine.model.ui.old
 
 import io.rsbox.server.cache.GameCache
 import io.rsbox.server.cache.config.EnumConfig
 import io.rsbox.server.common.inject
+import io.rsbox.server.engine.model.ui.DisplayMode
+import io.rsbox.server.engine.model.ui.InterfaceType
 
 enum class GameInterface(val interfaceId: Int, val resizableChildId: Int, val type: InterfaceType = InterfaceType.OVERLAY) {
     CHAT_BOX(interfaceId = 162, resizableChildId = 94, type = InterfaceType.OVERLAY),

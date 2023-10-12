@@ -1,4 +1,4 @@
-package io.rsbox.server.engine.net.game.packet.client
+package io.rsbox.server.engine.net.packet.client
 
 import io.rsbox.server.engine.model.coord.Tile
 import io.rsbox.server.engine.net.Session

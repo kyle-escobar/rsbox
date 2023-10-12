@@ -16,48 +16,58 @@ class MovementQueue(val entity: Entity, private val steps: LinkedList<Tile> = Li
 
     private val routeSteps = LinkedList<RouteCoordinates>()
 
+    private val collision = entity.world.collisionMap
+
     fun cycle() {
         processRouteSteps()
 
-        when {
-            entity.teleportTile != null -> {
-                cancelRoute()
-                entity.movementType = MovementType.TELEPORT
-                entity.let { it as? Player }?.updateFlags?.add(PlayerUpdateFlag.MOVEMENT)
-                entity.tile = entity.teleportTile!!
-                return
-            }
+        if(entity.teleportTile != null) {
+            cancelRoute()
+            entity.movementType = MovementType.TELEPORT
+            entity.let { it as? Player }?.updateFlags?.add(PlayerUpdateFlag.MOVEMENT)
+            entity.tile = entity.teleportTile!!
+            entity.followTile = entity.tile.translate(Direction.WEST)
+            return
+        }
 
-            steps.isNotEmpty() -> {
-                when {
-                    entity.running -> when {
-                        steps.size == 1 -> {
-                            entity.movementType = MovementType.WALK
-                            entity.let { it as? Player }?.updateFlags?.add(PlayerUpdateFlag.MOVEMENT)
-                            entity.tile = steps.poll()
-                            entity.direction = Direction.between(entity.prevTile, entity.tile)
+        var step = poll()
+        if(step != null) {
+            var tile = entity.tile
+
+            var walkDirection = Direction.between(tile, step)
+            var runDirection: Direction? = null
+
+            if(walkDirection != Direction.NONE && collision.canTravel(tile, walkDirection)) {
+                tile = step
+                entity.direction = walkDirection
+
+                if(entity.running) {
+                    step = poll()
+                    if(step != null) {
+                        runDirection = Direction.between(tile, step)
+                        if(collision.canTravel(tile, runDirection)) {
+                            tile = step
+                            entity.direction = runDirection
+                        } else {
+                            cancelRoute()
+                            runDirection = null
                         }
-                        steps.size  > 1 && entity.tile.isWithinRadius(steps[1], 1) -> {
-                            entity.movementType = MovementType.WALK
-                            entity.let { it as? Player }?.updateFlags?.add(PlayerUpdateFlag.MOVEMENT)
-                            entity.direction = Direction.between(entity.prevTile, entity.tile)
-                            entity.tile = entity.movementQueue.poll()
-                        }
-                        else -> {
-                            entity.movementType = MovementType.RUN
-                            entity.let { it as? Player }?.updateFlags?.add(PlayerUpdateFlag.MOVEMENT)
-                            entity.direction = Direction.between(entity.tile, steps.poll())
-                            entity.tile = entity.movementQueue.poll()
-                        }
-                    } else -> {
-                        entity.movementType = MovementType.WALK
-                        entity.let { it as? Player }?.updateFlags?.add(PlayerUpdateFlag.MOVEMENT)
-                        entity.direction = Direction.between(entity.prevTile, entity.tile)
-                        entity.tile = entity.movementQueue.poll()
+                    } else {
+                        runDirection = null
                     }
                 }
+            } else {
+                walkDirection = Direction.NONE
+                cancelRoute()
+            }
 
-                entity.direction = Direction.between(entity.prevTile, entity.tile)
+            if(walkDirection != Direction.NONE) {
+                entity.movementType = if(runDirection != null) MovementType.RUN else MovementType.WALK
+                entity.followTile = entity.tile
+                entity.tile = tile
+                if(runDirection != null) {
+                    entity.let { it as? Player }?.updateFlags?.add(PlayerUpdateFlag.MOVEMENT)
+                }
             }
         }
     }
@@ -80,8 +90,9 @@ class MovementQueue(val entity: Entity, private val steps: LinkedList<Tile> = Li
                 curX += dx
                 curY += dy
                 add(Tile(curX, curY, tile.level))
+                if(turnCount > 25) break
             }
-            if(++turnCount > if(entity is Player) 420 else 420 shr 1) break
+            turnCount++
         }
     }
 
@@ -94,16 +105,5 @@ class MovementQueue(val entity: Entity, private val steps: LinkedList<Tile> = Li
     fun cancelRoute() {
         routeSteps.clear()
         steps.clear()
-    }
-
-    private fun Entity.move(tile: Tile, direction: Direction, type: MovementType?) {
-        if(this is Player) {
-            this.direction = direction
-            this.tile = tile
-            if(type != null) {
-                movementType = type
-                updateFlags.add(PlayerUpdateFlag.MOVEMENT)
-            }
-        }
     }
 }

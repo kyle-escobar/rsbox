@@ -3,6 +3,7 @@ package io.rsbox.server.engine.model.entity
 import io.rsbox.server.common.inject
 import io.rsbox.server.config.ServerConfig
 import io.rsbox.server.engine.model.Appearance
+import io.rsbox.server.engine.model.Direction
 import io.rsbox.server.engine.model.World
 import io.rsbox.server.engine.model.coord.Tile
 import io.rsbox.server.engine.model.manager.GpiManager
@@ -10,13 +11,11 @@ import io.rsbox.server.engine.model.manager.InterfaceManager
 import io.rsbox.server.engine.model.manager.SceneManager
 import io.rsbox.server.engine.model.ui.DisplayMode
 import io.rsbox.server.engine.net.Session
+import io.rsbox.server.engine.net.game.Packet
 import io.rsbox.server.engine.net.login.LoginRequest
 import io.rsbox.server.engine.sync.update.PlayerUpdateFlag
-import org.rsmod.pathfinder.PathFinder
 import org.rsmod.pathfinder.SmartPathFinder
-import org.rsmod.pathfinder.ZoneFlags
 import org.rsmod.pathfinder.collision.CollisionStrategies
-import org.rsmod.pathfinder.flag.CollisionFlag
 import org.tinylog.kotlin.Logger
 
 class Player internal constructor(val session: Session) : Entity() {
@@ -37,13 +36,14 @@ class Player internal constructor(val session: Session) : Entity() {
 
     override var tile = Tile(ServerConfig.SPAWN_TILE.X, ServerConfig.SPAWN_TILE.Y, ServerConfig.SPAWN_TILE.LEVEL)
     override var prevTile = tile
+    override var followTile = tile.translate(Direction.WEST)
 
     var username: String = ""
     var displayName: String = ""
     var passwordHash: String = ""
     var privilege = 3
     var isMember = true
-    var displayMode = DisplayMode.FIXED
+    var displayMode = DisplayMode.RESIZABLE
     var appearance = Appearance.DEFAULT
     var skullIcon = -1
     var prayerIcon = -1
@@ -88,6 +88,10 @@ class Player internal constructor(val session: Session) : Entity() {
     override fun equals(other: Any?): Boolean {
         return other is Player && other.username == username && other.passwordHash == passwordHash
     }
+
+    fun write(packet: Packet) = session.write(packet)
+    fun writeAndFlush(packet: Packet) = session.writeAndFlush(packet)
+    fun flush() = session.flush()
 
     companion object {
 

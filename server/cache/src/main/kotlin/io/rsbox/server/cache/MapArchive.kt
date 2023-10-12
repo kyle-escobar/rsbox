@@ -113,7 +113,7 @@ class MapArchive(private val entryMap: MutableMap<Int, MapRegionEntry> = mutable
             val y = packedTile and 0x3F
             val x = (packedTile shr 6) and 0x3F
             var level = (packedTile shr 12) and 0x3
-            if(entry.terrain[entry.pack(x, y, level)]!!.collision and 0x2 == 0x2) { level-- }
+            if(entry.terrain[entry.pack(x, y, 1)]!!.collision and 0x2 == 0x2) { level-- }
             if(level < 0) {
                 readUnsignedByte()
             } else {

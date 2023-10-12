@@ -1,4 +1,4 @@
-package io.rsbox.server.engine.net.game.packet.server
+package io.rsbox.server.engine.net.packet.server
 
 import io.rsbox.server.engine.model.World
 import io.rsbox.server.engine.model.entity.Player
